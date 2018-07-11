@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{746A1158-96F1-4987-882B-8374DA765A3C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>EMS.WinForm</RootNamespace>
+    <AssemblyName>EMS.WinForm</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IoCContainer\IoC.cs" />
+    <Compile Include="IoCContainer\IoCConfiguration.cs" />
+    <Compile Include="Presenters\DepartmentPresenter.cs" />
+    <Compile Include="Presenters\EmployeeDetailPresenter.cs" />
+    <Compile Include="Presenters\Interfaces\IDepartmentPresenter.cs" />
+    <Compile Include="Presenters\Interfaces\IEmployeeDetailPresenter.cs" />
+    <Compile Include="Presenters\Interfaces\ILoginPresenter.cs" />
+    <Compile Include="Presenters\Interfaces\IMainPresenter.cs" />
+    <Compile Include="Presenters\Interfaces\IRegistrationPresenter.cs" />
+    <Compile Include="Presenters\Interfaces\ISectionPresenter.cs" />
+    <Compile Include="Presenters\LoginPresenter.cs" />
+    <Compile Include="Presenters\MainPresenter.cs" />
+    <Compile Include="Presenters\RegistrationPresenter.cs" />
+    <Compile Include="Presenters\SectionPresenter.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Interfaces\IDepartmentView.cs" />
+    <Compile Include="Views\Interfaces\IEmployeeDetailView.cs" />
+    <Compile Include="Views\Interfaces\ILoginView.cs" />
+    <Compile Include="Views\Interfaces\IMainView.cs" />
+    <Compile Include="Views\Interfaces\IRegistrationView.cs" />
+    <Compile Include="Views\Interfaces\ISectionView.cs" />
+    <Compile Include="Views\LoginView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\LoginView.Designer.cs">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\DepartmentView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\DepartmentView.Designer.cs">
+      <DependentUpon>DepartmentView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\EmployeeDetailView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\EmployeeDetailView.Designer.cs">
+      <DependentUpon>EmployeeDetailView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\RegistrationView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\RegistrationView.Designer.cs">
+      <DependentUpon>RegistrationView.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Views\LoginView.resx">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\DepartmentView.resx">
+      <DependentUpon>DepartmentView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\EmployeeDetailView.resx">
+      <DependentUpon>EmployeeDetailView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\RegistrationView.resx">
+      <DependentUpon>RegistrationView.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EMS.Core\EMS.Core.csproj">
+      <Project>{D20BC722-6017-457C-97F0-2DC743D600E3}</Project>
+      <Name>EMS.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EMS.Infrastructure\EMS.Infrastructure.csproj">
+      <Project>{A0E0EAF5-438F-4403-880F-0CFB6C77994D}</Project>
+      <Name>EMS.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add_16xMD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit_grey_16xMD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cancel_16xMD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_16xMD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cancel_grey_16xMD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CopyToClipboard_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\table_16xMD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Search_16xMD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StatusOK_16xMD.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
