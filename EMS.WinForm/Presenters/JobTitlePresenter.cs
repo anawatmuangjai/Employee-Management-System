@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace EMS.WinForm.Presenters
 {
-    public class DepartmentPresenter : IDepartmentPresenter
+    public class JobTitlePresenter : IJobTitlePresenter
     {
-        private readonly IDepartmentView _view;
+        private readonly IJobTitleView _view;
 
-        public DepartmentPresenter(IDepartmentView view)
+        public JobTitlePresenter(IJobTitleView view)
         {
             _view = view;
             _view.Presenter = this;
         }
 
-        public IDepartmentView GetView()
+        public IJobTitleView GetView()
         {
             return _view;
         }

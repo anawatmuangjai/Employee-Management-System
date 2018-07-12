@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EMS.WinForm.Views.Interfaces;
+using EMS.WinForm.Presenters;
 
 namespace EMS.WinForm.Views.UserControls
 {
@@ -17,6 +18,8 @@ namespace EMS.WinForm.Views.UserControls
         {
             InitializeComponent();
         }
+
+        public RegistrationPresenter Presenter { private get; set; }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {

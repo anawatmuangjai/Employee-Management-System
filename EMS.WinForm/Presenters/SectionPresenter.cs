@@ -15,6 +15,7 @@ namespace EMS.WinForm.Presenters
         public SectionPresenter(ISectionView view)
         {
             _view = view;
+            _view.Presenter = this;
         }
 
         public ISectionView GetView()

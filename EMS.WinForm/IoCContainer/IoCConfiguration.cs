@@ -24,11 +24,19 @@ namespace EMS.WinForm.IoCContainer
             Bind<IMainView>().To<MainView>().InSingletonScope();
             Bind<IRegistrationView>().To<RegistrationView>().InSingletonScope();
             Bind<IDepartmentView>().To<DepartmentView>().InSingletonScope();
-
+            Bind<ISectionView>().To<SectionView>().InSingletonScope();
+            Bind<IShiftView>().To<ShiftView>().InSingletonScope();
+            Bind<IJobTitleView>().To<JobTitleView>().InSingletonScope();
+            Bind<IJobFunctionView>().To<JobFunctionView>().InSingletonScope();
+            
             Bind<ILoginPresenter>().To<LoginPresenter>().InSingletonScope();
             Bind<IMainPresenter>().To<MainPresenter>().InSingletonScope();
             Bind<IRegistrationPresenter>().To<RegistrationPresenter>().InSingletonScope();
             Bind<IDepartmentPresenter>().To<DepartmentPresenter>().InSingletonScope();
+            Bind<ISectionPresenter>().To<SectionPresenter>().InSingletonScope();
+            Bind<IShiftPresenter>().To<ShiftPresenter>().InSingletonScope();
+            Bind<IJobTitlePresenter>().To<JobTitlePresenter>().InSingletonScope();
+            Bind<IJobFunctionPresenter>().To<JobFunctionPresenter>().InSingletonScope();
         }
     }
 }

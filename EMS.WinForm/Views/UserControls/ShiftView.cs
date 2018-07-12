@@ -12,13 +12,13 @@ using EMS.WinForm.Presenters;
 
 namespace EMS.WinForm.Views.UserControls
 {
-    public partial class DepartmentView : UserControl, IDepartmentView
+    public partial class ShiftView : UserControl, IShiftView
     {
-        public DepartmentView()
+        public ShiftView()
         {
             InitializeComponent();
         }
 
-        public DepartmentPresenter Presenter { private get; set; }
+        public ShiftPresenter Presenter { private get; set; }
     }
 }

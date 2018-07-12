@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace EMS.WinForm.Presenters
 {
-    public class DepartmentPresenter : IDepartmentPresenter
+    public class ShiftPresenter : IShiftPresenter
     {
-        private readonly IDepartmentView _view;
+        private readonly IShiftView _view;
 
-        public DepartmentPresenter(IDepartmentView view)
+        public ShiftPresenter(IShiftView view)
         {
             _view = view;
             _view.Presenter = this;
         }
 
-        public IDepartmentView GetView()
+        public IShiftView GetView()
         {
             return _view;
         }

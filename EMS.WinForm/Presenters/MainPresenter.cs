@@ -15,6 +15,7 @@ namespace EMS.WinForm.Presenters
         public MainPresenter(IMainView view)
         {
             _view = view;
+            _view.Presenter = this;
         }
 
         public IMainView GetView()

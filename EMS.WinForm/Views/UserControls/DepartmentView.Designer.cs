@@ -76,9 +76,9 @@
             this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(6, 4);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(98, 13);
+            this.label5.Size = new System.Drawing.Size(127, 13);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Department Setting";
+            this.label5.Text = "Department Configuration";
             // 
             // MenuToolStrip
             // 
@@ -155,9 +155,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(14, 104);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 13);
+            this.label3.Size = new System.Drawing.Size(97, 13);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Note:";
+            this.label3.Text = "Department Group:";
             // 
             // NoteTextBox
             // 
@@ -171,9 +171,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(14, 62);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 13);
+            this.label2.Size = new System.Drawing.Size(93, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Department group:";
+            this.label2.Text = "Department Code:";
             // 
             // DepartmentGroupTextBox
             // 
@@ -187,9 +187,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(14, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 13);
+            this.label1.Size = new System.Drawing.Size(96, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Department name:";
+            this.label1.Text = "Department Name:";
             // 
             // DepartmentNameTextBox
             // 

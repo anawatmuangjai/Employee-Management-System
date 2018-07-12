@@ -12,13 +12,13 @@ using EMS.WinForm.Presenters;
 
 namespace EMS.WinForm.Views.UserControls
 {
-    public partial class DepartmentView : UserControl, IDepartmentView
+    public partial class JobFunctionView : UserControl, IJobFunctionView
     {
-        public DepartmentView()
+        public JobFunctionView()
         {
             InitializeComponent();
         }
 
-        public DepartmentPresenter Presenter { private get; set; }
+        public JobFunctionPresenter Presenter { private get; set; }
     }
 }

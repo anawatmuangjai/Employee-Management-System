@@ -22,6 +22,8 @@ namespace EMS.WinForm.Views
             MenuTreeView.ExpandAll();
         }
 
+        public MainPresenter Presenter { private get; set; }
+
         public void ShowView()
         {
             this.Show();
@@ -52,6 +54,18 @@ namespace EMS.WinForm.Views
                         break;
                     case "6":
                         DisplayView((UserControl)IoC.Get<DepartmentPresenter>().GetView());
+                        break;
+                    case "7":
+                        DisplayView((UserControl)IoC.Get<SectionPresenter>().GetView());
+                        break;
+                    case "8":
+                        DisplayView((UserControl)IoC.Get<ShiftPresenter>().GetView());
+                        break;
+                    case "9":
+                        DisplayView((UserControl)IoC.Get<JobTitlePresenter>().GetView());
+                        break;
+                    case "10":
+                        DisplayView((UserControl)IoC.Get<JobFunctionPresenter>().GetView());
                         break;
                     default:
                         break;
