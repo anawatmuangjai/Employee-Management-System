@@ -1,5 +1,7 @@
-﻿using EMS.Core.Interfaces;
-using EMS.Infrastructure.Repositories;
+﻿using EMS.ApplicationCore.Interfaces.Repositories;
+using EMS.Domain.Entities;
+using EMS.Persistance.Context;
+using EMS.Persistance.Repositories;
 using EMS.WinForm.Presenters;
 using EMS.WinForm.Presenters.Interfaces;
 using EMS.WinForm.Views;
@@ -18,9 +20,12 @@ namespace EMS.WinForm.IoCContainer
     {
         public override void Load()
         {
-            Bind<IDepartmentRepository>().To<DepartmentRepository>().InSingletonScope();
-            Bind<ISectionRepository>().To<SectionRepository>().InSingletonScope();
-            Bind<IEmployeeRepository>().To<EmployeeRepository>().InSingletonScope();
+            Bind<EmployeeContext>().ToSelf().InSingletonScope();
+            Bind(typeof(IRepository<>)).To(typeof(Repository<>)).InSingletonScope();
+            Bind(typeof(IAsyncRepository<>)).To(typeof(Repository<>)).InSingletonScope();
+
+            //Bind<IDepartmentRepository>().To<DepartmentRepository>().InSingletonScope();
+            //Bind<ISectionRepository>().To<SectionRepository>().InSingletonScope();
 
             Bind<ILoginView>().To<LoginView>().InSingletonScope();
             Bind<IMainView>().To<MainView>().InSingletonScope();

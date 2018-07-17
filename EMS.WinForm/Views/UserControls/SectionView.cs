@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using EMS.WinForm.Views.Interfaces;
 using EMS.WinForm.Presenters;
-using EMS.Core.Dtos;
+using EMS.Domain.Entities;
 
 namespace EMS.WinForm.Views.UserControls
 {
@@ -32,11 +32,11 @@ namespace EMS.WinForm.Views.UserControls
 
         public string Filter { get => SearchToolStripTextBox.Text.Trim(); set => SearchToolStripTextBox.Text = value; }
 
-        public SectionDto SelectedSection { get; set; }
+        public MasterSection SelectedSection { get; set; }
 
-        public DepartmentDto SelectedDepartment { get; set; }
+        public MasterDepartment SelectedDepartment { get; set; }
 
-        public IList<SectionDto> Sections
+        public IList<MasterSection> Sections
         {
             set
             {
@@ -45,7 +45,7 @@ namespace EMS.WinForm.Views.UserControls
             }
         }
 
-        public IList<DepartmentDto> Departments
+        public IList<MasterDepartment> Departments
         {
             set
             {
@@ -56,11 +56,11 @@ namespace EMS.WinForm.Views.UserControls
             }
         }
 
-        private void NewToolStripButton_Click(object sender, EventArgs e)
+        private async void NewToolStripButton_Click(object sender, EventArgs e)
         {
             Clear();
 
-            Presenter.GetDepartments();
+            await Presenter.GetDepartments();
 
             DepartmentComboBox.Select();
             SectionDetailPanel.Enabled = true;
@@ -68,13 +68,13 @@ namespace EMS.WinForm.Views.UserControls
 
         private void EditToolStripButton_Click(object sender, EventArgs e)
         {
-            SelectedSection = (SectionDto)SectionGridView.CurrentRow.DataBoundItem;
+            SelectedSection = (MasterSection)SectionGridView.CurrentRow.DataBoundItem;
 
             if (SelectedSection == null)
                 return;
 
-            SectionID = SelectedSection.SectionID;
-            DepartmentID = SelectedSection.DepartmentID;
+            SectionID = SelectedSection.SectionId;
+            DepartmentID = SelectedSection.DepartmentId;
             SectionName = SelectedSection.SectionName;
             SectionCode = SelectedSection.SectionCode;
 
@@ -92,9 +92,9 @@ namespace EMS.WinForm.Views.UserControls
             Presenter.Search();
         }
 
-        private void ViewToolStripButton_Click(object sender, EventArgs e)
+        private async void ViewToolStripButton_Click(object sender, EventArgs e)
         {
-            Presenter.ViewAll();
+            await Presenter.ViewAll();
         }
 
         private void CopyToolStripButton_Click(object sender, EventArgs e)
@@ -102,9 +102,9 @@ namespace EMS.WinForm.Views.UserControls
 
         }
 
-        private void SaveButton_Click(object sender, EventArgs e)
+        private async void SaveButton_Click(object sender, EventArgs e)
         {
-            Presenter.Save();
+            await Presenter.Save();
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -117,10 +117,10 @@ namespace EMS.WinForm.Views.UserControls
             if (DepartmentComboBox.Items.Count == 0)
                 return;
 
-            var department = DepartmentComboBox.SelectedItem as DepartmentDto;
+            var department = DepartmentComboBox.SelectedItem as MasterDepartment;
 
             SelectedDepartment = department;
-            DepartmentID = department.DepartmentID;
+            DepartmentID = department.DepartmentId;
         }
 
         private void Clear()

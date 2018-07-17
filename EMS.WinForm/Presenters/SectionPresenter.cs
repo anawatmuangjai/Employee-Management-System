@@ -1,5 +1,5 @@
-﻿using EMS.Core.Dtos;
-using EMS.Core.Interfaces;
+﻿using EMS.ApplicationCore.Interfaces.Repositories;
+using EMS.Domain.Entities;
 using EMS.WinForm.Presenters.Interfaces;
 using EMS.WinForm.Views.Interfaces;
 using System;
@@ -13,13 +13,12 @@ namespace EMS.WinForm.Presenters
     public class SectionPresenter : ISectionPresenter
     {
         private readonly ISectionView _view;
-        private readonly ISectionRepository _sectionRepository;
-        private readonly IDepartmentRepository _departmentRepository;
+        private readonly IAsyncRepository<MasterSection> _sectionRepository;
+        private readonly IAsyncRepository<MasterDepartment> _departmentRepository;
 
-        public SectionPresenter(
-            ISectionView view,
-            ISectionRepository sectionRepository,
-            IDepartmentRepository departmentRepository)
+        public SectionPresenter(ISectionView view,
+            IAsyncRepository<MasterSection> sectionRepository,
+            IAsyncRepository<MasterDepartment> departmentRepository)
         {
             _view = view;
             _view.Presenter = this;
@@ -32,41 +31,40 @@ namespace EMS.WinForm.Presenters
             return _view;
         }
 
-        public void GetDepartments()
+        public async Task GetDepartments()
         {
-            _view.Departments = _departmentRepository.GetAll().ToList();
+            _view.Departments = await _departmentRepository.GetAllAsync();
         }
 
-        public void ViewAll()
+        public async Task ViewAll()
         {
-            _view.Sections = _sectionRepository.GetAll().ToList();
+            _view.Sections =  await _sectionRepository.GetAllAsync();
         }
 
         public void Search()
         {
-            _view.Sections = _sectionRepository.GetByName(_view.Filter).ToList();
+            //_view.Sections = _sectionRepository.GetByNameWithDepartment(_view.Filter).ToList();
         }
 
-        public void Save()
+        public async Task Save()
         {
-            var section = new SectionDto
+            var section = new MasterSection
             {
-                SectionID = _view.SectionID,
-                DepartmentID = _view.DepartmentID,
+                SectionId = _view.SectionID,
+                DepartmentId = _view.DepartmentID,
                 SectionName = _view.SectionName,
                 SectionCode = _view.SectionCode,
-                Department = _view.SelectedDepartment
             };
 
-            if (section.SectionID > 0)
-                _sectionRepository.Update(section);
+            if (section.SectionId > 0)
+                await _sectionRepository.UpdateAsync(section);
             else
-                _sectionRepository.Add(section);
+                await _sectionRepository.AddAsync(section);
         }
 
         public void Delete()
         {
-            _sectionRepository.Delete(_view.SelectedSection);
+            _sectionRepository.DeleteAsync(_view.SelectedSection);
         }
 
 

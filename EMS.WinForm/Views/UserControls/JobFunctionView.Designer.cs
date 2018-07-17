@@ -44,15 +44,15 @@
             this.MessageStatusStrip = new System.Windows.Forms.StatusStrip();
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.CancelButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.NoteTextBox = new System.Windows.Forms.TextBox();
+            this.DescriptionTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.DepartmentGroupTextBox = new System.Windows.Forms.TextBox();
+            this.FunctionNameTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.JobFunctionGridView = new System.Windows.Forms.DataGridView();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             this.MenuToolStrip.SuspendLayout();
             this.MessageStatusStrip.SuspendLayout();
@@ -224,15 +224,23 @@
             this.panel1.Controls.Add(this.CancelButton);
             this.panel1.Controls.Add(this.SaveButton);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.NoteTextBox);
+            this.panel1.Controls.Add(this.DescriptionTextBox);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.DepartmentGroupTextBox);
+            this.panel1.Controls.Add(this.FunctionNameTextBox);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 50);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(220, 522);
             this.panel1.TabIndex = 9;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(17, 36);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(184, 21);
+            this.comboBox1.TabIndex = 9;
             // 
             // CancelButton
             // 
@@ -265,12 +273,12 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Function Description";
             // 
-            // NoteTextBox
+            // DescriptionTextBox
             // 
-            this.NoteTextBox.Location = new System.Drawing.Point(17, 119);
-            this.NoteTextBox.Name = "NoteTextBox";
-            this.NoteTextBox.Size = new System.Drawing.Size(184, 20);
-            this.NoteTextBox.TabIndex = 4;
+            this.DescriptionTextBox.Location = new System.Drawing.Point(17, 119);
+            this.DescriptionTextBox.Name = "DescriptionTextBox";
+            this.DescriptionTextBox.Size = new System.Drawing.Size(184, 20);
+            this.DescriptionTextBox.TabIndex = 4;
             // 
             // label2
             // 
@@ -281,12 +289,12 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Function Name:";
             // 
-            // DepartmentGroupTextBox
+            // FunctionNameTextBox
             // 
-            this.DepartmentGroupTextBox.Location = new System.Drawing.Point(17, 77);
-            this.DepartmentGroupTextBox.Name = "DepartmentGroupTextBox";
-            this.DepartmentGroupTextBox.Size = new System.Drawing.Size(184, 20);
-            this.DepartmentGroupTextBox.TabIndex = 2;
+            this.FunctionNameTextBox.Location = new System.Drawing.Point(17, 77);
+            this.FunctionNameTextBox.Name = "FunctionNameTextBox";
+            this.FunctionNameTextBox.Size = new System.Drawing.Size(184, 20);
+            this.FunctionNameTextBox.TabIndex = 2;
             // 
             // label1
             // 
@@ -307,14 +315,6 @@
             this.JobFunctionGridView.Name = "JobFunctionGridView";
             this.JobFunctionGridView.Size = new System.Drawing.Size(580, 522);
             this.JobFunctionGridView.TabIndex = 10;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(17, 36);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(184, 21);
-            this.comboBox1.TabIndex = 9;
             // 
             // JobFunctionView
             // 
@@ -361,9 +361,9 @@
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox NoteTextBox;
+        private System.Windows.Forms.TextBox DescriptionTextBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox DepartmentGroupTextBox;
+        private System.Windows.Forms.TextBox FunctionNameTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView JobFunctionGridView;
         private System.Windows.Forms.ComboBox comboBox1;

@@ -9,6 +9,10 @@ namespace EMS.WinForm.Views.Interfaces
 {
     public interface IShiftView
     {
+        byte ShiftId { get; set; }
+        string ShiftName { get; set; }
+        TimeSpan StartTime { get; set; }
+        TimeSpan EndTime { get; set; }
         ShiftPresenter Presenter { set; }
     }
 }

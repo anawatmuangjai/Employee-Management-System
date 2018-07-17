@@ -50,9 +50,7 @@
             this.NoteTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.DepartmentGroupTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.JobTitleGridView = new System.Windows.Forms.DataGridView();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             this.MenuToolStrip.SuspendLayout();
             this.MessageStatusStrip.SuspendLayout();
@@ -220,14 +218,12 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.CancelButton);
             this.panel1.Controls.Add(this.SaveButton);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.NoteTextBox);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.DepartmentGroupTextBox);
-            this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 50);
             this.panel1.Name = "panel1";
@@ -237,7 +233,7 @@
             // CancelButton
             // 
             this.CancelButton.Image = global::EMS.WinForm.Properties.Resources.Cancel_grey_16xMD;
-            this.CancelButton.Location = new System.Drawing.Point(89, 157);
+            this.CancelButton.Location = new System.Drawing.Point(89, 110);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(66, 26);
             this.CancelButton.TabIndex = 7;
@@ -248,7 +244,7 @@
             // SaveButton
             // 
             this.SaveButton.Image = global::EMS.WinForm.Properties.Resources.save_16xMD;
-            this.SaveButton.Location = new System.Drawing.Point(17, 157);
+            this.SaveButton.Location = new System.Drawing.Point(17, 110);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(66, 26);
             this.SaveButton.TabIndex = 6;
@@ -259,7 +255,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 104);
+            this.label3.Location = new System.Drawing.Point(14, 57);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 13);
             this.label3.TabIndex = 5;
@@ -267,7 +263,7 @@
             // 
             // NoteTextBox
             // 
-            this.NoteTextBox.Location = new System.Drawing.Point(17, 119);
+            this.NoteTextBox.Location = new System.Drawing.Point(17, 72);
             this.NoteTextBox.Name = "NoteTextBox";
             this.NoteTextBox.Size = new System.Drawing.Size(184, 20);
             this.NoteTextBox.TabIndex = 4;
@@ -275,7 +271,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 62);
+            this.label2.Location = new System.Drawing.Point(14, 15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 13);
             this.label2.TabIndex = 3;
@@ -283,19 +279,10 @@
             // 
             // DepartmentGroupTextBox
             // 
-            this.DepartmentGroupTextBox.Location = new System.Drawing.Point(17, 77);
+            this.DepartmentGroupTextBox.Location = new System.Drawing.Point(17, 30);
             this.DepartmentGroupTextBox.Name = "DepartmentGroupTextBox";
             this.DepartmentGroupTextBox.Size = new System.Drawing.Size(184, 20);
             this.DepartmentGroupTextBox.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Section:";
             // 
             // JobTitleGridView
             // 
@@ -307,14 +294,6 @@
             this.JobTitleGridView.Name = "JobTitleGridView";
             this.JobTitleGridView.Size = new System.Drawing.Size(580, 522);
             this.JobTitleGridView.TabIndex = 10;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(17, 36);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(184, 21);
-            this.comboBox1.TabIndex = 9;
             // 
             // JobTitleView
             // 
@@ -364,8 +343,6 @@
         private System.Windows.Forms.TextBox NoteTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox DepartmentGroupTextBox;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView JobTitleGridView;
-        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

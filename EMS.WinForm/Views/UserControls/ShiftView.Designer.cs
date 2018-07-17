@@ -44,15 +44,15 @@
             this.MessageStatusStrip = new System.Windows.Forms.StatusStrip();
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ShiftNameTextBox = new System.Windows.Forms.TextBox();
             this.CancelButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.NoteTextBox = new System.Windows.Forms.TextBox();
+            this.EndtimeTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.DepartmentGroupTextBox = new System.Windows.Forms.TextBox();
+            this.StartTimeTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ShiftGridView = new System.Windows.Forms.DataGridView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             this.MenuToolStrip.SuspendLayout();
             this.MessageStatusStrip.SuspendLayout();
@@ -220,19 +220,26 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.ShiftNameTextBox);
             this.panel1.Controls.Add(this.CancelButton);
             this.panel1.Controls.Add(this.SaveButton);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.NoteTextBox);
+            this.panel1.Controls.Add(this.EndtimeTextBox);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.DepartmentGroupTextBox);
+            this.panel1.Controls.Add(this.StartTimeTextBox);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 50);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(220, 522);
             this.panel1.TabIndex = 10;
+            // 
+            // ShiftNameTextBox
+            // 
+            this.ShiftNameTextBox.Location = new System.Drawing.Point(17, 36);
+            this.ShiftNameTextBox.Name = "ShiftNameTextBox";
+            this.ShiftNameTextBox.Size = new System.Drawing.Size(184, 20);
+            this.ShiftNameTextBox.TabIndex = 8;
             // 
             // CancelButton
             // 
@@ -265,12 +272,12 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "End Time:";
             // 
-            // NoteTextBox
+            // EndtimeTextBox
             // 
-            this.NoteTextBox.Location = new System.Drawing.Point(17, 119);
-            this.NoteTextBox.Name = "NoteTextBox";
-            this.NoteTextBox.Size = new System.Drawing.Size(184, 20);
-            this.NoteTextBox.TabIndex = 4;
+            this.EndtimeTextBox.Location = new System.Drawing.Point(17, 119);
+            this.EndtimeTextBox.Name = "EndtimeTextBox";
+            this.EndtimeTextBox.Size = new System.Drawing.Size(184, 20);
+            this.EndtimeTextBox.TabIndex = 4;
             // 
             // label2
             // 
@@ -281,12 +288,12 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Start Time:";
             // 
-            // DepartmentGroupTextBox
+            // StartTimeTextBox
             // 
-            this.DepartmentGroupTextBox.Location = new System.Drawing.Point(17, 77);
-            this.DepartmentGroupTextBox.Name = "DepartmentGroupTextBox";
-            this.DepartmentGroupTextBox.Size = new System.Drawing.Size(184, 20);
-            this.DepartmentGroupTextBox.TabIndex = 2;
+            this.StartTimeTextBox.Location = new System.Drawing.Point(17, 77);
+            this.StartTimeTextBox.Name = "StartTimeTextBox";
+            this.StartTimeTextBox.Size = new System.Drawing.Size(184, 20);
+            this.StartTimeTextBox.TabIndex = 2;
             // 
             // label1
             // 
@@ -307,13 +314,6 @@
             this.ShiftGridView.Name = "ShiftGridView";
             this.ShiftGridView.Size = new System.Drawing.Size(580, 522);
             this.ShiftGridView.TabIndex = 11;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(17, 36);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(184, 20);
-            this.textBox1.TabIndex = 8;
             // 
             // ShiftView
             // 
@@ -360,11 +360,11 @@
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox NoteTextBox;
+        private System.Windows.Forms.TextBox EndtimeTextBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox DepartmentGroupTextBox;
+        private System.Windows.Forms.TextBox StartTimeTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView ShiftGridView;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox ShiftNameTextBox;
     }
 }

@@ -1,5 +1,5 @@
-﻿using EMS.Core.Dtos;
-using EMS.Core.Interfaces;
+﻿using EMS.ApplicationCore.Interfaces.Repositories;
+using EMS.Domain.Entities;
 using EMS.WinForm.Presenters.Interfaces;
 using EMS.WinForm.Views.Interfaces;
 using System;
@@ -13,9 +13,11 @@ namespace EMS.WinForm.Presenters
     public class DepartmentPresenter : IDepartmentPresenter
     {
         private readonly IDepartmentView _view;
-        private readonly IDepartmentRepository _departmentRepository;
+        private readonly IAsyncRepository<MasterDepartment> _departmentRepository;
 
-        public DepartmentPresenter(IDepartmentView view, IDepartmentRepository departmentRepository)
+        public DepartmentPresenter(
+            IDepartmentView view,
+            IAsyncRepository<MasterDepartment> departmentRepository)
         {
             _view = view;
             _view.Presenter = this;
@@ -27,38 +29,38 @@ namespace EMS.WinForm.Presenters
             return _view;
         }
 
-        public void ViewAll()
+        public async Task ViewAll()
         {
-            _view.Departments = _departmentRepository.GetAll().ToList();
+            _view.Departments = await _departmentRepository.GetAllAsync();
         }
 
         public void Search()
         {
-            _view.Departments = _departmentRepository.GetByName(_view.Filter).ToList();
+           // _view.Departments = _departmentRepository.GetByName(_view.Filter).ToList();
         }
 
-        public void Save()
+        public async Task Save()
         {
-            var department = new DepartmentDto
+            var department = new MasterDepartment
             {
-                DepartmentID = _view.DepartmentId,
+                DepartmentId = _view.DepartmentId,
                 DepartmentName = _view.DepartmentName,
                 DepartmentCode = _view.DepartmentCode,
                 DepartmentGroup = _view.DepartmentGroup
             };
 
-            if (department.DepartmentID > 0)
-                _departmentRepository.Update(department);
+            if (department.DepartmentId > 0)
+                await _departmentRepository.UpdateAsync(department);
             else
-                _departmentRepository.Add(department);
+                await _departmentRepository.AddAsync(department);
         }
 
-        public void Delete()
+        public async Task Delete()
         {
             if (_view.SelectedDepartment == null)
                 return;
 
-            _departmentRepository.Delete(_view.SelectedDepartment);
+            await _departmentRepository.DeleteAsync(_view.SelectedDepartment);
         }
 
 

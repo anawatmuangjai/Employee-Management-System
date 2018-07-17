@@ -1,4 +1,4 @@
-﻿using EMS.Core.Dtos;
+﻿using EMS.Domain.Entities;
 using EMS.WinForm.Presenters;
 using System;
 using System.Collections.Generic;
@@ -15,10 +15,10 @@ namespace EMS.WinForm.Views.Interfaces
         string SectionName { get; set; }
         string SectionCode { get; set; }
         string Filter { get; set; }
-        SectionDto SelectedSection { get; set; }
-        DepartmentDto SelectedDepartment { get; set; }
-        IList<SectionDto> Sections { set; }
-        IList<DepartmentDto> Departments { set; }
+        MasterSection SelectedSection { get; set; }
+        MasterDepartment SelectedDepartment { get; set; }
+        IList<MasterSection> Sections { set; }
+        IList<MasterDepartment> Departments { set; }
         SectionPresenter Presenter { set; }
     }
 }
