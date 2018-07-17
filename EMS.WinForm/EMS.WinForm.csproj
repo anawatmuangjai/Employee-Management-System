@@ -32,10 +32,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -52,6 +59,7 @@
     <Compile Include="IoCContainer\IoCConfiguration.cs" />
     <Compile Include="Presenters\DepartmentPresenter.cs" />
     <Compile Include="Presenters\EmployeeDetailPresenter.cs" />
+    <Compile Include="Presenters\Interfaces\ICommandPresenter.cs" />
     <Compile Include="Presenters\Interfaces\IDepartmentPresenter.cs" />
     <Compile Include="Presenters\Interfaces\IEmployeeDetailPresenter.cs" />
     <Compile Include="Presenters\Interfaces\IJobFunctionPresenter.cs" />
@@ -185,16 +193,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EMS.Core\EMS.Core.csproj">
-      <Project>{D20BC722-6017-457C-97F0-2DC743D600E3}</Project>
-      <Name>EMS.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EMS.Infrastructure\EMS.Infrastructure.csproj">
-      <Project>{A0E0EAF5-438F-4403-880F-0CFB6C77994D}</Project>
-      <Name>EMS.Infrastructure</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Add_16xMD.png" />
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +218,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\StatusOK_16xMD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EMS.Core\EMS.Core.csproj">
+      <Project>{F96F73F3-BD6F-4575-9E8E-C31983BAFFB9}</Project>
+      <Name>EMS.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EMS.Infrastructure\EMS.Infrastructure.csproj">
+      <Project>{62B2ADEE-0B74-49B9-92D3-8BA057E3FD27}</Project>
+      <Name>EMS.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -31,31 +31,31 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.MenuToolStrip = new System.Windows.Forms.ToolStrip();
+            this.NewToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.EditToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.CopyToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.ViewToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.DeleteToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.SearchToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.SearchToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.DetailPanel = new System.Windows.Forms.Panel();
+            this.CancelButton = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.NoteTextBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.DepartmentGroupTextBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.DepartmentCodeTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.DepartmentNameTextBox = new System.Windows.Forms.TextBox();
             this.DepartmentGridView = new System.Windows.Forms.DataGridView();
             this.MessageStatusStrip = new System.Windows.Forms.StatusStrip();
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.CancelButton = new System.Windows.Forms.Button();
-            this.SaveButton = new System.Windows.Forms.Button();
-            this.NewToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.EditToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.CopyToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.ViewToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.DeleteToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.SearchToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.panel2.SuspendLayout();
             this.MenuToolStrip.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.DetailPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DepartmentGridView)).BeginInit();
             this.MessageStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -102,6 +102,41 @@
             this.MenuToolStrip.TabIndex = 4;
             this.MenuToolStrip.Text = "toolStrip1";
             // 
+            // NewToolStripButton
+            // 
+            this.NewToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.NewToolStripButton.Image = global::EMS.WinForm.Properties.Resources.Add_16xMD;
+            this.NewToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.NewToolStripButton.Margin = new System.Windows.Forms.Padding(3);
+            this.NewToolStripButton.Name = "NewToolStripButton";
+            this.NewToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.NewToolStripButton.Text = "New";
+            this.NewToolStripButton.Click += new System.EventHandler(this.NewToolStripButton_Click);
+            // 
+            // EditToolStripButton
+            // 
+            this.EditToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.EditToolStripButton.Image = global::EMS.WinForm.Properties.Resources.Edit_grey_16xMD;
+            this.EditToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.EditToolStripButton.Margin = new System.Windows.Forms.Padding(3);
+            this.EditToolStripButton.Name = "EditToolStripButton";
+            this.EditToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.EditToolStripButton.Text = "Edit";
+            this.EditToolStripButton.ToolTipText = "Edit";
+            this.EditToolStripButton.Click += new System.EventHandler(this.EditToolStripButton_Click);
+            // 
+            // CopyToolStripButton
+            // 
+            this.CopyToolStripButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.CopyToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.CopyToolStripButton.Image = global::EMS.WinForm.Properties.Resources.CopyToClipboard_16x;
+            this.CopyToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CopyToolStripButton.Margin = new System.Windows.Forms.Padding(3);
+            this.CopyToolStripButton.Name = "CopyToolStripButton";
+            this.CopyToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.CopyToolStripButton.Text = "Copy";
+            this.CopyToolStripButton.Click += new System.EventHandler(this.CopyToolStripButton_Click);
+            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -109,12 +144,48 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 28);
             // 
+            // ViewToolStripButton
+            // 
+            this.ViewToolStripButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.ViewToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ViewToolStripButton.Image = global::EMS.WinForm.Properties.Resources.table_16xMD;
+            this.ViewToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ViewToolStripButton.Margin = new System.Windows.Forms.Padding(3);
+            this.ViewToolStripButton.Name = "ViewToolStripButton";
+            this.ViewToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.ViewToolStripButton.Text = "View";
+            this.ViewToolStripButton.Click += new System.EventHandler(this.ViewToolStripButton_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripSeparator2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
+            // 
+            // DeleteToolStripButton
+            // 
+            this.DeleteToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.DeleteToolStripButton.Image = global::EMS.WinForm.Properties.Resources.Cancel_16xMD;
+            this.DeleteToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DeleteToolStripButton.Margin = new System.Windows.Forms.Padding(3);
+            this.DeleteToolStripButton.Name = "DeleteToolStripButton";
+            this.DeleteToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.DeleteToolStripButton.Text = "Delete";
+            this.DeleteToolStripButton.ToolTipText = "Delete";
+            this.DeleteToolStripButton.Click += new System.EventHandler(this.DeleteToolStripButton_Click);
+            // 
+            // SearchToolStripButton
+            // 
+            this.SearchToolStripButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.SearchToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.SearchToolStripButton.Image = global::EMS.WinForm.Properties.Resources.Search_16xMD;
+            this.SearchToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.SearchToolStripButton.Margin = new System.Windows.Forms.Padding(3);
+            this.SearchToolStripButton.Name = "SearchToolStripButton";
+            this.SearchToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.SearchToolStripButton.Text = "Search";
+            this.SearchToolStripButton.Click += new System.EventHandler(this.SearchToolStripButton_Click);
             // 
             // SearchToolStripTextBox
             // 
@@ -133,22 +204,47 @@
             this.toolStripLabel1.Size = new System.Drawing.Size(42, 22);
             this.toolStripLabel1.Text = "Search";
             // 
-            // panel1
+            // DetailPanel
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel1.Controls.Add(this.CancelButton);
-            this.panel1.Controls.Add(this.SaveButton);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.NoteTextBox);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.DepartmentGroupTextBox);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.DepartmentNameTextBox);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 50);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(220, 522);
-            this.panel1.TabIndex = 5;
+            this.DetailPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.DetailPanel.Controls.Add(this.CancelButton);
+            this.DetailPanel.Controls.Add(this.SaveButton);
+            this.DetailPanel.Controls.Add(this.label3);
+            this.DetailPanel.Controls.Add(this.DepartmentGroupTextBox);
+            this.DetailPanel.Controls.Add(this.label2);
+            this.DetailPanel.Controls.Add(this.DepartmentCodeTextBox);
+            this.DetailPanel.Controls.Add(this.label1);
+            this.DetailPanel.Controls.Add(this.DepartmentNameTextBox);
+            this.DetailPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.DetailPanel.Enabled = false;
+            this.DetailPanel.Location = new System.Drawing.Point(0, 50);
+            this.DetailPanel.Name = "DetailPanel";
+            this.DetailPanel.Size = new System.Drawing.Size(220, 522);
+            this.DetailPanel.TabIndex = 5;
+            // 
+            // CancelButton
+            // 
+            this.CancelButton.Image = global::EMS.WinForm.Properties.Resources.Cancel_grey_16xMD;
+            this.CancelButton.Location = new System.Drawing.Point(89, 157);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new System.Drawing.Size(66, 26);
+            this.CancelButton.TabIndex = 7;
+            this.CancelButton.Text = "Cancel";
+            this.CancelButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            // 
+            // SaveButton
+            // 
+            this.SaveButton.Image = global::EMS.WinForm.Properties.Resources.save_16xMD;
+            this.SaveButton.Location = new System.Drawing.Point(17, 157);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(66, 26);
+            this.SaveButton.TabIndex = 6;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // label3
             // 
@@ -159,12 +255,12 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Department Group:";
             // 
-            // NoteTextBox
+            // DepartmentGroupTextBox
             // 
-            this.NoteTextBox.Location = new System.Drawing.Point(17, 119);
-            this.NoteTextBox.Name = "NoteTextBox";
-            this.NoteTextBox.Size = new System.Drawing.Size(184, 20);
-            this.NoteTextBox.TabIndex = 4;
+            this.DepartmentGroupTextBox.Location = new System.Drawing.Point(17, 119);
+            this.DepartmentGroupTextBox.Name = "DepartmentGroupTextBox";
+            this.DepartmentGroupTextBox.Size = new System.Drawing.Size(184, 20);
+            this.DepartmentGroupTextBox.TabIndex = 4;
             // 
             // label2
             // 
@@ -175,12 +271,12 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Department Code:";
             // 
-            // DepartmentGroupTextBox
+            // DepartmentCodeTextBox
             // 
-            this.DepartmentGroupTextBox.Location = new System.Drawing.Point(17, 77);
-            this.DepartmentGroupTextBox.Name = "DepartmentGroupTextBox";
-            this.DepartmentGroupTextBox.Size = new System.Drawing.Size(184, 20);
-            this.DepartmentGroupTextBox.TabIndex = 2;
+            this.DepartmentCodeTextBox.Location = new System.Drawing.Point(17, 77);
+            this.DepartmentCodeTextBox.Name = "DepartmentCodeTextBox";
+            this.DepartmentCodeTextBox.Size = new System.Drawing.Size(184, 20);
+            this.DepartmentCodeTextBox.TabIndex = 2;
             // 
             // label1
             // 
@@ -200,12 +296,21 @@
             // 
             // DepartmentGridView
             // 
+            this.DepartmentGridView.AllowUserToAddRows = false;
+            this.DepartmentGridView.AllowUserToDeleteRows = false;
+            this.DepartmentGridView.AllowUserToResizeColumns = false;
+            this.DepartmentGridView.AllowUserToResizeRows = false;
+            this.DepartmentGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.DepartmentGridView.BackgroundColor = System.Drawing.Color.White;
             this.DepartmentGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DepartmentGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DepartmentGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DepartmentGridView.Location = new System.Drawing.Point(220, 50);
+            this.DepartmentGridView.MultiSelect = false;
             this.DepartmentGridView.Name = "DepartmentGridView";
+            this.DepartmentGridView.ReadOnly = true;
+            this.DepartmentGridView.RowHeadersWidth = 26;
+            this.DepartmentGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DepartmentGridView.Size = new System.Drawing.Size(580, 522);
             this.DepartmentGridView.TabIndex = 6;
             // 
@@ -228,99 +333,12 @@
             this.StatusLabel.Size = new System.Drawing.Size(38, 22);
             this.StatusLabel.Text = "Saved";
             // 
-            // CancelButton
-            // 
-            this.CancelButton.Image = global::EMS.WinForm.Properties.Resources.Cancel_grey_16xMD;
-            this.CancelButton.Location = new System.Drawing.Point(89, 157);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(66, 26);
-            this.CancelButton.TabIndex = 7;
-            this.CancelButton.Text = "Cancel";
-            this.CancelButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.CancelButton.UseVisualStyleBackColor = true;
-            // 
-            // SaveButton
-            // 
-            this.SaveButton.Image = global::EMS.WinForm.Properties.Resources.save_16xMD;
-            this.SaveButton.Location = new System.Drawing.Point(17, 157);
-            this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(66, 26);
-            this.SaveButton.TabIndex = 6;
-            this.SaveButton.Text = "Save";
-            this.SaveButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.SaveButton.UseVisualStyleBackColor = true;
-            // 
-            // NewToolStripButton
-            // 
-            this.NewToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.NewToolStripButton.Image = global::EMS.WinForm.Properties.Resources.Add_16xMD;
-            this.NewToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.NewToolStripButton.Margin = new System.Windows.Forms.Padding(3);
-            this.NewToolStripButton.Name = "NewToolStripButton";
-            this.NewToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.NewToolStripButton.Text = "New";
-            // 
-            // EditToolStripButton
-            // 
-            this.EditToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.EditToolStripButton.Image = global::EMS.WinForm.Properties.Resources.Edit_grey_16xMD;
-            this.EditToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.EditToolStripButton.Margin = new System.Windows.Forms.Padding(3);
-            this.EditToolStripButton.Name = "EditToolStripButton";
-            this.EditToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.EditToolStripButton.Text = "Edit";
-            this.EditToolStripButton.ToolTipText = "Edit";
-            // 
-            // CopyToolStripButton
-            // 
-            this.CopyToolStripButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.CopyToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.CopyToolStripButton.Image = global::EMS.WinForm.Properties.Resources.CopyToClipboard_16x;
-            this.CopyToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CopyToolStripButton.Margin = new System.Windows.Forms.Padding(3);
-            this.CopyToolStripButton.Name = "CopyToolStripButton";
-            this.CopyToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.CopyToolStripButton.Text = "Copy";
-            // 
-            // ViewToolStripButton
-            // 
-            this.ViewToolStripButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.ViewToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ViewToolStripButton.Image = global::EMS.WinForm.Properties.Resources.table_16xMD;
-            this.ViewToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ViewToolStripButton.Margin = new System.Windows.Forms.Padding(3);
-            this.ViewToolStripButton.Name = "ViewToolStripButton";
-            this.ViewToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.ViewToolStripButton.Text = "View";
-            // 
-            // DeleteToolStripButton
-            // 
-            this.DeleteToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.DeleteToolStripButton.Image = global::EMS.WinForm.Properties.Resources.Cancel_16xMD;
-            this.DeleteToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.DeleteToolStripButton.Margin = new System.Windows.Forms.Padding(3);
-            this.DeleteToolStripButton.Name = "DeleteToolStripButton";
-            this.DeleteToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.DeleteToolStripButton.Text = "Delete";
-            this.DeleteToolStripButton.ToolTipText = "Delete";
-            // 
-            // SearchToolStripButton
-            // 
-            this.SearchToolStripButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.SearchToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.SearchToolStripButton.Image = global::EMS.WinForm.Properties.Resources.Search_16xMD;
-            this.SearchToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.SearchToolStripButton.Margin = new System.Windows.Forms.Padding(3);
-            this.SearchToolStripButton.Name = "SearchToolStripButton";
-            this.SearchToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.SearchToolStripButton.Text = "Search";
-            // 
             // DepartmentView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.DepartmentGridView);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.DetailPanel);
             this.Controls.Add(this.MenuToolStrip);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.MessageStatusStrip);
@@ -330,8 +348,8 @@
             this.panel2.PerformLayout();
             this.MenuToolStrip.ResumeLayout(false);
             this.MenuToolStrip.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.DetailPanel.ResumeLayout(false);
+            this.DetailPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DepartmentGridView)).EndInit();
             this.MessageStatusStrip.ResumeLayout(false);
             this.MessageStatusStrip.PerformLayout();
@@ -351,11 +369,11 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripButton EditToolStripButton;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel DetailPanel;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox NoteTextBox;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox DepartmentGroupTextBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox DepartmentCodeTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox DepartmentNameTextBox;
         private System.Windows.Forms.DataGridView DepartmentGridView;

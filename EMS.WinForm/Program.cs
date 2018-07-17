@@ -1,5 +1,4 @@
-﻿using EMS.Infrastructure.Repository;
-using EMS.WinForm.IoCContainer;
+﻿using EMS.WinForm.IoCContainer;
 using EMS.WinForm.Presenters;
 using EMS.WinForm.Views;
 using System;

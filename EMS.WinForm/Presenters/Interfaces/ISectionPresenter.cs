@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace EMS.WinForm.Presenters.Interfaces
 {
-    public interface ISectionPresenter
+    public interface ISectionPresenter : ICommandPresenter
     {
         ISectionView GetView();
+        void GetDepartments();
     }
 }

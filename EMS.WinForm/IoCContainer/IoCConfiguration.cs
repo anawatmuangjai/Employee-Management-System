@@ -1,5 +1,5 @@
 ﻿using EMS.Core.Interfaces;
-using EMS.Infrastructure.Repository;
+using EMS.Infrastructure.Repositories;
 using EMS.WinForm.Presenters;
 using EMS.WinForm.Presenters.Interfaces;
 using EMS.WinForm.Views;
@@ -18,6 +18,8 @@ namespace EMS.WinForm.IoCContainer
     {
         public override void Load()
         {
+            Bind<IDepartmentRepository>().To<DepartmentRepository>().InSingletonScope();
+            Bind<ISectionRepository>().To<SectionRepository>().InSingletonScope();
             Bind<IEmployeeRepository>().To<EmployeeRepository>().InSingletonScope();
 
             Bind<ILoginView>().To<LoginView>().InSingletonScope();
@@ -28,7 +30,7 @@ namespace EMS.WinForm.IoCContainer
             Bind<IShiftView>().To<ShiftView>().InSingletonScope();
             Bind<IJobTitleView>().To<JobTitleView>().InSingletonScope();
             Bind<IJobFunctionView>().To<JobFunctionView>().InSingletonScope();
-            
+
             Bind<ILoginPresenter>().To<LoginPresenter>().InSingletonScope();
             Bind<IMainPresenter>().To<MainPresenter>().InSingletonScope();
             Bind<IRegistrationPresenter>().To<RegistrationPresenter>().InSingletonScope();

@@ -1,5 +1,4 @@
-﻿using EMS.WinForm.Views.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace EMS.WinForm.Presenters.Interfaces
 {
-    public interface IDepartmentPresenter : ICommandPresenter
+    public interface ICommandPresenter
     {
-        IDepartmentView GetView();
+        void ViewAll();
+        void Search();
+        void Save();
+        void Delete();
     }
 }
