@@ -1,5 +1,5 @@
-﻿using EMS.ApplicationCore.Interfaces.Repositories;
-using EMS.Domain.Entities;
+﻿using EMS.ApplicationCore.Interfaces.Services;
+using EMS.ApplicationCore.Models;
 using EMS.WinForm.Presenters.Interfaces;
 using EMS.WinForm.Views.Interfaces;
 using System;
@@ -13,17 +13,13 @@ namespace EMS.WinForm.Presenters
     public class SectionPresenter : ISectionPresenter
     {
         private readonly ISectionView _view;
-        private readonly IAsyncRepository<MasterSection> _sectionRepository;
-        private readonly IAsyncRepository<MasterDepartment> _departmentRepository;
+        private readonly ISectionService _sectionService;
 
-        public SectionPresenter(ISectionView view,
-            IAsyncRepository<MasterSection> sectionRepository,
-            IAsyncRepository<MasterDepartment> departmentRepository)
+        public SectionPresenter(ISectionView view, ISectionService sectionService)
         {
             _view = view;
             _view.Presenter = this;
-            _sectionRepository = sectionRepository;
-            _departmentRepository = departmentRepository;
+            _sectionService = sectionService;
         }
 
         public ISectionView GetView()
@@ -33,22 +29,25 @@ namespace EMS.WinForm.Presenters
 
         public async Task GetDepartments()
         {
-            _view.Departments = await _departmentRepository.GetAllAsync();
+            var departments = await _sectionService.GetAllDepartmentAsync();
+            _view.Departments = departments.ToList();
         }
 
         public async Task ViewAll()
         {
-            _view.Sections =  await _sectionRepository.GetAllAsync();
+            var sections = await _sectionService.GetAllSectionAsync();
+            _view.Sections = sections.ToList();
         }
 
-        public void Search()
+        public async Task Search()
         {
-            //_view.Sections = _sectionRepository.GetByNameWithDepartment(_view.Filter).ToList();
+            var sections = await _sectionService.GetByNameAsync(_view.Filter);
+            _view.Sections = sections.ToList();
         }
 
         public async Task Save()
         {
-            var section = new MasterSection
+            var section = new SectionModel
             {
                 SectionId = _view.SectionID,
                 DepartmentId = _view.DepartmentID,
@@ -57,14 +56,14 @@ namespace EMS.WinForm.Presenters
             };
 
             if (section.SectionId > 0)
-                await _sectionRepository.UpdateAsync(section);
+                await _sectionService.UpdateAsync(section);
             else
-                await _sectionRepository.AddAsync(section);
+                await _sectionService.AddAsync(section);
         }
 
         public void Delete()
         {
-            _sectionRepository.DeleteAsync(_view.SelectedSection);
+            _sectionService.DeleteAsync(_view.SelectedSection.SectionId);
         }
 
 

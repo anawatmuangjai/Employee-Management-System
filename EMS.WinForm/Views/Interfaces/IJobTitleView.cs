@@ -1,4 +1,4 @@
-﻿using EMS.Domain.Entities;
+﻿using EMS.ApplicationCore.Models;
 using EMS.WinForm.Presenters;
 using System;
 using System.Collections.Generic;
@@ -13,8 +13,9 @@ namespace EMS.WinForm.Views.Interfaces
         int JobId { get; set; }
         string JobTitle { get; set; }
         string JobDescription { get; set; }
-        MasterJob SelectedJob { get; set; }
-        IList<MasterJob> Jobs { set; }
+        string Filter { get; set; }
+        JobModel SelectedJob { get; set; }
+        IList<JobModel> Jobs { set; }
         JobTitlePresenter Presenter { set; }
     }
 }

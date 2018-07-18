@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace EMS.WinForm.Presenters.Interfaces
 {
-    public interface IRegistrationPresenter
+    public interface IEmployeePresenter
     {
-        IRegistrationView GetView();
+        IEmployeeView GetView();
     }
 }

@@ -43,18 +43,18 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.MessageStatusStrip = new System.Windows.Forms.StatusStrip();
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.DetailPanel = new System.Windows.Forms.Panel();
             this.CancelButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.NoteTextBox = new System.Windows.Forms.TextBox();
+            this.JobDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.DepartmentGroupTextBox = new System.Windows.Forms.TextBox();
+            this.JobTitleTextBox = new System.Windows.Forms.TextBox();
             this.JobTitleGridView = new System.Windows.Forms.DataGridView();
             this.panel2.SuspendLayout();
             this.MenuToolStrip.SuspendLayout();
             this.MessageStatusStrip.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.DetailPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.JobTitleGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -109,6 +109,7 @@
             this.NewToolStripButton.Name = "NewToolStripButton";
             this.NewToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.NewToolStripButton.Text = "New";
+            this.NewToolStripButton.Click += new System.EventHandler(this.NewToolStripButton_Click);
             // 
             // EditToolStripButton
             // 
@@ -120,6 +121,7 @@
             this.EditToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.EditToolStripButton.Text = "Edit";
             this.EditToolStripButton.ToolTipText = "Edit";
+            this.EditToolStripButton.Click += new System.EventHandler(this.EditToolStripButton_Click);
             // 
             // CopyToolStripButton
             // 
@@ -149,6 +151,7 @@
             this.ViewToolStripButton.Name = "ViewToolStripButton";
             this.ViewToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.ViewToolStripButton.Text = "View";
+            this.ViewToolStripButton.Click += new System.EventHandler(this.ViewToolStripButton_Click);
             // 
             // toolStripSeparator2
             // 
@@ -167,6 +170,7 @@
             this.DeleteToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.DeleteToolStripButton.Text = "Delete";
             this.DeleteToolStripButton.ToolTipText = "Delete";
+            this.DeleteToolStripButton.Click += new System.EventHandler(this.DeleteToolStripButton_Click);
             // 
             // SearchToolStripButton
             // 
@@ -178,6 +182,7 @@
             this.SearchToolStripButton.Name = "SearchToolStripButton";
             this.SearchToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.SearchToolStripButton.Text = "Search";
+            this.SearchToolStripButton.Click += new System.EventHandler(this.SearchToolStripButton_Click);
             // 
             // SearchToolStripTextBox
             // 
@@ -215,20 +220,21 @@
             this.StatusLabel.Size = new System.Drawing.Size(38, 22);
             this.StatusLabel.Text = "Saved";
             // 
-            // panel1
+            // DetailPanel
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel1.Controls.Add(this.CancelButton);
-            this.panel1.Controls.Add(this.SaveButton);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.NoteTextBox);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.DepartmentGroupTextBox);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 50);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(220, 522);
-            this.panel1.TabIndex = 9;
+            this.DetailPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.DetailPanel.Controls.Add(this.CancelButton);
+            this.DetailPanel.Controls.Add(this.SaveButton);
+            this.DetailPanel.Controls.Add(this.label3);
+            this.DetailPanel.Controls.Add(this.JobDescriptionTextBox);
+            this.DetailPanel.Controls.Add(this.label2);
+            this.DetailPanel.Controls.Add(this.JobTitleTextBox);
+            this.DetailPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.DetailPanel.Enabled = false;
+            this.DetailPanel.Location = new System.Drawing.Point(0, 50);
+            this.DetailPanel.Name = "DetailPanel";
+            this.DetailPanel.Size = new System.Drawing.Size(220, 522);
+            this.DetailPanel.TabIndex = 9;
             // 
             // CancelButton
             // 
@@ -240,6 +246,7 @@
             this.CancelButton.Text = "Cancel";
             this.CancelButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // SaveButton
             // 
@@ -251,6 +258,7 @@
             this.SaveButton.Text = "Save";
             this.SaveButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // label3
             // 
@@ -261,12 +269,12 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Job Description";
             // 
-            // NoteTextBox
+            // JobDescriptionTextBox
             // 
-            this.NoteTextBox.Location = new System.Drawing.Point(17, 72);
-            this.NoteTextBox.Name = "NoteTextBox";
-            this.NoteTextBox.Size = new System.Drawing.Size(184, 20);
-            this.NoteTextBox.TabIndex = 4;
+            this.JobDescriptionTextBox.Location = new System.Drawing.Point(17, 72);
+            this.JobDescriptionTextBox.Name = "JobDescriptionTextBox";
+            this.JobDescriptionTextBox.Size = new System.Drawing.Size(184, 20);
+            this.JobDescriptionTextBox.TabIndex = 4;
             // 
             // label2
             // 
@@ -277,21 +285,31 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Job Title:";
             // 
-            // DepartmentGroupTextBox
+            // JobTitleTextBox
             // 
-            this.DepartmentGroupTextBox.Location = new System.Drawing.Point(17, 30);
-            this.DepartmentGroupTextBox.Name = "DepartmentGroupTextBox";
-            this.DepartmentGroupTextBox.Size = new System.Drawing.Size(184, 20);
-            this.DepartmentGroupTextBox.TabIndex = 2;
+            this.JobTitleTextBox.Location = new System.Drawing.Point(17, 30);
+            this.JobTitleTextBox.Name = "JobTitleTextBox";
+            this.JobTitleTextBox.Size = new System.Drawing.Size(184, 20);
+            this.JobTitleTextBox.TabIndex = 2;
             // 
             // JobTitleGridView
             // 
+            this.JobTitleGridView.AllowUserToAddRows = false;
+            this.JobTitleGridView.AllowUserToDeleteRows = false;
+            this.JobTitleGridView.AllowUserToResizeColumns = false;
+            this.JobTitleGridView.AllowUserToResizeRows = false;
+            this.JobTitleGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.JobTitleGridView.BackgroundColor = System.Drawing.Color.White;
             this.JobTitleGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.JobTitleGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.JobTitleGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.JobTitleGridView.Location = new System.Drawing.Point(220, 50);
+            this.JobTitleGridView.MultiSelect = false;
             this.JobTitleGridView.Name = "JobTitleGridView";
+            this.JobTitleGridView.ReadOnly = true;
+            this.JobTitleGridView.RowHeadersVisible = false;
+            this.JobTitleGridView.RowHeadersWidth = 26;
+            this.JobTitleGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.JobTitleGridView.Size = new System.Drawing.Size(580, 522);
             this.JobTitleGridView.TabIndex = 10;
             // 
@@ -300,7 +318,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.JobTitleGridView);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.DetailPanel);
             this.Controls.Add(this.MessageStatusStrip);
             this.Controls.Add(this.MenuToolStrip);
             this.Controls.Add(this.panel2);
@@ -312,8 +330,8 @@
             this.MenuToolStrip.PerformLayout();
             this.MessageStatusStrip.ResumeLayout(false);
             this.MessageStatusStrip.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.DetailPanel.ResumeLayout(false);
+            this.DetailPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.JobTitleGridView)).EndInit();
             this.ResumeLayout(false);
 
@@ -336,13 +354,13 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.StatusStrip MessageStatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel DetailPanel;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox NoteTextBox;
+        private System.Windows.Forms.TextBox JobDescriptionTextBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox DepartmentGroupTextBox;
+        private System.Windows.Forms.TextBox JobTitleTextBox;
         private System.Windows.Forms.DataGridView JobTitleGridView;
     }
 }

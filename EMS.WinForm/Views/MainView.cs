@@ -50,7 +50,7 @@ namespace EMS.WinForm.Views
                 switch (tagId)
                 {
                     case "1":
-                        DisplayView((UserControl)IoC.Get<RegistrationPresenter>().GetView());
+                        DisplayView((UserControl)IoC.Get<EmployeePresenter>().GetView());
                         break;
                     case "6":
                         DisplayView((UserControl)IoC.Get<DepartmentPresenter>().GetView());

@@ -111,6 +111,7 @@
             this.NewToolStripButton.Name = "NewToolStripButton";
             this.NewToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.NewToolStripButton.Text = "New";
+            this.NewToolStripButton.Click += new System.EventHandler(this.NewToolStripButton_Click);
             // 
             // EditToolStripButton
             // 
@@ -122,6 +123,7 @@
             this.EditToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.EditToolStripButton.Text = "Edit";
             this.EditToolStripButton.ToolTipText = "Edit";
+            this.EditToolStripButton.Click += new System.EventHandler(this.EditToolStripButton_Click);
             // 
             // CopyToolStripButton
             // 
@@ -151,6 +153,7 @@
             this.ViewToolStripButton.Name = "ViewToolStripButton";
             this.ViewToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.ViewToolStripButton.Text = "View";
+            this.ViewToolStripButton.Click += new System.EventHandler(this.ViewToolStripButton_Click);
             // 
             // toolStripSeparator2
             // 
@@ -169,6 +172,7 @@
             this.DeleteToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.DeleteToolStripButton.Text = "Delete";
             this.DeleteToolStripButton.ToolTipText = "Delete";
+            this.DeleteToolStripButton.Click += new System.EventHandler(this.DeleteToolStripButton_Click);
             // 
             // SearchToolStripButton
             // 
@@ -180,6 +184,7 @@
             this.SearchToolStripButton.Name = "SearchToolStripButton";
             this.SearchToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.SearchToolStripButton.Text = "Search";
+            this.SearchToolStripButton.Click += new System.EventHandler(this.SearchToolStripButton_Click);
             // 
             // SearchToolStripTextBox
             // 
@@ -251,6 +256,7 @@
             this.CancelButton.Text = "Cancel";
             this.CancelButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // SaveButton
             // 
@@ -262,6 +268,7 @@
             this.SaveButton.Text = "Save";
             this.SaveButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // label3
             // 

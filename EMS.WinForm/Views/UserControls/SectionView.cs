@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using EMS.WinForm.Views.Interfaces;
 using EMS.WinForm.Presenters;
 using EMS.Domain.Entities;
+using EMS.ApplicationCore.Models;
 
 namespace EMS.WinForm.Views.UserControls
 {
@@ -32,11 +33,11 @@ namespace EMS.WinForm.Views.UserControls
 
         public string Filter { get => SearchToolStripTextBox.Text.Trim(); set => SearchToolStripTextBox.Text = value; }
 
-        public MasterSection SelectedSection { get; set; }
+        public SectionModel SelectedSection { get; set; }
 
-        public MasterDepartment SelectedDepartment { get; set; }
+        public DepartmentModel SelectedDepartment { get; set; }
 
-        public IList<MasterSection> Sections
+        public IList<SectionModel> Sections
         {
             set
             {
@@ -45,7 +46,7 @@ namespace EMS.WinForm.Views.UserControls
             }
         }
 
-        public IList<MasterDepartment> Departments
+        public IList<DepartmentModel> Departments
         {
             set
             {
@@ -58,17 +59,20 @@ namespace EMS.WinForm.Views.UserControls
 
         private async void NewToolStripButton_Click(object sender, EventArgs e)
         {
-            Clear();
+            Cursor = Cursors.WaitCursor;
 
+            Clear();
             await Presenter.GetDepartments();
 
             DepartmentComboBox.Select();
-            SectionDetailPanel.Enabled = true;
+            DetailPanel.Enabled = true;
+
+            Cursor = Cursors.Default;
         }
 
         private void EditToolStripButton_Click(object sender, EventArgs e)
         {
-            SelectedSection = (MasterSection)SectionGridView.CurrentRow.DataBoundItem;
+            SelectedSection = (SectionModel)SectionGridView.CurrentRow.DataBoundItem;
 
             if (SelectedSection == null)
                 return;
@@ -78,7 +82,7 @@ namespace EMS.WinForm.Views.UserControls
             SectionName = SelectedSection.SectionName;
             SectionCode = SelectedSection.SectionCode;
 
-            SectionDetailPanel.Enabled = true;
+            DetailPanel.Enabled = true;
             DepartmentComboBox.Select();
         }
 
@@ -94,7 +98,11 @@ namespace EMS.WinForm.Views.UserControls
 
         private async void ViewToolStripButton_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             await Presenter.ViewAll();
+
+            Cursor = Cursors.Default;
         }
 
         private void CopyToolStripButton_Click(object sender, EventArgs e)
@@ -104,7 +112,13 @@ namespace EMS.WinForm.Views.UserControls
 
         private async void SaveButton_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             await Presenter.Save();
+            await Presenter.ViewAll();
+            Clear();
+
+            Cursor = Cursors.Default;
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -117,7 +131,7 @@ namespace EMS.WinForm.Views.UserControls
             if (DepartmentComboBox.Items.Count == 0)
                 return;
 
-            var department = DepartmentComboBox.SelectedItem as MasterDepartment;
+            var department = DepartmentComboBox.SelectedItem as DepartmentModel;
 
             SelectedDepartment = department;
             DepartmentID = department.DepartmentId;
@@ -129,7 +143,7 @@ namespace EMS.WinForm.Views.UserControls
             DepartmentID = 0;
             SectionName = string.Empty;
             SectionCode = string.Empty;
-            SectionDetailPanel.Enabled = false;
+            DetailPanel.Enabled = false;
         }
     }
 }

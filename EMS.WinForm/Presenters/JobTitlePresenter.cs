@@ -1,4 +1,6 @@
 ﻿using EMS.ApplicationCore.Interfaces.Repositories;
+using EMS.ApplicationCore.Interfaces.Services;
+using EMS.ApplicationCore.Models;
 using EMS.Domain.Entities;
 using EMS.WinForm.Presenters.Interfaces;
 using EMS.WinForm.Views.Interfaces;
@@ -13,15 +15,13 @@ namespace EMS.WinForm.Presenters
     public class JobTitlePresenter : IJobTitlePresenter
     {
         private readonly IJobTitleView _view;
-        private readonly IAsyncRepository<MasterJob> _jobRepository;
+        private readonly IJobService _jobService;
 
-        public JobTitlePresenter(
-            IJobTitleView view, 
-            IAsyncRepository<MasterJob> jobRepository)
+        public JobTitlePresenter(IJobTitleView view, IJobService jobService)
         {
             _view = view;
             _view.Presenter = this;
-            _jobRepository = jobRepository;
+            _jobService = jobService;
         }
 
         public IJobTitleView GetView()
@@ -29,19 +29,19 @@ namespace EMS.WinForm.Presenters
             return _view;
         }
 
-        public async Task ViewAll()
+        public void ViewAll()
         {
-            _view.Jobs = await _jobRepository.GetAllAsync();
+            _view.Jobs = _jobService.GetAll().ToList();
         }
 
         public void Search()
         {
-            throw new NotImplementedException();
+            _view.Jobs = _jobService.GetByName(_view.Filter).ToList();
         }
 
-        public async Task Save()
+        public void Save()
         {
-            var job = new MasterJob
+            var job = new JobModel
             {
                 JobId = _view.JobId,
                 JobTitle = _view.JobTitle,
@@ -49,14 +49,14 @@ namespace EMS.WinForm.Presenters
             };
 
             if (job.JobId > 0)
-                await _jobRepository.UpdateAsync(job);
+                _jobService.Update(job);
             else
-                await _jobRepository.AddAsync(job);
+                _jobService.Add(job);
         }
 
-        public async Task Delete()
+        public void Delete()
         {
-            await _jobRepository.DeleteAsync(_view.SelectedJob);
+            _jobService.Delete(_view.SelectedJob);
         }
     }
 }

@@ -43,7 +43,7 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.MessageStatusStrip = new System.Windows.Forms.StatusStrip();
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.SectionDetailPanel = new System.Windows.Forms.Panel();
+            this.DetailPanel = new System.Windows.Forms.Panel();
             this.DepartmentComboBox = new System.Windows.Forms.ComboBox();
             this.CancelButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
@@ -56,7 +56,7 @@
             this.panel2.SuspendLayout();
             this.MenuToolStrip.SuspendLayout();
             this.MessageStatusStrip.SuspendLayout();
-            this.SectionDetailPanel.SuspendLayout();
+            this.DetailPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SectionGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -223,23 +223,23 @@
             this.StatusLabel.Size = new System.Drawing.Size(38, 22);
             this.StatusLabel.Text = "Saved";
             // 
-            // SectionDetailPanel
+            // DetailPanel
             // 
-            this.SectionDetailPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.SectionDetailPanel.Controls.Add(this.DepartmentComboBox);
-            this.SectionDetailPanel.Controls.Add(this.CancelButton);
-            this.SectionDetailPanel.Controls.Add(this.SaveButton);
-            this.SectionDetailPanel.Controls.Add(this.label3);
-            this.SectionDetailPanel.Controls.Add(this.SectionCodeTextBox);
-            this.SectionDetailPanel.Controls.Add(this.label2);
-            this.SectionDetailPanel.Controls.Add(this.SectionNameTextBox);
-            this.SectionDetailPanel.Controls.Add(this.label1);
-            this.SectionDetailPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.SectionDetailPanel.Enabled = false;
-            this.SectionDetailPanel.Location = new System.Drawing.Point(0, 50);
-            this.SectionDetailPanel.Name = "SectionDetailPanel";
-            this.SectionDetailPanel.Size = new System.Drawing.Size(220, 522);
-            this.SectionDetailPanel.TabIndex = 9;
+            this.DetailPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.DetailPanel.Controls.Add(this.DepartmentComboBox);
+            this.DetailPanel.Controls.Add(this.CancelButton);
+            this.DetailPanel.Controls.Add(this.SaveButton);
+            this.DetailPanel.Controls.Add(this.label3);
+            this.DetailPanel.Controls.Add(this.SectionCodeTextBox);
+            this.DetailPanel.Controls.Add(this.label2);
+            this.DetailPanel.Controls.Add(this.SectionNameTextBox);
+            this.DetailPanel.Controls.Add(this.label1);
+            this.DetailPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.DetailPanel.Enabled = false;
+            this.DetailPanel.Location = new System.Drawing.Point(0, 50);
+            this.DetailPanel.Name = "DetailPanel";
+            this.DetailPanel.Size = new System.Drawing.Size(220, 522);
+            this.DetailPanel.TabIndex = 9;
             // 
             // DepartmentComboBox
             // 
@@ -317,12 +317,21 @@
             // 
             // SectionGridView
             // 
+            this.SectionGridView.AllowUserToAddRows = false;
+            this.SectionGridView.AllowUserToDeleteRows = false;
+            this.SectionGridView.AllowUserToResizeColumns = false;
+            this.SectionGridView.AllowUserToResizeRows = false;
+            this.SectionGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.SectionGridView.BackgroundColor = System.Drawing.Color.White;
             this.SectionGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.SectionGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SectionGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SectionGridView.Location = new System.Drawing.Point(220, 50);
+            this.SectionGridView.MultiSelect = false;
             this.SectionGridView.Name = "SectionGridView";
+            this.SectionGridView.ReadOnly = true;
+            this.SectionGridView.RowHeadersWidth = 26;
+            this.SectionGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.SectionGridView.Size = new System.Drawing.Size(580, 522);
             this.SectionGridView.TabIndex = 10;
             // 
@@ -331,7 +340,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.SectionGridView);
-            this.Controls.Add(this.SectionDetailPanel);
+            this.Controls.Add(this.DetailPanel);
             this.Controls.Add(this.MessageStatusStrip);
             this.Controls.Add(this.MenuToolStrip);
             this.Controls.Add(this.panel2);
@@ -343,8 +352,8 @@
             this.MenuToolStrip.PerformLayout();
             this.MessageStatusStrip.ResumeLayout(false);
             this.MessageStatusStrip.PerformLayout();
-            this.SectionDetailPanel.ResumeLayout(false);
-            this.SectionDetailPanel.PerformLayout();
+            this.DetailPanel.ResumeLayout(false);
+            this.DetailPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SectionGridView)).EndInit();
             this.ResumeLayout(false);
 
@@ -367,7 +376,7 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.StatusStrip MessageStatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
-        private System.Windows.Forms.Panel SectionDetailPanel;
+        private System.Windows.Forms.Panel DetailPanel;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Label label3;
@@ -375,7 +384,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox SectionNameTextBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView SectionGridView;
         private System.Windows.Forms.ComboBox DepartmentComboBox;
+        private System.Windows.Forms.DataGridView SectionGridView;
     }
 }

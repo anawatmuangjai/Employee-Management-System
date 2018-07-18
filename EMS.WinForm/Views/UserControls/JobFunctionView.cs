@@ -49,5 +49,39 @@ namespace EMS.WinForm.Views.UserControls
 
         public JobFunctionPresenter Presenter { private get; set; }
 
+        private void NewToolStripButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EditToolStripButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeleteToolStripButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SearchToolStripButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ViewToolStripButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

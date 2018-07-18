@@ -114,6 +114,7 @@ namespace EMS.WinForm.Views.UserControls
         private async void SaveButton_Click(object sender, EventArgs e)
         {
             await Presenter.Save();
+            await Presenter.ViewAll();
             Clear();
         }
 
