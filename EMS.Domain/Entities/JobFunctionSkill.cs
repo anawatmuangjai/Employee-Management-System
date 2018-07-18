@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace EMS.Domain.Entities
 {
-    public partial class JobFunctionSkill
+    public partial class JobFunctionSkill : BaseEntity
     {
         public int JobFunctionId { get; set; }
         public int SkillId { get; set; }

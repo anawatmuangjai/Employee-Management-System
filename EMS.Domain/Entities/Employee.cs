@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace EMS.Domain.Entities
 {
-    public partial class Employee
+    public partial class Employee : BaseEntity
     {
         public Employee()
         {

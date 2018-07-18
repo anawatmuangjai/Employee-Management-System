@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace EMS.Domain.Entities
 {
-    public partial class MasterEducation
+    public partial class MasterEducation : BaseEntity
     {
         public MasterEducation()
         {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace EMS.Domain.Entities
 {
-    public partial class EmployeePassword
+    public partial class EmployeePassword : BaseEntity
     {
         public int EmployeeId { get; set; }
         public string PasswordHash { get; set; }
