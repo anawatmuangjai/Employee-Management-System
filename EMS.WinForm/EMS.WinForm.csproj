@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.EntityFrameworkCore, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.EntityFrameworkCore.2.1.1\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
     </Reference>
@@ -114,6 +117,11 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.1\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -129,32 +137,32 @@
     <Compile Include="IoCContainer\IoCConfiguration.cs" />
     <Compile Include="Presenters\DepartmentPresenter.cs" />
     <Compile Include="Presenters\EmployeeDetailPresenter.cs" />
+    <Compile Include="Presenters\EmployeePresenter.cs" />
     <Compile Include="Presenters\Interfaces\ICommandPresenter.cs" />
     <Compile Include="Presenters\Interfaces\IDepartmentPresenter.cs" />
     <Compile Include="Presenters\Interfaces\IEmployeeDetailPresenter.cs" />
+    <Compile Include="Presenters\Interfaces\IEmployeePresenter.cs" />
     <Compile Include="Presenters\Interfaces\IJobFunctionPresenter.cs" />
     <Compile Include="Presenters\Interfaces\IJobTitlePresenter.cs" />
     <Compile Include="Presenters\Interfaces\ILoginPresenter.cs" />
     <Compile Include="Presenters\Interfaces\IMainPresenter.cs" />
-    <Compile Include="Presenters\Interfaces\IRegistrationPresenter.cs" />
     <Compile Include="Presenters\Interfaces\ISectionPresenter.cs" />
     <Compile Include="Presenters\Interfaces\IShiftPresenter.cs" />
     <Compile Include="Presenters\JobFunctionPresenter.cs" />
     <Compile Include="Presenters\JobTitlePresenter.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\MainPresenter.cs" />
-    <Compile Include="Presenters\RegistrationPresenter.cs" />
     <Compile Include="Presenters\SectionPresenter.cs" />
     <Compile Include="Presenters\ShiftPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\Interfaces\IDepartmentView.cs" />
     <Compile Include="Views\Interfaces\IEmployeeDetailView.cs" />
+    <Compile Include="Views\Interfaces\IEmployeeView.cs" />
     <Compile Include="Views\Interfaces\IJobFunctionView.cs" />
     <Compile Include="Views\Interfaces\IJobTitleView.cs" />
     <Compile Include="Views\Interfaces\ILoginView.cs" />
     <Compile Include="Views\Interfaces\IMainView.cs" />
-    <Compile Include="Views\Interfaces\IRegistrationView.cs" />
     <Compile Include="Views\Interfaces\ISectionView.cs" />
     <Compile Include="Views\Interfaces\IShiftView.cs" />
     <Compile Include="Views\LoginView.cs">

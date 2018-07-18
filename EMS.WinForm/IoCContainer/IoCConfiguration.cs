@@ -1,4 +1,6 @@
 ﻿using EMS.ApplicationCore.Interfaces.Repositories;
+using EMS.ApplicationCore.Interfaces.Services;
+using EMS.ApplicationCore.Services;
 using EMS.Domain.Entities;
 using EMS.Persistance.Context;
 using EMS.Persistance.Repositories;
@@ -24,12 +26,12 @@ namespace EMS.WinForm.IoCContainer
             Bind(typeof(IRepository<>)).To(typeof(Repository<>)).InSingletonScope();
             Bind(typeof(IAsyncRepository<>)).To(typeof(Repository<>)).InSingletonScope();
 
-            //Bind<IDepartmentRepository>().To<DepartmentRepository>().InSingletonScope();
-            //Bind<ISectionRepository>().To<SectionRepository>().InSingletonScope();
+            Bind<ISectionService>().To<SectionService>().InSingletonScope();
+            Bind<IJobService>().To<JobService>().InSingletonScope();
 
             Bind<ILoginView>().To<LoginView>().InSingletonScope();
             Bind<IMainView>().To<MainView>().InSingletonScope();
-            Bind<IRegistrationView>().To<RegistrationView>().InSingletonScope();
+            Bind<IEmployeeView>().To<RegistrationView>().InSingletonScope();
             Bind<IDepartmentView>().To<DepartmentView>().InSingletonScope();
             Bind<ISectionView>().To<SectionView>().InSingletonScope();
             Bind<IShiftView>().To<ShiftView>().InSingletonScope();
@@ -38,7 +40,7 @@ namespace EMS.WinForm.IoCContainer
 
             Bind<ILoginPresenter>().To<LoginPresenter>().InSingletonScope();
             Bind<IMainPresenter>().To<MainPresenter>().InSingletonScope();
-            Bind<IRegistrationPresenter>().To<RegistrationPresenter>().InSingletonScope();
+            Bind<IEmployeePresenter>().To<EmployeePresenter>().InSingletonScope();
             Bind<IDepartmentPresenter>().To<DepartmentPresenter>().InSingletonScope();
             Bind<ISectionPresenter>().To<SectionPresenter>().InSingletonScope();
             Bind<IShiftPresenter>().To<ShiftPresenter>().InSingletonScope();
