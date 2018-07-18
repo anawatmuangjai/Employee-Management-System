@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,16 +20,6 @@ namespace EMS.Persistance.Repositories
             _dbContext = dbContext;
         }
 
-        public IEnumerable<T> GetAll()
-        {
-            return _dbContext.Set<T>().AsEnumerable();
-        }
-
-        public async Task<List<T>> GetAllAsync()
-        {
-            return await _dbContext.Set<T>().ToListAsync();
-        }
-
         public T GetById(int id)
         {
             return _dbContext.Set<T>().Find(id);
@@ -37,6 +28,36 @@ namespace EMS.Persistance.Repositories
         public virtual async Task<T> GetByIdAsync(int id)
         {
             return await _dbContext.Set<T>().FindAsync(id);
+        }
+
+        public T GetSingle(Expression<Func<T, bool>> filter)
+        {
+            return _dbContext.Set<T>().Where(filter).FirstOrDefault();
+        }
+
+        public async Task<T> GetSingleAsync(Expression<Func<T, bool>> filter)
+        {
+            return await _dbContext.Set<T>().Where(filter).FirstOrDefaultAsync();
+        }
+
+        public IEnumerable<T> Get(Expression<Func<T, bool>> filter)
+        {
+            return _dbContext.Set<T>().Where(filter).ToList();
+        }
+
+        public async Task<List<T>> GetAsync(Expression<Func<T, bool>> filter)
+        {
+            return await _dbContext.Set<T>().Where(filter).ToListAsync();
+        }
+
+        public IEnumerable<T> GetAll()
+        {
+            return _dbContext.Set<T>().AsEnumerable();
+        }
+
+        public async Task<List<T>> GetAllAsync()
+        {
+            return await _dbContext.Set<T>().ToListAsync();
         }
 
         public T Add(T entity)
