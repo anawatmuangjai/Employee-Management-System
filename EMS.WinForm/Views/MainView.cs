@@ -52,19 +52,22 @@ namespace EMS.WinForm.Views
                     case "1":
                         DisplayView((UserControl)IoC.Get<EmployeePresenter>().GetView());
                         break;
-                    case "6":
+                    case "4":
+                        DisplayView((UserControl)IoC.Get<EmployeeLevelPresenter>().GetView());
+                        break;
+                    case "5":
                         DisplayView((UserControl)IoC.Get<DepartmentPresenter>().GetView());
                         break;
-                    case "7":
+                    case "6":
                         DisplayView((UserControl)IoC.Get<SectionPresenter>().GetView());
                         break;
-                    case "8":
+                    case "7":
                         DisplayView((UserControl)IoC.Get<ShiftPresenter>().GetView());
                         break;
-                    case "9":
+                    case "8":
                         DisplayView((UserControl)IoC.Get<JobTitlePresenter>().GetView());
                         break;
-                    case "10":
+                    case "9":
                         DisplayView((UserControl)IoC.Get<JobFunctionPresenter>().GetView());
                         break;
                     default:

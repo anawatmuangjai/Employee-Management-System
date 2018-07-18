@@ -14,12 +14,17 @@ namespace EMS.WinForm.Presenters
     {
         private readonly ISectionView _view;
         private readonly ISectionService _sectionService;
+        private readonly IDepartmentService _departmentService;
 
-        public SectionPresenter(ISectionView view, ISectionService sectionService)
+        public SectionPresenter(
+            ISectionView view, 
+            ISectionService sectionService, 
+            IDepartmentService departmentService)
         {
             _view = view;
             _view.Presenter = this;
             _sectionService = sectionService;
+            _departmentService = departmentService;
         }
 
         public ISectionView GetView()
@@ -27,25 +32,25 @@ namespace EMS.WinForm.Presenters
             return _view;
         }
 
-        public async Task GetDepartments()
+        public async Task GetDepartmentsAsync()
         {
-            var departments = await _sectionService.GetAllDepartmentAsync();
-            _view.Departments = departments.ToList();
+            var departments = await _departmentService.GetAllAsync();
+            _view.Departments = departments;
         }
 
-        public async Task ViewAll()
+        public async Task ViewAllAsync()
         {
-            var sections = await _sectionService.GetAllSectionAsync();
-            _view.Sections = sections.ToList();
+            var sections = await _sectionService.GetAllWithDepartmentAsync();
+            _view.Sections = sections;
         }
 
-        public async Task Search()
+        public async Task SearchAsync()
         {
             var sections = await _sectionService.GetByNameAsync(_view.Filter);
-            _view.Sections = sections.ToList();
+            _view.Sections = sections;
         }
 
-        public async Task Save()
+        public async Task SaveAsync()
         {
             var section = new SectionModel
             {
@@ -61,11 +66,9 @@ namespace EMS.WinForm.Presenters
                 await _sectionService.AddAsync(section);
         }
 
-        public void Delete()
+        public void DeleteAsync()
         {
-            _sectionService.DeleteAsync(_view.SelectedSection.SectionId);
+            _sectionService.DeleteAsync(_view.SelectedSection);
         }
-
-
     }
 }

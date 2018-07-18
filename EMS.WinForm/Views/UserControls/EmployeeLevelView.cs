@@ -8,83 +8,72 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EMS.WinForm.Views.Interfaces;
-using EMS.WinForm.Presenters;
 using EMS.ApplicationCore.Models;
+using EMS.WinForm.Presenters;
 
 namespace EMS.WinForm.Views.UserControls
 {
-    public partial class ShiftView : UserControl, IShiftView
+    public partial class EmployeeLevelView : UserControl, IEmployeeLevelView
     {
-        public ShiftView()
+        public EmployeeLevelView()
         {
             InitializeComponent();
         }
 
-        public byte ShiftId { get; set; }
+        public int LevelId { get; set; }
 
-        public string ShiftName
+        public string LevelName
         {
-            get => ShiftNameTextBox.Text.Trim();
-            set => ShiftNameTextBox.Text = value;
+            get => LevelNameTextBox.Text.Trim();
+            set => LevelNameTextBox.Text = value;
         }
 
-        public TimeSpan StartTime
+        public string LevelCode
         {
-            get
-            {
-                var dateTime = StartTimePicker.Value;
-                return new TimeSpan(dateTime.Hour, dateTime.Minute, dateTime.Second);
-            }
+            get => LevelCodeTextBox.Text.Trim();
+            set => LevelCodeTextBox.Text = value;
         }
 
-        public TimeSpan EndTime
-        {
-            get
-            {
-                var dateTime = EndTimePicker.Value;
-                return new TimeSpan(dateTime.Hour, dateTime.Minute, dateTime.Second);
-            }
-        }
+        public EmployeeLevelModel SelectedLevel { get; set; }
 
-        public ShiftModel SelectedShift { get; set; }
-
-        public IList<ShiftModel> Shifts
+        public IList<EmployeeLevelModel> Levels
         {
             set
             {
-                var shifts = value;
-                ShiftGridView.DataSource = shifts;
+                var levels = value;
+                LevelGridView.DataSource = levels;
             }
         }
 
-        public ShiftPresenter Presenter { private get; set; }
+        public EmployeeLevelPresenter Presenter {  private get; set; }
 
         private void NewToolStripButton_Click(object sender, EventArgs e)
         {
             Clear();
             DetailPanel.Enabled = true;
-            ShiftNameTextBox.Select();
+            LevelNameTextBox.Select();
         }
 
         private void EditToolStripButton_Click(object sender, EventArgs e)
         {
-            SelectedShift = (ShiftModel)ShiftGridView.CurrentRow.DataBoundItem;
+            SelectedLevel = (EmployeeLevelModel)LevelGridView.CurrentRow.DataBoundItem;
 
-            if (SelectedShift == null)
+            if (SelectedLevel == null)
                 return;
 
-            ShiftId = SelectedShift.ShiftId;
-            ShiftName = SelectedShift.ShiftName;
+            LevelId = SelectedLevel.LevelId;
+            LevelName = SelectedLevel.LevelName;
+            LevelCode = SelectedLevel.LevelCode;
 
             DetailPanel.Enabled = true;
-            ShiftNameTextBox.Select();
+            LevelNameTextBox.Select();
         }
 
         private async void DeleteToolStripButton_Click(object sender, EventArgs e)
         {
-            SelectedShift = (ShiftModel)ShiftGridView.CurrentRow.DataBoundItem;
+            SelectedLevel = (EmployeeLevelModel)LevelGridView.CurrentRow.DataBoundItem;
 
-            if (SelectedShift == null)
+            if (SelectedLevel == null)
                 return;
 
             var dialogResult = MessageBox.Show("Do you want to delete?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -113,8 +102,9 @@ namespace EMS.WinForm.Views.UserControls
 
         private void Clear()
         {
-            ShiftId = 0;
-            ShiftName = string.Empty;
+            LevelId = 0;
+            LevelName = string.Empty;
+            LevelCode = string.Empty;
             DetailPanel.Enabled = false;
         }
     }

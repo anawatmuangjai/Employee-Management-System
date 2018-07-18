@@ -1,4 +1,5 @@
-﻿using EMS.WinForm.Presenters;
+﻿using EMS.ApplicationCore.Models;
+using EMS.WinForm.Presenters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,14 @@ namespace EMS.WinForm.Views.Interfaces
         string PostalCode { get; set; }
         string PhoneNumber { get; set; }
         string EmailAddress { get; set; }
+
+        byte[] EmployeeImage { get; set; }
+
+        IList<JobModel> Jobs { set; }
+        IList<EmployeeLevelModel> Levels { set; }
+        IList<DepartmentModel> Departments { set; }
+        IList<SectionModel> Sections { set; }
+        IList<ShiftModel> Shifts { set; }
 
         DateTime HireDate { get; set; }
         DateTime ChangedDate { get; set; }

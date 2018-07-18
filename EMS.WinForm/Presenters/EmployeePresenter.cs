@@ -1,5 +1,5 @@
-﻿using EMS.ApplicationCore.Interfaces.Repositories;
-using EMS.Domain.Entities;
+﻿using EMS.ApplicationCore.Interfaces.Services;
+using EMS.ApplicationCore.Models;
 using EMS.WinForm.Presenters.Interfaces;
 using EMS.WinForm.Views.Interfaces;
 using System;
@@ -13,13 +13,30 @@ namespace EMS.WinForm.Presenters
     public class EmployeePresenter : IEmployeePresenter
     {
         private readonly IEmployeeView _view;
-        private readonly IAsyncRepository<Employee> _employeeRepository;
+        private readonly IEmployeeService _employeeService;
+        private readonly IEmployeeLevelService _employeeLevelService;
+        private readonly IDepartmentService _departmentService;
+        private readonly ISectionService _sectionService;
+        private readonly IShiftService _shiftService;
+        private readonly IJobService _jobService;
 
-        public EmployeePresenter(IEmployeeView view, IAsyncRepository<Employee> employeeRepository)
+        public EmployeePresenter(
+            IEmployeeView view, 
+            IEmployeeService employeeService,
+            IEmployeeLevelService employeeLevelService,
+            IDepartmentService departmentService, 
+            ISectionService sectionService, 
+            IShiftService shiftService, 
+            IJobService jobService)
         {
             _view = view;
             _view.Presenter = this;
-            _employeeRepository = employeeRepository;
+            _employeeService = employeeService;
+            _employeeLevelService = employeeLevelService;
+            _departmentService = departmentService;
+            _sectionService = sectionService;
+            _shiftService = shiftService;
+            _jobService = jobService;
         }
 
         public IEmployeeView GetView()
@@ -27,9 +44,34 @@ namespace EMS.WinForm.Presenters
             return _view;
         }
 
+        public async Task GetEmployeeLevelsAsync()
+        {
+            _view.Levels = await _employeeLevelService.GetAllAsync();
+        }
+
+        public async Task GetDepartmentsAsync()
+        {
+            _view.Departments = await _departmentService.GetAllAsync();
+        }
+
+        public async Task GetSectionsAsync()
+        {
+            _view.Sections = await _sectionService.GetAllAsync();
+        }
+
+        public async Task GetShiftsAsync()
+        {
+            _view.Shifts = await _shiftService.GetAllAsync();
+        }
+
+        public async Task GetJobsAsync()
+        {
+            _view.Jobs = await _jobService.GetAllAsync();
+        }
+
         public async Task SaveAsync()
         {
-            var employee = new Employee
+            var employee = new EmployeeModel
             {
                 EmployeeId = _view.EmployeeId,
                 GlobalId = _view.GlobalId,
@@ -47,9 +89,9 @@ namespace EMS.WinForm.Presenters
             };
 
             if (employee.EmployeeId > 0)
-                await _employeeRepository.UpdateAsync(employee);
+                await _employeeService.UpdateAsync(employee);
             else
-                await _employeeRepository.AddAsync(employee);
+                await _employeeService.AddAsync(employee);
         }
     }
 }

@@ -30,80 +30,85 @@
         {
             this.panel2 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox16 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.LastNameTextBox = new System.Windows.Forms.TextBox();
+            this.BirthDatePicker = new System.Windows.Forms.DateTimePicker();
             this.label14 = new System.Windows.Forms.Label();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.TitleComboBox = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.FirstNameTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.AddressTextBox = new System.Windows.Forms.TextBox();
+            this.EmailTextBox = new System.Windows.Forms.TextBox();
+            this.PhoneTextBox = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.CityTextBox = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.PostalCodeTextBox = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.BrowseButton = new System.Windows.Forms.Button();
+            this.EmployeePictureBox = new System.Windows.Forms.PictureBox();
+            this.SaveButton = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.RegistrationPanel = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.GlobalIDTextBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.TypeComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
-            this.textBox15 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.PasswordTextBox = new System.Windows.Forms.TextBox();
+            this.JoinDatePicker = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.comboBox7 = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.CardIDTextBox = new System.Windows.Forms.TextBox();
+            this.LevelComboBox = new System.Windows.Forms.ComboBox();
+            this.HireDatePicker = new System.Windows.Forms.DateTimePicker();
             this.label25 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.JobComboBox = new System.Windows.Forms.ComboBox();
+            this.DepartmentComboBox = new System.Windows.Forms.ComboBox();
             this.label24 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.ShiftComboBox = new System.Windows.Forms.ComboBox();
+            this.SectionComboBox = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label29 = new System.Windows.Forms.Label();
             this.comboBox9 = new System.Windows.Forms.ComboBox();
             this.label28 = new System.Windows.Forms.Label();
             this.comboBox8 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.ThaiLastNameTextBox = new System.Windows.Forms.TextBox();
+            this.ThaiFirstNameTextBox = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.CountryTextBox = new System.Windows.Forms.TextBox();
+            this.BrowsePanel = new System.Windows.Forms.Panel();
             this.ImagePanel = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.MenuToolStrip = new System.Windows.Forms.ToolStrip();
+            this.NewToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.ViewToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.CancelButton = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EmployeePictureBox)).BeginInit();
             this.panel6.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.RegistrationPanel.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.BrowsePanel.SuspendLayout();
             this.ImagePanel.SuspendLayout();
+            this.MenuToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -126,21 +131,21 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "Employee Registration";
             // 
-            // textBox16
+            // LastNameTextBox
             // 
-            this.textBox16.Location = new System.Drawing.Point(110, 76);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(136, 20);
-            this.textBox16.TabIndex = 22;
+            this.LastNameTextBox.Location = new System.Drawing.Point(110, 76);
+            this.LastNameTextBox.Name = "LastNameTextBox";
+            this.LastNameTextBox.Size = new System.Drawing.Size(136, 20);
+            this.LastNameTextBox.TabIndex = 22;
             // 
-            // dateTimePicker1
+            // BirthDatePicker
             // 
-            this.dateTimePicker1.CustomFormat = "yyy/MM/dd";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(358, 47);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(136, 20);
-            this.dateTimePicker1.TabIndex = 20;
+            this.BirthDatePicker.CustomFormat = "yyy/MM/dd";
+            this.BirthDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.BirthDatePicker.Location = new System.Drawing.Point(358, 47);
+            this.BirthDatePicker.Name = "BirthDatePicker";
+            this.BirthDatePicker.Size = new System.Drawing.Size(136, 20);
+            this.BirthDatePicker.TabIndex = 20;
             // 
             // label14
             // 
@@ -173,13 +178,17 @@
             this.radioButton1.Text = "Male";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // TitleComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(110, 23);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(136, 21);
-            this.comboBox1.TabIndex = 15;
+            this.TitleComboBox.FormattingEnabled = true;
+            this.TitleComboBox.Items.AddRange(new object[] {
+            "Mr.",
+            "Ms.",
+            "Miss."});
+            this.TitleComboBox.Location = new System.Drawing.Point(110, 23);
+            this.TitleComboBox.Name = "TitleComboBox";
+            this.TitleComboBox.Size = new System.Drawing.Size(136, 21);
+            this.TitleComboBox.TabIndex = 15;
             // 
             // label8
             // 
@@ -208,12 +217,12 @@
             this.label4.TabIndex = 5;
             this.label4.Text = "Gender:";
             // 
-            // textBox2
+            // FirstNameTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(110, 50);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(136, 20);
-            this.textBox2.TabIndex = 2;
+            this.FirstNameTextBox.Location = new System.Drawing.Point(110, 50);
+            this.FirstNameTextBox.Name = "FirstNameTextBox";
+            this.FirstNameTextBox.Size = new System.Drawing.Size(136, 20);
+            this.FirstNameTextBox.TabIndex = 2;
             // 
             // label6
             // 
@@ -224,26 +233,26 @@
             this.label6.TabIndex = 3;
             this.label6.Text = "Last Name:";
             // 
-            // textBox3
+            // AddressTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(110, 23);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(136, 20);
-            this.textBox3.TabIndex = 43;
+            this.AddressTextBox.Location = new System.Drawing.Point(110, 23);
+            this.AddressTextBox.Name = "AddressTextBox";
+            this.AddressTextBox.Size = new System.Drawing.Size(136, 20);
+            this.AddressTextBox.TabIndex = 43;
             // 
-            // textBox9
+            // EmailTextBox
             // 
-            this.textBox9.Location = new System.Drawing.Point(358, 75);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(136, 20);
-            this.textBox9.TabIndex = 41;
+            this.EmailTextBox.Location = new System.Drawing.Point(358, 75);
+            this.EmailTextBox.Name = "EmailTextBox";
+            this.EmailTextBox.Size = new System.Drawing.Size(136, 20);
+            this.EmailTextBox.TabIndex = 41;
             // 
-            // textBox17
+            // PhoneTextBox
             // 
-            this.textBox17.Location = new System.Drawing.Point(358, 49);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(136, 20);
-            this.textBox17.TabIndex = 39;
+            this.PhoneTextBox.Location = new System.Drawing.Point(358, 49);
+            this.PhoneTextBox.Name = "PhoneTextBox";
+            this.PhoneTextBox.Size = new System.Drawing.Size(136, 20);
+            this.PhoneTextBox.TabIndex = 39;
             // 
             // label22
             // 
@@ -263,12 +272,12 @@
             this.label21.TabIndex = 34;
             this.label21.Text = "Email Address:";
             // 
-            // textBox12
+            // CityTextBox
             // 
-            this.textBox12.Location = new System.Drawing.Point(110, 75);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(136, 20);
-            this.textBox12.TabIndex = 31;
+            this.CityTextBox.Location = new System.Drawing.Point(110, 75);
+            this.CityTextBox.Name = "CityTextBox";
+            this.CityTextBox.Size = new System.Drawing.Size(136, 20);
+            this.CityTextBox.TabIndex = 31;
             // 
             // label19
             // 
@@ -297,12 +306,12 @@
             this.label15.TabIndex = 26;
             this.label15.Text = "City:";
             // 
-            // textBox8
+            // PostalCodeTextBox
             // 
-            this.textBox8.Location = new System.Drawing.Point(358, 23);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(136, 20);
-            this.textBox8.TabIndex = 21;
+            this.PostalCodeTextBox.Location = new System.Drawing.Point(358, 23);
+            this.PostalCodeTextBox.Name = "PostalCodeTextBox";
+            this.PostalCodeTextBox.Size = new System.Drawing.Size(136, 20);
+            this.PostalCodeTextBox.TabIndex = 21;
             // 
             // label16
             // 
@@ -313,92 +322,103 @@
             this.label16.TabIndex = 22;
             this.label16.Text = "Country:";
             // 
-            // button3
+            // BrowseButton
             // 
-            this.button3.Location = new System.Drawing.Point(205, 245);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(29, 22);
-            this.button3.TabIndex = 17;
-            this.button3.Text = "...";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button3.UseVisualStyleBackColor = true;
+            this.BrowseButton.Location = new System.Drawing.Point(205, 245);
+            this.BrowseButton.Name = "BrowseButton";
+            this.BrowseButton.Size = new System.Drawing.Size(29, 22);
+            this.BrowseButton.TabIndex = 17;
+            this.BrowseButton.Text = "...";
+            this.BrowseButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.BrowseButton.UseVisualStyleBackColor = true;
+            this.BrowseButton.Click += new System.EventHandler(this.BrowseButton_Click);
             // 
-            // textBox7
+            // EmployeePictureBox
             // 
-            this.textBox7.Location = new System.Drawing.Point(7, 246);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(194, 20);
-            this.textBox7.TabIndex = 16;
+            this.EmployeePictureBox.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.EmployeePictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.EmployeePictureBox.Location = new System.Drawing.Point(0, 0);
+            this.EmployeePictureBox.Name = "EmployeePictureBox";
+            this.EmployeePictureBox.Size = new System.Drawing.Size(240, 240);
+            this.EmployeePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.EmployeePictureBox.TabIndex = 8;
+            this.EmployeePictureBox.TabStop = false;
             // 
-            // pictureBox1
+            // SaveButton
             // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(240, 240);
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
-            // 
-            // button2
-            // 
-            this.button2.Image = global::EMS.WinForm.Properties.Resources.StatusOK_16xMD;
-            this.button2.Location = new System.Drawing.Point(16, 519);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(84, 26);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Submit";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = true;
+            this.SaveButton.Image = global::EMS.WinForm.Properties.Resources.save_16xMD;
+            this.SaveButton.Location = new System.Drawing.Point(16, 519);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(84, 26);
+            this.SaveButton.TabIndex = 6;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // panel6
             // 
             this.panel6.AutoScroll = true;
             this.panel6.BackColor = System.Drawing.Color.White;
-            this.panel6.Controls.Add(this.panel1);
-            this.panel6.Controls.Add(this.panel3);
+            this.panel6.Controls.Add(this.RegistrationPanel);
+            this.panel6.Controls.Add(this.BrowsePanel);
+            this.panel6.Controls.Add(this.MenuToolStrip);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(0, 22);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(800, 578);
             this.panel6.TabIndex = 17;
             // 
-            // panel1
+            // RegistrationPanel
             // 
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.groupBox2);
-            this.panel1.Controls.Add(this.groupBox3);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(240, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(560, 578);
-            this.panel1.TabIndex = 70;
+            this.RegistrationPanel.Controls.Add(this.CancelButton);
+            this.RegistrationPanel.Controls.Add(this.label2);
+            this.RegistrationPanel.Controls.Add(this.groupBox1);
+            this.RegistrationPanel.Controls.Add(this.SaveButton);
+            this.RegistrationPanel.Controls.Add(this.groupBox2);
+            this.RegistrationPanel.Controls.Add(this.groupBox3);
+            this.RegistrationPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RegistrationPanel.Enabled = false;
+            this.RegistrationPanel.Location = new System.Drawing.Point(240, 28);
+            this.RegistrationPanel.Name = "RegistrationPanel";
+            this.RegistrationPanel.Size = new System.Drawing.Size(560, 550);
+            this.RegistrationPanel.TabIndex = 70;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(560, 23);
+            this.label2.TabIndex = 70;
+            this.label2.Text = "Registration Form";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox11);
+            this.groupBox1.Controls.Add(this.GlobalIDTextBox);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.TypeComboBox);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label27);
-            this.groupBox1.Controls.Add(this.textBox15);
-            this.groupBox1.Controls.Add(this.dateTimePicker3);
+            this.groupBox1.Controls.Add(this.PasswordTextBox);
+            this.groupBox1.Controls.Add(this.JoinDatePicker);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label26);
-            this.groupBox1.Controls.Add(this.textBox13);
-            this.groupBox1.Controls.Add(this.comboBox7);
-            this.groupBox1.Controls.Add(this.dateTimePicker2);
+            this.groupBox1.Controls.Add(this.CardIDTextBox);
+            this.groupBox1.Controls.Add(this.LevelComboBox);
+            this.groupBox1.Controls.Add(this.HireDatePicker);
             this.groupBox1.Controls.Add(this.label25);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.comboBox6);
-            this.groupBox1.Controls.Add(this.comboBox3);
+            this.groupBox1.Controls.Add(this.JobComboBox);
+            this.groupBox1.Controls.Add(this.DepartmentComboBox);
             this.groupBox1.Controls.Add(this.label24);
             this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.comboBox5);
-            this.groupBox1.Controls.Add(this.comboBox4);
+            this.groupBox1.Controls.Add(this.ShiftComboBox);
+            this.groupBox1.Controls.Add(this.SectionComboBox);
             this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Location = new System.Drawing.Point(16, 30);
             this.groupBox1.Name = "groupBox1";
@@ -407,12 +427,12 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Employee Information";
             // 
-            // textBox11
+            // GlobalIDTextBox
             // 
-            this.textBox11.Location = new System.Drawing.Point(110, 30);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(136, 20);
-            this.textBox11.TabIndex = 45;
+            this.GlobalIDTextBox.Location = new System.Drawing.Point(110, 30);
+            this.GlobalIDTextBox.Name = "GlobalIDTextBox";
+            this.GlobalIDTextBox.Size = new System.Drawing.Size(136, 20);
+            this.GlobalIDTextBox.TabIndex = 45;
             // 
             // label10
             // 
@@ -432,13 +452,13 @@
             this.label12.TabIndex = 20;
             this.label12.Text = "Password:";
             // 
-            // comboBox2
+            // TypeComboBox
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(358, 29);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(136, 21);
-            this.comboBox2.TabIndex = 23;
+            this.TypeComboBox.FormattingEnabled = true;
+            this.TypeComboBox.Location = new System.Drawing.Point(358, 29);
+            this.TypeComboBox.Name = "TypeComboBox";
+            this.TypeComboBox.Size = new System.Drawing.Size(136, 21);
+            this.TypeComboBox.TabIndex = 23;
             // 
             // label3
             // 
@@ -458,21 +478,21 @@
             this.label27.TabIndex = 61;
             this.label27.Text = "Join Date:";
             // 
-            // textBox15
+            // PasswordTextBox
             // 
-            this.textBox15.Location = new System.Drawing.Point(110, 82);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(136, 20);
-            this.textBox15.TabIndex = 22;
+            this.PasswordTextBox.Location = new System.Drawing.Point(110, 82);
+            this.PasswordTextBox.Name = "PasswordTextBox";
+            this.PasswordTextBox.Size = new System.Drawing.Size(136, 20);
+            this.PasswordTextBox.TabIndex = 22;
             // 
-            // dateTimePicker3
+            // JoinDatePicker
             // 
-            this.dateTimePicker3.CustomFormat = "yyy/MM/dd";
-            this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker3.Location = new System.Drawing.Point(110, 134);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(136, 20);
-            this.dateTimePicker3.TabIndex = 62;
+            this.JoinDatePicker.CustomFormat = "yyy/MM/dd";
+            this.JoinDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.JoinDatePicker.Location = new System.Drawing.Point(110, 134);
+            this.JoinDatePicker.Name = "JoinDatePicker";
+            this.JoinDatePicker.Size = new System.Drawing.Size(136, 20);
+            this.JoinDatePicker.TabIndex = 62;
             // 
             // label1
             // 
@@ -492,29 +512,29 @@
             this.label26.TabIndex = 60;
             this.label26.Text = "Employee Level:";
             // 
-            // textBox13
+            // CardIDTextBox
             // 
-            this.textBox13.Location = new System.Drawing.Point(110, 56);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(136, 20);
-            this.textBox13.TabIndex = 48;
+            this.CardIDTextBox.Location = new System.Drawing.Point(110, 56);
+            this.CardIDTextBox.Name = "CardIDTextBox";
+            this.CardIDTextBox.Size = new System.Drawing.Size(136, 20);
+            this.CardIDTextBox.TabIndex = 48;
             // 
-            // comboBox7
+            // LevelComboBox
             // 
-            this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Location = new System.Drawing.Point(358, 56);
-            this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(136, 21);
-            this.comboBox7.TabIndex = 59;
+            this.LevelComboBox.FormattingEnabled = true;
+            this.LevelComboBox.Location = new System.Drawing.Point(358, 56);
+            this.LevelComboBox.Name = "LevelComboBox";
+            this.LevelComboBox.Size = new System.Drawing.Size(136, 21);
+            this.LevelComboBox.TabIndex = 59;
             // 
-            // dateTimePicker2
+            // HireDatePicker
             // 
-            this.dateTimePicker2.CustomFormat = "yyy/MM/dd";
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(110, 108);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(136, 20);
-            this.dateTimePicker2.TabIndex = 50;
+            this.HireDatePicker.CustomFormat = "yyy/MM/dd";
+            this.HireDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.HireDatePicker.Location = new System.Drawing.Point(110, 108);
+            this.HireDatePicker.Name = "HireDatePicker";
+            this.HireDatePicker.Size = new System.Drawing.Size(136, 20);
+            this.HireDatePicker.TabIndex = 50;
             // 
             // label25
             // 
@@ -534,21 +554,21 @@
             this.label9.TabIndex = 49;
             this.label9.Text = "Hire Date:";
             // 
-            // comboBox6
+            // JobComboBox
             // 
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(110, 160);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(136, 21);
-            this.comboBox6.TabIndex = 57;
+            this.JobComboBox.FormattingEnabled = true;
+            this.JobComboBox.Location = new System.Drawing.Point(110, 160);
+            this.JobComboBox.Name = "JobComboBox";
+            this.JobComboBox.Size = new System.Drawing.Size(136, 21);
+            this.JobComboBox.TabIndex = 57;
             // 
-            // comboBox3
+            // DepartmentComboBox
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(358, 83);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(136, 21);
-            this.comboBox3.TabIndex = 51;
+            this.DepartmentComboBox.FormattingEnabled = true;
+            this.DepartmentComboBox.Location = new System.Drawing.Point(358, 83);
+            this.DepartmentComboBox.Name = "DepartmentComboBox";
+            this.DepartmentComboBox.Size = new System.Drawing.Size(136, 21);
+            this.DepartmentComboBox.TabIndex = 51;
             // 
             // label24
             // 
@@ -568,21 +588,21 @@
             this.label11.TabIndex = 52;
             this.label11.Text = "Department:";
             // 
-            // comboBox5
+            // ShiftComboBox
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(358, 139);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(136, 21);
-            this.comboBox5.TabIndex = 55;
+            this.ShiftComboBox.FormattingEnabled = true;
+            this.ShiftComboBox.Location = new System.Drawing.Point(358, 139);
+            this.ShiftComboBox.Name = "ShiftComboBox";
+            this.ShiftComboBox.Size = new System.Drawing.Size(136, 21);
+            this.ShiftComboBox.TabIndex = 55;
             // 
-            // comboBox4
+            // SectionComboBox
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(358, 112);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(136, 21);
-            this.comboBox4.TabIndex = 53;
+            this.SectionComboBox.FormattingEnabled = true;
+            this.SectionComboBox.Location = new System.Drawing.Point(358, 112);
+            this.SectionComboBox.Name = "SectionComboBox";
+            this.SectionComboBox.Size = new System.Drawing.Size(136, 21);
+            this.SectionComboBox.TabIndex = 53;
             // 
             // label20
             // 
@@ -595,8 +615,8 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.comboBox1);
-            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.TitleComboBox);
+            this.groupBox2.Controls.Add(this.FirstNameTextBox);
             this.groupBox2.Controls.Add(this.label29);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.comboBox9);
@@ -605,13 +625,13 @@
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.comboBox8);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.textBox16);
+            this.groupBox2.Controls.Add(this.LastNameTextBox);
             this.groupBox2.Controls.Add(this.radioButton1);
-            this.groupBox2.Controls.Add(this.dateTimePicker1);
+            this.groupBox2.Controls.Add(this.BirthDatePicker);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.radioButton2);
-            this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Controls.Add(this.textBox5);
+            this.groupBox2.Controls.Add(this.ThaiLastNameTextBox);
+            this.groupBox2.Controls.Add(this.ThaiFirstNameTextBox);
             this.groupBox2.Controls.Add(this.label23);
             this.groupBox2.Controls.Add(this.label17);
             this.groupBox2.Location = new System.Drawing.Point(16, 235);
@@ -624,11 +644,11 @@
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(256, 103);
+            this.label29.Location = new System.Drawing.Point(264, 103);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(96, 13);
+            this.label29.Size = new System.Drawing.Size(87, 13);
             this.label29.TabIndex = 66;
-            this.label29.Text = "Education Degree:";
+            this.label29.Text = "Education Major:";
             // 
             // comboBox9
             // 
@@ -655,19 +675,19 @@
             this.comboBox8.Size = new System.Drawing.Size(136, 21);
             this.comboBox8.TabIndex = 63;
             // 
-            // textBox1
+            // ThaiLastNameTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(110, 128);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(136, 20);
-            this.textBox1.TabIndex = 28;
+            this.ThaiLastNameTextBox.Location = new System.Drawing.Point(110, 128);
+            this.ThaiLastNameTextBox.Name = "ThaiLastNameTextBox";
+            this.ThaiLastNameTextBox.Size = new System.Drawing.Size(136, 20);
+            this.ThaiLastNameTextBox.TabIndex = 28;
             // 
-            // textBox5
+            // ThaiFirstNameTextBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(110, 102);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(136, 20);
-            this.textBox5.TabIndex = 26;
+            this.ThaiFirstNameTextBox.Location = new System.Drawing.Point(110, 102);
+            this.ThaiFirstNameTextBox.Name = "ThaiFirstNameTextBox";
+            this.ThaiFirstNameTextBox.Size = new System.Drawing.Size(136, 20);
+            this.ThaiFirstNameTextBox.TabIndex = 26;
             // 
             // label23
             // 
@@ -689,17 +709,17 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.textBox4);
+            this.groupBox3.Controls.Add(this.CountryTextBox);
             this.groupBox3.Controls.Add(this.label19);
-            this.groupBox3.Controls.Add(this.textBox12);
-            this.groupBox3.Controls.Add(this.textBox8);
-            this.groupBox3.Controls.Add(this.textBox9);
+            this.groupBox3.Controls.Add(this.CityTextBox);
+            this.groupBox3.Controls.Add(this.PostalCodeTextBox);
+            this.groupBox3.Controls.Add(this.EmailTextBox);
             this.groupBox3.Controls.Add(this.label15);
             this.groupBox3.Controls.Add(this.label16);
-            this.groupBox3.Controls.Add(this.textBox3);
+            this.groupBox3.Controls.Add(this.AddressTextBox);
             this.groupBox3.Controls.Add(this.label18);
             this.groupBox3.Controls.Add(this.label22);
-            this.groupBox3.Controls.Add(this.textBox17);
+            this.groupBox3.Controls.Add(this.PhoneTextBox);
             this.groupBox3.Controls.Add(this.label21);
             this.groupBox3.Location = new System.Drawing.Point(16, 402);
             this.groupBox3.Name = "groupBox3";
@@ -708,45 +728,90 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Address Information";
             // 
-            // textBox4
+            // CountryTextBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(110, 49);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(136, 20);
-            this.textBox4.TabIndex = 15;
+            this.CountryTextBox.Location = new System.Drawing.Point(110, 49);
+            this.CountryTextBox.Name = "CountryTextBox";
+            this.CountryTextBox.Size = new System.Drawing.Size(136, 20);
+            this.CountryTextBox.TabIndex = 15;
             // 
-            // panel3
+            // BrowsePanel
             // 
-            this.panel3.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel3.Controls.Add(this.ImagePanel);
-            this.panel3.Controls.Add(this.textBox7);
-            this.panel3.Controls.Add(this.button3);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(240, 578);
-            this.panel3.TabIndex = 71;
+            this.BrowsePanel.BackColor = System.Drawing.Color.Gainsboro;
+            this.BrowsePanel.Controls.Add(this.label13);
+            this.BrowsePanel.Controls.Add(this.ImagePanel);
+            this.BrowsePanel.Controls.Add(this.BrowseButton);
+            this.BrowsePanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.BrowsePanel.Enabled = false;
+            this.BrowsePanel.Location = new System.Drawing.Point(0, 28);
+            this.BrowsePanel.Name = "BrowsePanel";
+            this.BrowsePanel.Size = new System.Drawing.Size(240, 550);
+            this.BrowsePanel.TabIndex = 71;
             // 
             // ImagePanel
             // 
-            this.ImagePanel.Controls.Add(this.pictureBox1);
+            this.ImagePanel.Controls.Add(this.EmployeePictureBox);
             this.ImagePanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.ImagePanel.Location = new System.Drawing.Point(0, 0);
             this.ImagePanel.Name = "ImagePanel";
             this.ImagePanel.Size = new System.Drawing.Size(240, 240);
             this.ImagePanel.TabIndex = 70;
             // 
-            // label2
+            // MenuToolStrip
             // 
-            this.label2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(0, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(560, 23);
-            this.label2.TabIndex = 70;
-            this.label2.Text = "Registration Form";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.MenuToolStrip.AutoSize = false;
+            this.MenuToolStrip.BackColor = System.Drawing.Color.White;
+            this.MenuToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.NewToolStripButton,
+            this.ViewToolStripButton});
+            this.MenuToolStrip.Location = new System.Drawing.Point(0, 0);
+            this.MenuToolStrip.Name = "MenuToolStrip";
+            this.MenuToolStrip.Size = new System.Drawing.Size(800, 28);
+            this.MenuToolStrip.Stretch = true;
+            this.MenuToolStrip.TabIndex = 72;
+            this.MenuToolStrip.Text = "toolStrip1";
+            // 
+            // NewToolStripButton
+            // 
+            this.NewToolStripButton.Image = global::EMS.WinForm.Properties.Resources.Add_16xMD;
+            this.NewToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.NewToolStripButton.Margin = new System.Windows.Forms.Padding(3);
+            this.NewToolStripButton.Name = "NewToolStripButton";
+            this.NewToolStripButton.Size = new System.Drawing.Size(51, 22);
+            this.NewToolStripButton.Text = "New";
+            this.NewToolStripButton.Click += new System.EventHandler(this.NewToolStripButton_Click);
+            // 
+            // ViewToolStripButton
+            // 
+            this.ViewToolStripButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.ViewToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ViewToolStripButton.Image = global::EMS.WinForm.Properties.Resources.table_16xMD;
+            this.ViewToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ViewToolStripButton.Margin = new System.Windows.Forms.Padding(3);
+            this.ViewToolStripButton.Name = "ViewToolStripButton";
+            this.ViewToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.ViewToolStripButton.Text = "View";
+            // 
+            // CancelButton
+            // 
+            this.CancelButton.Image = global::EMS.WinForm.Properties.Resources.Cancel_grey_16xMD;
+            this.CancelButton.Location = new System.Drawing.Point(106, 519);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new System.Drawing.Size(84, 26);
+            this.CancelButton.TabIndex = 71;
+            this.CancelButton.Text = "Cancel";
+            this.CancelButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(3, 249);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(141, 13);
+            this.label13.TabIndex = 71;
+            this.label13.Text = "Please select profile image...\r\n";
             // 
             // RegistrationView
             // 
@@ -758,18 +823,20 @@
             this.Size = new System.Drawing.Size(800, 600);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EmployeePictureBox)).EndInit();
             this.panel6.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
+            this.RegistrationPanel.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.BrowsePanel.ResumeLayout(false);
+            this.BrowsePanel.PerformLayout();
             this.ImagePanel.ResumeLayout(false);
+            this.MenuToolStrip.ResumeLayout(false);
+            this.MenuToolStrip.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -778,47 +845,46 @@
 
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker BirthDatePicker;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox TitleComboBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox FirstNameTextBox;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox CityTextBox;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox PostalCodeTextBox;
+        private System.Windows.Forms.Button BrowseButton;
+        private System.Windows.Forms.PictureBox EmployeePictureBox;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox CountryTextBox;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox16;
-        private System.Windows.Forms.TextBox textBox15;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox17;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox LastNameTextBox;
+        private System.Windows.Forms.TextBox PasswordTextBox;
+        private System.Windows.Forms.TextBox EmailTextBox;
+        private System.Windows.Forms.TextBox PhoneTextBox;
+        private System.Windows.Forms.TextBox AddressTextBox;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox GlobalIDTextBox;
+        private System.Windows.Forms.TextBox ThaiLastNameTextBox;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox ThaiFirstNameTextBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox TypeComboBox;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.DateTimePicker HireDatePicker;
+        private System.Windows.Forms.TextBox CardIDTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -828,20 +894,25 @@
         private System.Windows.Forms.ComboBox comboBox8;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.DateTimePicker JoinDatePicker;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.ComboBox comboBox7;
+        private System.Windows.Forms.ComboBox LevelComboBox;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.ComboBox comboBox6;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox JobComboBox;
+        private System.Windows.Forms.ComboBox DepartmentComboBox;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox comboBox5;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox ShiftComboBox;
+        private System.Windows.Forms.ComboBox SectionComboBox;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel RegistrationPanel;
+        private System.Windows.Forms.Panel BrowsePanel;
         private System.Windows.Forms.Panel ImagePanel;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStrip MenuToolStrip;
+        private System.Windows.Forms.ToolStripButton NewToolStripButton;
+        private System.Windows.Forms.ToolStripButton ViewToolStripButton;
+        private System.Windows.Forms.Button CancelButton;
+        private System.Windows.Forms.Label label13;
     }
 }

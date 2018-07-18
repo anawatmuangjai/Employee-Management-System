@@ -62,7 +62,7 @@ namespace EMS.WinForm.Views.UserControls
             Cursor = Cursors.WaitCursor;
 
             Clear();
-            await Presenter.GetDepartments();
+            await Presenter.GetDepartmentsAsync();
 
             DepartmentComboBox.Select();
             DetailPanel.Enabled = true;
@@ -93,14 +93,14 @@ namespace EMS.WinForm.Views.UserControls
 
         private void SearchToolStripButton_Click(object sender, EventArgs e)
         {
-            Presenter.Search();
+            Presenter.SearchAsync();
         }
 
         private async void ViewToolStripButton_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
 
-            await Presenter.ViewAll();
+            await Presenter.ViewAllAsync();
 
             Cursor = Cursors.Default;
         }
@@ -114,8 +114,8 @@ namespace EMS.WinForm.Views.UserControls
         {
             Cursor = Cursors.WaitCursor;
 
-            await Presenter.Save();
-            await Presenter.ViewAll();
+            await Presenter.SaveAsync();
+            await Presenter.ViewAllAsync();
             Clear();
 
             Cursor = Cursors.Default;

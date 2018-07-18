@@ -76,7 +76,7 @@ namespace EMS.WinForm.Views.UserControls
             JobTitleTextBox.Select();
         }
 
-        private void DeleteToolStripButton_Click(object sender, EventArgs e)
+        private async void DeleteToolStripButton_Click(object sender, EventArgs e)
         {
             if (SelectedJob == null)
                 return;
@@ -85,23 +85,23 @@ namespace EMS.WinForm.Views.UserControls
             if (dialogResult == DialogResult.No)
                 return;
 
-            Presenter.Delete();
+            await Presenter.DeleteAsync();
         }
 
-        private void SearchToolStripButton_Click(object sender, EventArgs e)
+        private async void SearchToolStripButton_Click(object sender, EventArgs e)
         {
-            Presenter.Search();
+            await Presenter.SearchAsync();
         }
 
-        private void ViewToolStripButton_Click(object sender, EventArgs e)
+        private async void ViewToolStripButton_Click(object sender, EventArgs e)
         {
-            Presenter.ViewAll();
+            await Presenter.ViewAllAsync();
         }
 
-        private void SaveButton_Click(object sender, EventArgs e)
+        private async void SaveButton_Click(object sender, EventArgs e)
         {
-            Presenter.Save();
-            Presenter.ViewAll();
+            await Presenter.SaveAsync();
+            await Presenter.ViewAllAsync();
             Clear();
         }
 

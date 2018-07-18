@@ -1,4 +1,6 @@
 ﻿using EMS.ApplicationCore.Interfaces.Repositories;
+using EMS.ApplicationCore.Interfaces.Services;
+using EMS.ApplicationCore.Models;
 using EMS.Domain.Entities;
 using EMS.WinForm.Presenters.Interfaces;
 using EMS.WinForm.Views.Interfaces;
@@ -13,15 +15,13 @@ namespace EMS.WinForm.Presenters
     public class DepartmentPresenter : IDepartmentPresenter
     {
         private readonly IDepartmentView _view;
-        private readonly IAsyncRepository<MasterDepartment> _departmentRepository;
+        private readonly IDepartmentService _departmentService;
 
-        public DepartmentPresenter(
-            IDepartmentView view,
-            IAsyncRepository<MasterDepartment> departmentRepository)
+        public DepartmentPresenter(IDepartmentView view, IDepartmentService departmentService)
         {
             _view = view;
             _view.Presenter = this;
-            _departmentRepository = departmentRepository;
+            _departmentService = departmentService;
         }
 
         public IDepartmentView GetView()
@@ -29,19 +29,19 @@ namespace EMS.WinForm.Presenters
             return _view;
         }
 
-        public async Task ViewAll()
+        public async Task ViewAllAsync()
         {
-            _view.Departments = await _departmentRepository.GetAllAsync();
+            _view.Departments = await _departmentService.GetAllAsync();
         }
 
-        public void Search()
+        public async Task SearchAsync()
         {
-           // _view.Departments = _departmentRepository.GetByName(_view.Filter).ToList();
+            _view.Departments = await _departmentService.GetByNameAsync(_view.Filter);
         }
 
-        public async Task Save()
+        public async Task SaveAsync()
         {
-            var department = new MasterDepartment
+            var department = new DepartmentModel
             {
                 DepartmentId = _view.DepartmentId,
                 DepartmentName = _view.DepartmentName,
@@ -50,19 +50,14 @@ namespace EMS.WinForm.Presenters
             };
 
             if (department.DepartmentId > 0)
-                await _departmentRepository.UpdateAsync(department);
+                await _departmentService.UpdateAsync(department);
             else
-                await _departmentRepository.AddAsync(department);
+                await _departmentService.AddAsync(department);
         }
 
-        public async Task Delete()
+        public async Task DeleteAsync()
         {
-            if (_view.SelectedDepartment == null)
-                return;
-
-            await _departmentRepository.DeleteAsync(_view.SelectedDepartment);
+            await _departmentService.DeleteAsync(_view.SelectedDepartment);
         }
-
-
     }
 }

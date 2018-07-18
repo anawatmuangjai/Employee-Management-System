@@ -26,8 +26,14 @@ namespace EMS.WinForm.IoCContainer
             Bind(typeof(IRepository<>)).To(typeof(Repository<>)).InSingletonScope();
             Bind(typeof(IAsyncRepository<>)).To(typeof(Repository<>)).InSingletonScope();
 
+            Bind<IDepartmentService>().To<DepartmentService>().InSingletonScope();
             Bind<ISectionService>().To<SectionService>().InSingletonScope();
+            Bind<IShiftService>().To<ShiftService>().InSingletonScope();
             Bind<IJobService>().To<JobService>().InSingletonScope();
+            Bind<IEmployeeService>().To<EmployeeService>().InSingletonScope();
+            Bind<IEmployeeDetailService>().To<EmployeeDetailService>().InSingletonScope();
+            Bind<IEmployeeStateService>().To<EmployeeStateService>().InSingletonScope();
+            Bind<IEmployeeLevelService>().To<EmployeeLevelService>().InSingletonScope();
 
             Bind<ILoginView>().To<LoginView>().InSingletonScope();
             Bind<IMainView>().To<MainView>().InSingletonScope();
@@ -37,6 +43,7 @@ namespace EMS.WinForm.IoCContainer
             Bind<IShiftView>().To<ShiftView>().InSingletonScope();
             Bind<IJobTitleView>().To<JobTitleView>().InSingletonScope();
             Bind<IJobFunctionView>().To<JobFunctionView>().InSingletonScope();
+            Bind<IEmployeeLevelView>().To<EmployeeLevelView>().InSingletonScope();
 
             Bind<ILoginPresenter>().To<LoginPresenter>().InSingletonScope();
             Bind<IMainPresenter>().To<MainPresenter>().InSingletonScope();
@@ -46,6 +53,7 @@ namespace EMS.WinForm.IoCContainer
             Bind<IShiftPresenter>().To<ShiftPresenter>().InSingletonScope();
             Bind<IJobTitlePresenter>().To<JobTitlePresenter>().InSingletonScope();
             Bind<IJobFunctionPresenter>().To<JobFunctionPresenter>().InSingletonScope();
+            Bind<IEmployeeLevelPresenter>().To<EmployeeLevelPresenter>().InSingletonScope();
         }
     }
 }

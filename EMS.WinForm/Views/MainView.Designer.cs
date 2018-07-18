@@ -32,18 +32,18 @@
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Registration");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Employee Info");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Employee List");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Employee", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Employee Level");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Employee", new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2,
-            treeNode3});
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Department");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Section");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Shift");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Job Title");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Job Function");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Job Level");
+            treeNode3,
+            treeNode4});
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Department");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Section");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Shift");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Job Title");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Job Function");
             System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Organization", new System.Windows.Forms.TreeNode[] {
-            treeNode5,
             treeNode6,
             treeNode7,
             treeNode8,
@@ -281,7 +281,7 @@
             this.customizeToolStripMenuItem,
             this.optionsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // customizeToolStripMenuItem
@@ -360,35 +360,37 @@
             this.MenuTreeView.Indent = 15;
             this.MenuTreeView.ItemHeight = 20;
             this.MenuTreeView.LineColor = System.Drawing.Color.Maroon;
-            this.MenuTreeView.Location = new System.Drawing.Point(0, 22);
+            this.MenuTreeView.Location = new System.Drawing.Point(0, 50);
             this.MenuTreeView.Name = "MenuTreeView";
             treeNode1.Name = "Node0";
             treeNode1.Tag = "1";
             treeNode1.Text = "Registration";
             treeNode2.Name = "Node0";
+            treeNode2.Tag = "2";
             treeNode2.Text = "Employee Info";
             treeNode3.Name = "Node10";
             treeNode3.Tag = "3";
             treeNode3.Text = "Employee List";
             treeNode4.Name = "Node0";
-            treeNode4.Text = "Employee";
-            treeNode5.Name = "Node8";
-            treeNode5.Tag = "6";
-            treeNode5.Text = "Department";
-            treeNode6.Name = "Node9";
-            treeNode6.Tag = "7";
-            treeNode6.Text = "Section";
-            treeNode7.Name = "Node16";
-            treeNode7.Tag = "8";
-            treeNode7.Text = "Shift";
-            treeNode8.Name = "Node15";
-            treeNode8.Tag = "9";
-            treeNode8.Text = "Job Title";
-            treeNode9.Name = "Node5";
-            treeNode9.Tag = "10";
-            treeNode9.Text = "Job Function";
-            treeNode10.Name = "Node0";
-            treeNode10.Text = "Job Level";
+            treeNode4.Tag = "4";
+            treeNode4.Text = "Employee Level";
+            treeNode5.Name = "Node0";
+            treeNode5.Text = "Employee";
+            treeNode6.Name = "Node8";
+            treeNode6.Tag = "5";
+            treeNode6.Text = "Department";
+            treeNode7.Name = "Node9";
+            treeNode7.Tag = "6";
+            treeNode7.Text = "Section";
+            treeNode8.Name = "Node16";
+            treeNode8.Tag = "7";
+            treeNode8.Text = "Shift";
+            treeNode9.Name = "Node15";
+            treeNode9.Tag = "8";
+            treeNode9.Text = "Job Title";
+            treeNode10.Name = "Node5";
+            treeNode10.Tag = "9";
+            treeNode10.Text = "Job Function";
             treeNode11.Name = "Node5";
             treeNode11.Text = "Organization";
             treeNode12.Name = "Node1";
@@ -409,13 +411,13 @@
             treeNode19.Name = "Node7";
             treeNode19.Text = "Options";
             this.MenuTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4,
+            treeNode5,
             treeNode11,
             treeNode16,
             treeNode19});
             this.MenuTreeView.ShowLines = false;
             this.MenuTreeView.ShowPlusMinus = false;
-            this.MenuTreeView.Size = new System.Drawing.Size(228, 683);
+            this.MenuTreeView.Size = new System.Drawing.Size(228, 655);
             this.MenuTreeView.TabIndex = 1;
             this.MenuTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.MenuTreeView_AfterSelect);
             // 
@@ -426,7 +428,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(228, 22);
+            this.label1.Size = new System.Drawing.Size(228, 50);
             this.label1.TabIndex = 2;
             this.label1.Text = "Menu";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

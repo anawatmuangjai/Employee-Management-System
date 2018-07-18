@@ -29,17 +29,17 @@ namespace EMS.WinForm.Presenters
             return _view;
         }
 
-        public void ViewAll()
+        public async Task ViewAllAsync()
         {
-            _view.Jobs = _jobService.GetAll().ToList();
+            _view.Jobs = await _jobService.GetAllAsync();
         }
 
-        public void Search()
+        public async Task SearchAsync()
         {
-            _view.Jobs = _jobService.GetByName(_view.Filter).ToList();
+            _view.Jobs = await _jobService.GetByNameAsync(_view.Filter);
         }
 
-        public void Save()
+        public async Task SaveAsync()
         {
             var job = new JobModel
             {
@@ -49,14 +49,14 @@ namespace EMS.WinForm.Presenters
             };
 
             if (job.JobId > 0)
-                _jobService.Update(job);
+                await _jobService.UpdateAsync(job);
             else
-                _jobService.Add(job);
+                await _jobService.AddAsync(job);
         }
 
-        public void Delete()
+        public async Task DeleteAsync()
         {
-            _jobService.Delete(_view.SelectedJob);
+            await _jobService.DeleteAsync(_view.SelectedJob);
         }
     }
 }

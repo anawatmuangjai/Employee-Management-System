@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using EMS.WinForm.Views.Interfaces;
 using EMS.WinForm.Presenters;
 using EMS.Domain.Entities;
+using EMS.ApplicationCore.Models;
 
 namespace EMS.WinForm.Views.UserControls
 {
@@ -46,9 +47,9 @@ namespace EMS.WinForm.Views.UserControls
             set => SearchToolStripTextBox.Text = value;
         }
 
-        public MasterDepartment SelectedDepartment { get; set; }
+        public DepartmentModel SelectedDepartment { get; set; }
 
-        public IList<MasterDepartment> Departments
+        public IList<DepartmentModel> Departments
         {
             set
             {
@@ -68,7 +69,7 @@ namespace EMS.WinForm.Views.UserControls
 
         private void EditToolStripButton_Click(object sender, EventArgs e)
         {
-            SelectedDepartment = (MasterDepartment)DepartmentGridView.CurrentRow.DataBoundItem;
+            SelectedDepartment = (DepartmentModel)DepartmentGridView.CurrentRow.DataBoundItem;
 
             if (SelectedDepartment == null)
                 return;
@@ -84,7 +85,7 @@ namespace EMS.WinForm.Views.UserControls
 
         private async void DeleteToolStripButton_Click(object sender, EventArgs e)
         {
-            SelectedDepartment = (MasterDepartment)DepartmentGridView.CurrentRow.DataBoundItem;
+            SelectedDepartment = (DepartmentModel)DepartmentGridView.CurrentRow.DataBoundItem;
 
             if (SelectedDepartment == null)
                 return;
@@ -93,17 +94,17 @@ namespace EMS.WinForm.Views.UserControls
             if (dialogResult == DialogResult.No)
                 return;
 
-            await Presenter.Delete();
+            await Presenter.DeleteAsync();
         }
 
-        private void SearchToolStripButton_Click(object sender, EventArgs e)
+        private async void SearchToolStripButton_Click(object sender, EventArgs e)
         {
-            Presenter.Search();
+            await Presenter.SearchAsync();
         }
 
         private async void ViewToolStripButton_Click(object sender, EventArgs e)
         {
-            await Presenter.ViewAll();
+            await Presenter.ViewAllAsync();
         }
 
         private void CopyToolStripButton_Click(object sender, EventArgs e)
@@ -113,8 +114,8 @@ namespace EMS.WinForm.Views.UserControls
 
         private async void SaveButton_Click(object sender, EventArgs e)
         {
-            await Presenter.Save();
-            await Presenter.ViewAll();
+            await Presenter.SaveAsync();
+            await Presenter.ViewAllAsync();
             Clear();
         }
 

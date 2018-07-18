@@ -1,4 +1,5 @@
-﻿using EMS.WinForm.Presenters;
+﻿using EMS.ApplicationCore.Models;
+using EMS.WinForm.Presenters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,10 @@ namespace EMS.WinForm.Views.Interfaces
     {
         byte ShiftId { get; set; }
         string ShiftName { get; set; }
-        TimeSpan StartTime { get; set; }
-        TimeSpan EndTime { get; set; }
+        TimeSpan StartTime { get; }
+        TimeSpan EndTime { get; }
+        ShiftModel SelectedShift { get; set; }
+        IList<ShiftModel> Shifts { set; }
         ShiftPresenter Presenter { set; }
     }
 }
