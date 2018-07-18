@@ -1,4 +1,6 @@
-﻿using EMS.ApplicationCore.Models;
+﻿using EMS.ApplicationCore.Interfaces.Repositories;
+using EMS.ApplicationCore.Models;
+using EMS.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,12 +8,8 @@ using System.Threading.Tasks;
 
 namespace EMS.ApplicationCore.Interfaces.Services
 {
-    public interface IDepartmentService
+    public interface IDepartmentService : IService<DepartmentModel, MasterDepartment, IAsyncRepository<MasterDepartment>>
     {
-        Task<IEnumerable<DepartmentModel>> GetAllAsync();
-        Task<IEnumerable<DepartmentModel>> GetByNameAsync(string name);
-        Task AddAsync(DepartmentModel model);
-        Task UpdateAsync(DepartmentModel model);
-        Task DeleteAsync(int id);
+        Task<List<DepartmentModel>> GetByNameAsync(string name);
     }
 }

@@ -7,11 +7,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace EMS.ApplicationCore.Services
 {
     public abstract class BaseService<M, E, R> : IService<M, E, R>
-        where R : IRepository<E>
+        where R : IAsyncRepository<E>
         where E : BaseEntity
     {
         protected readonly IMapper _mapper;
@@ -29,41 +30,49 @@ namespace EMS.ApplicationCore.Services
             _mapper = config.CreateMapper();
         }
 
-        public IEnumerable<M> Get(Expression<Func<E, bool>> filter)
+        public async Task<M> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var entity = await _repository.GetByIdAsync(id);
+            return _mapper.Map<E, M>(entity);
         }
 
-        public IEnumerable<M> GetAll()
+        public async Task<M> GetSingleAsync(Expression<Func<E, bool>> filter)
         {
-            var entities = _repository.GetAll();
-
-            var model = _mapper.Map<IEnumerable<E>, IEnumerable<M>>(entities);
-
-            return model;
+            var entity = await _repository.GetSingleAsync(filter);
+            return _mapper.Map<E, M>(entity);
         }
 
-        public M GetSingle(Expression<Func<E, bool>> filter)
+        public async Task<List<M>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var entities = await _repository.GetAllAsync();
+            return _mapper.Map<List<E>, List<M>>(entities);
         }
 
-        public void Add(M model)
+        public async Task<List<M>> GetAsync(Expression<Func<E, bool>> filter)
+        {
+            var entities = await _repository.GetAsync(filter);
+            return _mapper.Map<List<E>, List<M>>(entities);
+        }
+
+        public async Task<M> AddAsync(M model)
         {
             var entity = _mapper.Map<M, E>(model);
-            _repository.Add(entity);
+            var newEntity = await _repository.AddAsync(entity);
+            return _mapper.Map<E, M>(newEntity);
         }
 
-        public void Update(M model)
+        public async Task UpdateAsync(M model)
         {
-            var entity = _mapper.Map<M, E>(model);
-            _repository.Update(entity);
+
+
+             var entity = _mapper.Map<M, E>(model);
+             await _repository.UpdateAsync(entity);
         }
 
-        public void Delete(M model)
+        public async Task DeleteAsync(M model)
         {
             var entity = _mapper.Map<M, E>(model);
-            _repository.Delete(entity);
+            await _repository.DeleteAsync(entity);
         }
     }
 }

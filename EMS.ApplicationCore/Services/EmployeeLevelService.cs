@@ -5,13 +5,12 @@ using EMS.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace EMS.ApplicationCore.Services
 {
-    public class ShiftService : BaseService<ShiftModel, MasterShift, IAsyncRepository<MasterShift>>, IShiftService
+    public class EmployeeLevelService : BaseService<EmployeeLevelModel, MasterLevel, IAsyncRepository<MasterLevel>>, IEmployeeLevelService
     {
-        public ShiftService(IAsyncRepository<MasterShift> repository) 
+        public EmployeeLevelService(IAsyncRepository<MasterLevel> repository) 
             : base(repository)
         {
         }

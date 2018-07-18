@@ -4,11 +4,10 @@ using EMS.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace EMS.ApplicationCore.Interfaces.Services
 {
-    public interface IShiftService : IService<ShiftModel, MasterShift, IAsyncRepository<MasterSection>>
+    public interface IEmployeeLevelService : IService<EmployeeLevelModel, MasterLevel, IAsyncRepository<MasterLevel>>
     {
     }
 }

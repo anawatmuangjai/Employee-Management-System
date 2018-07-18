@@ -5,23 +5,21 @@ using EMS.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace EMS.ApplicationCore.Services
 {
-    public class JobService : BaseService<JobModel, MasterJob, IRepository<MasterJob>>, IJobService
+    public class JobService : BaseService<JobModel, MasterJob, IAsyncRepository<MasterJob>>, IJobService
     {
-        public JobService(IRepository<MasterJob> repository)
+        public JobService(IAsyncRepository<MasterJob> repository) 
             : base(repository)
         {
         }
 
-        public IEnumerable<JobModel> GetByName(string name)
+        public async Task<List<JobModel>> GetByNameAsync(string name)
         {
-            var entities = _repository.Get(x => x.JobTitle.Contains(name));
-
-            var model = _mapper.Map<IEnumerable<MasterJob>, IEnumerable<JobModel>>(entities);
-
-            return model;
+            var entities = await _repository.GetAsync(x => x.JobTitle.Contains(name));
+            return _mapper.Map<List<MasterJob>, List<JobModel>>(entities);
         }
     }
 }

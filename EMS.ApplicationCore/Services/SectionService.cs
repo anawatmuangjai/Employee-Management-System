@@ -10,91 +10,43 @@ using System.Threading.Tasks;
 
 namespace EMS.ApplicationCore.Services
 {
-    public class SectionService : ISectionService
+    public class SectionService : BaseService<SectionModel, MasterSection, IAsyncRepository<MasterSection>>, ISectionService
     {
-        private readonly IAsyncRepository<MasterSection> _sectionRepository;
-        private readonly IAsyncRepository<MasterDepartment> _departmentRepository;
-
-        public SectionService(
-            IAsyncRepository<MasterSection> sectionRepository,
-            IAsyncRepository<MasterDepartment> departmentRepository)
+        public SectionService(IAsyncRepository<MasterSection> repository) 
+            : base(repository)
         {
-            _sectionRepository = sectionRepository;
-            _departmentRepository = departmentRepository;
         }
 
-        public async Task<IEnumerable<DepartmentModel>> GetAllDepartmentAsync()
+        public async Task<List<SectionModel>> GetAllWithDepartmentAsync()
         {
-            var sections = await _departmentRepository.GetAllAsync();
+            var entities = await _repository.GetAllAsync();
 
-            return sections.Select(x => new DepartmentModel
-            {
-                DepartmentId = x.DepartmentId,
-                DepartmentName = x.DepartmentName,
-                DepartmentCode = x.DepartmentCode,
-                DepartmentGroup = x.DepartmentGroup
-            });
-        }
-
-        public async Task<IEnumerable<SectionModel>> GetAllSectionAsync()
-        {
-            var sections = await _sectionRepository.GetAllAsync();
-
-            return sections.Select(x => new SectionModel
+            var model = entities.Select(x => new SectionModel
             {
                 SectionId = x.SectionId,
-                DepartmentId = x.DepartmentId,
                 DepartmentName = x.Department.DepartmentName,
                 SectionName = x.SectionName,
-                SectionCode = x.SectionCode
+                SectionCode = x.SectionCode,
+                DepartmentId = x.DepartmentId
             });
+
+            return model.ToList();
         }
 
-        public async Task<IEnumerable<SectionModel>> GetByNameAsync(string name)
+        public async Task<List<SectionModel>> GetByNameAsync(string name)
         {
-            var sections = await _sectionRepository.GetAsync(x => x.SectionName.Contains(name));
+            var entities = await _repository.GetAsync(x => x.SectionName.Contains(name));
 
-            return sections.Select(x => new SectionModel
+            var model = entities.Select(x => new SectionModel
             {
                 SectionId = x.SectionId,
-                DepartmentId = x.DepartmentId,
                 DepartmentName = x.Department.DepartmentName,
                 SectionName = x.SectionName,
-                SectionCode = x.SectionCode
+                SectionCode = x.SectionCode,
+                DepartmentId = x.DepartmentId
             });
+
+            return model.ToList();
         }
-
-        public async Task AddAsync(SectionModel model)
-        {
-            var entity = new MasterSection
-            {
-                SectionId = model.SectionId,
-                DepartmentId = model.DepartmentId,
-                SectionName = model.SectionName,
-                SectionCode = model.SectionCode
-            };
-
-            await _sectionRepository.AddAsync(entity);
-        }
-
-        public async Task UpdateAsync(SectionModel model)
-        {
-            var entity = await _sectionRepository.GetByIdAsync(model.SectionId);
-
-            entity.DepartmentId = model.DepartmentId;
-            entity.SectionName = model.SectionName;
-            entity.SectionCode = model.SectionCode;
-
-            await _sectionRepository.UpdateAsync(entity);
-        }
-
-        public async Task DeleteAsync(int sectionId)
-        {
-            var entity = await _sectionRepository.GetByIdAsync(sectionId);
-
-            await _sectionRepository.DeleteAsync(entity);
-        }
-
-
     }
 }

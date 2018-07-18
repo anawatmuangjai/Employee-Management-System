@@ -9,38 +9,17 @@ using System.Threading.Tasks;
 
 namespace EMS.ApplicationCore.Services
 {
-    public class DepartmentService : IDepartmentService
+    public class DepartmentService : BaseService<DepartmentModel, MasterDepartment, IAsyncRepository<MasterDepartment>>, IDepartmentService
     {
-        private readonly IAsyncRepository<MasterDepartment> _departmentRepository;
-
-        public DepartmentService(IAsyncRepository<MasterDepartment> departmentRepository)
+        public DepartmentService(IAsyncRepository<MasterDepartment> repository) 
+            : base(repository)
         {
-            _departmentRepository = departmentRepository;
         }
 
-        public Task<IEnumerable<DepartmentModel>> GetAllAsync()
+        public async Task<List<DepartmentModel>> GetByNameAsync(string name)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task AddAsync(DepartmentModel model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAsync(DepartmentModel model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<DepartmentModel>> GetByNameAsync(string name)
-        {
-            throw new NotImplementedException();
+            var entities = await _repository.GetAsync(x => x.DepartmentName.Contains(name));
+            return _mapper.Map<List<MasterDepartment>, List<DepartmentModel>>(entities);
         }
     }
 }
