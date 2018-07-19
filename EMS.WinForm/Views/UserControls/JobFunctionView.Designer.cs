@@ -43,8 +43,8 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.MessageStatusStrip = new System.Windows.Forms.StatusStrip();
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.DetailPanel = new System.Windows.Forms.Panel();
+            this.JobComboBox = new System.Windows.Forms.ComboBox();
             this.CancelButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -56,7 +56,7 @@
             this.panel2.SuspendLayout();
             this.MenuToolStrip.SuspendLayout();
             this.MessageStatusStrip.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.DetailPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.JobFunctionGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -222,30 +222,32 @@
             this.StatusLabel.Size = new System.Drawing.Size(38, 22);
             this.StatusLabel.Text = "Saved";
             // 
-            // panel1
+            // DetailPanel
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel1.Controls.Add(this.comboBox1);
-            this.panel1.Controls.Add(this.CancelButton);
-            this.panel1.Controls.Add(this.SaveButton);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.DescriptionTextBox);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.FunctionNameTextBox);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 50);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(220, 522);
-            this.panel1.TabIndex = 9;
+            this.DetailPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.DetailPanel.Controls.Add(this.JobComboBox);
+            this.DetailPanel.Controls.Add(this.CancelButton);
+            this.DetailPanel.Controls.Add(this.SaveButton);
+            this.DetailPanel.Controls.Add(this.label3);
+            this.DetailPanel.Controls.Add(this.DescriptionTextBox);
+            this.DetailPanel.Controls.Add(this.label2);
+            this.DetailPanel.Controls.Add(this.FunctionNameTextBox);
+            this.DetailPanel.Controls.Add(this.label1);
+            this.DetailPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.DetailPanel.Enabled = false;
+            this.DetailPanel.Location = new System.Drawing.Point(0, 50);
+            this.DetailPanel.Name = "DetailPanel";
+            this.DetailPanel.Size = new System.Drawing.Size(220, 522);
+            this.DetailPanel.TabIndex = 9;
             // 
-            // comboBox1
+            // JobComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(17, 36);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(184, 21);
-            this.comboBox1.TabIndex = 9;
+            this.JobComboBox.FormattingEnabled = true;
+            this.JobComboBox.Location = new System.Drawing.Point(17, 36);
+            this.JobComboBox.Name = "JobComboBox";
+            this.JobComboBox.Size = new System.Drawing.Size(184, 21);
+            this.JobComboBox.TabIndex = 9;
+            this.JobComboBox.SelectedIndexChanged += new System.EventHandler(this.JobComboBox_SelectedIndexChanged);
             // 
             // CancelButton
             // 
@@ -314,12 +316,22 @@
             // 
             // JobFunctionGridView
             // 
+            this.JobFunctionGridView.AllowUserToAddRows = false;
+            this.JobFunctionGridView.AllowUserToDeleteRows = false;
+            this.JobFunctionGridView.AllowUserToResizeRows = false;
+            this.JobFunctionGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.JobFunctionGridView.BackgroundColor = System.Drawing.Color.White;
             this.JobFunctionGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.JobFunctionGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.JobFunctionGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.JobFunctionGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.JobFunctionGridView.Location = new System.Drawing.Point(220, 50);
+            this.JobFunctionGridView.MultiSelect = false;
             this.JobFunctionGridView.Name = "JobFunctionGridView";
+            this.JobFunctionGridView.ReadOnly = true;
+            this.JobFunctionGridView.RowHeadersVisible = false;
+            this.JobFunctionGridView.RowHeadersWidth = 26;
+            this.JobFunctionGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.JobFunctionGridView.Size = new System.Drawing.Size(580, 522);
             this.JobFunctionGridView.TabIndex = 10;
             // 
@@ -328,7 +340,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.JobFunctionGridView);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.DetailPanel);
             this.Controls.Add(this.MessageStatusStrip);
             this.Controls.Add(this.MenuToolStrip);
             this.Controls.Add(this.panel2);
@@ -340,8 +352,8 @@
             this.MenuToolStrip.PerformLayout();
             this.MessageStatusStrip.ResumeLayout(false);
             this.MessageStatusStrip.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.DetailPanel.ResumeLayout(false);
+            this.DetailPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.JobFunctionGridView)).EndInit();
             this.ResumeLayout(false);
 
@@ -364,7 +376,7 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.StatusStrip MessageStatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel DetailPanel;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Label label3;
@@ -372,7 +384,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox FunctionNameTextBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox JobComboBox;
         private System.Windows.Forms.DataGridView JobFunctionGridView;
-        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

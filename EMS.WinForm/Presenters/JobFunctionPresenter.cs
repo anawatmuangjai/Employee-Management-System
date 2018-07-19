@@ -1,4 +1,5 @@
-﻿using EMS.ApplicationCore.Interfaces.Repositories;
+﻿using EMS.ApplicationCore.Interfaces.Services;
+using EMS.ApplicationCore.Models;
 using EMS.Domain.Entities;
 using EMS.WinForm.Presenters.Interfaces;
 using EMS.WinForm.Views.Interfaces;
@@ -13,15 +14,18 @@ namespace EMS.WinForm.Presenters
     public class JobFunctionPresenter : IJobFunctionPresenter
     {
         private readonly IJobFunctionView _view;
-        private readonly IAsyncRepository<MasterJobFunction> _jobFunctionRepository;
+        private readonly IJobService _jobService;
+        private readonly IJobFunctionService _jobFunctionService;
 
         public JobFunctionPresenter(
             IJobFunctionView view, 
-            IAsyncRepository<MasterJobFunction> jobFunctionRepository)
+            IJobService jobService, 
+            IJobFunctionService jobFunctionService)
         {
             _view = view;
             _view.Presenter = this;
-            _jobFunctionRepository = jobFunctionRepository;
+            _jobService = jobService;
+            _jobFunctionService = jobFunctionService;
         }
 
         public IJobFunctionView GetView()
@@ -29,19 +33,24 @@ namespace EMS.WinForm.Presenters
             return _view;
         }
 
-        public async Task ViewAll()
+        public async Task GetJobTitleAsync()
         {
-            _view.JobJobFunctions = await _jobFunctionRepository.GetAllAsync();
+            _view.JobModels = await _jobService.GetAllAsync();
         }
 
-        public void Search()
+        public async Task ViewAllAsync()
         {
-            throw new NotImplementedException();
+            _view.JobJobFunctions = await _jobFunctionService.GetAllAsync();
         }
 
-        public async Task Save()
+        public async Task SearchAsync()
         {
-            var job = new MasterJobFunction
+            _view.JobJobFunctions = await _jobFunctionService.GetByNameAsync(_view.Filter);
+        }
+
+        public async Task SaveAsync()
+        {
+            var job = new JobFunctionModel
             {
                 JobFunctionId = _view.JobFunctionId,
                 JobId = _view.JobId,
@@ -49,15 +58,15 @@ namespace EMS.WinForm.Presenters
                 FunctionDescription = _view.FunctionDescription
             };
 
-            if (job.JobId > 0)
-                await _jobFunctionRepository.UpdateAsync(job);
+            if (job.JobFunctionId > 0)
+                await _jobFunctionService.UpdateAsync(job);
             else
-                await _jobFunctionRepository.AddAsync(job);
+                await _jobFunctionService.AddAsync(job);
         }
 
-        public async Task Delete()
+        public async Task DeleteAsync()
         {
-            await _jobFunctionRepository.DeleteAsync(_view.SelectedJobFunction);
+            await _jobFunctionService.DeleteAsync(_view.SelectedJobFunction);
         }
     }
 }

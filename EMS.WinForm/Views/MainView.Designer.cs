@@ -33,7 +33,7 @@
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Registration", new System.Windows.Forms.TreeNode[] {
             treeNode1});
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Employee List");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Employee Detail");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Employee Profile");
             System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Employee Level");
             System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Employee Experience");
             System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Employee Education");
@@ -115,10 +115,15 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.MenuTreeView = new System.Windows.Forms.TreeView();
-            this.label1 = new System.Windows.Forms.Label();
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.FullNameLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -301,7 +306,7 @@
             this.customizeToolStripMenuItem,
             this.optionsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // customizeToolStripMenuItem
@@ -361,7 +366,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.LightGray;
             this.panel1.Controls.Add(this.MenuTreeView);
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
@@ -388,11 +393,11 @@
             treeNode2.Name = "Node0";
             treeNode2.Text = "Registration";
             treeNode3.Name = "Node10";
-            treeNode3.Tag = "3";
+            treeNode3.Tag = "2";
             treeNode3.Text = "Employee List";
             treeNode4.Name = "Node0";
-            treeNode4.Tag = "2";
-            treeNode4.Text = "Employee Detail";
+            treeNode4.Tag = "3";
+            treeNode4.Text = "Employee Profile";
             treeNode5.Name = "Node0";
             treeNode5.Tag = "4";
             treeNode5.Text = "Employee Level";
@@ -469,18 +474,6 @@
             this.MenuTreeView.TabIndex = 1;
             this.MenuTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.MenuTreeView_AfterSelect);
             // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(228, 50);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Menu";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // MainPanel
             // 
             this.MainPanel.BackColor = System.Drawing.Color.White;
@@ -489,6 +482,47 @@
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(780, 705);
             this.MainPanel.TabIndex = 7;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.FullNameLabel);
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(228, 50);
+            this.panel2.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.pictureBox1.Location = new System.Drawing.Point(10, 8);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(35, 35);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // FullNameLabel
+            // 
+            this.FullNameLabel.AutoSize = true;
+            this.FullNameLabel.ForeColor = System.Drawing.Color.White;
+            this.FullNameLabel.Location = new System.Drawing.Point(51, 11);
+            this.FullNameLabel.Name = "FullNameLabel";
+            this.FullNameLabel.Size = new System.Drawing.Size(55, 13);
+            this.FullNameLabel.TabIndex = 0;
+            this.FullNameLabel.Text = "Username";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(53, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(157, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "username.company@email.com";
             // 
             // MainView
             // 
@@ -506,6 +540,9 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -546,6 +583,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TreeView MenuTreeView;
         private System.Windows.Forms.Panel MainPanel;
+        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label FullNameLabel;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

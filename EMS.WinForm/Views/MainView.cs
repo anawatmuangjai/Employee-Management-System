@@ -52,6 +52,9 @@ namespace EMS.WinForm.Views
                     case "1":
                         DisplayView((UserControl)IoC.Get<EmployeePresenter>().GetView());
                         break;
+                    case "2":
+                        DisplayView((UserControl)IoC.Get<EmployeeListPresenter>().GetView());
+                        break;
                     case "4":
                         DisplayView((UserControl)IoC.Get<EmployeeLevelPresenter>().GetView());
                         break;

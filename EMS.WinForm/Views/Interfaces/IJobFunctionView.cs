@@ -1,4 +1,5 @@
-﻿using EMS.Domain.Entities;
+﻿using EMS.ApplicationCore.Models;
+using EMS.Domain.Entities;
 using EMS.WinForm.Presenters;
 using System;
 using System.Collections.Generic;
@@ -14,8 +15,10 @@ namespace EMS.WinForm.Views.Interfaces
         int JobId { get; set; }
         string FunctionName { get; set; }
         string FunctionDescription { get; set; }
-        MasterJobFunction SelectedJobFunction { get; set; }
-        IList<MasterJobFunction> JobJobFunctions { set; }
+        string Filter { get; set; }
+        JobFunctionModel SelectedJobFunction { get; set; }
+        IList<JobModel> JobModels { set; }
+        IList<JobFunctionModel> JobJobFunctions { set; }
         JobFunctionPresenter  Presenter { set; }
     }
 }

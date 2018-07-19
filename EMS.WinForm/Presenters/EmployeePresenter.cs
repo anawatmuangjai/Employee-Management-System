@@ -15,6 +15,9 @@ namespace EMS.WinForm.Presenters
         private readonly IEmployeeView _view;
         private readonly IEmployeeService _employeeService;
         private readonly IEmployeeDetailService _employeeDetailService;
+        private readonly IEmployeeStateService _employeeStateService;
+        private readonly IEmployeePasswordService _employeePasswordService;
+        private readonly IEmployeeImageService _employeeImageService;
         private readonly IEmployeeLevelService _employeeLevelService;
         private readonly IDepartmentService _departmentService;
         private readonly ISectionService _sectionService;
@@ -25,6 +28,9 @@ namespace EMS.WinForm.Presenters
             IEmployeeView view,
             IEmployeeService employeeService,
             IEmployeeDetailService employeeDetailService,
+            IEmployeeStateService employeeStateService,
+            IEmployeePasswordService employeePasswordService,
+            IEmployeeImageService employeeImageService,
             IEmployeeLevelService employeeLevelService,
             IDepartmentService departmentService,
             ISectionService sectionService,
@@ -35,6 +41,9 @@ namespace EMS.WinForm.Presenters
             _view.Presenter = this;
             _employeeService = employeeService;
             _employeeDetailService = employeeDetailService;
+            _employeeStateService = employeeStateService;
+            _employeePasswordService = employeePasswordService;
+            _employeeImageService = employeeImageService;
             _employeeLevelService = employeeLevelService;
             _departmentService = departmentService;
             _sectionService = sectionService;
@@ -85,7 +94,7 @@ namespace EMS.WinForm.Presenters
                 FirstNameThai = _view.FirstNameThai,
                 LastNameThai = _view.LastNameThai,
                 Gender = _view.Gender,
-                AvailableFlag = _view.AvailableFlag,
+                AvailableFlag = true,
                 HireDate = _view.HireDate,
                 ChangedDate = _view.ChangedDate,
             };
@@ -94,6 +103,16 @@ namespace EMS.WinForm.Presenters
 
             if (employee.EmployeeId == 0)
                 return;
+
+            var employeePassword = new EmployeePasswordModel
+            {
+                EmployeeId = employee.EmployeeId,
+                PasswordHash = "HashTest",
+                PasswordSalt = "SaltTest",
+                ChangedDate = _view.ChangedDate
+            };
+
+            employeePassword = await _employeePasswordService.AddAsync(employeePassword);
 
             var employeeDetail = new EmployeeDetailModel
             {
@@ -119,6 +138,16 @@ namespace EMS.WinForm.Presenters
                 JoinDate = _view.JoinDate,
                 ChangedDate = _view.ChangedDate,
             };
+
+            employeeState = await _employeeStateService.AddAsync(employeeState);
+
+            var employeeImage = new EmployeeImageModel
+            {
+                EmployeeId = employee.EmployeeId,
+                Images = _view.EmployeeImage
+            };
+
+            employeeImage = await _employeeImageService.AddAsync(employeeImage);
 
         }
     }

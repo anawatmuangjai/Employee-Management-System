@@ -13,18 +13,18 @@ namespace EMS.WinForm.Presenters
     public class SectionPresenter : ISectionPresenter
     {
         private readonly ISectionView _view;
-        private readonly ISectionService _sectionService;
         private readonly IDepartmentService _departmentService;
+        private readonly ISectionService _sectionService;
 
         public SectionPresenter(
             ISectionView view, 
-            ISectionService sectionService, 
-            IDepartmentService departmentService)
+            IDepartmentService departmentService, 
+            ISectionService sectionService)
         {
             _view = view;
             _view.Presenter = this;
-            _sectionService = sectionService;
             _departmentService = departmentService;
+            _sectionService = sectionService;
         }
 
         public ISectionView GetView()
@@ -40,8 +40,9 @@ namespace EMS.WinForm.Presenters
 
         public async Task ViewAllAsync()
         {
-            var sections = await _sectionService.GetAllWithDepartmentAsync();
-            _view.Sections = sections;
+            _view.Sections = await _sectionService.GetAllAsync();
+            //var sections = await _sectionService.GetAllWithDepartmentAsync();
+            //_view.Sections = sections;
         }
 
         public async Task SearchAsync()

@@ -67,8 +67,8 @@ namespace EMS.WinForm.Views.UserControls
 
         public string LastNameThai
         {
-            get => ThaiFirstNameTextBox.Text.Trim();
-            set => ThaiFirstNameTextBox.Text = value;
+            get => ThaiLastNameTextBox.Text.Trim();
+            set => ThaiLastNameTextBox.Text = value;
         }
 
         public string Gender { get; set; }
@@ -112,6 +112,8 @@ namespace EMS.WinForm.Views.UserControls
         }
 
         public int DepartmentId { get; set; }
+
+        public int SectionId { get; set; }
 
         public byte ShiftId { get; set; }
 
@@ -190,7 +192,6 @@ namespace EMS.WinForm.Views.UserControls
         }
 
         public EmployeePresenter Presenter { private get; set; }
-        public int SectionId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         private async void NewToolStripButton_Click(object sender, EventArgs e)
         {
@@ -235,6 +236,7 @@ namespace EMS.WinForm.Views.UserControls
             Cursor = Cursors.WaitCursor;
             await Presenter.SaveAsync();
             Cursor = Cursors.Default;
+            Clear();
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -322,6 +324,22 @@ namespace EMS.WinForm.Views.UserControls
                 return;
 
             Title = TitleComboBox.Text.Trim();
+        }
+
+        private void MaleGenderRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (MaleGenderRadioButton.Checked)
+            {
+                Gender = "M";
+            }
+        }
+
+        private void FemaleGenderRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (FemaleGenderRadioButton.Checked)
+            {
+                Gender = "F";
+            }
         }
     }
 }
