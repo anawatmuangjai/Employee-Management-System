@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EMS.ApplicationCore.Interfaces.Services
 {
-    public interface IJobService : IService<JobModel, MasterJob, IRepository<MasterJob>>
+    public interface IJobService : IService<JobModel, MasterJob, IAsyncRepository<MasterJob>>
     {
         Task<List<JobModel>> GetByNameAsync(string name);
     }

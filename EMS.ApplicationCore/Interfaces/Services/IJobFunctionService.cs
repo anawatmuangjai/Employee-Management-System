@@ -1,10 +1,15 @@
-﻿using System;
+﻿using EMS.ApplicationCore.Interfaces.Repositories;
+using EMS.ApplicationCore.Models;
+using EMS.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace EMS.ApplicationCore.Interfaces.Services
 {
-    interface IJobFunctionService
+    public interface IJobFunctionService : IService<JobFunctionModel, MasterJobFunction, IAsyncRepository<MasterJobFunction>>
     {
+        Task<List<JobFunctionModel>> GetByNameAsync(string name);
     }
 }
