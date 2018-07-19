@@ -138,11 +138,13 @@
     <Compile Include="Presenters\DepartmentPresenter.cs" />
     <Compile Include="Presenters\EmployeeDetailPresenter.cs" />
     <Compile Include="Presenters\EmployeeLevelPresenter.cs" />
+    <Compile Include="Presenters\EmployeeListPresenter.cs" />
     <Compile Include="Presenters\EmployeePresenter.cs" />
     <Compile Include="Presenters\Interfaces\ICommandPresenter.cs" />
     <Compile Include="Presenters\Interfaces\IDepartmentPresenter.cs" />
     <Compile Include="Presenters\Interfaces\IEmployeeDetailPresenter.cs" />
     <Compile Include="Presenters\Interfaces\IEmployeeLevelPresenter.cs" />
+    <Compile Include="Presenters\Interfaces\IEmployeeListPresenter.cs" />
     <Compile Include="Presenters\Interfaces\IEmployeePresenter.cs" />
     <Compile Include="Presenters\Interfaces\IJobFunctionPresenter.cs" />
     <Compile Include="Presenters\Interfaces\IJobTitlePresenter.cs" />
@@ -161,6 +163,7 @@
     <Compile Include="Views\Interfaces\IDepartmentView.cs" />
     <Compile Include="Views\Interfaces\IEmployeeDetailView.cs" />
     <Compile Include="Views\Interfaces\IEmployeeLevelView.cs" />
+    <Compile Include="Views\Interfaces\IEmployeeListView.cs" />
     <Compile Include="Views\Interfaces\IEmployeeView.cs" />
     <Compile Include="Views\Interfaces\IJobFunctionView.cs" />
     <Compile Include="Views\Interfaces\IJobTitleView.cs" />
@@ -191,6 +194,12 @@
     </Compile>
     <Compile Include="Views\UserControls\EmployeeLevelView.Designer.cs">
       <DependentUpon>EmployeeLevelView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\EmployeeListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\EmployeeListView.Designer.cs">
+      <DependentUpon>EmployeeListView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\JobFunctionView.cs">
       <SubType>UserControl</SubType>
@@ -243,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\UserControls\EmployeeLevelView.resx">
       <DependentUpon>EmployeeLevelView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\EmployeeListView.resx">
+      <DependentUpon>EmployeeListView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\UserControls\JobFunctionView.resx">
       <DependentUpon>JobFunctionView.cs</DependentUpon>
