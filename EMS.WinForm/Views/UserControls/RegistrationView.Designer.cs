@@ -57,6 +57,7 @@
             this.SaveButton = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.RegistrationPanel = new System.Windows.Forms.Panel();
+            this.CancelButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.GlobalIDTextBox = new System.Windows.Forms.TextBox();
@@ -93,12 +94,11 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.CountryTextBox = new System.Windows.Forms.TextBox();
             this.BrowsePanel = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
             this.ImagePanel = new System.Windows.Forms.Panel();
             this.MenuToolStrip = new System.Windows.Forms.ToolStrip();
             this.NewToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.ViewToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.CancelButton = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EmployeePictureBox)).BeginInit();
             this.panel6.SuspendLayout();
@@ -189,6 +189,7 @@
             this.TitleComboBox.Name = "TitleComboBox";
             this.TitleComboBox.Size = new System.Drawing.Size(136, 21);
             this.TitleComboBox.TabIndex = 15;
+            this.TitleComboBox.SelectedIndexChanged += new System.EventHandler(this.TitleComboBox_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -384,6 +385,18 @@
             this.RegistrationPanel.Size = new System.Drawing.Size(560, 550);
             this.RegistrationPanel.TabIndex = 70;
             // 
+            // CancelButton
+            // 
+            this.CancelButton.Image = global::EMS.WinForm.Properties.Resources.Cancel_grey_16xMD;
+            this.CancelButton.Location = new System.Drawing.Point(106, 519);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new System.Drawing.Size(84, 26);
+            this.CancelButton.TabIndex = 71;
+            this.CancelButton.Text = "Cancel";
+            this.CancelButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            // 
             // label2
             // 
             this.label2.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -455,15 +468,21 @@
             // TypeComboBox
             // 
             this.TypeComboBox.FormattingEnabled = true;
-            this.TypeComboBox.Location = new System.Drawing.Point(358, 29);
+            this.TypeComboBox.Items.AddRange(new object[] {
+            "EM",
+            "SD",
+            "SC",
+            "OS"});
+            this.TypeComboBox.Location = new System.Drawing.Point(110, 108);
             this.TypeComboBox.Name = "TypeComboBox";
             this.TypeComboBox.Size = new System.Drawing.Size(136, 21);
             this.TypeComboBox.TabIndex = 23;
+            this.TypeComboBox.SelectedIndexChanged += new System.EventHandler(this.TypeComboBox_SelectedIndexChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(269, 32);
+            this.label3.Location = new System.Drawing.Point(21, 111);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(83, 13);
             this.label3.TabIndex = 24;
@@ -472,7 +491,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(49, 137);
+            this.label27.Location = new System.Drawing.Point(297, 141);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(55, 13);
             this.label27.TabIndex = 61;
@@ -482,14 +501,16 @@
             // 
             this.PasswordTextBox.Location = new System.Drawing.Point(110, 82);
             this.PasswordTextBox.Name = "PasswordTextBox";
+            this.PasswordTextBox.PasswordChar = '*';
             this.PasswordTextBox.Size = new System.Drawing.Size(136, 20);
             this.PasswordTextBox.TabIndex = 22;
+            this.PasswordTextBox.UseSystemPasswordChar = true;
             // 
             // JoinDatePicker
             // 
             this.JoinDatePicker.CustomFormat = "yyy/MM/dd";
             this.JoinDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.JoinDatePicker.Location = new System.Drawing.Point(110, 134);
+            this.JoinDatePicker.Location = new System.Drawing.Point(358, 138);
             this.JoinDatePicker.Name = "JoinDatePicker";
             this.JoinDatePicker.Size = new System.Drawing.Size(136, 20);
             this.JoinDatePicker.TabIndex = 62;
@@ -506,11 +527,11 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(267, 58);
+            this.label26.Location = new System.Drawing.Point(70, 165);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(85, 13);
+            this.label26.Size = new System.Drawing.Size(36, 13);
             this.label26.TabIndex = 60;
-            this.label26.Text = "Employee Level:";
+            this.label26.Text = "Level:";
             // 
             // CardIDTextBox
             // 
@@ -522,16 +543,17 @@
             // LevelComboBox
             // 
             this.LevelComboBox.FormattingEnabled = true;
-            this.LevelComboBox.Location = new System.Drawing.Point(358, 56);
+            this.LevelComboBox.Location = new System.Drawing.Point(110, 162);
             this.LevelComboBox.Name = "LevelComboBox";
             this.LevelComboBox.Size = new System.Drawing.Size(136, 21);
             this.LevelComboBox.TabIndex = 59;
+            this.LevelComboBox.SelectedIndexChanged += new System.EventHandler(this.LevelComboBox_SelectedIndexChanged);
             // 
             // HireDatePicker
             // 
             this.HireDatePicker.CustomFormat = "yyy/MM/dd";
             this.HireDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.HireDatePicker.Location = new System.Drawing.Point(110, 108);
+            this.HireDatePicker.Location = new System.Drawing.Point(358, 112);
             this.HireDatePicker.Name = "HireDatePicker";
             this.HireDatePicker.Size = new System.Drawing.Size(136, 20);
             this.HireDatePicker.TabIndex = 50;
@@ -539,7 +561,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(54, 163);
+            this.label25.Location = new System.Drawing.Point(54, 138);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(50, 13);
             this.label25.TabIndex = 58;
@@ -548,7 +570,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(49, 111);
+            this.label9.Location = new System.Drawing.Point(297, 115);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(55, 13);
             this.label9.TabIndex = 49;
@@ -557,23 +579,25 @@
             // JobComboBox
             // 
             this.JobComboBox.FormattingEnabled = true;
-            this.JobComboBox.Location = new System.Drawing.Point(110, 160);
+            this.JobComboBox.Location = new System.Drawing.Point(110, 135);
             this.JobComboBox.Name = "JobComboBox";
             this.JobComboBox.Size = new System.Drawing.Size(136, 21);
             this.JobComboBox.TabIndex = 57;
+            this.JobComboBox.SelectedIndexChanged += new System.EventHandler(this.JobComboBox_SelectedIndexChanged);
             // 
             // DepartmentComboBox
             // 
             this.DepartmentComboBox.FormattingEnabled = true;
-            this.DepartmentComboBox.Location = new System.Drawing.Point(358, 83);
+            this.DepartmentComboBox.Location = new System.Drawing.Point(358, 29);
             this.DepartmentComboBox.Name = "DepartmentComboBox";
             this.DepartmentComboBox.Size = new System.Drawing.Size(136, 21);
             this.DepartmentComboBox.TabIndex = 51;
+            this.DepartmentComboBox.SelectedIndexChanged += new System.EventHandler(this.DepartmentComboBox_SelectedIndexChanged);
             // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(321, 142);
+            this.label24.Location = new System.Drawing.Point(321, 88);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(31, 13);
             this.label24.TabIndex = 56;
@@ -582,7 +606,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(287, 86);
+            this.label11.Location = new System.Drawing.Point(287, 32);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(65, 13);
             this.label11.TabIndex = 52;
@@ -591,23 +615,25 @@
             // ShiftComboBox
             // 
             this.ShiftComboBox.FormattingEnabled = true;
-            this.ShiftComboBox.Location = new System.Drawing.Point(358, 139);
+            this.ShiftComboBox.Location = new System.Drawing.Point(358, 85);
             this.ShiftComboBox.Name = "ShiftComboBox";
             this.ShiftComboBox.Size = new System.Drawing.Size(136, 21);
             this.ShiftComboBox.TabIndex = 55;
+            this.ShiftComboBox.SelectedIndexChanged += new System.EventHandler(this.ShiftComboBox_SelectedIndexChanged);
             // 
             // SectionComboBox
             // 
             this.SectionComboBox.FormattingEnabled = true;
-            this.SectionComboBox.Location = new System.Drawing.Point(358, 112);
+            this.SectionComboBox.Location = new System.Drawing.Point(358, 58);
             this.SectionComboBox.Name = "SectionComboBox";
             this.SectionComboBox.Size = new System.Drawing.Size(136, 21);
             this.SectionComboBox.TabIndex = 53;
+            this.SectionComboBox.SelectedIndexChanged += new System.EventHandler(this.SectionComboBox_SelectedIndexChanged);
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(306, 115);
+            this.label20.Location = new System.Drawing.Point(306, 61);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(46, 13);
             this.label20.TabIndex = 54;
@@ -653,6 +679,11 @@
             // comboBox9
             // 
             this.comboBox9.FormattingEnabled = true;
+            this.comboBox9.Items.AddRange(new object[] {
+            "Computer Engineering",
+            "Software Engineeing",
+            "Electrical Engineering",
+            "Electionics Engineering"});
             this.comboBox9.Location = new System.Drawing.Point(358, 100);
             this.comboBox9.Name = "comboBox9";
             this.comboBox9.Size = new System.Drawing.Size(136, 21);
@@ -670,6 +701,9 @@
             // comboBox8
             // 
             this.comboBox8.FormattingEnabled = true;
+            this.comboBox8.Items.AddRange(new object[] {
+            "Bachelor\'s Degree",
+            "Master Degree"});
             this.comboBox8.Location = new System.Drawing.Point(358, 73);
             this.comboBox8.Name = "comboBox8";
             this.comboBox8.Size = new System.Drawing.Size(136, 21);
@@ -748,6 +782,15 @@
             this.BrowsePanel.Size = new System.Drawing.Size(240, 550);
             this.BrowsePanel.TabIndex = 71;
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(3, 249);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(141, 13);
+            this.label13.TabIndex = 71;
+            this.label13.Text = "Please select profile image...\r\n";
+            // 
             // ImagePanel
             // 
             this.ImagePanel.Controls.Add(this.EmployeePictureBox);
@@ -791,27 +834,6 @@
             this.ViewToolStripButton.Name = "ViewToolStripButton";
             this.ViewToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.ViewToolStripButton.Text = "View";
-            // 
-            // CancelButton
-            // 
-            this.CancelButton.Image = global::EMS.WinForm.Properties.Resources.Cancel_grey_16xMD;
-            this.CancelButton.Location = new System.Drawing.Point(106, 519);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(84, 26);
-            this.CancelButton.TabIndex = 71;
-            this.CancelButton.Text = "Cancel";
-            this.CancelButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.CancelButton.UseVisualStyleBackColor = true;
-            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(3, 249);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(141, 13);
-            this.label13.TabIndex = 71;
-            this.label13.Text = "Please select profile image...\r\n";
             // 
             // RegistrationView
             // 

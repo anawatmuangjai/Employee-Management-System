@@ -303,6 +303,7 @@
             this.JobTitleGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.JobTitleGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.JobTitleGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.JobTitleGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.JobTitleGridView.Location = new System.Drawing.Point(220, 50);
             this.JobTitleGridView.MultiSelect = false;
             this.JobTitleGridView.Name = "JobTitleGridView";

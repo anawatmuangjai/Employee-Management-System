@@ -111,9 +111,21 @@ namespace EMS.WinForm.Views.UserControls
             set => EmailTextBox.Text = value;
         }
 
-        public DateTime HireDate { get; set; }
+        public int DepartmentId { get; set; }
 
-        public DateTime ChangedDate { get; set; }
+        public byte ShiftId { get; set; }
+
+        public int JobId { get; set; }
+
+        public int LevelId { get; set; }
+
+        public DateTime BirthDate { get => BirthDatePicker.Value; }
+
+        public DateTime JoinDate { get => JoinDatePicker.Value; }
+
+        public DateTime HireDate { get => HireDatePicker.Value; }
+
+        public DateTime ChangedDate { get => DateTime.Now; }
 
         public byte[] EmployeeImage { get; set; }
 
@@ -178,9 +190,12 @@ namespace EMS.WinForm.Views.UserControls
         }
 
         public EmployeePresenter Presenter { private get; set; }
+        public int SectionId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         private async void NewToolStripButton_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             await Presenter.GetEmployeeLevelsAsync();
             await Presenter.GetDepartmentsAsync();
             await Presenter.GetSectionsAsync();
@@ -190,6 +205,8 @@ namespace EMS.WinForm.Views.UserControls
             RegistrationPanel.Enabled = true;
             BrowsePanel.Enabled = true;
             GlobalIDTextBox.Select();
+
+            Cursor = Cursors.Default;
         }
 
         private void BrowseButton_Click(object sender, EventArgs e)
@@ -213,9 +230,11 @@ namespace EMS.WinForm.Views.UserControls
             }
         }
 
-        private void SaveButton_Click(object sender, EventArgs e)
+        private async void SaveButton_Click(object sender, EventArgs e)
         {
-
+            Cursor = Cursors.WaitCursor;
+            await Presenter.SaveAsync();
+            Cursor = Cursors.Default;
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -242,6 +261,67 @@ namespace EMS.WinForm.Views.UserControls
             PostalCode = string.Empty;
             PhoneNumber = string.Empty;
             EmailAddress = string.Empty;
+        }
+
+        private void TypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (TypeComboBox.SelectedIndex < 0)
+                return;
+
+            EmployeeType = TypeComboBox.Text.Trim();
+        }
+
+        private void JobComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (JobComboBox.SelectedIndex < 0)
+                return;
+
+            var job = JobComboBox.SelectedItem as JobModel;
+            JobId = job.JobId;
+        }
+
+        private void LevelComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (LevelComboBox.SelectedIndex < 0)
+                return;
+
+            var level = LevelComboBox.SelectedItem as EmployeeLevelModel;
+            LevelId = level.LevelId;
+        }
+
+        private void DepartmentComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (DepartmentComboBox.SelectedIndex < 0)
+                return;
+
+            var department = DepartmentComboBox.SelectedItem as DepartmentModel;
+            DepartmentId = department.DepartmentId;
+        }
+
+        private void SectionComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (SectionComboBox.SelectedIndex < 0)
+                return;
+
+            var section = SectionComboBox.SelectedItem as SectionModel;
+            SectionId = section.SectionId;
+        }
+
+        private void ShiftComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ShiftComboBox.SelectedIndex < 0)
+                return;
+
+            var shift = ShiftComboBox.SelectedItem as ShiftModel;
+            ShiftId = shift.ShiftId;
+        }
+
+        private void TitleComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ShiftComboBox.SelectedIndex < 0)
+                return;
+
+            Title = TitleComboBox.Text.Trim();
         }
     }
 }

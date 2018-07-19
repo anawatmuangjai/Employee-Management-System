@@ -319,17 +319,18 @@
             // 
             this.SectionGridView.AllowUserToAddRows = false;
             this.SectionGridView.AllowUserToDeleteRows = false;
-            this.SectionGridView.AllowUserToResizeColumns = false;
             this.SectionGridView.AllowUserToResizeRows = false;
-            this.SectionGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.SectionGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.SectionGridView.BackgroundColor = System.Drawing.Color.White;
             this.SectionGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.SectionGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SectionGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SectionGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.SectionGridView.Location = new System.Drawing.Point(220, 50);
             this.SectionGridView.MultiSelect = false;
             this.SectionGridView.Name = "SectionGridView";
             this.SectionGridView.ReadOnly = true;
+            this.SectionGridView.RowHeadersVisible = false;
             this.SectionGridView.RowHeadersWidth = 26;
             this.SectionGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.SectionGridView.Size = new System.Drawing.Size(580, 522);

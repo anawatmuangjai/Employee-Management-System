@@ -230,17 +230,18 @@
             // 
             this.LevelGridView.AllowUserToAddRows = false;
             this.LevelGridView.AllowUserToDeleteRows = false;
-            this.LevelGridView.AllowUserToResizeColumns = false;
             this.LevelGridView.AllowUserToResizeRows = false;
-            this.LevelGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.LevelGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.LevelGridView.BackgroundColor = System.Drawing.Color.White;
             this.LevelGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.LevelGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.LevelGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LevelGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.LevelGridView.Location = new System.Drawing.Point(220, 50);
             this.LevelGridView.MultiSelect = false;
             this.LevelGridView.Name = "LevelGridView";
             this.LevelGridView.ReadOnly = true;
+            this.LevelGridView.RowHeadersVisible = false;
             this.LevelGridView.RowHeadersWidth = 26;
             this.LevelGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.LevelGridView.Size = new System.Drawing.Size(580, 522);

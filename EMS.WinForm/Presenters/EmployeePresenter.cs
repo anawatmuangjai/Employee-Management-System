@@ -14,6 +14,7 @@ namespace EMS.WinForm.Presenters
     {
         private readonly IEmployeeView _view;
         private readonly IEmployeeService _employeeService;
+        private readonly IEmployeeDetailService _employeeDetailService;
         private readonly IEmployeeLevelService _employeeLevelService;
         private readonly IDepartmentService _departmentService;
         private readonly ISectionService _sectionService;
@@ -21,17 +22,19 @@ namespace EMS.WinForm.Presenters
         private readonly IJobService _jobService;
 
         public EmployeePresenter(
-            IEmployeeView view, 
+            IEmployeeView view,
             IEmployeeService employeeService,
+            IEmployeeDetailService employeeDetailService,
             IEmployeeLevelService employeeLevelService,
-            IDepartmentService departmentService, 
-            ISectionService sectionService, 
-            IShiftService shiftService, 
+            IDepartmentService departmentService,
+            ISectionService sectionService,
+            IShiftService shiftService,
             IJobService jobService)
         {
             _view = view;
             _view.Presenter = this;
             _employeeService = employeeService;
+            _employeeDetailService = employeeDetailService;
             _employeeLevelService = employeeLevelService;
             _departmentService = departmentService;
             _sectionService = sectionService;
@@ -73,7 +76,6 @@ namespace EMS.WinForm.Presenters
         {
             var employee = new EmployeeModel
             {
-                EmployeeId = _view.EmployeeId,
                 GlobalId = _view.GlobalId,
                 CardId = _view.CardId,
                 EmployeeType = _view.EmployeeType,
@@ -88,10 +90,36 @@ namespace EMS.WinForm.Presenters
                 ChangedDate = _view.ChangedDate,
             };
 
-            if (employee.EmployeeId > 0)
-                await _employeeService.UpdateAsync(employee);
-            else
-                await _employeeService.AddAsync(employee);
+            employee = await _employeeService.AddAsync(employee);
+
+            if (employee.EmployeeId == 0)
+                return;
+
+            var employeeDetail = new EmployeeDetailModel
+            {
+                EmployeeId = employee.EmployeeId,
+                Address = _view.Address,
+                City = _view.City,
+                Country = _view.Country,
+                PostalCode = _view.PostalCode,
+                PhoneNumber = _view.PhoneNumber,
+                EmailAddress = _view.EmailAddress,
+                ChangedDate = _view.ChangedDate,
+            };
+
+            employeeDetail = await _employeeDetailService.AddAsync(employeeDetail);
+
+            var employeeState = new EmployeeStateModel
+            {
+                EmployeeId = employee.EmployeeId,
+                DepartmentId = _view.DepartmentId,
+                ShiftId = _view.ShiftId,
+                JobId = _view.JobId,
+                LevelId = _view.LevelId,
+                JoinDate = _view.JoinDate,
+                ChangedDate = _view.ChangedDate,
+            };
+
         }
     }
 }

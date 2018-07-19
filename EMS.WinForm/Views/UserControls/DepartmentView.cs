@@ -99,12 +99,16 @@ namespace EMS.WinForm.Views.UserControls
 
         private async void SearchToolStripButton_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             await Presenter.SearchAsync();
+            Cursor = Cursors.Default;
         }
 
         private async void ViewToolStripButton_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             await Presenter.ViewAllAsync();
+            Cursor = Cursors.Default;
         }
 
         private void CopyToolStripButton_Click(object sender, EventArgs e)
@@ -114,9 +118,11 @@ namespace EMS.WinForm.Views.UserControls
 
         private async void SaveButton_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             await Presenter.SaveAsync();
             await Presenter.ViewAllAsync();
             Clear();
+            Cursor = Cursors.Default;
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

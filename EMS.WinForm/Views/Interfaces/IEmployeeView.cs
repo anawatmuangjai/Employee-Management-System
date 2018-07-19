@@ -29,7 +29,18 @@ namespace EMS.WinForm.Views.Interfaces
         string PhoneNumber { get; set; }
         string EmailAddress { get; set; }
 
+        int DepartmentId { get; set; }
+        int SectionId { get; set; }
+        byte ShiftId { get; set; }
+        int JobId { get; set; }
+        int LevelId { get; set; }
+
         byte[] EmployeeImage { get; set; }
+
+        DateTime BirthDate { get; }
+        DateTime HireDate { get; }
+        DateTime JoinDate { get; }
+        DateTime ChangedDate { get; }
 
         IList<JobModel> Jobs { set; }
         IList<EmployeeLevelModel> Levels { set; }
@@ -37,8 +48,6 @@ namespace EMS.WinForm.Views.Interfaces
         IList<SectionModel> Sections { set; }
         IList<ShiftModel> Shifts { set; }
 
-        DateTime HireDate { get; set; }
-        DateTime ChangedDate { get; set; }
         EmployeePresenter Presenter { set; }
     }
 }

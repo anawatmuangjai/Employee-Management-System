@@ -29,40 +29,60 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainView));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Registration");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Employee Info");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Employee Registration");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Registration", new System.Windows.Forms.TreeNode[] {
+            treeNode1});
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Employee List");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Employee Level");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Employee", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Employee Detail");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Employee Level");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Employee Experience");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Employee Education");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Employee Information", new System.Windows.Forms.TreeNode[] {
             treeNode3,
-            treeNode4});
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Department");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Section");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Shift");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Job Title");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Job Function");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Organization", new System.Windows.Forms.TreeNode[] {
+            treeNode4,
+            treeNode5,
             treeNode6,
-            treeNode7,
-            treeNode8,
+            treeNode7});
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Allocation");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Skill Mapping");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Employee Allocation", new System.Windows.Forms.TreeNode[] {
             treeNode9,
             treeNode10});
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Education");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Skill Group");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Skill Level");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Skill");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Specialties", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Department");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Section");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Work Shift");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Job Title");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Job Function");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Organization Configuration", new System.Windows.Forms.TreeNode[] {
             treeNode12,
             treeNode13,
             treeNode14,
-            treeNode15});
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Setting");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("About");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Options", new System.Windows.Forms.TreeNode[] {
-            treeNode17,
-            treeNode18});
+            treeNode15,
+            treeNode16});
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Work Location");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Work Area");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Work Station");
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Location Setting", new System.Windows.Forms.TreeNode[] {
+            treeNode18,
+            treeNode19,
+            treeNode20});
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Skill Group");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Skill Level");
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Skill List");
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Operation Skill", new System.Windows.Forms.TreeNode[] {
+            treeNode22,
+            treeNode23,
+            treeNode24});
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Training Course");
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Traning History");
+            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Traning Record", new System.Windows.Forms.TreeNode[] {
+            treeNode26,
+            treeNode27});
+            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Setting");
+            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("About");
+            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("Options", new System.Windows.Forms.TreeNode[] {
+            treeNode29,
+            treeNode30});
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -281,7 +301,7 @@
             this.customizeToolStripMenuItem,
             this.optionsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // customizeToolStripMenuItem
@@ -364,57 +384,85 @@
             this.MenuTreeView.Name = "MenuTreeView";
             treeNode1.Name = "Node0";
             treeNode1.Tag = "1";
-            treeNode1.Text = "Registration";
+            treeNode1.Text = "Employee Registration";
             treeNode2.Name = "Node0";
-            treeNode2.Tag = "2";
-            treeNode2.Text = "Employee Info";
+            treeNode2.Text = "Registration";
             treeNode3.Name = "Node10";
             treeNode3.Tag = "3";
             treeNode3.Text = "Employee List";
             treeNode4.Name = "Node0";
-            treeNode4.Tag = "4";
-            treeNode4.Text = "Employee Level";
+            treeNode4.Tag = "2";
+            treeNode4.Text = "Employee Detail";
             treeNode5.Name = "Node0";
-            treeNode5.Text = "Employee";
-            treeNode6.Name = "Node8";
-            treeNode6.Tag = "5";
-            treeNode6.Text = "Department";
-            treeNode7.Name = "Node9";
-            treeNode7.Tag = "6";
-            treeNode7.Text = "Section";
-            treeNode8.Name = "Node16";
-            treeNode8.Tag = "7";
-            treeNode8.Text = "Shift";
-            treeNode9.Name = "Node15";
-            treeNode9.Tag = "8";
-            treeNode9.Text = "Job Title";
-            treeNode10.Name = "Node5";
-            treeNode10.Tag = "9";
-            treeNode10.Text = "Job Function";
-            treeNode11.Name = "Node5";
-            treeNode11.Text = "Organization";
-            treeNode12.Name = "Node1";
-            treeNode12.Text = "Education";
-            treeNode13.Name = "Node2";
-            treeNode13.Text = "Skill Group";
-            treeNode14.Name = "Node3";
-            treeNode14.Text = "Skill Level";
-            treeNode15.Name = "Node11";
-            treeNode15.Tag = "4";
-            treeNode15.Text = "Skill";
-            treeNode16.Name = "Node0";
-            treeNode16.Text = "Specialties";
-            treeNode17.Name = "Node0";
-            treeNode17.Text = "Setting";
-            treeNode18.Name = "Node1";
-            treeNode18.Text = "About";
-            treeNode19.Name = "Node7";
-            treeNode19.Text = "Options";
+            treeNode5.Tag = "4";
+            treeNode5.Text = "Employee Level";
+            treeNode6.Name = "Node1";
+            treeNode6.Text = "Employee Experience";
+            treeNode7.Name = "Node1";
+            treeNode7.Text = "Employee Education";
+            treeNode8.Name = "Node0";
+            treeNode8.Text = "Employee Information";
+            treeNode9.Name = "Node4";
+            treeNode9.Text = "Allocation";
+            treeNode10.Name = "Node3";
+            treeNode10.Text = "Skill Mapping";
+            treeNode11.Name = "Node2";
+            treeNode11.Text = "Employee Allocation";
+            treeNode12.Name = "Node8";
+            treeNode12.Tag = "5";
+            treeNode12.Text = "Department";
+            treeNode13.Name = "Node9";
+            treeNode13.Tag = "6";
+            treeNode13.Text = "Section";
+            treeNode14.Name = "Node16";
+            treeNode14.Tag = "7";
+            treeNode14.Text = "Work Shift";
+            treeNode15.Name = "Node15";
+            treeNode15.Tag = "8";
+            treeNode15.Text = "Job Title";
+            treeNode16.Name = "Node5";
+            treeNode16.Tag = "9";
+            treeNode16.Text = "Job Function";
+            treeNode17.Name = "Node5";
+            treeNode17.Text = "Organization Configuration";
+            treeNode18.Name = "Node6";
+            treeNode18.Text = "Work Location";
+            treeNode19.Name = "Node9";
+            treeNode19.Text = "Work Area";
+            treeNode20.Name = "Node7";
+            treeNode20.Text = "Work Station";
+            treeNode21.Name = "Node5";
+            treeNode21.Text = "Location Setting";
+            treeNode22.Name = "Node2";
+            treeNode22.Text = "Skill Group";
+            treeNode23.Name = "Node3";
+            treeNode23.Text = "Skill Level";
+            treeNode24.Name = "Node11";
+            treeNode24.Tag = "4";
+            treeNode24.Text = "Skill List";
+            treeNode25.Name = "Node0";
+            treeNode25.Text = "Operation Skill";
+            treeNode26.Name = "Node11";
+            treeNode26.Text = "Training Course";
+            treeNode27.Name = "Node12";
+            treeNode27.Text = "Traning History";
+            treeNode28.Name = "Node10";
+            treeNode28.Text = "Traning Record";
+            treeNode29.Name = "Node0";
+            treeNode29.Text = "Setting";
+            treeNode30.Name = "Node1";
+            treeNode30.Text = "About";
+            treeNode31.Name = "Node7";
+            treeNode31.Text = "Options";
             this.MenuTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode5,
+            treeNode2,
+            treeNode8,
             treeNode11,
-            treeNode16,
-            treeNode19});
+            treeNode17,
+            treeNode21,
+            treeNode25,
+            treeNode28,
+            treeNode31});
             this.MenuTreeView.ShowLines = false;
             this.MenuTreeView.ShowPlusMinus = false;
             this.MenuTreeView.Size = new System.Drawing.Size(228, 655);

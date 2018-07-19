@@ -298,17 +298,18 @@
             // 
             this.DepartmentGridView.AllowUserToAddRows = false;
             this.DepartmentGridView.AllowUserToDeleteRows = false;
-            this.DepartmentGridView.AllowUserToResizeColumns = false;
             this.DepartmentGridView.AllowUserToResizeRows = false;
-            this.DepartmentGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.DepartmentGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DepartmentGridView.BackgroundColor = System.Drawing.Color.White;
             this.DepartmentGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DepartmentGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DepartmentGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DepartmentGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.DepartmentGridView.Location = new System.Drawing.Point(220, 50);
             this.DepartmentGridView.MultiSelect = false;
             this.DepartmentGridView.Name = "DepartmentGridView";
             this.DepartmentGridView.ReadOnly = true;
+            this.DepartmentGridView.RowHeadersVisible = false;
             this.DepartmentGridView.RowHeadersWidth = 26;
             this.DepartmentGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DepartmentGridView.Size = new System.Drawing.Size(580, 522);

@@ -253,12 +253,15 @@
             // 
             // ShiftGridView
             // 
+            this.ShiftGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.ShiftGridView.BackgroundColor = System.Drawing.Color.White;
             this.ShiftGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ShiftGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ShiftGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ShiftGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ShiftGridView.Location = new System.Drawing.Point(220, 50);
             this.ShiftGridView.Name = "ShiftGridView";
+            this.ShiftGridView.RowHeadersVisible = false;
             this.ShiftGridView.Size = new System.Drawing.Size(580, 522);
             this.ShiftGridView.TabIndex = 11;
             // 

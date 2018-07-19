@@ -91,9 +91,9 @@ namespace EMS.WinForm.Views.UserControls
 
         }
 
-        private void SearchToolStripButton_Click(object sender, EventArgs e)
+        private async void SearchToolStripButton_Click(object sender, EventArgs e)
         {
-            Presenter.SearchAsync();
+            await Presenter.SearchAsync();
         }
 
         private async void ViewToolStripButton_Click(object sender, EventArgs e)
