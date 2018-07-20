@@ -5,7 +5,7 @@ namespace EMS.Domain.Entities
 {
     public partial class EmployeePassword : BaseEntity
     {
-        public int EmployeeId { get; set; }
+        public string EmployeeId { get; set; }
         public string PasswordHash { get; set; }
         public string PasswordSalt { get; set; }
         public DateTime ChangedDate { get; set; }

@@ -7,31 +7,32 @@ namespace EMS.Domain.Entities
     {
         public Employee()
         {
-            EmployeeDetail = new HashSet<EmployeeDetail>();
+            EmployeeAddress = new HashSet<EmployeeAddress>();
             EmployeeEducation = new HashSet<EmployeeEducation>();
             EmployeeImage = new HashSet<EmployeeImage>();
-            EmployeeSkill = new HashSet<EmployeeSkill>();
+            EmployeeLocation = new HashSet<EmployeeLocation>();
         }
 
-        public int EmployeeId { get; set; }
+        public string EmployeeId { get; set; }
         public string GlobalId { get; set; }
         public string CardId { get; set; }
-        public string EmployeeType { get; set; }
         public string Title { get; set; }
+        public string EmployeeType { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string FirstNameThai { get; set; }
         public string LastNameThai { get; set; }
         public string Gender { get; set; }
-        public bool? AvailableFlag { get; set; }
+        public DateTime BirthDate { get; set; }
         public DateTime HireDate { get; set; }
+        public bool? AvailableFlag { get; set; }
         public DateTime ChangedDate { get; set; }
 
         public EmployeePassword EmployeePassword { get; set; }
         public EmployeeState EmployeeState { get; set; }
-        public ICollection<EmployeeDetail> EmployeeDetail { get; set; }
+        public ICollection<EmployeeAddress> EmployeeAddress { get; set; }
         public ICollection<EmployeeEducation> EmployeeEducation { get; set; }
         public ICollection<EmployeeImage> EmployeeImage { get; set; }
-        public ICollection<EmployeeSkill> EmployeeSkill { get; set; }
+        public ICollection<EmployeeLocation> EmployeeLocation { get; set; }
     }
 }
