@@ -41,7 +41,7 @@ namespace EMS.WinForm.Views.UserControls
 
         public JobFunctionModel SelectedJobFunction { get; set; }
 
-        public IList<JobModel> JobModels
+        public IList<JobTitleModel> JobModels
         {
             set
             {
@@ -84,7 +84,7 @@ namespace EMS.WinForm.Views.UserControls
                 return;
 
             JobFunctionId = SelectedJobFunction.JobFunctionId;
-            JobId = SelectedJobFunction.JobId;
+            JobId = SelectedJobFunction.JobTitleId;
             FunctionName = SelectedJobFunction.FunctionName;
             FunctionDescription = SelectedJobFunction.FunctionDescription;
 
@@ -148,8 +148,8 @@ namespace EMS.WinForm.Views.UserControls
             if (JobComboBox.SelectedIndex < 0)
                 return;
 
-            var job = JobComboBox.SelectedItem as JobModel;
-            JobId = job.JobId;
+            var job = JobComboBox.SelectedItem as JobTitleModel;
+            JobId = job.JobTitleId;
         }
     }
 }

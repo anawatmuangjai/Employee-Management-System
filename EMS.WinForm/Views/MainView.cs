@@ -73,6 +73,9 @@ namespace EMS.WinForm.Views
                     case "9":
                         DisplayView((UserControl)IoC.Get<JobFunctionPresenter>().GetView());
                         break;
+                    case "15":
+                        DisplayView((UserControl)IoC.Get<BusStationPresenter>().GetView());
+                        break;
                     default:
                         break;
                 }

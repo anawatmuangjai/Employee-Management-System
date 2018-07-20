@@ -53,7 +53,7 @@ namespace EMS.WinForm.Presenters
             var job = new JobFunctionModel
             {
                 JobFunctionId = _view.JobFunctionId,
-                JobId = _view.JobId,
+                JobTitleId = _view.JobId,
                 FunctionName = _view.FunctionName,
                 FunctionDescription = _view.FunctionDescription
             };

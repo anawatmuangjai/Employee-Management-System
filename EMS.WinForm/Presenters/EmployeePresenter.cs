@@ -19,6 +19,7 @@ namespace EMS.WinForm.Presenters
         private readonly IEmployeePasswordService _employeePasswordService;
         private readonly IEmployeeImageService _employeeImageService;
         private readonly IEmployeeLevelService _employeeLevelService;
+        private readonly IBusStationService _busStationService;
         private readonly IDepartmentService _departmentService;
         private readonly ISectionService _sectionService;
         private readonly IShiftService _shiftService;
@@ -32,6 +33,7 @@ namespace EMS.WinForm.Presenters
             IEmployeePasswordService employeePasswordService,
             IEmployeeImageService employeeImageService,
             IEmployeeLevelService employeeLevelService,
+            IBusStationService busStationService,
             IDepartmentService departmentService,
             ISectionService sectionService,
             IShiftService shiftService,
@@ -45,6 +47,7 @@ namespace EMS.WinForm.Presenters
             _employeePasswordService = employeePasswordService;
             _employeeImageService = employeeImageService;
             _employeeLevelService = employeeLevelService;
+            _busStationService = busStationService;
             _departmentService = departmentService;
             _sectionService = sectionService;
             _shiftService = shiftService;
@@ -81,10 +84,16 @@ namespace EMS.WinForm.Presenters
             _view.Jobs = await _jobService.GetAllAsync();
         }
 
+        public async Task GetBusStationAsync()
+        {
+            _view.BusStations = await _busStationService.GetAllAsync();
+        }
+
         public async Task SaveAsync()
         {
             var employee = new EmployeeModel
             {
+                EmployeeId = _view.EmployeeId,
                 GlobalId = _view.GlobalId,
                 CardId = _view.CardId,
                 EmployeeType = _view.EmployeeType,
@@ -94,14 +103,15 @@ namespace EMS.WinForm.Presenters
                 FirstNameThai = _view.FirstNameThai,
                 LastNameThai = _view.LastNameThai,
                 Gender = _view.Gender,
-                AvailableFlag = true,
+                BirthDate = _view.BirthDate,
                 HireDate = _view.HireDate,
+                AvailableFlag = true,
                 ChangedDate = _view.ChangedDate,
             };
 
             employee = await _employeeService.AddAsync(employee);
 
-            if (employee.EmployeeId == 0)
+            if (employee == null)
                 return;
 
             var employeePassword = new EmployeePasswordModel
@@ -114,10 +124,10 @@ namespace EMS.WinForm.Presenters
 
             employeePassword = await _employeePasswordService.AddAsync(employeePassword);
 
-            var employeeDetail = new EmployeeDetailModel
+            var employeeDetail = new EmployeeAddressModel
             {
                 EmployeeId = employee.EmployeeId,
-                Address = _view.Address,
+                HomeAddress = _view.Address,
                 City = _view.City,
                 Country = _view.Country,
                 PostalCode = _view.PostalCode,
@@ -131,10 +141,11 @@ namespace EMS.WinForm.Presenters
             var employeeState = new EmployeeStateModel
             {
                 EmployeeId = employee.EmployeeId,
-                DepartmentId = _view.DepartmentId,
+                SectionId = _view.SectionId,
                 ShiftId = _view.ShiftId,
-                JobId = _view.JobId,
+                JobTitleId = _view.JobId,
                 LevelId = _view.LevelId,
+                BusStationId = _view.BusStationId,
                 JoinDate = _view.JoinDate,
                 ChangedDate = _view.ChangedDate,
             };

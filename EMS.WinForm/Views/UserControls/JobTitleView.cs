@@ -35,9 +35,9 @@ namespace EMS.WinForm.Views.UserControls
             set => JobDescriptionTextBox.Text = value;
         }
 
-        public JobModel SelectedJob { get; set; }
+        public JobTitleModel SelectedJob { get; set; }
 
-        public IList<JobModel> Jobs
+        public IList<JobTitleModel> Jobs
         {
             set
             {
@@ -63,12 +63,12 @@ namespace EMS.WinForm.Views.UserControls
 
         private void EditToolStripButton_Click(object sender, EventArgs e)
         {
-            SelectedJob = (JobModel)JobTitleGridView.CurrentRow.DataBoundItem;
+            SelectedJob = (JobTitleModel)JobTitleGridView.CurrentRow.DataBoundItem;
 
             if (SelectedJob == null)
                 return;
 
-            JobId = SelectedJob.JobId;
+            JobId = SelectedJob.JobTitleId;
             JobTitle = SelectedJob.JobTitle;
             JobDescription = SelectedJob.JobDescription;
 

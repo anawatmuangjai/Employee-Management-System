@@ -17,7 +17,7 @@ namespace EMS.WinForm.Views.Interfaces
         string FunctionDescription { get; set; }
         string Filter { get; set; }
         JobFunctionModel SelectedJobFunction { get; set; }
-        IList<JobModel> JobModels { set; }
+        IList<JobTitleModel> JobModels { set; }
         IList<JobFunctionModel> JobJobFunctions { set; }
         JobFunctionPresenter  Presenter { set; }
     }

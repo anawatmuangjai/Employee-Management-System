@@ -10,7 +10,7 @@ namespace EMS.WinForm.Views.Interfaces
 {
     public interface IEmployeeView
     {
-        int EmployeeId { get; set; }
+        string EmployeeId { get; set; }
         string GlobalId { get; set; }
         string CardId { get; set; }
         string EmployeeType { get; set; }
@@ -34,6 +34,7 @@ namespace EMS.WinForm.Views.Interfaces
         byte ShiftId { get; set; }
         int JobId { get; set; }
         int LevelId { get; set; }
+        int BusStationId { get; set; }
 
         byte[] EmployeeImage { get; set; }
 
@@ -42,11 +43,12 @@ namespace EMS.WinForm.Views.Interfaces
         DateTime JoinDate { get; }
         DateTime ChangedDate { get; }
 
-        IList<JobModel> Jobs { set; }
+        IList<JobTitleModel> Jobs { set; }
         IList<EmployeeLevelModel> Levels { set; }
         IList<DepartmentModel> Departments { set; }
         IList<SectionModel> Sections { set; }
         IList<ShiftModel> Shifts { set; }
+        IList<BusStationModel> BusStations { set; }
 
         EmployeePresenter Presenter { set; }
     }

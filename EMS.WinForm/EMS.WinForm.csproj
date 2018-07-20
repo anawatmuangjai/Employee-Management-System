@@ -135,11 +135,13 @@
   <ItemGroup>
     <Compile Include="IoCContainer\IoC.cs" />
     <Compile Include="IoCContainer\IoCConfiguration.cs" />
+    <Compile Include="Presenters\BusStationPresenter.cs" />
     <Compile Include="Presenters\DepartmentPresenter.cs" />
     <Compile Include="Presenters\EmployeeDetailPresenter.cs" />
     <Compile Include="Presenters\EmployeeLevelPresenter.cs" />
     <Compile Include="Presenters\EmployeeListPresenter.cs" />
     <Compile Include="Presenters\EmployeePresenter.cs" />
+    <Compile Include="Presenters\Interfaces\IBusStationPresenter.cs" />
     <Compile Include="Presenters\Interfaces\ICommandPresenter.cs" />
     <Compile Include="Presenters\Interfaces\IDepartmentPresenter.cs" />
     <Compile Include="Presenters\Interfaces\IEmployeeDetailPresenter.cs" />
@@ -160,6 +162,7 @@
     <Compile Include="Presenters\ShiftPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Interfaces\IBusStationView.cs" />
     <Compile Include="Views\Interfaces\IDepartmentView.cs" />
     <Compile Include="Views\Interfaces\IEmployeeDetailView.cs" />
     <Compile Include="Views\Interfaces\IEmployeeLevelView.cs" />
@@ -182,6 +185,12 @@
     </Compile>
     <Compile Include="Views\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\BusStationView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\BusStationView.Designer.cs">
+      <DependentUpon>BusStationView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\DepartmentView.cs">
       <SubType>UserControl</SubType>
@@ -246,6 +255,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\BusStationView.resx">
+      <DependentUpon>BusStationView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\UserControls\DepartmentView.resx">
       <DependentUpon>DepartmentView.cs</DependentUpon>

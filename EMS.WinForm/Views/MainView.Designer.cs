@@ -59,30 +59,37 @@
             treeNode14,
             treeNode15,
             treeNode16});
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Work Location");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Work Area");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Work Station");
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Location Setting", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Employee Location");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Location");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Map View Setting", new System.Windows.Forms.TreeNode[] {
             treeNode18,
-            treeNode19,
-            treeNode20});
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Skill Group");
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Skill Level");
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Skill List");
-            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Operation Skill", new System.Windows.Forms.TreeNode[] {
+            treeNode19});
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Skill Group");
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Skill Level");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Skill List");
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Operation Skill", new System.Windows.Forms.TreeNode[] {
+            treeNode21,
             treeNode22,
-            treeNode23,
-            treeNode24});
-            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Training Course");
-            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Traning History");
-            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Traning Record", new System.Windows.Forms.TreeNode[] {
-            treeNode26,
-            treeNode27});
-            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Setting");
-            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("About");
-            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("Options", new System.Windows.Forms.TreeNode[] {
-            treeNode29,
-            treeNode30});
+            treeNode23});
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Training Course");
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Traning History");
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Traning Record", new System.Windows.Forms.TreeNode[] {
+            treeNode25,
+            treeNode26});
+            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Bus Station");
+            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Transportation", new System.Windows.Forms.TreeNode[] {
+            treeNode28});
+            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Import Data");
+            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("Export Data");
+            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("Create Skill Card");
+            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("Setting");
+            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("About");
+            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("Options", new System.Windows.Forms.TreeNode[] {
+            treeNode30,
+            treeNode31,
+            treeNode32,
+            treeNode33,
+            treeNode34});
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -115,11 +122,11 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.MenuTreeView = new System.Windows.Forms.TreeView();
-            this.MainPanel = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.FullNameLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.FullNameLabel = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.MainPanel = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -306,7 +313,7 @@
             this.customizeToolStripMenuItem,
             this.optionsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // customizeToolStripMenuItem
@@ -402,8 +409,10 @@
             treeNode5.Tag = "4";
             treeNode5.Text = "Employee Level";
             treeNode6.Name = "Node1";
+            treeNode6.Tag = "";
             treeNode6.Text = "Employee Experience";
             treeNode7.Name = "Node1";
+            treeNode7.Tag = "";
             treeNode7.Text = "Employee Education";
             treeNode8.Name = "Node0";
             treeNode8.Text = "Employee Information";
@@ -430,58 +439,59 @@
             treeNode16.Text = "Job Function";
             treeNode17.Name = "Node5";
             treeNode17.Text = "Organization Configuration";
-            treeNode18.Name = "Node6";
-            treeNode18.Text = "Work Location";
-            treeNode19.Name = "Node9";
-            treeNode19.Text = "Work Area";
-            treeNode20.Name = "Node7";
-            treeNode20.Text = "Work Station";
-            treeNode21.Name = "Node5";
-            treeNode21.Text = "Location Setting";
-            treeNode22.Name = "Node2";
-            treeNode22.Text = "Skill Group";
-            treeNode23.Name = "Node3";
-            treeNode23.Text = "Skill Level";
-            treeNode24.Name = "Node11";
-            treeNode24.Tag = "4";
-            treeNode24.Text = "Skill List";
-            treeNode25.Name = "Node0";
-            treeNode25.Text = "Operation Skill";
-            treeNode26.Name = "Node11";
-            treeNode26.Text = "Training Course";
-            treeNode27.Name = "Node12";
-            treeNode27.Text = "Traning History";
-            treeNode28.Name = "Node10";
-            treeNode28.Text = "Traning Record";
+            treeNode18.Name = "Node9";
+            treeNode18.Text = "Employee Location";
+            treeNode19.Name = "Node6";
+            treeNode19.Text = "Location";
+            treeNode20.Name = "Node5";
+            treeNode20.Text = "Map View Setting";
+            treeNode21.Name = "Node2";
+            treeNode21.Text = "Skill Group";
+            treeNode22.Name = "Node3";
+            treeNode22.Text = "Skill Level";
+            treeNode23.Name = "Node11";
+            treeNode23.Tag = "4";
+            treeNode23.Text = "Skill List";
+            treeNode24.Name = "Node0";
+            treeNode24.Text = "Operation Skill";
+            treeNode25.Name = "Node11";
+            treeNode25.Text = "Training Course";
+            treeNode26.Name = "Node12";
+            treeNode26.Text = "Traning History";
+            treeNode27.Name = "Node10";
+            treeNode27.Text = "Traning Record";
+            treeNode28.Name = "Node1";
+            treeNode28.Tag = "15";
+            treeNode28.Text = "Bus Station";
             treeNode29.Name = "Node0";
-            treeNode29.Text = "Setting";
-            treeNode30.Name = "Node1";
-            treeNode30.Text = "About";
-            treeNode31.Name = "Node7";
-            treeNode31.Text = "Options";
+            treeNode29.Text = "Transportation";
+            treeNode30.Name = "Node0";
+            treeNode30.Text = "Import Data";
+            treeNode31.Name = "Node1";
+            treeNode31.Text = "Export Data";
+            treeNode32.Name = "Node2";
+            treeNode32.Text = "Create Skill Card";
+            treeNode33.Name = "Node0";
+            treeNode33.Text = "Setting";
+            treeNode34.Name = "Node1";
+            treeNode34.Text = "About";
+            treeNode35.Name = "Node7";
+            treeNode35.Text = "Options";
             this.MenuTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode2,
             treeNode8,
             treeNode11,
             treeNode17,
-            treeNode21,
-            treeNode25,
-            treeNode28,
-            treeNode31});
+            treeNode20,
+            treeNode24,
+            treeNode27,
+            treeNode29,
+            treeNode35});
             this.MenuTreeView.ShowLines = false;
             this.MenuTreeView.ShowPlusMinus = false;
             this.MenuTreeView.Size = new System.Drawing.Size(228, 655);
             this.MenuTreeView.TabIndex = 1;
             this.MenuTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.MenuTreeView_AfterSelect);
-            // 
-            // MainPanel
-            // 
-            this.MainPanel.BackColor = System.Drawing.Color.White;
-            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPanel.Location = new System.Drawing.Point(228, 24);
-            this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(780, 705);
-            this.MainPanel.TabIndex = 7;
             // 
             // panel2
             // 
@@ -495,14 +505,15 @@
             this.panel2.Size = new System.Drawing.Size(228, 50);
             this.panel2.TabIndex = 0;
             // 
-            // pictureBox1
+            // label1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.pictureBox1.Location = new System.Drawing.Point(10, 8);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(35, 35);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(53, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(157, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "username.company@email.com";
             // 
             // FullNameLabel
             // 
@@ -514,15 +525,23 @@
             this.FullNameLabel.TabIndex = 0;
             this.FullNameLabel.Text = "Username";
             // 
-            // label1
+            // pictureBox1
             // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(53, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(157, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "username.company@email.com";
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.pictureBox1.Location = new System.Drawing.Point(10, 8);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(35, 35);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // MainPanel
+            // 
+            this.MainPanel.BackColor = System.Drawing.Color.White;
+            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainPanel.Location = new System.Drawing.Point(228, 24);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Size = new System.Drawing.Size(780, 705);
+            this.MainPanel.TabIndex = 7;
             // 
             // MainView
             // 

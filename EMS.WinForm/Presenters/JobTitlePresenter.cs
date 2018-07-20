@@ -41,14 +41,14 @@ namespace EMS.WinForm.Presenters
 
         public async Task SaveAsync()
         {
-            var job = new JobModel
+            var job = new JobTitleModel
             {
-                JobId = _view.JobId,
+                JobTitleId = _view.JobId,
                 JobTitle = _view.JobTitle,
                 JobDescription = _view.JobDescription
             };
 
-            if (job.JobId > 0)
+            if (job.JobTitleId > 0)
                 await _jobService.UpdateAsync(job);
             else
                 await _jobService.AddAsync(job);

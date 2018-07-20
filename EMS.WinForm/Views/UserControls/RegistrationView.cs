@@ -21,7 +21,11 @@ namespace EMS.WinForm.Views.UserControls
             InitializeComponent();
         }
 
-        public int EmployeeId { get; set; }
+        public string EmployeeId
+        {
+            get => EmployeeIDTextBox.Text.Trim();
+            set => EmployeeIDTextBox.Text = value;
+        }
 
         public string GlobalId
         {
@@ -121,6 +125,8 @@ namespace EMS.WinForm.Views.UserControls
 
         public int LevelId { get; set; }
 
+        public int BusStationId { get; set; }
+
         public DateTime BirthDate { get => BirthDatePicker.Value; }
 
         public DateTime JoinDate { get => JoinDatePicker.Value; }
@@ -131,14 +137,14 @@ namespace EMS.WinForm.Views.UserControls
 
         public byte[] EmployeeImage { get; set; }
 
-        public IList<JobModel> Jobs
+        public IList<JobTitleModel> Jobs
         {
             set
             {
                 var jobs = value;
                 JobComboBox.DataSource = jobs;
                 JobComboBox.DisplayMember = "JobTitle";
-                JobComboBox.ValueMember = "JobId";
+                JobComboBox.ValueMember = "JobTitleId";
                 JobComboBox.SelectedIndex = -1;
             }
         }
@@ -191,7 +197,21 @@ namespace EMS.WinForm.Views.UserControls
             }
         }
 
+        public IList<BusStationModel> BusStations
+        {
+            set
+            {
+                var shifts = value;
+                BusStationComboBox.DataSource = shifts;
+                BusStationComboBox.DisplayMember = "BusStationName";
+                BusStationComboBox.ValueMember = "BusStationId";
+                BusStationComboBox.SelectedIndex = -1;
+            }
+        }
+
         public EmployeePresenter Presenter { private get; set; }
+
+
 
         private async void NewToolStripButton_Click(object sender, EventArgs e)
         {
@@ -202,6 +222,7 @@ namespace EMS.WinForm.Views.UserControls
             await Presenter.GetSectionsAsync();
             await Presenter.GetShiftsAsync();
             await Presenter.GetJobsAsync();
+            await Presenter.GetBusStationAsync();
 
             RegistrationPanel.Enabled = true;
             BrowsePanel.Enabled = true;
@@ -246,7 +267,7 @@ namespace EMS.WinForm.Views.UserControls
 
         private void Clear()
         {
-            EmployeeId = 0;
+            EmployeeId = string.Empty;
             GlobalId = string.Empty;
             CardId = string.Empty;
             EmployeeType = string.Empty;
@@ -278,8 +299,8 @@ namespace EMS.WinForm.Views.UserControls
             if (JobComboBox.SelectedIndex < 0)
                 return;
 
-            var job = JobComboBox.SelectedItem as JobModel;
-            JobId = job.JobId;
+            var job = JobComboBox.SelectedItem as JobTitleModel;
+            JobId = job.JobTitleId;
         }
 
         private void LevelComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -318,6 +339,15 @@ namespace EMS.WinForm.Views.UserControls
             ShiftId = shift.ShiftId;
         }
 
+        private void BusStationComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (BusStationComboBox.SelectedIndex < 0)
+                return;
+
+            var bus = BusStationComboBox.SelectedItem as BusStationModel;
+            BusStationId = bus.BusStationId;
+        }
+
         private void TitleComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ShiftComboBox.SelectedIndex < 0)
@@ -341,5 +371,7 @@ namespace EMS.WinForm.Views.UserControls
                 Gender = "F";
             }
         }
+
+
     }
 }

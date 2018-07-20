@@ -60,6 +60,8 @@
             this.CancelButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.EmployeeIDTextBox = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
             this.GlobalIDTextBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -83,6 +85,8 @@
             this.SectionComboBox = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.BusStationComboBox = new System.Windows.Forms.ComboBox();
             this.label29 = new System.Windows.Forms.Label();
             this.comboBox9 = new System.Windows.Forms.ComboBox();
             this.label28 = new System.Windows.Forms.Label();
@@ -136,7 +140,7 @@
             this.LastNameTextBox.Location = new System.Drawing.Point(110, 76);
             this.LastNameTextBox.Name = "LastNameTextBox";
             this.LastNameTextBox.Size = new System.Drawing.Size(136, 20);
-            this.LastNameTextBox.TabIndex = 14;
+            this.LastNameTextBox.TabIndex = 15;
             // 
             // BirthDatePicker
             // 
@@ -174,7 +178,7 @@
             this.MaleGenderRadioButton.Location = new System.Drawing.Point(361, 24);
             this.MaleGenderRadioButton.Name = "MaleGenderRadioButton";
             this.MaleGenderRadioButton.Size = new System.Drawing.Size(48, 17);
-            this.MaleGenderRadioButton.TabIndex = 17;
+            this.MaleGenderRadioButton.TabIndex = 18;
             this.MaleGenderRadioButton.TabStop = true;
             this.MaleGenderRadioButton.Text = "Male";
             this.MaleGenderRadioButton.UseVisualStyleBackColor = true;
@@ -190,7 +194,7 @@
             this.TitleComboBox.Location = new System.Drawing.Point(110, 23);
             this.TitleComboBox.Name = "TitleComboBox";
             this.TitleComboBox.Size = new System.Drawing.Size(136, 21);
-            this.TitleComboBox.TabIndex = 12;
+            this.TitleComboBox.TabIndex = 13;
             this.TitleComboBox.SelectedIndexChanged += new System.EventHandler(this.TitleComboBox_SelectedIndexChanged);
             // 
             // label8
@@ -225,7 +229,7 @@
             this.FirstNameTextBox.Location = new System.Drawing.Point(110, 50);
             this.FirstNameTextBox.Name = "FirstNameTextBox";
             this.FirstNameTextBox.Size = new System.Drawing.Size(136, 20);
-            this.FirstNameTextBox.TabIndex = 13;
+            this.FirstNameTextBox.TabIndex = 14;
             // 
             // label6
             // 
@@ -241,21 +245,21 @@
             this.AddressTextBox.Location = new System.Drawing.Point(110, 23);
             this.AddressTextBox.Name = "AddressTextBox";
             this.AddressTextBox.Size = new System.Drawing.Size(136, 20);
-            this.AddressTextBox.TabIndex = 22;
+            this.AddressTextBox.TabIndex = 23;
             // 
             // EmailTextBox
             // 
             this.EmailTextBox.Location = new System.Drawing.Point(358, 75);
             this.EmailTextBox.Name = "EmailTextBox";
             this.EmailTextBox.Size = new System.Drawing.Size(136, 20);
-            this.EmailTextBox.TabIndex = 27;
+            this.EmailTextBox.TabIndex = 28;
             // 
             // PhoneTextBox
             // 
             this.PhoneTextBox.Location = new System.Drawing.Point(358, 49);
             this.PhoneTextBox.Name = "PhoneTextBox";
             this.PhoneTextBox.Size = new System.Drawing.Size(136, 20);
-            this.PhoneTextBox.TabIndex = 26;
+            this.PhoneTextBox.TabIndex = 27;
             // 
             // label22
             // 
@@ -280,7 +284,7 @@
             this.CityTextBox.Location = new System.Drawing.Point(110, 75);
             this.CityTextBox.Name = "CityTextBox";
             this.CityTextBox.Size = new System.Drawing.Size(136, 20);
-            this.CityTextBox.TabIndex = 24;
+            this.CityTextBox.TabIndex = 25;
             // 
             // label19
             // 
@@ -314,7 +318,7 @@
             this.PostalCodeTextBox.Location = new System.Drawing.Point(358, 23);
             this.PostalCodeTextBox.Name = "PostalCodeTextBox";
             this.PostalCodeTextBox.Size = new System.Drawing.Size(136, 20);
-            this.PostalCodeTextBox.TabIndex = 25;
+            this.PostalCodeTextBox.TabIndex = 26;
             // 
             // label16
             // 
@@ -413,6 +417,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.EmployeeIDTextBox);
+            this.groupBox1.Controls.Add(this.label30);
             this.groupBox1.Controls.Add(this.GlobalIDTextBox);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label12);
@@ -442,17 +448,35 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Employee Information";
             // 
+            // EmployeeIDTextBox
+            // 
+            this.EmployeeIDTextBox.Location = new System.Drawing.Point(110, 28);
+            this.EmployeeIDTextBox.MaxLength = 10;
+            this.EmployeeIDTextBox.Name = "EmployeeIDTextBox";
+            this.EmployeeIDTextBox.Size = new System.Drawing.Size(136, 20);
+            this.EmployeeIDTextBox.TabIndex = 1;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(34, 31);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(70, 13);
+            this.label30.TabIndex = 63;
+            this.label30.Text = "Employee ID:";
+            // 
             // GlobalIDTextBox
             // 
-            this.GlobalIDTextBox.Location = new System.Drawing.Point(110, 30);
+            this.GlobalIDTextBox.Location = new System.Drawing.Point(110, 54);
+            this.GlobalIDTextBox.MaxLength = 12;
             this.GlobalIDTextBox.Name = "GlobalIDTextBox";
             this.GlobalIDTextBox.Size = new System.Drawing.Size(136, 20);
-            this.GlobalIDTextBox.TabIndex = 1;
+            this.GlobalIDTextBox.TabIndex = 2;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(50, 33);
+            this.label10.Location = new System.Drawing.Point(50, 57);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(54, 13);
             this.label10.TabIndex = 16;
@@ -461,7 +485,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(49, 85);
+            this.label12.Location = new System.Drawing.Point(49, 110);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(56, 13);
             this.label12.TabIndex = 20;
@@ -475,16 +499,16 @@
             "SD",
             "SC",
             "OS"});
-            this.TypeComboBox.Location = new System.Drawing.Point(110, 108);
+            this.TypeComboBox.Location = new System.Drawing.Point(358, 27);
             this.TypeComboBox.Name = "TypeComboBox";
             this.TypeComboBox.Size = new System.Drawing.Size(136, 21);
-            this.TypeComboBox.TabIndex = 4;
+            this.TypeComboBox.TabIndex = 7;
             this.TypeComboBox.SelectedIndexChanged += new System.EventHandler(this.TypeComboBox_SelectedIndexChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 111);
+            this.label3.Location = new System.Drawing.Point(269, 30);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(83, 13);
             this.label3.TabIndex = 24;
@@ -493,7 +517,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(297, 141);
+            this.label27.Location = new System.Drawing.Point(297, 164);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(55, 13);
             this.label27.TabIndex = 61;
@@ -501,26 +525,26 @@
             // 
             // PasswordTextBox
             // 
-            this.PasswordTextBox.Location = new System.Drawing.Point(110, 82);
+            this.PasswordTextBox.Location = new System.Drawing.Point(110, 107);
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PasswordChar = '*';
             this.PasswordTextBox.Size = new System.Drawing.Size(136, 20);
-            this.PasswordTextBox.TabIndex = 3;
+            this.PasswordTextBox.TabIndex = 4;
             this.PasswordTextBox.UseSystemPasswordChar = true;
             // 
             // JoinDatePicker
             // 
             this.JoinDatePicker.CustomFormat = "yyy/MM/dd";
             this.JoinDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.JoinDatePicker.Location = new System.Drawing.Point(358, 138);
+            this.JoinDatePicker.Location = new System.Drawing.Point(358, 161);
             this.JoinDatePicker.Name = "JoinDatePicker";
             this.JoinDatePicker.Size = new System.Drawing.Size(136, 20);
-            this.JoinDatePicker.TabIndex = 11;
+            this.JoinDatePicker.TabIndex = 12;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(58, 59);
+            this.label1.Location = new System.Drawing.Point(58, 84);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 13);
             this.label1.TabIndex = 47;
@@ -529,7 +553,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(70, 165);
+            this.label26.Location = new System.Drawing.Point(70, 163);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(36, 13);
             this.label26.TabIndex = 60;
@@ -537,15 +561,15 @@
             // 
             // CardIDTextBox
             // 
-            this.CardIDTextBox.Location = new System.Drawing.Point(110, 56);
+            this.CardIDTextBox.Location = new System.Drawing.Point(110, 81);
             this.CardIDTextBox.Name = "CardIDTextBox";
             this.CardIDTextBox.Size = new System.Drawing.Size(136, 20);
-            this.CardIDTextBox.TabIndex = 2;
+            this.CardIDTextBox.TabIndex = 3;
             // 
             // LevelComboBox
             // 
             this.LevelComboBox.FormattingEnabled = true;
-            this.LevelComboBox.Location = new System.Drawing.Point(110, 162);
+            this.LevelComboBox.Location = new System.Drawing.Point(110, 160);
             this.LevelComboBox.Name = "LevelComboBox";
             this.LevelComboBox.Size = new System.Drawing.Size(136, 21);
             this.LevelComboBox.TabIndex = 6;
@@ -555,15 +579,15 @@
             // 
             this.HireDatePicker.CustomFormat = "yyy/MM/dd";
             this.HireDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.HireDatePicker.Location = new System.Drawing.Point(358, 112);
+            this.HireDatePicker.Location = new System.Drawing.Point(358, 135);
             this.HireDatePicker.Name = "HireDatePicker";
             this.HireDatePicker.Size = new System.Drawing.Size(136, 20);
-            this.HireDatePicker.TabIndex = 10;
+            this.HireDatePicker.TabIndex = 11;
             // 
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(54, 138);
+            this.label25.Location = new System.Drawing.Point(54, 136);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(50, 13);
             this.label25.TabIndex = 58;
@@ -572,7 +596,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(297, 115);
+            this.label9.Location = new System.Drawing.Point(297, 138);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(55, 13);
             this.label9.TabIndex = 49;
@@ -581,7 +605,7 @@
             // JobComboBox
             // 
             this.JobComboBox.FormattingEnabled = true;
-            this.JobComboBox.Location = new System.Drawing.Point(110, 135);
+            this.JobComboBox.Location = new System.Drawing.Point(110, 133);
             this.JobComboBox.Name = "JobComboBox";
             this.JobComboBox.Size = new System.Drawing.Size(136, 21);
             this.JobComboBox.TabIndex = 5;
@@ -590,16 +614,16 @@
             // DepartmentComboBox
             // 
             this.DepartmentComboBox.FormattingEnabled = true;
-            this.DepartmentComboBox.Location = new System.Drawing.Point(358, 29);
+            this.DepartmentComboBox.Location = new System.Drawing.Point(358, 54);
             this.DepartmentComboBox.Name = "DepartmentComboBox";
             this.DepartmentComboBox.Size = new System.Drawing.Size(136, 21);
-            this.DepartmentComboBox.TabIndex = 7;
+            this.DepartmentComboBox.TabIndex = 8;
             this.DepartmentComboBox.SelectedIndexChanged += new System.EventHandler(this.DepartmentComboBox_SelectedIndexChanged);
             // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(321, 88);
+            this.label24.Location = new System.Drawing.Point(321, 111);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(31, 13);
             this.label24.TabIndex = 56;
@@ -608,7 +632,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(287, 32);
+            this.label11.Location = new System.Drawing.Point(286, 57);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(65, 13);
             this.label11.TabIndex = 52;
@@ -617,25 +641,25 @@
             // ShiftComboBox
             // 
             this.ShiftComboBox.FormattingEnabled = true;
-            this.ShiftComboBox.Location = new System.Drawing.Point(358, 85);
+            this.ShiftComboBox.Location = new System.Drawing.Point(358, 108);
             this.ShiftComboBox.Name = "ShiftComboBox";
             this.ShiftComboBox.Size = new System.Drawing.Size(136, 21);
-            this.ShiftComboBox.TabIndex = 9;
+            this.ShiftComboBox.TabIndex = 10;
             this.ShiftComboBox.SelectedIndexChanged += new System.EventHandler(this.ShiftComboBox_SelectedIndexChanged);
             // 
             // SectionComboBox
             // 
             this.SectionComboBox.FormattingEnabled = true;
-            this.SectionComboBox.Location = new System.Drawing.Point(358, 58);
+            this.SectionComboBox.Location = new System.Drawing.Point(358, 81);
             this.SectionComboBox.Name = "SectionComboBox";
             this.SectionComboBox.Size = new System.Drawing.Size(136, 21);
-            this.SectionComboBox.TabIndex = 8;
+            this.SectionComboBox.TabIndex = 9;
             this.SectionComboBox.SelectedIndexChanged += new System.EventHandler(this.SectionComboBox_SelectedIndexChanged);
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(306, 61);
+            this.label20.Location = new System.Drawing.Point(305, 84);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(46, 13);
             this.label20.TabIndex = 54;
@@ -643,6 +667,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label31);
+            this.groupBox2.Controls.Add(this.BusStationComboBox);
             this.groupBox2.Controls.Add(this.TitleComboBox);
             this.groupBox2.Controls.Add(this.FirstNameTextBox);
             this.groupBox2.Controls.Add(this.label29);
@@ -668,6 +694,24 @@
             this.groupBox2.TabIndex = 68;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Personal Information";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(286, 130);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(64, 13);
+            this.label31.TabIndex = 68;
+            this.label31.Text = "Bus Station:";
+            // 
+            // BusStationComboBox
+            // 
+            this.BusStationComboBox.FormattingEnabled = true;
+            this.BusStationComboBox.Location = new System.Drawing.Point(358, 127);
+            this.BusStationComboBox.Name = "BusStationComboBox";
+            this.BusStationComboBox.Size = new System.Drawing.Size(136, 21);
+            this.BusStationComboBox.TabIndex = 22;
+            this.BusStationComboBox.SelectedIndexChanged += new System.EventHandler(this.BusStationComboBox_SelectedIndexChanged);
             // 
             // label29
             // 
@@ -716,14 +760,14 @@
             this.ThaiLastNameTextBox.Location = new System.Drawing.Point(110, 128);
             this.ThaiLastNameTextBox.Name = "ThaiLastNameTextBox";
             this.ThaiLastNameTextBox.Size = new System.Drawing.Size(136, 20);
-            this.ThaiLastNameTextBox.TabIndex = 16;
+            this.ThaiLastNameTextBox.TabIndex = 17;
             // 
             // ThaiFirstNameTextBox
             // 
             this.ThaiFirstNameTextBox.Location = new System.Drawing.Point(110, 102);
             this.ThaiFirstNameTextBox.Name = "ThaiFirstNameTextBox";
             this.ThaiFirstNameTextBox.Size = new System.Drawing.Size(136, 20);
-            this.ThaiFirstNameTextBox.TabIndex = 15;
+            this.ThaiFirstNameTextBox.TabIndex = 16;
             // 
             // label23
             // 
@@ -769,7 +813,7 @@
             this.CountryTextBox.Location = new System.Drawing.Point(110, 49);
             this.CountryTextBox.Name = "CountryTextBox";
             this.CountryTextBox.Size = new System.Drawing.Size(136, 20);
-            this.CountryTextBox.TabIndex = 23;
+            this.CountryTextBox.TabIndex = 24;
             // 
             // BrowsePanel
             // 
@@ -938,5 +982,9 @@
         private System.Windows.Forms.ToolStripButton ViewToolStripButton;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox EmployeeIDTextBox;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.ComboBox BusStationComboBox;
     }
 }
