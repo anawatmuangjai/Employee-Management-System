@@ -11,7 +11,7 @@ namespace EMS.Persistance.Repositories
 {
     public class EmployeeRepository : Repository<Employee>, IEmployeeRepository
     {
-        public EmployeeRepository(EmployeeContext dbContext) 
+        public EmployeeRepository(EmployeeContext dbContext)
             : base(dbContext)
         {
         }
@@ -21,8 +21,9 @@ namespace EMS.Persistance.Repositories
             var result = await _dbContext.Employee
                 .Include(image => image.EmployeeImage)
                 .Include(state => state.EmployeeState)
-                    .ThenInclude(job => job.Job)
+                    .ThenInclude(job => job.JobTitle)
                 .Include(state => state.EmployeeState)
+                    .ThenInclude(sec => sec.Section)
                     .ThenInclude(dept => dept.Department)
                 .ToListAsync();
 

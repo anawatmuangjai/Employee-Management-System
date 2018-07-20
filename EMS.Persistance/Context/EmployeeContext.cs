@@ -7,40 +7,30 @@ namespace EMS.Persistance.Context
 {
     public partial class EmployeeContext : DbContext
     {
-        public EmployeeContext()
-        {
-        }
-
-        public EmployeeContext(DbContextOptions<EmployeeContext> options)
-            : base(options)
-        {
-        }
-
         public virtual DbSet<Employee> Employee { get; set; }
-        public virtual DbSet<EmployeeDetail> EmployeeDetail { get; set; }
+        public virtual DbSet<EmployeeAddress> EmployeeAddress { get; set; }
         public virtual DbSet<EmployeeEducation> EmployeeEducation { get; set; }
         public virtual DbSet<EmployeeImage> EmployeeImage { get; set; }
+        public virtual DbSet<EmployeeLocation> EmployeeLocation { get; set; }
         public virtual DbSet<EmployeePassword> EmployeePassword { get; set; }
-        public virtual DbSet<EmployeeSkill> EmployeeSkill { get; set; }
         public virtual DbSet<EmployeeState> EmployeeState { get; set; }
-        public virtual DbSet<JobFunctionSkill> JobFunctionSkill { get; set; }
+        public virtual DbSet<MasterBusStation> MasterBusStation { get; set; }
         public virtual DbSet<MasterDepartment> MasterDepartment { get; set; }
-        public virtual DbSet<MasterEducation> MasterEducation { get; set; }
-        public virtual DbSet<MasterJob> MasterJob { get; set; }
+        public virtual DbSet<MasterEducationDegree> MasterEducationDegree { get; set; }
+        public virtual DbSet<MasterEducationMajor> MasterEducationMajor { get; set; }
         public virtual DbSet<MasterJobFunction> MasterJobFunction { get; set; }
+        public virtual DbSet<MasterJobTitle> MasterJobTitle { get; set; }
         public virtual DbSet<MasterLevel> MasterLevel { get; set; }
+        public virtual DbSet<MasterLocation> MasterLocation { get; set; }
         public virtual DbSet<MasterSection> MasterSection { get; set; }
         public virtual DbSet<MasterShift> MasterShift { get; set; }
-        public virtual DbSet<Skill> Skill { get; set; }
-        public virtual DbSet<SkillGroup> SkillGroup { get; set; }
-        public virtual DbSet<SkillLevel> SkillLevel { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS;Initial Catalog=E4M;Integrated Security=True");
+                optionsBuilder.UseSqlServer(@"Data Source=.\SQLEXPRESS;Initial Catalog=E4M;Integrated Security=True");
             }
         }
 
@@ -49,14 +39,18 @@ namespace EMS.Persistance.Context
             modelBuilder.Entity<Employee>(entity =>
             {
                 entity.HasIndex(e => e.GlobalId)
-                    .HasName("UQ__Employee__A50E8993483ECBE8")
+                    .HasName("UQ__Employee__A50E89936477ECF3")
                     .IsUnique();
 
-                entity.Property(e => e.EmployeeId).HasColumnName("EmployeeID");
+                entity.Property(e => e.EmployeeId)
+                    .HasColumnName("EmployeeID")
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AvailableFlag)
-                    .IsRequired()
-                    .HasDefaultValueSql("('1')");
+                entity.Property(e => e.AvailableFlag).HasDefaultValueSql("('1')");
+
+                entity.Property(e => e.BirthDate).HasColumnType("date");
 
                 entity.Property(e => e.CardId)
                     .IsRequired()
@@ -70,7 +64,7 @@ namespace EMS.Persistance.Context
 
                 entity.Property(e => e.EmployeeType)
                     .IsRequired()
-                    .HasMaxLength(2);
+                    .HasColumnType("nchar(2)");
 
                 entity.Property(e => e.FirstName)
                     .IsRequired()
@@ -83,7 +77,7 @@ namespace EMS.Persistance.Context
 
                 entity.Property(e => e.Gender)
                     .IsRequired()
-                    .HasMaxLength(1);
+                    .HasColumnType("nchar(1)");
 
                 entity.Property(e => e.GlobalId)
                     .IsRequired()
@@ -104,17 +98,12 @@ namespace EMS.Persistance.Context
 
                 entity.Property(e => e.Title)
                     .IsRequired()
-                    .HasMaxLength(15)
-                    .IsUnicode(false);
+                    .HasMaxLength(5);
             });
 
-            modelBuilder.Entity<EmployeeDetail>(entity =>
+            modelBuilder.Entity<EmployeeAddress>(entity =>
             {
-                entity.Property(e => e.EmployeeDetailId).HasColumnName("EmployeeDetailID");
-
-                entity.Property(e => e.Address)
-                    .IsRequired()
-                    .HasMaxLength(60);
+                entity.Property(e => e.EmployeeAddressId).HasColumnName("EmployeeAddressID");
 
                 entity.Property(e => e.ChangedDate)
                     .HasColumnType("datetime")
@@ -132,7 +121,15 @@ namespace EMS.Persistance.Context
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.EmployeeId).HasColumnName("EmployeeID");
+                entity.Property(e => e.EmployeeId)
+                    .IsRequired()
+                    .HasColumnName("EmployeeID")
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.HomeAddress)
+                    .IsRequired()
+                    .HasMaxLength(100);
 
                 entity.Property(e => e.PhoneNumber)
                     .HasMaxLength(30)
@@ -143,8 +140,9 @@ namespace EMS.Persistance.Context
                     .HasMaxLength(15);
 
                 entity.HasOne(d => d.Employee)
-                    .WithMany(p => p.EmployeeDetail)
-                    .HasForeignKey(d => d.EmployeeId);
+                    .WithMany(p => p.EmployeeAddress)
+                    .HasForeignKey(d => d.EmployeeId)
+                    .HasConstraintName("FK_EmployeeAdress_Employee_EmployeeID");
             });
 
             modelBuilder.Entity<EmployeeEducation>(entity =>
@@ -155,21 +153,23 @@ namespace EMS.Persistance.Context
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.EducationId).HasColumnName("EducationID");
-
-                entity.Property(e => e.EmployeeId).HasColumnName("EmployeeID");
-
-                entity.Property(e => e.LastEducation)
+                entity.Property(e => e.EmployeeId)
                     .IsRequired()
-                    .HasDefaultValueSql("('1')");
+                    .HasColumnName("EmployeeID")
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
 
-                entity.HasOne(d => d.Education)
-                    .WithMany(p => p.EmployeeEducation)
-                    .HasForeignKey(d => d.EducationId);
+                entity.Property(e => e.LastEducation).HasDefaultValueSql("('1')");
+
+                entity.Property(e => e.MajorId).HasColumnName("MajorID");
 
                 entity.HasOne(d => d.Employee)
                     .WithMany(p => p.EmployeeEducation)
                     .HasForeignKey(d => d.EmployeeId);
+
+                entity.HasOne(d => d.Major)
+                    .WithMany(p => p.EmployeeEducation)
+                    .HasForeignKey(d => d.MajorId);
             });
 
             modelBuilder.Entity<EmployeeImage>(entity =>
@@ -178,12 +178,35 @@ namespace EMS.Persistance.Context
 
                 entity.Property(e => e.ImageId).HasColumnName("ImageID");
 
-                entity.Property(e => e.EmployeeId).HasColumnName("EmployeeID");
+                entity.Property(e => e.EmployeeId)
+                    .IsRequired()
+                    .HasColumnName("EmployeeID")
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Employee)
                     .WithMany(p => p.EmployeeImage)
-                    .HasForeignKey(d => d.EmployeeId)
-                    .HasConstraintName("FK_PersonImage_Person_PersonID");
+                    .HasForeignKey(d => d.EmployeeId);
+            });
+
+            modelBuilder.Entity<EmployeeLocation>(entity =>
+            {
+                entity.HasKey(e => new { e.LocationId, e.EmployeeId });
+
+                entity.Property(e => e.LocationId).HasColumnName("LocationID");
+
+                entity.Property(e => e.EmployeeId)
+                    .HasColumnName("EmployeeID")
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Employee)
+                    .WithMany(p => p.EmployeeLocation)
+                    .HasForeignKey(d => d.EmployeeId);
+
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.EmployeeLocation)
+                    .HasForeignKey(d => d.LocationId);
             });
 
             modelBuilder.Entity<EmployeePassword>(entity =>
@@ -192,6 +215,8 @@ namespace EMS.Persistance.Context
 
                 entity.Property(e => e.EmployeeId)
                     .HasColumnName("EmployeeID")
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
                     .ValueGeneratedNever();
 
                 entity.Property(e => e.ChangedDate).HasColumnType("datetime");
@@ -212,100 +237,76 @@ namespace EMS.Persistance.Context
                     .HasConstraintName("FK_Password_Employee_EmployeeID");
             });
 
-            modelBuilder.Entity<EmployeeSkill>(entity =>
-            {
-                entity.HasKey(e => new { e.EmployeeId, e.SkillId, e.SkillLevelId });
-
-                entity.Property(e => e.EmployeeId).HasColumnName("EmployeeID");
-
-                entity.Property(e => e.SkillId).HasColumnName("SkillID");
-
-                entity.Property(e => e.SkillLevelId).HasColumnName("SkillLevelID");
-
-                entity.Property(e => e.ChangedDate)
-                    .HasColumnType("datetime")
-                    .HasDefaultValueSql("(getdate())");
-
-                entity.HasOne(d => d.Employee)
-                    .WithMany(p => p.EmployeeSkill)
-                    .HasForeignKey(d => d.EmployeeId);
-
-                entity.HasOne(d => d.Skill)
-                    .WithMany(p => p.EmployeeSkill)
-                    .HasForeignKey(d => d.SkillId);
-
-                entity.HasOne(d => d.SkillLevel)
-                    .WithMany(p => p.EmployeeSkill)
-                    .HasForeignKey(d => d.SkillLevelId)
-                    .HasConstraintName("FK_EmployeeSkill_SkillLevel_LevelID");
-            });
-
             modelBuilder.Entity<EmployeeState>(entity =>
             {
                 entity.HasKey(e => e.EmployeeId);
 
                 entity.Property(e => e.EmployeeId)
                     .HasColumnName("EmployeeID")
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
                     .ValueGeneratedNever();
+
+                entity.Property(e => e.BusStationId).HasColumnName("BusStationID");
 
                 entity.Property(e => e.ChangedDate)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.DepartmentId).HasColumnName("DepartmentID");
-
-                entity.Property(e => e.JobId).HasColumnName("JobID");
+                entity.Property(e => e.JobTitleId).HasColumnName("JobTitleID");
 
                 entity.Property(e => e.JoinDate).HasColumnType("datetime");
 
                 entity.Property(e => e.LevelId).HasColumnName("LevelID");
 
+                entity.Property(e => e.SectionId).HasColumnName("SectionID");
+
                 entity.Property(e => e.ShiftId).HasColumnName("ShiftID");
 
-                entity.HasOne(d => d.Department)
+                entity.HasOne(d => d.BusStation)
                     .WithMany(p => p.EmployeeState)
-                    .HasForeignKey(d => d.DepartmentId);
+                    .HasForeignKey(d => d.BusStationId)
+                    .HasConstraintName("FK_EmployeeState_MasterBusStation");
 
                 entity.HasOne(d => d.Employee)
                     .WithOne(p => p.EmployeeState)
                     .HasForeignKey<EmployeeState>(d => d.EmployeeId);
 
-                entity.HasOne(d => d.Job)
+                entity.HasOne(d => d.JobTitle)
                     .WithMany(p => p.EmployeeState)
-                    .HasForeignKey(d => d.JobId);
+                    .HasForeignKey(d => d.JobTitleId);
 
                 entity.HasOne(d => d.Level)
                     .WithMany(p => p.EmployeeState)
                     .HasForeignKey(d => d.LevelId);
+
+                entity.HasOne(d => d.Section)
+                    .WithMany(p => p.EmployeeState)
+                    .HasForeignKey(d => d.SectionId);
 
                 entity.HasOne(d => d.Shift)
                     .WithMany(p => p.EmployeeState)
                     .HasForeignKey(d => d.ShiftId);
             });
 
-            modelBuilder.Entity<JobFunctionSkill>(entity =>
+            modelBuilder.Entity<MasterBusStation>(entity =>
             {
-                entity.HasKey(e => new { e.JobFunctionId, e.SkillId });
+                entity.HasKey(e => e.BusStationId);
 
-                entity.Property(e => e.JobFunctionId).HasColumnName("JobFunctionID");
+                entity.HasIndex(e => e.BusStationName)
+                    .HasName("UQ__MasterBu__948825A80A9D95DB")
+                    .IsUnique();
 
-                entity.Property(e => e.SkillId).HasColumnName("SkillID");
+                entity.HasIndex(e => e.BusStationRoute)
+                    .HasName("UQ__MasterBu__1AA3675007C12930")
+                    .IsUnique();
 
-                entity.Property(e => e.ChangedDate)
-                    .HasColumnType("datetime")
-                    .HasDefaultValueSql("(getdate())");
+                entity.Property(e => e.BusStationId).HasColumnName("BusStationID");
 
-                entity.Property(e => e.Require)
+                entity.Property(e => e.BusStationRoute)
                     .IsRequired()
-                    .HasDefaultValueSql("('1')");
-
-                entity.HasOne(d => d.JobFunction)
-                    .WithMany(p => p.JobFunctionSkill)
-                    .HasForeignKey(d => d.JobFunctionId);
-
-                entity.HasOne(d => d.Skill)
-                    .WithMany(p => p.JobFunctionSkill)
-                    .HasForeignKey(d => d.SkillId);
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<MasterDepartment>(entity =>
@@ -328,32 +329,57 @@ namespace EMS.Persistance.Context
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<MasterEducation>(entity =>
+            modelBuilder.Entity<MasterEducationDegree>(entity =>
             {
-                entity.HasKey(e => e.EducationId);
+                entity.HasKey(e => e.DegreeId);
 
-                entity.Property(e => e.EducationId).HasColumnName("EducationID");
+                entity.HasIndex(e => e.DegreeName)
+                    .HasName("UQ__MasterEd__9C9AC10B17F790F9")
+                    .IsUnique();
 
-                entity.Property(e => e.Degree)
+                entity.HasIndex(e => e.DegreeNameThai)
+                    .HasName("UQ__MasterEd__09BC69B3151B244E")
+                    .IsUnique();
+
+                entity.Property(e => e.DegreeId).HasColumnName("DegreeID");
+
+                entity.Property(e => e.DegreeName)
                     .IsRequired()
-                    .HasMaxLength(50);
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.Major)
+                entity.Property(e => e.DegreeNameThai)
                     .IsRequired()
                     .HasMaxLength(50);
             });
 
-            modelBuilder.Entity<MasterJob>(entity =>
+            modelBuilder.Entity<MasterEducationMajor>(entity =>
             {
-                entity.HasKey(e => e.JobId);
+                entity.HasKey(e => e.MajorId);
 
-                entity.Property(e => e.JobId).HasColumnName("JobID");
+                entity.HasIndex(e => e.MajorNameThai)
+                    .HasName("UQ__MasterEd__435581B51EA48E88")
+                    .IsUnique();
 
-                entity.Property(e => e.JobDescription).HasMaxLength(100);
+                entity.HasIndex(e => e.MarjorName)
+                    .HasName("UQ__MasterEd__42EA55B92180FB33")
+                    .IsUnique();
 
-                entity.Property(e => e.JobTitle)
+                entity.Property(e => e.MajorId).HasColumnName("MajorID");
+
+                entity.Property(e => e.DegreeId).HasColumnName("DegreeID");
+
+                entity.Property(e => e.MajorNameThai)
                     .IsRequired()
                     .HasMaxLength(50);
+
+                entity.Property(e => e.MarjorName)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.HasOne(d => d.Degree)
+                    .WithMany(p => p.MasterEducationMajor)
+                    .HasForeignKey(d => d.DegreeId);
             });
 
             modelBuilder.Entity<MasterJobFunction>(entity =>
@@ -368,11 +394,24 @@ namespace EMS.Persistance.Context
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.JobId).HasColumnName("JobID");
+                entity.Property(e => e.JobTitleId).HasColumnName("JobTitleID");
 
-                entity.HasOne(d => d.Job)
+                entity.HasOne(d => d.JobTitle)
                     .WithMany(p => p.MasterJobFunction)
-                    .HasForeignKey(d => d.JobId);
+                    .HasForeignKey(d => d.JobTitleId);
+            });
+
+            modelBuilder.Entity<MasterJobTitle>(entity =>
+            {
+                entity.HasKey(e => e.JobTitleId);
+
+                entity.Property(e => e.JobTitleId).HasColumnName("JobTitleID");
+
+                entity.Property(e => e.JobDescription).HasMaxLength(100);
+
+                entity.Property(e => e.JobTitle)
+                    .IsRequired()
+                    .HasMaxLength(50);
             });
 
             modelBuilder.Entity<MasterLevel>(entity =>
@@ -389,6 +428,20 @@ namespace EMS.Persistance.Context
                 entity.Property(e => e.LevelName)
                     .IsRequired()
                     .HasMaxLength(30)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<MasterLocation>(entity =>
+            {
+                entity.HasKey(e => e.LocationId);
+
+                entity.Property(e => e.LocationId).HasColumnName("LocationID");
+
+                entity.Property(e => e.LocationImagePath).HasMaxLength(150);
+
+                entity.Property(e => e.LocationName)
+                    .IsRequired()
+                    .HasMaxLength(50)
                     .IsUnicode(false);
             });
 
@@ -425,48 +478,6 @@ namespace EMS.Persistance.Context
                     .IsRequired()
                     .HasMaxLength(50);
             });
-
-            modelBuilder.Entity<Skill>(entity =>
-            {
-                entity.Property(e => e.SkillId).HasColumnName("SkillID");
-
-                entity.Property(e => e.ChangedDate)
-                    .HasColumnType("datetime")
-                    .HasDefaultValueSql("(getdate())");
-
-                entity.Property(e => e.SkillGroupId).HasColumnName("SkillGroupID");
-
-                entity.Property(e => e.SkillName)
-                    .IsRequired()
-                    .HasColumnName("SKillName")
-                    .HasMaxLength(100);
-
-                entity.HasOne(d => d.SkillGroup)
-                    .WithMany(p => p.Skill)
-                    .HasForeignKey(d => d.SkillGroupId);
-            });
-
-            modelBuilder.Entity<SkillGroup>(entity =>
-            {
-                entity.Property(e => e.SkillGroupId).HasColumnName("SkillGroupID");
-
-                entity.Property(e => e.SkillGroupName)
-                    .IsRequired()
-                    .HasMaxLength(50);
-            });
-
-            modelBuilder.Entity<SkillLevel>(entity =>
-            {
-                entity.Property(e => e.SkillLevelId).HasColumnName("SkillLevelID");
-
-                entity.Property(e => e.SkillLevelName)
-                    .IsRequired()
-                    .HasMaxLength(50);
-            });
-
-            OnModelCreatingPartial(modelBuilder);
         }
-
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
