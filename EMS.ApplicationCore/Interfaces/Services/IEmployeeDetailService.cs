@@ -8,8 +8,8 @@ namespace EMS.ApplicationCore.Interfaces.Services
 {
     public interface IEmployeeDetailService
     {
-        Task<EmployeeDetailModel> AddAsync(EmployeeDetailModel model);
-        Task UpdateAsync(EmployeeDetailModel model);
+        Task<EmployeeAddressModel> AddAsync(EmployeeAddressModel model);
+        Task UpdateAsync(EmployeeAddressModel model);
         Task DeleteAsync(int id);
     }
 }

@@ -6,7 +6,7 @@ namespace EMS.ApplicationCore.Models
 {
     public class EmployeeListModel
     {
-        public int EmployeeId { get; set; }
+        public string EmployeeId { get; set; }
         public string EmployeeType { get; set; }
         public string GlobalId { get; set; }
         public string Title { get; set; }

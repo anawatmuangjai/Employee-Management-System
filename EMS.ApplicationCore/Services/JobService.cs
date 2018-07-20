@@ -9,17 +9,17 @@ using System.Threading.Tasks;
 
 namespace EMS.ApplicationCore.Services
 {
-    public class JobService : BaseService<JobModel, MasterJob, IAsyncRepository<MasterJob>>, IJobService
+    public class JobService : BaseService<JobTitleModel, MasterJobTitle, IAsyncRepository<MasterJobTitle>>, IJobService
     {
-        public JobService(IAsyncRepository<MasterJob> repository) 
+        public JobService(IAsyncRepository<MasterJobTitle> repository)
             : base(repository)
         {
         }
 
-        public async Task<List<JobModel>> GetByNameAsync(string name)
+        public async Task<List<JobTitleModel>> GetByNameAsync(string name)
         {
             var entities = await _repository.GetAsync(x => x.JobTitle.Contains(name));
-            return _mapper.Map<List<MasterJob>, List<JobModel>>(entities);
+            return _mapper.Map<List<MasterJobTitle>, List<JobTitleModel>>(entities);
         }
     }
 }

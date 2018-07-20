@@ -4,9 +4,9 @@ using System.Text;
 
 namespace EMS.ApplicationCore.Models
 {
-    public class JobModel
+    public class JobTitleModel
     {
-        public int JobId { get; set; }
+        public int JobTitleId { get; set; }
         public string JobTitle { get; set; }
         public string JobDescription { get; set; }
     }

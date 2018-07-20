@@ -18,6 +18,11 @@ namespace EMS.ApplicationCore.Services
             _repository = repository;
         }
 
+        public Task<EmployeePasswordModel> GetByEmployeeId(string employeeId)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<EmployeePasswordModel> AddAsync(EmployeePasswordModel model)
         {
             var entity = new EmployeePassword
@@ -32,9 +37,10 @@ namespace EMS.ApplicationCore.Services
             return MappingEntityAndModel(entity);
         }
 
+
         public async Task UpdateAsync(EmployeePasswordModel model)
         {
-            var entity = await _repository.GetByIdAsync(model.EmployeeId);
+            var entity = await _repository.GetSingleAsync(x => x.EmployeeId == model.EmployeeId);
 
             entity.PasswordHash = model.PasswordHash;
             entity.PasswordSalt = model.PasswordSalt;

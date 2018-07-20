@@ -8,6 +8,7 @@ namespace EMS.ApplicationCore.Interfaces.Services
 {
     public interface IEmployeePasswordService
     {
+        Task<EmployeePasswordModel> GetByEmployeeId(string employeeId);
         Task<EmployeePasswordModel> AddAsync(EmployeePasswordModel model);
         Task UpdateAsync(EmployeePasswordModel model);
     }

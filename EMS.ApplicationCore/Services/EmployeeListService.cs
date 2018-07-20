@@ -33,8 +33,8 @@ namespace EMS.ApplicationCore.Services
                 FirstNameThai = x.FirstNameThai,
                 LastNameThai = x.LastNameThai,
                 Gender = x.Gender,
-                JobTitle = x.EmployeeState.Job.JobTitle,
-                DepartmentName = x.EmployeeState.Department.DepartmentName,
+                JobTitle = x.EmployeeState.JobTitle.JobTitle,
+                DepartmentName = x.EmployeeState.Section.Department.DepartmentName,
                 HireDate = x.HireDate,
                 ChangedDate = x.ChangedDate,
                 Images = x.EmployeeImage.Select(i => i.Images).FirstOrDefault()

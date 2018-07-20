@@ -23,10 +23,11 @@ namespace EMS.ApplicationCore.Services
             var entity = new EmployeeState
             {
                 EmployeeId = model.EmployeeId,
-                DepartmentId = model.DepartmentId,
+                SectionId = model.SectionId,
                 ShiftId = model.ShiftId,
-                JobId = model.JobId,
+                JobTitleId = model.JobTitleId,
                 LevelId = model.LevelId,
+                BusStationId = model.BusStationId,
                 JoinDate = model.JoinDate,
                 ChangedDate = model.ChangedDate
             };
@@ -37,11 +38,11 @@ namespace EMS.ApplicationCore.Services
 
         public async Task UpdateAsync(EmployeeStateModel model)
         {
-            var entity = await _repository.GetByIdAsync(model.EmployeeId);
+            var entity = await _repository.GetSingleAsync(x => x.EmployeeId == model.EmployeeId);
 
-            entity.DepartmentId = model.DepartmentId;
+            entity.SectionId = model.SectionId;
             entity.ShiftId = model.ShiftId;
-            entity.JobId = model.JobId;
+            entity.JobTitleId = model.JobTitleId;
             entity.LevelId = model.LevelId;
             entity.JoinDate = model.JoinDate;
             entity.ChangedDate = model.ChangedDate;
@@ -60,9 +61,9 @@ namespace EMS.ApplicationCore.Services
             return new EmployeeStateModel
             {
                 EmployeeId = employee.EmployeeId,
-                DepartmentId = employee.DepartmentId,
+                SectionId = employee.SectionId,
                 ShiftId = employee.ShiftId,
-                JobId = employee.JobId,
+                JobTitleId = employee.JobTitleId,
                 LevelId = employee.LevelId,
                 JoinDate = employee.JoinDate,
                 ChangedDate = employee.ChangedDate

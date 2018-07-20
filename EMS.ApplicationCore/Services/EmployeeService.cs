@@ -45,8 +45,9 @@ namespace EMS.ApplicationCore.Services
                 FirstNameThai = model.FirstNameThai,
                 LastNameThai = model.LastNameThai,
                 Gender = model.Gender,
-                AvailableFlag = model.AvailableFlag,
+                BirthDate = model.BirthDate,
                 HireDate = model.HireDate,
+                AvailableFlag = model.AvailableFlag,
                 ChangedDate = model.ChangedDate,
             };
 
@@ -56,18 +57,20 @@ namespace EMS.ApplicationCore.Services
 
         public async Task UpdateAsync(EmployeeModel model)
         {
-            var entity = await _employeeRepository.GetByIdAsync(model.EmployeeId);
+            //var entity = await _employeeRepository.GetByIdAsync(model.EmployeeId);
+            var entity = await _employeeRepository.GetSingleAsync(x => x.EmployeeId == model.EmployeeId);
 
             entity.GlobalId = model.GlobalId;
             entity.CardId = model.CardId;
             entity.EmployeeType = model.EmployeeType;
             entity.Title = model.Title;
-            entity.FirstName = model.FirstName; 
+            entity.FirstName = model.FirstName;
             entity.LastName = model.LastName;
             entity.FirstNameThai = model.FirstNameThai;
             entity.LastNameThai = model.LastNameThai;
             entity.Gender = model.Gender;
             entity.AvailableFlag = model.AvailableFlag;
+            entity.BirthDate = model.BirthDate;
             entity.HireDate = model.HireDate;
             entity.ChangedDate = model.ChangedDate;
 

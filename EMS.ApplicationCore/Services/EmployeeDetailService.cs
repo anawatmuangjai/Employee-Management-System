@@ -12,20 +12,20 @@ namespace EMS.ApplicationCore.Services
 {
     public class EmployeeDetailService : IEmployeeDetailService
     {
-        private readonly IAsyncRepository<EmployeeDetail> _employeeRepository;
+        private readonly IAsyncRepository<EmployeeAddress> _employeeRepository;
 
-        public EmployeeDetailService(IAsyncRepository<EmployeeDetail> employeeRepository)
+        public EmployeeDetailService(IAsyncRepository<EmployeeAddress> employeeRepository)
         {
             _employeeRepository = employeeRepository;
         }
 
-        public async Task<EmployeeDetailModel> AddAsync(EmployeeDetailModel model)
+        public async Task<EmployeeAddressModel> AddAsync(EmployeeAddressModel model)
         {
-            var entity = new EmployeeDetail
+            var entity = new EmployeeAddress
             {
-                EmployeeDetailId = model.EmployeeDetailId,
+                EmployeeAddressId = model.EmployeeAddressId,
                 EmployeeId = model.EmployeeId,
-                Address = model.Address,
+                HomeAddress = model.HomeAddress,
                 City = model.City,
                 Country = model.Country,
                 PostalCode = model.PostalCode,
@@ -38,17 +38,17 @@ namespace EMS.ApplicationCore.Services
             return MappingEntityAndModel(entity);
         }
 
-        public async Task UpdateAsync(EmployeeDetailModel model)
+        public async Task UpdateAsync(EmployeeAddressModel model)
         {
-            var entity = await _employeeRepository.GetByIdAsync(model.EmployeeDetailId);
+            var entity = await _employeeRepository.GetByIdAsync(model.EmployeeAddressId);
 
             entity.EmployeeId = model.EmployeeId;
-            entity.Address = model.Address;
+            entity.HomeAddress = model.HomeAddress;
             entity.City = model.City;
             entity.Country = model.Country;
             entity.PostalCode = model.PostalCode;
             entity.PhoneNumber = model.PhoneNumber;
-            entity.EmailAddress = model.EmailAddress;      
+            entity.EmailAddress = model.EmailAddress;
             entity.ChangedDate = model.ChangedDate;
 
             await _employeeRepository.UpdateAsync(entity);
@@ -60,19 +60,19 @@ namespace EMS.ApplicationCore.Services
             await _employeeRepository.DeleteAsync(entity);
         }
 
-        private EmployeeDetailModel MappingEntityAndModel(EmployeeDetail detail)
+        private EmployeeAddressModel MappingEntityAndModel(EmployeeAddress address)
         {
-            return new EmployeeDetailModel
+            return new EmployeeAddressModel
             {
-                EmployeeDetailId = detail.EmployeeDetailId,
-                EmployeeId = detail.EmployeeId,
-                Address = detail.Address,
-                City = detail.City,
-                Country = detail.Country,
-                PostalCode = detail.PostalCode,
-                PhoneNumber = detail.PhoneNumber,
-                EmailAddress = detail.EmailAddress,
-                ChangedDate = detail.ChangedDate,
+                EmployeeAddressId = address.EmployeeAddressId,
+                EmployeeId = address.EmployeeId,
+                HomeAddress = address.HomeAddress,
+                City = address.City,
+                Country = address.Country,
+                PostalCode = address.PostalCode,
+                PhoneNumber = address.PhoneNumber,
+                EmailAddress = address.EmailAddress,
+                ChangedDate = address.ChangedDate,
             };
         }
     }

@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace EMS.ApplicationCore.Interfaces.Services
 {
-    public interface IJobService : IService<JobTitleModel, MasterJobTitle, IAsyncRepository<MasterJobTitle>>
+    public interface IBusStationService : IService<BusStationModel, MasterBusStation, IAsyncRepository<MasterBusStation>>
     {
-        Task<List<JobTitleModel>> GetByNameAsync(string name);
+        Task<List<BusStationModel>> GetByNameAsync(string name);
     }
 }
