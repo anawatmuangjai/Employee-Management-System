@@ -14,5 +14,10 @@ namespace EMS.WebCore.Controllers
         {
             return View();
         }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
     }
 }

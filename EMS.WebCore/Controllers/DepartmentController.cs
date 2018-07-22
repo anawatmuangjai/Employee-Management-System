@@ -10,17 +10,22 @@ namespace EMS.WebCore.Controllers
 {
     public class DepartmentController : Controller
     {
-        private readonly IAsyncRepository<MasterDepartment> _departmentRepository;
+        //private readonly IAsyncRepository<MasterDepartment> _departmentRepository;
 
-        public DepartmentController(IAsyncRepository<MasterDepartment> departmentRepository)
+        //public DepartmentController(IAsyncRepository<MasterDepartment> departmentRepository)
+        //{
+        //    _departmentRepository = departmentRepository;
+        //}
+
+        //public async Task<IActionResult> Index()
+        //{
+        //    var departments = await _departmentRepository.GetAllAsync();
+
+        //    return View();
+        //}
+
+        public IActionResult Index()
         {
-            _departmentRepository = departmentRepository;
-        }
-
-        public async Task<IActionResult> Index()
-        {
-            var departments = await _departmentRepository.GetAllAsync();
-
             return View();
         }
     }

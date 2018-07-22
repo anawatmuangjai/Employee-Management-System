@@ -1,7 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Register";
 }
 
 <div class="container-fluid display-table">
@@ -11,7 +10,7 @@
         <div class="col-md-2 hidden-xs display-table-cell valign-top" id="side-menu">
             <h1 class="hidden-xs hidden-sm">Navigation</h1>
             <ul>
-                <li class="link active">
+                <li class="link">
                     <a asp-area="" asp-controller="Employee" asp-action="Index">
                         <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
                         <span class="hidden-sm hidden-xs">Dashboard</span>
@@ -37,12 +36,14 @@
                     </a>
                     <ul class="collapse collapseable" id="collapse-attendance">
                         <li>
-                            <a asp-area="" asp-controller="Attendance" asp-action="Index">All Area
+                            <a asp-area="" asp-controller="Attendance" asp-action="Index">
+                                All Area
                                 <span class="label label-success pull-right hidden-sm hidden-xs">39</span>
                             </a>
                         </li>
                         <li>
-                            <a asp-area="" asp-controller="Attendance" asp-action="Index">Leave
+                            <a asp-area="" asp-controller="Attendance" asp-action="Index">
+                                Leave
                                 <span class="label label-warning pull-right hidden-sm hidden-xs">12</span>
                             </a>
                         </li>
@@ -83,7 +84,7 @@
                                 <span class="icon-bar"></span>
                             </button>
                         </nav>
-                       <input type="text" class="hidden-sm hidden-xs" id="header-search-field" placeholder="Search"/>
+                        <input type="text" class="hidden-sm hidden-xs" id="header-search-field" placeholder="Search" />
                     </div>
 
                     <div class="col-md-7">
@@ -113,6 +114,53 @@
                 </header>
             </div>
 
+            <div id="content">
+                <header>
+                    <h2 class="page-title">Register New Employee</h2>
+                </header>
+
+                <div class="content-inner">
+                    <div class="form-wrapper">
+                        <form>
+                            <div class="form-group">
+                                <label class="sr-only">Title</label>
+                                <input type="text" class="form-control" id="title" placeholder="Title" />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="sr-only">Tags</label>
+                                <select data-placehoder="Select tags" multiple name="tags" class="form-control">
+                                    <option></option>
+                                    <option>html</option>
+                                    <option>css</option>
+                                    <option>c#</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="sr-only">Article</label>
+                                <textarea class="form-control" placeholder="Article" name="article"></textarea>
+                            </div>
+
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" /> publish article when I click on save
+                                </label>
+                            </div>
+
+                            <div class="clearfix">
+                                <button type="submit" class="btn btn-primary pull-right">Save</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
             <div class="row">
                 <footer id="admin-footer" class="clearfix">
                     <div class="pull-left"><b>Copyright </b>&copy; 2018</div>
@@ -120,7 +168,5 @@
                 </footer>
             </div>
         </div>
-
     </div>
 </div>
-
