@@ -254,10 +254,51 @@ namespace EMS.WinForm.Views.UserControls
 
         private async void SaveButton_Click(object sender, EventArgs e)
         {
+            if (!Validation())
+            {
+                MessageBox.Show("Invalid input data, Please check and try again", "Warning",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+                return;
+            }
+
             Cursor = Cursors.WaitCursor;
             await Presenter.SaveAsync();
             Cursor = Cursors.Default;
             Clear();
+        }
+
+        private bool Validation()
+        {
+            if (string.IsNullOrWhiteSpace(EmployeeId)
+                || string.IsNullOrWhiteSpace(GlobalId)
+                || string.IsNullOrWhiteSpace(CardId)
+                || string.IsNullOrWhiteSpace(EmployeeType)
+                || string.IsNullOrWhiteSpace(Title)
+                || string.IsNullOrWhiteSpace(FirstName)
+                || string.IsNullOrWhiteSpace(LastName)
+                || string.IsNullOrWhiteSpace(FirstNameThai)
+                || string.IsNullOrWhiteSpace(LastNameThai)
+                || string.IsNullOrWhiteSpace(Address)
+                || string.IsNullOrWhiteSpace(City)
+                || string.IsNullOrWhiteSpace(Country)
+                || string.IsNullOrWhiteSpace(PostalCode)
+                || string.IsNullOrWhiteSpace(PhoneNumber)
+                || string.IsNullOrWhiteSpace(EmailAddress))
+                return false;
+
+            if (DepartmentId == 0
+                || SectionId == 0
+                || ShiftId == 0
+                || JobId == 0
+                || LevelId == 0
+                || BusStationId == 0)
+                return false;
+
+            if (EmployeeImage == null)
+                return false;
+
+            return true;
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -284,6 +325,14 @@ namespace EMS.WinForm.Views.UserControls
             PostalCode = string.Empty;
             PhoneNumber = string.Empty;
             EmailAddress = string.Empty;
+
+            TypeComboBox.SelectedIndex = -1;
+            JobComboBox.SelectedIndex = -1;
+            LevelComboBox.SelectedIndex = -1;
+            DepartmentComboBox.SelectedIndex = -1;
+            SectionComboBox.SelectedIndex = -1;
+            ShiftComboBox.SelectedIndex = -1;
+            TitleComboBox.SelectedIndex = -1;
         }
 
         private void TypeComboBox_SelectedIndexChanged(object sender, EventArgs e)

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainView));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Employee Registration");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("New Employee");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Registration", new System.Windows.Forms.TreeNode[] {
             treeNode1});
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Employee List");
@@ -396,7 +396,7 @@
             this.MenuTreeView.Name = "MenuTreeView";
             treeNode1.Name = "Node0";
             treeNode1.Tag = "1";
-            treeNode1.Text = "Employee Registration";
+            treeNode1.Text = "New Employee";
             treeNode2.Name = "Node0";
             treeNode2.Text = "Registration";
             treeNode3.Name = "Node10";

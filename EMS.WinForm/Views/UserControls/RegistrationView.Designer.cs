@@ -451,7 +451,7 @@
             // EmployeeIDTextBox
             // 
             this.EmployeeIDTextBox.Location = new System.Drawing.Point(110, 28);
-            this.EmployeeIDTextBox.MaxLength = 10;
+            this.EmployeeIDTextBox.MaxLength = 8;
             this.EmployeeIDTextBox.Name = "EmployeeIDTextBox";
             this.EmployeeIDTextBox.Size = new System.Drawing.Size(136, 20);
             this.EmployeeIDTextBox.TabIndex = 1;
@@ -468,7 +468,7 @@
             // GlobalIDTextBox
             // 
             this.GlobalIDTextBox.Location = new System.Drawing.Point(110, 54);
-            this.GlobalIDTextBox.MaxLength = 12;
+            this.GlobalIDTextBox.MaxLength = 10;
             this.GlobalIDTextBox.Name = "GlobalIDTextBox";
             this.GlobalIDTextBox.Size = new System.Drawing.Size(136, 20);
             this.GlobalIDTextBox.TabIndex = 2;
@@ -526,6 +526,7 @@
             // PasswordTextBox
             // 
             this.PasswordTextBox.Location = new System.Drawing.Point(110, 107);
+            this.PasswordTextBox.MaxLength = 20;
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PasswordChar = '*';
             this.PasswordTextBox.Size = new System.Drawing.Size(136, 20);

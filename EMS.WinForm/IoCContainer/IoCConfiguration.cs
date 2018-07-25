@@ -39,7 +39,7 @@ namespace EMS.WinForm.IoCContainer
             Bind<IEmployeeImageService>().To<EmployeeImageService>().InSingletonScope();
             Bind<IEmployeeLevelService>().To<EmployeeLevelService>().InSingletonScope();
             Bind<IEmployeeListService>().To<EmployeeListService>().InSingletonScope();
-            Bind<IBusStationService>().To<BusStationService>().InTransientScope();
+            Bind<IBusStationService>().To<BusStationService>().InSingletonScope();
 
             Bind<ILoginView>().To<LoginView>().InSingletonScope();
             Bind<IMainView>().To<MainView>().InSingletonScope();
