@@ -55,9 +55,6 @@ namespace EMS.WinForm.Views
                     case "2":
                         DisplayView((UserControl)IoC.Get<EmployeeListPresenter>().GetView());
                         break;
-                    case "4":
-                        DisplayView((UserControl)IoC.Get<EmployeeLevelPresenter>().GetView());
-                        break;
                     case "5":
                         DisplayView((UserControl)IoC.Get<DepartmentPresenter>().GetView());
                         break;
@@ -73,6 +70,15 @@ namespace EMS.WinForm.Views
                     case "9":
                         DisplayView((UserControl)IoC.Get<JobFunctionPresenter>().GetView());
                         break;
+                    case "10":
+                        DisplayView((UserControl)IoC.Get<EmployeeLevelPresenter>().GetView());
+                        break;
+                    case "11":
+                        DisplayView((UserControl)IoC.Get<EducationDegreePresenter>().GetView());
+                        break;
+                    case "12":
+                        DisplayView((UserControl)IoC.Get<EducationMajorPresenter>().GetView());
+                        break;
                     case "15":
                         DisplayView((UserControl)IoC.Get<BusStationPresenter>().GetView());
                         break;
@@ -85,3 +91,6 @@ namespace EMS.WinForm.Views
 
     }
 }
+
+
+//EducationDegreePresenter

@@ -137,6 +137,8 @@
     <Compile Include="IoCContainer\IoCConfiguration.cs" />
     <Compile Include="Presenters\BusStationPresenter.cs" />
     <Compile Include="Presenters\DepartmentPresenter.cs" />
+    <Compile Include="Presenters\EducationDegreePresenter.cs" />
+    <Compile Include="Presenters\EducationMajorPresenter.cs" />
     <Compile Include="Presenters\EmployeeDetailPresenter.cs" />
     <Compile Include="Presenters\EmployeeLevelPresenter.cs" />
     <Compile Include="Presenters\EmployeeListPresenter.cs" />
@@ -152,18 +154,22 @@
     <Compile Include="Presenters\Interfaces\IJobTitlePresenter.cs" />
     <Compile Include="Presenters\Interfaces\ILoginPresenter.cs" />
     <Compile Include="Presenters\Interfaces\IMainPresenter.cs" />
+    <Compile Include="Presenters\Interfaces\IPresenter.cs" />
     <Compile Include="Presenters\Interfaces\ISectionPresenter.cs" />
     <Compile Include="Presenters\Interfaces\IShiftPresenter.cs" />
     <Compile Include="Presenters\JobFunctionPresenter.cs" />
     <Compile Include="Presenters\JobTitlePresenter.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\MainPresenter.cs" />
+    <Compile Include="Presenters\Presenter.cs" />
     <Compile Include="Presenters\SectionPresenter.cs" />
     <Compile Include="Presenters\ShiftPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\Interfaces\IBusStationView.cs" />
     <Compile Include="Views\Interfaces\IDepartmentView.cs" />
+    <Compile Include="Views\Interfaces\IEducationDegreeView.cs" />
+    <Compile Include="Views\Interfaces\IEducationMajorView.cs" />
     <Compile Include="Views\Interfaces\IEmployeeDetailView.cs" />
     <Compile Include="Views\Interfaces\IEmployeeLevelView.cs" />
     <Compile Include="Views\Interfaces\IEmployeeListView.cs" />
@@ -174,6 +180,7 @@
     <Compile Include="Views\Interfaces\IMainView.cs" />
     <Compile Include="Views\Interfaces\ISectionView.cs" />
     <Compile Include="Views\Interfaces\IShiftView.cs" />
+    <Compile Include="Views\Interfaces\IView.cs" />
     <Compile Include="Views\LoginView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +204,18 @@
     </Compile>
     <Compile Include="Views\UserControls\DepartmentView.Designer.cs">
       <DependentUpon>DepartmentView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\EducationDegreeView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\EducationDegreeView.Designer.cs">
+      <DependentUpon>EducationDegreeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\EducationMajorView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\EducationMajorView.Designer.cs">
+      <DependentUpon>EducationMajorView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\EmployeeLevelView.cs">
       <SubType>UserControl</SubType>
@@ -261,6 +280,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\UserControls\DepartmentView.resx">
       <DependentUpon>DepartmentView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\EducationDegreeView.resx">
+      <DependentUpon>EducationDegreeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\EducationMajorView.resx">
+      <DependentUpon>EducationMajorView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\UserControls\EmployeeLevelView.resx">
       <DependentUpon>EmployeeLevelView.cs</DependentUpon>

@@ -40,6 +40,9 @@ namespace EMS.WinForm.IoCContainer
             Bind<IEmployeeLevelService>().To<EmployeeLevelService>().InSingletonScope();
             Bind<IEmployeeListService>().To<EmployeeListService>().InSingletonScope();
             Bind<IBusStationService>().To<BusStationService>().InSingletonScope();
+            Bind<IEducationDegreeService>().To<EducationDegreeService>().InSingletonScope();
+            Bind<IEducationMajorService>().To<EducationMajorService>().InSingletonScope();
+
 
             Bind<ILoginView>().To<LoginView>().InSingletonScope();
             Bind<IMainView>().To<MainView>().InSingletonScope();
@@ -52,6 +55,8 @@ namespace EMS.WinForm.IoCContainer
             Bind<IEmployeeLevelView>().To<EmployeeLevelView>().InSingletonScope();
             Bind<IEmployeeListView>().To<EmployeeListView>().InSingletonScope();
             Bind<IBusStationView>().To<BusStationView>().InSingletonScope();
+            Bind<IEducationDegreeView>().To<EducationDegreeView>().InSingletonScope();
+            Bind<IEducationMajorView>().To<EducationMajorView>().InSingletonScope();
 
             Bind<ILoginPresenter>().To<LoginPresenter>().InSingletonScope();
             Bind<IMainPresenter>().To<MainPresenter>().InSingletonScope();
@@ -64,6 +69,9 @@ namespace EMS.WinForm.IoCContainer
             Bind<IEmployeeLevelPresenter>().To<EmployeeLevelPresenter>().InSingletonScope();
             Bind<IEmployeeListPresenter>().To<EmployeeListPresenter>().InSingletonScope();
             Bind<IBusStationPresenter>().To<BusStationPresenter>().InSingletonScope();
+
+            Bind<EducationDegreePresenter>().ToSelf().InTransientScope();
+            Bind<EducationMajorPresenter>().ToSelf().InTransientScope();
         }
     }
 }
