@@ -63,10 +63,8 @@ namespace EMS.ApplicationCore.Services
 
         public async Task UpdateAsync(M model)
         {
-
-
-             var entity = _mapper.Map<M, E>(model);
-             await _repository.UpdateAsync(entity);
+            var entity = _mapper.Map<M, E>(model);
+            await _repository.UpdateAsync(entity);
         }
 
         public async Task DeleteAsync(M model)
