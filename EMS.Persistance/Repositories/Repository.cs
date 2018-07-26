@@ -78,13 +78,13 @@ namespace EMS.Persistance.Repositories
 
         public void Update(T entity)
         {
-            _dbContext.Entry(entity).State = EntityState.Modified;
+            _dbContext.Set<T>().Attach(entity).State = EntityState.Modified;
             _dbContext.SaveChanges();
         }
 
         public async Task UpdateAsync(T entity)
         {
-            _dbContext.Entry(entity).State = EntityState.Modified;
+            _dbContext.Set<T>().Attach(entity).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }
 
