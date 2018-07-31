@@ -95,7 +95,11 @@ namespace EMS.WinForm.Views.UserControls
         private async void SaveButton_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
+
             await Presenter.SaveAsync();
+            await Presenter.ViewAllAsync();
+            Clear();
+
             Cursor = Cursors.Default;
         }
 

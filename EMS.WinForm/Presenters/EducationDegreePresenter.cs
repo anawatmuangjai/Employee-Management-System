@@ -47,7 +47,7 @@ namespace EMS.WinForm.Presenters
 
         public async Task DeleteAsync()
         {
-            await _degreeService.DeleteAsync(_view.SelectedDegree);
+            await _degreeService.DeleteAsync(_view.SelectedDegree.DegreeId);
         }
     }
 }
