@@ -1,13 +1,15 @@
-﻿using EMS.ApplicationCore.Interfaces.Repositories;
-using EMS.ApplicationCore.Models;
-using EMS.Domain.Entities;
-using System;
+﻿using EMS.ApplicationCore.Models;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace EMS.ApplicationCore.Interfaces.Services
 {
-    public interface IEducationDegreeService : IService<EducationDegreeModel, MasterEducationDegree, IAsyncRepository<MasterEducationDegree>>
+    public interface IEducationDegreeService
     {
+        Task<List<EducationDegreeModel>> GetAllAsync();
+        Task<List<EducationDegreeModel>> GetByNameAsync(string name);
+        Task<EducationDegreeModel> AddAsync(EducationDegreeModel model);
+        Task UpdateAsync(EducationDegreeModel model);
+        Task DeleteAsync(int id);
     }
 }
