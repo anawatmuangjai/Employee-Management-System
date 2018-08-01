@@ -23,11 +23,12 @@ namespace EMS.WinForm.IoCContainer
     {
         public override void Load()
         {
-            Bind<EmployeeContext>().ToSelf()
-                .WithConstructorArgument("EmployeeConnection",
-                ConfigurationManager.ConnectionStrings["EmployeeConnection"].ConnectionString);
+            //Bind<EmployeeContext>().ToSelf()
+            //    .InSingletonScope()
+            //    .WithConstructorArgument("EmployeeConnection",
+            //    ConfigurationManager.ConnectionStrings["EmployeeConnection"].ConnectionString);
 
-            //Bind<EmployeeContext>().ToSelf().InSingletonScope();
+            Bind<EmployeeContext>().ToSelf().InSingletonScope();
             Bind(typeof(IRepository<>)).To(typeof(Repository<>)).InSingletonScope();
             Bind(typeof(IAsyncRepository<>)).To(typeof(Repository<>)).InSingletonScope();
             Bind<IEmployeeRepository>().To<EmployeeRepository>().InSingletonScope();

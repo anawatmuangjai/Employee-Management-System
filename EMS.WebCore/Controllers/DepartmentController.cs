@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EMS.ApplicationCore.Interfaces.Repositories;
 using EMS.ApplicationCore.Interfaces.Services;
+using EMS.ApplicationCore.Models;
 using EMS.Domain.Entities;
 using EMS.WebCore.ViewModels.Department;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +33,33 @@ namespace EMS.WebCore.Controllers
             };
 
             return View(viewModel);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(DepartmentEditModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var department = new DepartmentModel
+                {
+                    DepartmentName = model.DepartmentName,
+                    DepartmentCode = model.DepartmentCode,
+                    DepartmentGroup = model.DepartmentGroup
+                };
+
+                department = await _departmentService.AddAsync(department);
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View();
         }
     }
 }

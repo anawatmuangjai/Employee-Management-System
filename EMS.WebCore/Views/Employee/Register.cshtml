@@ -1,160 +1,97 @@
-﻿
+﻿@model RegisterEmployeeViewModel
 @{
     ViewData["Title"] = "Register";
 }
 
-<div class="container-fluid display-table">
-    <div class="row display-table-row">
+<!-- content -->
+<div id="content">
 
-        <!-- side menu -->
-        @Html.Partial("_SideMenu")
+    <div class="content-inner">
 
-        <!-- main content area-->
-        <div class="col-md-10 display-table-cell valign-top">
+        <h2>Register New Employee</h2>
 
-            <!-- navbar -->
-            <div class="row">
-                <header id="nav-header" class="clearfix">
+        <hr />
 
-                    <div class="col-md-5">
-                        <nav class="navbar-default pull-left">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="offcanvas" data-target="#side-menu">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </nav>
-                        <input type="text" class="hidden-sm hidden-xs" id="header-search-field" placeholder="Search" />
-                    </div>
+        <form asp-action="Register" class="form-horizontal" method="post" role="form">
 
-                    <div class="col-md-7">
-                        <ul class="pull-right">
-                            <li id="welcome" class="hidden-xs">Welcome to admin area</li>
-                            <li class="fixed-width">
-                                <a href="#">
-                                    <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
-                                    <span class="label label-warning">3</span>
-                                </a>
-                            </li>
-                            <li class="fixed-width">
-                                <a href="#">
-                                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                                    <span class="label label-message">3</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="logout">
-                                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-                                    log out
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                </header>
-            </div>
-
-            <!-- content -->
-            <div id="content">
-                <header>
-                    <h2 class="page-title">Register New Employee</h2>
-                </header>
-
-                <div class="content-inner">
-                    <div class="form-wrapper">
-                        <form>
-                            <div class="form-group">
-                                <label for="employeeID">Employee ID</label>
-                                <input type="text" class="form-control" id="employeeID" placeholder="Employee ID" />
-                            </div>
-
-                            <div class="form-group">
-                                <label class="sr-only">Global ID</label>
-                                <input type="text" class="form-control" id="globalID" placeholder="Global ID" />
-                            </div>
-
-                            <div class="form-group">
-                                <label class="sr-only">Card ID</label>
-                                <input type="text" class="form-control" id="cardID" placeholder="Card ID" />
-                            </div>
-
-                            <div class="form-group">
-                                <label class="sr-only">Password</label>
-                                <input type="text" class="form-control" id="password" placeholder="Password" />
-                            </div>
-
-                            <div class="form-group">
-                                <label class="sr-only">Title</label>
-                                <input type="text" class="form-control" id="title" placeholder="Title" />
-                            </div>
-
-                            <div class="form-group">
-                                <label class="sr-only">First Name</label>
-                                <input type="text" class="form-control" id="firstname" placeholder="First Name" />
-                            </div>
-
-                            <div class="form-group">
-                                <label class="sr-only">Last Name</label>
-                                <input type="text" class="form-control" id="lastname" placeholder="Last Name" />
-                            </div>
-
-                            <div class="form-group">
-                                <label class="sr-only">First Name (Thai)</label>
-                                <input type="text" class="form-control" id="firstnamethai" placeholder="First Name (Thai)" />
-                            </div>
-
-                            <div class="form-group">
-                                <label class="sr-only">Last Name (Thai)</label>
-                                <input type="text" class="form-control" id="firstnamethai" placeholder="First Name (Thai)" />
-                            </div>
-
-
-                            <div class="form-group">
-                                <label class="sr-only">Address</label>
-                                <textarea class="form-control" placeholder="Address" name="address"></textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="sr-only">City</label>
-                                <input type="text" class="form-control" id="city" placeholder="City" />
-                            </div>
-
-                            <div class="form-group">
-                                <label class="sr-only">Postal Code</label>
-                                <input type="text" class="form-control" id="postalcode" placeholder="Postal Code" />
-                            </div>
-
-                            <div class="form-group">
-                                <label class="sr-only">Phone</label>
-                                <input type="text" class="form-control" id="phone" placeholder="Phone" />
-                            </div>
-
-                            <div class="form-group">
-                                <label class="sr-only">Email</label>
-                                <input type="text" class="form-control" id="email" placeholder="Email" />
-                            </div>
-
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" /> publish article when I click on save
-                                </label>
-                            </div>
-
-                            <div class="clearfix">
-                                <button type="submit" class="btn btn-primary pull-right">Save</button>
-                            </div>
-
-                        </form>
-                    </div>
+            <div class="form-group">
+                <label asp-for="EmployeeId" class="control-label col-sm-2">Employee ID</label>
+                <div class="col-sm-10">
+                    <input asp-for="EmployeeId" class="form-control" placeholder="Employee ID" />
+                    <span asp-validation-for="EmployeeId" class="text-danger"></span>
                 </div>
-
-
-
             </div>
 
-            <!-- footer -->
-            @Html.Partial("_Footer")
-        </div>
+            <div class="form-group">
+                <label asp-for="GlobalId" class="control-label col-sm-2">Global ID</label>
+                <div class="col-sm-10">
+                    <input asp-for="GlobalId" class="form-control" placeholder="Global ID" />
+                    <span asp-validation-for="GlobalId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CardId" class="control-label col-sm-2">Card ID</label>
+                <div class="col-sm-10">
+                    <input asp-for="CardId" class="form-control" placeholder="Card ID" />
+                    <span asp-validation-for="CardId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Title" class="control-label col-sm-2">Title</label>
+                <div class="col-sm-10">
+                    <select asp-for="Title" class="form-control">
+                        <option value=""></option>
+                        <option value="Mr">Mr</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Miss">Miss</option>
+                    </select>
+                    <span asp-validation-for="CardId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label col-sm-2">First Name</label>
+                <div class="col-sm-10">
+                    <input asp-for="FirstName" class="form-control" placeholder="First Name" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label col-sm-2">Last Name</label>
+                <div class="col-sm-10">
+                    <input asp-for="LastName" class="form-control" placeholder="Last Name" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FirstNameThai" class="control-label col-sm-2">First Name (TH)</label>
+                <div class="col-sm-10">
+                    <input asp-for="FirstNameThai" class="form-control" placeholder="First Name (Thai)" />
+                    <span asp-validation-for="FirstNameThai" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="LastNameThai" class="control-label col-sm-2">Last Name (TH)</label>
+                <div class="col-sm-10">
+                    <input asp-for="LastNameThai" class="form-control" placeholder="Last Name (Thai)" />
+                    <span asp-validation-for="LastNameThai" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary pull-left">Save</button>
+                </div>
+            </div>
+
+        </form>
     </div>
+
+
+
 </div>

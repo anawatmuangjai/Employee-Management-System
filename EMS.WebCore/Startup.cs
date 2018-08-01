@@ -35,7 +35,9 @@ namespace EMS.WebCore
 
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
+            services.AddScoped<IEmployeePasswordService, EmployeePasswordService>();
             services.AddScoped<IDepartmentService, DepartmentService>();
+            services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IEmployeeListService, EmployeeListService>();
 
             services.AddMvc();
