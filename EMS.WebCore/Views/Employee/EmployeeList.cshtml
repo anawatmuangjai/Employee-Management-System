@@ -1,9 +1,7 @@
-﻿@model DepartmentViewModel
+﻿@model EmployeeViewModel
 
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-
+    ViewData["Title"] = "EmployeeList";
 }
 
 <div class="container-fluid display-table">
@@ -13,7 +11,7 @@
         @Html.Partial("_SideMenu")
 
         <!-- main content area-->
-        <div class="col-md-10 display-table-cell valign-top box">
+        <div class="col-md-10 display-table-cell valign-top">
 
             <!-- navbar -->
             <div class="row">
@@ -58,33 +56,36 @@
                 </header>
             </div>
 
+            <h3><b>Employee List</b></h3>
+
             <!-- content -->
             <div id="content">
 
-                <header>
-                    <h1 class="page-title">Department List</h1>
-                </header>
 
                 <div class="content-inner">
-                    @if (Model.Departments.Any())
+                    @if (Model.Employees.Any())
                     {
                         <div class="row">
 
                             <table class="table table-bordered table-responsive table-hover">
                                 <tr>
-                                    <th>Department ID</th>
-                                    <th>Department Name</th>
-                                    <th>Department Code</th>
-                                    <th>Department Group</th>
+                                    <th>Employee ID</th>
+                                    <th>Name (English)</th>
+                                    <th>Name (Thai)</th>
+                                    <th>Job Title</th>
+                                    <th>Department</th>
+                                    <th>Profile</th>
                                 </tr>
-                                @foreach (var d in Model.Departments)
+                                @foreach (var e in Model.Employees)
                                 {
 
                                     <tr>
-                                        <td>@d.DepartmentId</td>
-                                        <td>@d.DepartmentName</td>
-                                        <td>@d.DepartmentCode</td>
-                                        <td>@d.DepartmentGroup</td>
+                                        <td>@e.EmployeeId</td>
+                                        <td>@e.Title @e.FirstName @e.LastName</td>
+                                        <td>@e.FirstNameThai @e.LastNameThai</td>
+                                        <td>@e.JobTitle</td>
+                                        <td>@e.DepartmentName</td>
+                                        <td><button type="submit" class="btn btn-primary pull-right">View</button></td>
                                     </tr>
 
                                 }
@@ -101,5 +102,7 @@
             @Html.Partial("_Footer")
 
         </div>
+
     </div>
 </div>
+

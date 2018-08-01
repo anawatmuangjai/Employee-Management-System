@@ -1,76 +1,18 @@
 ﻿
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container-fluid display-table">
     <div class="row display-table-row">
 
         <!-- side menu -->
-        <div class="col-md-2 hidden-xs display-table-cell valign-top" id="side-menu">
-            <h1 class="hidden-xs hidden-sm">Navigation</h1>
-            <ul>
-                <li class="link active">
-                    <a asp-area="" asp-controller="Employee" asp-action="Index">
-                        <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
-                        <span class="hidden-sm hidden-xs">Dashboard</span>
-                    </a>
-                </li>
-
-                <li class="link">
-                    <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post">
-                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                        <span class="hidden-sm hidden-xs">Employee</span>
-                        <span class="label label-success pull-right hidden-sm hidden-xs">20</span>
-                    </a>
-                    <ul class="collapse collapseable" id="collapse-post">
-                        <li><a asp-area="" asp-controller="Employee" asp-action="Register">New Employee</a></li>
-                        <li><a asp-area="" asp-controller="Employee" asp-action="EmployeeList">Employee List</a></li>
-                    </ul>
-                </li>
-
-                <li class="link">
-                    <a href="#collapse-attendance" data-toggle="collapse" aria-controls="collapse-attendance">
-                        <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
-                        <span class="hidden-sm hidden-xs">Attendance</span>
-                    </a>
-                    <ul class="collapse collapseable" id="collapse-attendance">
-                        <li>
-                            <a asp-area="" asp-controller="Attendance" asp-action="Index">All Area
-                                <span class="label label-success pull-right hidden-sm hidden-xs">39</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-controller="Attendance" asp-action="Index">Leave
-                                <span class="label label-warning pull-right hidden-sm hidden-xs">12</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="link">
-                    <a href="#collapse-organize" data-toggle="collapse" aria-controls="collapse-organize">
-                        <span class="glyphicon  glyphicon-list" aria-hidden="true"></span>
-                        <span class="hidden-sm hidden-xs">Organization</span>
-                    </a>
-                    <ul class="collapse collapseable" id="collapse-organize">
-                        <li><a asp-area="" asp-controller="Department" asp-action="Index">Department</a></li>
-                        <li><a asp-area="" asp-controller="Section" asp-action="Index">Section</a></li>
-                    </ul>
-                </li>
-
-                <li class="link setting-btn">
-                    <a asp-area="" asp-controller="Setting" asp-action="Index">
-                        <span class="glyphicon  glyphicon-cog" aria-hidden="true"></span>
-                        <span class="hidden-sm hidden-xs">Setiing</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        @Html.Partial("_SideMenu")
 
         <!-- main content area-->
         <div class="col-md-10 display-table-cell valign-top box">
+
+            <!-- navbar -->
             <div class="row">
                 <header id="nav-header" class="clearfix">
 
@@ -83,7 +25,7 @@
                                 <span class="icon-bar"></span>
                             </button>
                         </nav>
-                       <input type="text" class="hidden-sm hidden-xs" id="header-search-field" placeholder="Search"/>
+                        <input type="text" class="hidden-sm hidden-xs" id="header-search-field" placeholder="Search" />
                     </div>
 
                     <div class="col-md-7">
@@ -113,12 +55,9 @@
                 </header>
             </div>
 
-            <div class="row">
-                <footer id="admin-footer" class="clearfix">
-                    <div class="pull-left"><b>Copyright </b>&copy; 2018</div>
-                    <div class="pull-right">Admin system</div>
-                </footer>
-            </div>
+
+            <!-- footer -->
+            @Html.Partial("_Footer")
         </div>
 
     </div>

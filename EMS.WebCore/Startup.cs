@@ -2,8 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EMS.ApplicationCore.Interfaces.Repositories;
+using EMS.ApplicationCore.Interfaces.Services;
+using EMS.ApplicationCore.Services;
+using EMS.Persistance.Context;
+using EMS.Persistance.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,6 +27,17 @@ namespace EMS.WebCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<EmployeeContext>(c =>
+                c.UseSqlServer(Configuration.GetConnectionString("EmployeeConnection")));
+
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped(typeof(IAsyncRepository<>), typeof(Repository<>));
+
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+
+            services.AddScoped<IDepartmentService, DepartmentService>();
+            services.AddScoped<IEmployeeListService, EmployeeListService>();
+
             services.AddMvc();
         }
 

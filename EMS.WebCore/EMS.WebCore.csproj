@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\EMS.ApplicationCore\EMS.ApplicationCore.csproj" />
     <ProjectReference Include="..\EMS.Domain\EMS.Domain.csproj" />
+    <ProjectReference Include="..\EMS.Persistance\EMS.Persistance.csproj" />
   </ItemGroup>
 
 </Project>
