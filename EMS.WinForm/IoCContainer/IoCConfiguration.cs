@@ -12,6 +12,7 @@ using EMS.WinForm.Views.UserControls;
 using Ninject.Modules;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,11 @@ namespace EMS.WinForm.IoCContainer
     {
         public override void Load()
         {
-            Bind<EmployeeContext>().ToSelf().InSingletonScope();
+            Bind<EmployeeContext>().ToSelf()
+                .WithConstructorArgument("EmployeeConnection",
+                ConfigurationManager.ConnectionStrings["EmployeeConnection"].ConnectionString);
+
+            //Bind<EmployeeContext>().ToSelf().InSingletonScope();
             Bind(typeof(IRepository<>)).To(typeof(Repository<>)).InSingletonScope();
             Bind(typeof(IAsyncRepository<>)).To(typeof(Repository<>)).InSingletonScope();
             Bind<IEmployeeRepository>().To<EmployeeRepository>().InSingletonScope();
@@ -33,7 +38,7 @@ namespace EMS.WinForm.IoCContainer
             Bind<IJobService>().To<JobService>().InSingletonScope();
             Bind<IJobFunctionService>().To<JobFunctionService>().InSingletonScope();
             Bind<IEmployeeService>().To<EmployeeService>().InSingletonScope();
-            Bind<IEmployeeDetailService>().To<EmployeeDetailService>().InSingletonScope();
+            Bind<IEmployeeAddressService>().To<EmployeeAddressService>().InSingletonScope();
             Bind<IEmployeeStateService>().To<EmployeeStateService>().InSingletonScope();
             Bind<IEmployeePasswordService>().To<EmployeePasswordService>().InSingletonScope();
             Bind<IEmployeeImageService>().To<EmployeeImageService>().InSingletonScope();

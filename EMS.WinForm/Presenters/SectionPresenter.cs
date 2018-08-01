@@ -40,14 +40,12 @@ namespace EMS.WinForm.Presenters
 
         public async Task ViewAllAsync()
         {
-            _view.Sections = await _sectionService.GetAllAsync();
-            //var sections = await _sectionService.GetAllWithDepartmentAsync();
-            //_view.Sections = sections;
+            _view.Sections = await _sectionService.GetSectionAsync(_view.Filter);
         }
 
         public async Task SearchAsync()
         {
-            var sections = await _sectionService.GetByNameAsync(_view.Filter);
+            var sections = await _sectionService.GetSectionAsync(_view.Filter);
             _view.Sections = sections;
         }
 

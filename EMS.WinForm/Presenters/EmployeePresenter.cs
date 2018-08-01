@@ -14,7 +14,7 @@ namespace EMS.WinForm.Presenters
     {
         private readonly IEmployeeView _view;
         private readonly IEmployeeService _employeeService;
-        private readonly IEmployeeDetailService _employeeDetailService;
+        private readonly IEmployeeAddressService _employeeDetailService;
         private readonly IEmployeeStateService _employeeStateService;
         private readonly IEmployeePasswordService _employeePasswordService;
         private readonly IEmployeeImageService _employeeImageService;
@@ -28,7 +28,7 @@ namespace EMS.WinForm.Presenters
         public EmployeePresenter(
             IEmployeeView view,
             IEmployeeService employeeService,
-            IEmployeeDetailService employeeDetailService,
+            IEmployeeAddressService employeeDetailService,
             IEmployeeStateService employeeStateService,
             IEmployeePasswordService employeePasswordService,
             IEmployeeImageService employeeImageService,

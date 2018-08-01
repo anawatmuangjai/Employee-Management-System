@@ -82,22 +82,17 @@
             System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Bus Station");
             System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("Transportation", new System.Windows.Forms.TreeNode[] {
             treeNode30});
-            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("Configuration", new System.Windows.Forms.TreeNode[] {
-            treeNode22,
-            treeNode25,
-            treeNode29,
-            treeNode31});
-            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("Import Data");
-            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("Export Data");
-            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("Create Skill Card");
-            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("Setting");
-            System.Windows.Forms.TreeNode treeNode37 = new System.Windows.Forms.TreeNode("About");
-            System.Windows.Forms.TreeNode treeNode38 = new System.Windows.Forms.TreeNode("Options", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("Import Data");
+            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("Export Data");
+            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("Create Skill Card");
+            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("Setting");
+            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("About");
+            System.Windows.Forms.TreeNode treeNode37 = new System.Windows.Forms.TreeNode("Options", new System.Windows.Forms.TreeNode[] {
+            treeNode32,
             treeNode33,
             treeNode34,
             treeNode35,
-            treeNode36,
-            treeNode37});
+            treeNode36});
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -490,28 +485,29 @@
             treeNode30.Text = "Bus Station";
             treeNode31.Name = "Node0";
             treeNode31.Text = "Transportation";
-            treeNode32.Name = "Node5";
-            treeNode32.Text = "Configuration";
-            treeNode33.Name = "Node0";
-            treeNode33.Text = "Import Data";
-            treeNode34.Name = "Node1";
-            treeNode34.Text = "Export Data";
-            treeNode35.Name = "Node2";
-            treeNode35.Text = "Create Skill Card";
-            treeNode36.Name = "Node0";
-            treeNode36.Text = "Setting";
-            treeNode37.Name = "Node1";
-            treeNode37.Text = "About";
-            treeNode38.Name = "Node7";
-            treeNode38.Text = "Options";
+            treeNode32.Name = "Node0";
+            treeNode32.Text = "Import Data";
+            treeNode33.Name = "Node1";
+            treeNode33.Text = "Export Data";
+            treeNode34.Name = "Node2";
+            treeNode34.Text = "Create Skill Card";
+            treeNode35.Name = "Node0";
+            treeNode35.Text = "Setting";
+            treeNode36.Name = "Node1";
+            treeNode36.Text = "About";
+            treeNode37.Name = "Node7";
+            treeNode37.Text = "Options";
             this.MenuTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode2,
             treeNode6,
             treeNode9,
             treeNode12,
             treeNode15,
-            treeNode32,
-            treeNode38});
+            treeNode22,
+            treeNode25,
+            treeNode29,
+            treeNode31,
+            treeNode37});
             this.MenuTreeView.ShowLines = false;
             this.MenuTreeView.Size = new System.Drawing.Size(228, 655);
             this.MenuTreeView.TabIndex = 1;
