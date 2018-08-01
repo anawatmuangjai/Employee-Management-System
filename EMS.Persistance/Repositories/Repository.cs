@@ -1,4 +1,5 @@
-﻿using EMS.ApplicationCore.Interfaces.Repositories;
+﻿using EMS.ApplicationCore.Interfaces;
+using EMS.ApplicationCore.Interfaces.Repositories;
 using EMS.Domain;
 using EMS.Persistance.Context;
 using Microsoft.EntityFrameworkCore;
@@ -35,6 +36,19 @@ namespace EMS.Persistance.Repositories
             return _dbContext.Set<T>().Where(filter).FirstOrDefault();
         }
 
+        public async Task<T> GetSingleAsync(ISpecification<T> spec)
+        {
+            var queryWithIncludes = spec.Includes
+                .Aggregate(_dbContext.Set<T>().AsQueryable(),
+                (current, include) => current.Include(include));
+
+            var queryResult = spec.IncludeStrings
+                .Aggregate(queryWithIncludes,
+                (current, include) => current.Include(include));
+
+            return await queryResult.Where(spec.Filter).FirstOrDefaultAsync();
+        }
+
         public async Task<T> GetSingleAsync(Expression<Func<T, bool>> filter)
         {
             return await _dbContext.Set<T>().Where(filter).FirstOrDefaultAsync();
@@ -48,6 +62,19 @@ namespace EMS.Persistance.Repositories
         public async Task<List<T>> GetAsync(Expression<Func<T, bool>> filter)
         {
             return await _dbContext.Set<T>().Where(filter).ToListAsync();
+        }
+
+        public async Task<List<T>> GetAsync(ISpecification<T> spec)
+        {
+            var queryWithIncludes = spec.Includes
+                .Aggregate(_dbContext.Set<T>().AsQueryable(),
+                (current, include) => current.Include(include));
+
+            var queryResult = spec.IncludeStrings
+                .Aggregate(queryWithIncludes,
+                (current, include) => current.Include(include));
+
+            return await queryResult.Where(spec.Filter).ToListAsync();
         }
 
         public IEnumerable<T> GetAll()
@@ -99,5 +126,7 @@ namespace EMS.Persistance.Repositories
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync();
         }
+
+
     }
 }
