@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EMS.ApplicationCore.Interfaces.Services
 {
-    public interface IEmployeeDetailService
+    public interface IEmployeeAddressService
     {
         Task<EmployeeAddressModel> AddAsync(EmployeeAddressModel model);
         Task UpdateAsync(EmployeeAddressModel model);

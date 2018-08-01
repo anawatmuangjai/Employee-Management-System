@@ -10,7 +10,6 @@ namespace EMS.ApplicationCore.Interfaces.Services
 {
     public interface ISectionService : IService<SectionModel, MasterSection, IAsyncRepository<MasterSection>>
     {
-        Task<List<SectionModel>> GetAllWithDepartmentAsync();
-        Task<List<SectionModel>> GetByNameAsync(string name);
+        Task<List<SectionModel>> GetSectionAsync(string name);
     }
 }

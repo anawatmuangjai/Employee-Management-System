@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace EMS.ApplicationCore.Services
 {
-    public class EmployeeDetailService : IEmployeeDetailService
+    public class EmployeeAddressService : IEmployeeAddressService
     {
         private readonly IAsyncRepository<EmployeeAddress> _employeeRepository;
 
-        public EmployeeDetailService(IAsyncRepository<EmployeeAddress> employeeRepository)
+        public EmployeeAddressService(IAsyncRepository<EmployeeAddress> employeeRepository)
         {
             _employeeRepository = employeeRepository;
         }
