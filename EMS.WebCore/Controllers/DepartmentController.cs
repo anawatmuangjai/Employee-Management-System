@@ -61,5 +61,17 @@ namespace EMS.WebCore.Controllers
 
             return View();
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var department = await _departmentService.GetByIdAsync(id);
+
+            if (department != null)
+            {
+                await _departmentService.DeleteAsync(department);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
