@@ -8,7 +8,7 @@
 
     <div class="content-inner">
 
-        <h2>Register New Employee</h2>
+        <h3>Register New Employee</h3>
 
         <hr />
 
@@ -37,6 +37,73 @@
                     <span asp-validation-for="CardId" class="text-danger"></span>
                 </div>
             </div>
+
+            <div class="form-group">
+                <label asp-for="Password" class="control-label col-sm-2">Password</label>
+                <div class="col-sm-10">
+                    <input asp-for="Password" class="form-control" placeholder="Password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
+
+            <hr />
+            <h3>Employee Information</h3>
+
+            <div class="form-group">
+                <label asp-for="EmployeeType" class="control-label col-sm-2">Employee Type</label>
+                <div class="col-sm-10">
+                    <select asp-for="EmployeeType" class="form-control">
+                        <option value=""></option>
+                        <option value="EM">Employee</option>
+                        <option value="SD">Student Internship</option>
+                        <option value="SU">Sub Contract</option>
+                    </select>
+                    <span asp-validation-for="EmployeeType" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="JobTitleId" class="control-label col-sm-2">Job Title</label>
+                <div class="col-sm-10">
+                    <select asp-for="JobTitleId" asp-items="@Model.JobTitles" class="form-control"></select>
+                    <span asp-validation-for="JobTitleId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="LevelId" class="control-label col-sm-2">Level</label>
+                <div class="col-sm-10">
+                    <select asp-for="LevelId" asp-items="@Model.Levels" class="form-control"></select>
+                    <span asp-validation-for="LevelId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DepartmentId" class="control-label col-sm-2">Department</label>
+                <div class="col-sm-10">
+                    <select asp-for="DepartmentId" asp-items="@Model.Departments" class="form-control"></select>
+                    <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SectionId" class="control-label col-sm-2">Section</label>
+                <div class="col-sm-10">
+                    <select asp-for="SectionId" asp-items="@Model.Sections" class="form-control"></select>
+                    <span asp-validation-for="SectionId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ShiftId" class="control-label col-sm-2">Shift</label>
+                <div class="col-sm-10">
+                    <select asp-for="ShiftId" asp-items="@Model.Shifts" class="form-control"></select>
+                    <span asp-validation-for="ShiftId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <hr />
+            <h3>Personal Information</h3>
 
             <div class="form-group">
                 <label asp-for="Title" class="control-label col-sm-2">Title</label>
@@ -80,6 +147,57 @@
                 <div class="col-sm-10">
                     <input asp-for="LastNameThai" class="form-control" placeholder="Last Name (Thai)" />
                     <span asp-validation-for="LastNameThai" class="text-danger"></span>
+                </div>
+            </div>
+
+            <hr />
+            <h3>Address Information</h3>
+
+            <div class="form-group">
+                <label asp-for="HomeAddress" class="control-label col-sm-2">Home Address</label>
+                <div class="col-sm-10">
+                    <input asp-for="HomeAddress" class="form-control" placeholder="Home Address" />
+                    <span asp-validation-for="HomeAddress" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Country" class="control-label col-sm-2">Country</label>
+                <div class="col-sm-10">
+                    <input asp-for="Country" class="form-control" placeholder="Country" />
+                    <span asp-validation-for="Country" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="City" class="control-label col-sm-2">City</label>
+                <div class="col-sm-10">
+                    <input asp-for="City" class="form-control" placeholder="City" />
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PostalCode" class="control-label col-sm-2">Postal Code</label>
+                <div class="col-sm-10">
+                    <input asp-for="PostalCode" class="form-control" placeholder="Postal Code" />
+                    <span asp-validation-for="PostalCode" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label col-sm-2">Phone Number</label>
+                <div class="col-sm-10">
+                    <input asp-for="PhoneNumber" class="form-control" placeholder="Phone Number" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EmailAddress" class="control-label col-sm-2">Email Address</label>
+                <div class="col-sm-10">
+                    <input asp-for="EmailAddress" class="form-control" placeholder="Email Address" />
+                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
                 </div>
             </div>
 

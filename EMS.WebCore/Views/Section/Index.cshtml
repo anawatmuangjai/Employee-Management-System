@@ -1,0 +1,47 @@
+﻿@model SectionViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- content -->
+<div id="content">
+
+    <div class="content-inner">
+
+        <div class="row">
+            <div class="col-sm-10">
+                <h2>Section List</h2>
+            </div>
+            <div class="col-sm-2">
+                <a asp-action="Create" class="btn btn-primary pull-right">New Section</a>
+            </div>
+        </div>
+
+        @if (Model.Sections.Any())
+        {
+            <div class="row">
+
+                <div class="content-inner">
+                    <table class="table table-bordered table-responsive table-hover">
+                        <tr>
+                            <th>Section ID</th>
+                            <th>Section Name</th>
+                            <th>Section Code</th>
+                        </tr>
+                        @foreach (var s in Model.Sections)
+                        {
+
+                            <tr>
+                                <td>@s.SectionId</td>
+                                <td>@s.SectionName</td>
+                                <td>@s.SectionCode</td>
+                            </tr>
+
+                        }
+                    </table>
+                </div>
+            </div>
+        }
+    </div>
+</div>
