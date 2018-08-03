@@ -1,6 +1,7 @@
 ﻿<div class="col-md-2 hidden-xs display-table-cell valign-top" id="side-menu">
-    <h1 class="hidden-xs hidden-sm">Navigation</h1>
+    <h1 class="hidden-xs hidden-sm">EMS</h1>
     <ul>
+        <!-- dashboard -->
         <li class="link active">
             <a asp-area="" asp-controller="Employee" asp-action="Index">
                 <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
@@ -8,6 +9,7 @@
             </a>
         </li>
 
+        <!-- employee -->
         <li class="link">
             <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post">
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
@@ -20,9 +22,10 @@
             </ul>
         </li>
 
+        <!-- attendance -->
         <li class="link">
             <a href="#collapse-attendance" data-toggle="collapse" aria-controls="collapse-attendance">
-                <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
                 <span class="hidden-sm hidden-xs">Attendance</span>
             </a>
             <ul class="collapse collapseable" id="collapse-attendance">
@@ -41,6 +44,56 @@
             </ul>
         </li>
 
+        <!-- monitoring -->
+        <li class="link">
+            <a href="#collapse-monitoring" data-toggle="collapse" aria-controls="collapse-monitoring">
+                <span class="glyphicon  glyphicon-flag" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Monitoring</span>
+            </a>
+            <ul class="collapse collapseable" id="collapse-monitoring">
+                <li><a asp-area="" asp-controller="Department" asp-action="Index">Map View</a></li>
+                <li><a asp-area="" asp-controller="Section" asp-action="Index">Skill Mapping</a></li>
+            </ul>
+        </li>
+
+        <!-- allocation -->
+        <li class="link">
+            <a href="#collapse-allocation" data-toggle="collapse" aria-controls="collapse-allocation">
+                <span class="glyphicon  glyphicon-random" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Allocation</span>
+            </a>
+            <ul class="collapse collapseable" id="collapse-allocation">
+                <li><a asp-area="" asp-controller="Department" asp-action="Index">Allocate</a></li>
+                <li><a asp-area="" asp-controller="Section" asp-action="Index">Skill Mapping</a></li>
+            </ul>
+        </li>
+
+        <!-- training record-->
+        <li class="link">
+            <a href="#collapse-training" data-toggle="collapse" aria-controls="collapse-training">
+                <span class="glyphicon  glyphicon-leaf" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Training Records</span>
+            </a>
+            <ul class="collapse collapseable" id="collapse-training">
+                <li><a asp-area="" asp-controller="Department" asp-action="Index">Training Course</a></li>
+                <li><a asp-area="" asp-controller="Section" asp-action="Index">Training History</a></li>
+            </ul>
+        </li>
+
+        <!-- skill -->
+        <li class="link">
+            <a href="#collapse-skill" data-toggle="collapse" aria-controls="collapse-skill">
+                <span class="glyphicon  glyphicon-star" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Operation Skill</span>
+            </a>
+            <ul class="collapse collapseable" id="collapse-skill">
+                <li><a asp-area="" asp-controller="Department" asp-action="Index">Skill List</a></li>
+                <li><a asp-area="" asp-controller="Section" asp-action="Index">Skill Group</a></li>
+                <li><a asp-area="" asp-controller="Section" asp-action="Index">Skill Level</a></li>
+            </ul>
+        </li>
+
+        <!-- organization -->
         <li class="link">
             <a href="#collapse-organize" data-toggle="collapse" aria-controls="collapse-organize">
                 <span class="glyphicon  glyphicon-list" aria-hidden="true"></span>
@@ -49,11 +102,24 @@
             <ul class="collapse collapseable" id="collapse-organize">
                 <li><a asp-area="" asp-controller="Department" asp-action="Index">Department</a></li>
                 <li><a asp-area="" asp-controller="Section" asp-action="Index">Section</a></li>
-                <li><a asp-area="" asp-controller="Job" asp-action="Index">Job Information</a></li>
+                <li><a asp-area="" asp-controller="Job" asp-action="Index">Job Title</a></li>
+                <li><a asp-area="" asp-controller="Job" asp-action="JobFunction">Job Function</a></li>
                 <li><a asp-area="" asp-controller="Level" asp-action="Index">Level</a></li>
             </ul>
         </li>
 
+        <!-- transportation -->
+        <li class="link">
+            <a href="#collapse-transport" data-toggle="collapse" aria-controls="collapse-transport">
+                <span class="glyphicon  glyphicon-plane" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Transportation</span>
+            </a>
+            <ul class="collapse collapseable" id="collapse-transport">
+                <li><a asp-area="" asp-controller="BusStation" asp-action="Index">Bus Station</a></li>
+            </ul>
+        </li>
+
+        <!-- transportation -->
         <li class="link setting-btn">
             <a asp-area="" asp-controller="Setting" asp-action="Index">
                 <span class="glyphicon  glyphicon-cog" aria-hidden="true"></span>

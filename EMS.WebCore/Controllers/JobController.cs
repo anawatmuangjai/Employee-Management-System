@@ -30,5 +30,17 @@ namespace EMS.WebCore.Controllers
 
             return View(viewModel);
         }
+
+        public async Task<IActionResult> JobFunction()
+        {
+            var jobFunctions = await _jobFunctionService.GetAllAsync();
+
+            var viewModel = new JobViewModel
+            {
+                JobFunctions = jobFunctions
+            };
+
+            return View(viewModel);
+        }
     }
 }

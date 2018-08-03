@@ -1,0 +1,42 @@
+﻿@model CreateBusStationViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<section>
+    <div id="content">
+        <div class="container-fluid content-inner">
+
+            <h2>Add New Bus Station</h2>
+
+            <hr />
+
+            <form asp-action="Create" method="post" class="form-horizontal" role="form">
+
+                <div class="form-group">
+                    <label asp-for="BusStationRoute" class="control-label col-sm-2">Route Name</label>
+                    <div class="col-sm-10">
+                        <input asp-for="BusStationRoute" class="form-control" placeholder="Route Name" />
+                        <span asp-validation-for="BusStationRoute" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="BusStationName" class="control-label col-sm-2">Station Name</label>
+                    <div class="col-sm-10">
+                        <input asp-for="BusStationName" class="form-control" placeholder="Station Name" />
+                        <span asp-validation-for="BusStationName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary pull-left">Save</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>

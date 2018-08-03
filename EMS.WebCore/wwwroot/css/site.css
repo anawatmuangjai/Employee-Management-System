@@ -52,7 +52,7 @@
 }
 
 #side-menu h1 {
-    color: #1f3647;
+    color: #fff;
     text-align: center;
     margin: 10px 0px;
     font-size: 25px;
@@ -257,4 +257,8 @@
 
 .content-inner {
     padding: 20px;
+}
+
+.table > tbody > tr > td {
+    text-align: center;
 }

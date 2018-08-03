@@ -7,6 +7,8 @@ using EMS.ApplicationCore.Interfaces.Services;
 using EMS.ApplicationCore.Services;
 using EMS.Persistance.Context;
 using EMS.Persistance.Repositories;
+using EMS.WebCore.Interfaces;
+using EMS.WebCore.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -40,9 +42,13 @@ namespace EMS.WebCore
             services.AddScoped<ISectionService, SectionService>();
             services.AddScoped<IJobService, JobService>();
             services.AddScoped<IJobFunctionService, JobFunctionService>();
+            services.AddScoped<IShiftService, ShiftService>();
             services.AddScoped<IEmployeeLevelService, EmployeeLevelService>();
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IEmployeeListService, EmployeeListService>();
+            services.AddScoped<IBusStationService, BusStationService>();
+
+            services.AddScoped<IEmployeeRegisterService, EmployeeRegisterService>();
 
             services.AddMvc();
         }
