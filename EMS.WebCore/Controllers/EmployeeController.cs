@@ -9,11 +9,13 @@ using EMS.ApplicationCore.Models;
 using EMS.Domain.Entities;
 using EMS.WebCore.Interfaces;
 using EMS.WebCore.ViewModels.Employee;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EMS.WebCore.Controllers
 {
+    [Authorize]
     public class EmployeeController : Controller
     {
         private readonly IEmployeeListService _employeeListService;

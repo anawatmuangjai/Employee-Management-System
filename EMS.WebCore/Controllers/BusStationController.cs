@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using EMS.ApplicationCore.Interfaces.Services;
 using EMS.ApplicationCore.Models;
 using EMS.WebCore.ViewModels.BusStation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EMS.WebCore.Controllers
 {
+    [Authorize]
     public class BusStationController : Controller
     {
         private readonly IBusStationService _busStationService;

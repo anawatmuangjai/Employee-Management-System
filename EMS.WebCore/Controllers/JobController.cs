@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using EMS.ApplicationCore.Interfaces.Services;
 using EMS.WebCore.ViewModels.Job;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EMS.WebCore.Controllers
 {
+    [Authorize]
     public class JobController : Controller
     {
         private readonly IJobService _jobService;

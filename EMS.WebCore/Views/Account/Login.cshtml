@@ -1,15 +1,35 @@
-﻿
+﻿@model LoginViewModel
+
 @{
-    Layout = null;
+    ViewData["Title"] = "Login";
+    Layout = "/Views/Shared/_LayoutHome.cshtml";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
-</head>
-<body>
-</body>
-</html>
+<div class="container-fluid">
+    <div class="jumbotron">
+        <div class="container text-center">
+            <h2>Sign in with your credentials</h2>
+        </div>
+    </div>
+    <div class="container">
+
+        @if (!ViewContext.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">
+                <div asp-validation-summary="All"></div>
+            </div>
+        }
+
+        <form asp-action="Login" method="post" class="form-signin">
+            <label asp-for="UserName" class="sr-only">Email address</label>
+            <input asp-for="UserName" type="text" class="form-control" placeholder="Username" required autofocus>
+            <label asp-for="Password" class="sr-only">Password</label>
+            <input asp-for="Password" type="password" class="form-control" placeholder="Password" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+
+    </div>
+</div>
+
+

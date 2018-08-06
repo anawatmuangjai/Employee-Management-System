@@ -9,6 +9,7 @@ using EMS.Persistance.Context;
 using EMS.Persistance.Repositories;
 using EMS.WebCore.Interfaces;
 using EMS.WebCore.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +32,12 @@ namespace EMS.WebCore
         {
             services.AddDbContext<EmployeeContext>(c =>
                 c.UseSqlServer(Configuration.GetConnectionString("EmployeeConnection")));
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(option =>
+                {
+                    option.LoginPath = "/Account/Login";
+                });
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(IAsyncRepository<>), typeof(Repository<>));
@@ -65,6 +72,8 @@ namespace EMS.WebCore
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            app.UseAuthentication();
 
             app.UseStaticFiles();
 

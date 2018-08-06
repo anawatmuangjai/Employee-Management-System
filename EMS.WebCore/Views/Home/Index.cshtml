@@ -1,5 +1,13 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = "/Views/Shared/_LayoutHome.cshtml";
 }
 
-<h1>Home</h1>
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+    <div class="container text-center">
+        <h2>Employee Managements</h2>
+        <p>Automotive Auto Mount Department.</p>
+        <p><a class="btn btn-primary btn-lg" asp-controller="Account" asp-action="Login" role="button">Sign In &raquo;</a></p>
+    </div>
+</div>

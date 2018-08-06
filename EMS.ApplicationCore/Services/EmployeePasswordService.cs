@@ -18,9 +18,14 @@ namespace EMS.ApplicationCore.Services
             _repository = repository;
         }
 
-        public Task<EmployeePasswordModel> GetByEmployeeId(string employeeId)
+        public async Task<EmployeePasswordModel> GetByEmployeeId(string employeeId)
         {
-            throw new NotImplementedException();
+            var entity = await _repository.GetSingleAsync(x => x.EmployeeId == employeeId);
+
+            if (entity == null)
+                return null;
+
+            return MappingEntityAndModel(entity);
         }
 
         public async Task<EmployeePasswordModel> AddAsync(EmployeePasswordModel model)
