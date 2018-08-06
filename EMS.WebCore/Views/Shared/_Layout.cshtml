@@ -8,63 +8,200 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
-        <link rel="stylesheet" href="~/css/register.css" />
+        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
     </environment>
     <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/css/register.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
     </environment>
 </head>
 <body>
 
-    <div class="container-fluid display-table">
-        <div class="row display-table-row">
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">EMS</a>
+        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="#">Sign out</a>
+            </li>
+        </ul>
+    </nav>
 
-            <!-- side menu -->
-            @Html.Partial("_SideMenu")
+    <div class="container-fluid">
+        <div class="row">
 
-            <!-- main content area-->
-            <div class="col-md-10 display-table-cell valign-top">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar" id="side-menu">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <!-- dashboard -->
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-controller="Employee" asp-action="Index">
+                                <span><i class="fa fa-th text-white fa-lg mr-3"></i></span>
+                                Dashboard <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <!-- employee -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#collapse-employee" data-toggle="collapse" aria-controls="collapse-employee">
+                                <span><i class="fa fa-user-circle text-white fa-lg mr-3"></i></span>
+                                <span>Employee</span>
+                            </a>
+                            <ul class="collapse collapseable" id="collapse-employee">
+                                <li><a asp-area="" asp-controller="Employee" asp-action="Register">New Employee</a></li>
+                                <li><a asp-area="" asp-controller="Employee" asp-action="EmployeeList">Employee List</a></li>
+                            </ul>
+                        </li>
+                        <!-- attendance -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#collapse-attendance" data-toggle="collapse" aria-controls="collapse-attendance">
+                                <span><i class="fa fa-bar-chart fa-text-width fa-lg mr-3"></i></span>
+                                <span>Attendance</span>
+                            </a>
+                            <ul class="collapse collapseable" id="collapse-attendance">
+                                <li><a asp-area="" asp-controller="Employee" asp-action="Register">Active Work</a></li>
+                                <li><a asp-area="" asp-controller="Employee" asp-action="EmployeeList">Absent List</a></li>
+                            </ul>
+                        </li>
+                        <!-- monitoring -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#collapse-monitoring" data-toggle="collapse" aria-controls="collapse-monitoring">
+                                <span><i class="fa fa-tv text-white fa-lg mr-3"></i></span>
+                                Monitoring
+                            </a>
+                            <ul class="collapse collapseable" id="collapse-monitoring">
+                                <li><a asp-area="" asp-controller="Department" asp-action="Index">Map View</a></li>
+                                <li><a asp-area="" asp-controller="Section" asp-action="Index">Skill Mapping</a></li>
+                            </ul>
+                        </li>
+                        <!-- allocation -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#collapse-allocation" data-toggle="collapse" aria-controls="collapse-allocation">
+                                <span><i class="fa fa-map text-white fa-lg mr-3"></i></span>
+                                Allocation
+                            </a>
+                            <ul class="collapse collapseable" id="collapse-allocation">
+                                <li><a asp-area="" asp-controller="Department" asp-action="Index">Allocate</a></li>
+                                <li><a asp-area="" asp-controller="Section" asp-action="Index">Skill Mapping</a></li>
+                            </ul>
+                        </li>
+                        <!-- training record-->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#collapse-training" data-toggle="collapse" aria-controls="collapse-training">
+                                <span><i class="fa fa-list-alt text-white fa-lg mr-3"></i></span>
+                                Training Records
+                            </a>
+                            <ul class="collapse collapseable" id="collapse-training">
+                                <li><a asp-area="" asp-controller="Department" asp-action="Index">Training Course</a></li>
+                                <li><a asp-area="" asp-controller="Section" asp-action="Index">Training History</a></li>
+                            </ul>
+                        </li>
+                    </ul>
 
-                <!-- nav menu -->
-                @Html.Partial("_NavMenu")
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-white">
+                        <span>Configuration</span>
+                        <a class="d-flex align-items-center text-white" href="#">
+                            <span data-feather="plus-circle"></span>
+                        </a>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+                        <!-- organization -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#collapse-organize" data-toggle="collapse" aria-controls="collapse-organize">
+                                <span><i class="fa fa-database text-white fa-lg mr-3"></i></span>
+                                Organization
+                            </a>
+                            <ul class="collapse collapseable" id="collapse-organize">
+                                <li><a asp-area="" asp-controller="Department" asp-action="Index">Department</a></li>
+                                <li><a asp-area="" asp-controller="Section" asp-action="Index">Section</a></li>
+                                <li><a asp-area="" asp-controller="Job" asp-action="Index">Job Title</a></li>
+                                <li><a asp-area="" asp-controller="Job" asp-action="JobFunction">Job Function</a></li>
+                                <li><a asp-area="" asp-controller="Level" asp-action="Index">Level</a></li>
+                            </ul>
+                        </li>
+                        <!-- skill -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#collapse-skill" data-toggle="collapse" aria-controls="collapse-skill">
+                                <span><i class="fa fa-star text-white fa-lg mr-3"></i></span>
+                                Operation Skill
+                            </a>
+                            <ul class="collapse collapseable" id="collapse-skill">
+                                <li><a asp-area="" asp-controller="Department" asp-action="Index">Skill List</a></li>
+                                <li><a asp-area="" asp-controller="Section" asp-action="Index">Skill Group</a></li>
+                                <li><a asp-area="" asp-controller="Section" asp-action="Index">Skill Level</a></li>
+                            </ul>
+                        </li>
+                        <!-- transportation -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#collapse-transport" data-toggle="collapse" aria-controls="collapse-transport">
+                                <span><i class="fa fa-bus text-white fa-lg mr-3"></i></span>
+                                Transportation
+                            </a>
+                            <ul class="collapse collapseable" id="collapse-transport">
+                                <li><a asp-area="" asp-controller="BusStation" asp-action="Index">Bus Station</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
-                <!-- content -->
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                 @RenderBody()
+            </main>
 
-                <!-- footer -->
-                @Html.Partial("_Footer")
-
-            </div>
         </div>
     </div>
 
+    <!-- content -->
+    @*<div class="container-fluid display-table">
+            <div class="row display-table-row">
+
+                <!-- side menu -->
+                @Html.Partial("_SideMenu")
+
+                <!-- main content area-->
+                <div class="col-md-10 display-table-cell valign-top">
+
+                    <!-- nav menu -->
+                    @Html.Partial("_NavMenu")
+
+                    <!-- content -->
+                    @RenderBody()
+
+                    <!-- footer -->
+                    @Html.Partial("_Footer")
+
+                </div>
+            </div>
+        </div>*@
 
 
-        <environment include="Development">
-            <script src="~/lib/jquery/dist/jquery.js"></script>
-            <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-            <script src="~/js/site.js" asp-append-version="true"></script>
-        </environment>
-        <environment exclude="Development">
-            <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
-                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                    asp-fallback-test="window.jQuery"
-                    crossorigin="anonymous"
-                    integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
-            </script>
-            <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                    crossorigin="anonymous"
-                    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-            </script>
-            <script src="~/js/site.min.js" asp-append-version="true"></script>
-        </environment>
 
-        @RenderSection("Scripts", required: false)
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+                crossorigin="anonymous">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+                crossorigin="anonymous">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
