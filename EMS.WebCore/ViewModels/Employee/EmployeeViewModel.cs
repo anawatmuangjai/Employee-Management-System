@@ -8,6 +8,6 @@ namespace EMS.WebCore.ViewModels.Employee
 {
     public class EmployeeViewModel
     {
-        public IEnumerable<EmployeeListModel> Employees { get; set; }
+        public IEnumerable<EmployeeModel> Employees { get; set; }
     }
 }

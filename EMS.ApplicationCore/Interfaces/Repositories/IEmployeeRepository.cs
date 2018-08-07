@@ -8,6 +8,6 @@ namespace EMS.ApplicationCore.Interfaces.Repositories
 {
     public interface IEmployeeRepository
     {
-        Task<List<Employee>> GetEmployeeListAsync();
+        Task<List<Employee>> GetProfileAsync();
     }
 }

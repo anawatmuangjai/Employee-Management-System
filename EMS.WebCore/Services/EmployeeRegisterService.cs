@@ -1,11 +1,14 @@
 ﻿using EMS.ApplicationCore.Interfaces.Services;
 using EMS.ApplicationCore.Models;
 using EMS.WebCore.Interfaces;
+using EMS.WebCore.ViewModels.Account;
 using EMS.WebCore.ViewModels.Employee;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace EMS.WebCore.Services
@@ -18,13 +21,15 @@ namespace EMS.WebCore.Services
         private readonly IJobService _jobService;
         private readonly IEmployeeLevelService _levelService;
         private readonly IShiftService _shiftService;
+        private readonly IEmployeePasswordService _employeePassword;
 
         public EmployeeRegisterService(IEmployeeService employeeService,
             IDepartmentService departmentService,
             ISectionService sectionService,
             IJobService jobService,
             IEmployeeLevelService levelService,
-            IShiftService shiftService)
+            IShiftService shiftService,
+            IEmployeePasswordService employeePassword)
         {
             _employeeService = employeeService;
             _departmentService = departmentService;
@@ -32,6 +37,7 @@ namespace EMS.WebCore.Services
             _jobService = jobService;
             _levelService = levelService;
             _shiftService = shiftService;
+            _employeePassword = employeePassword;
         }
 
         public async Task<RegisterEmployeeViewModel> GetRegisterEmployeeViewModel()
@@ -43,6 +49,58 @@ namespace EMS.WebCore.Services
                 JobTitles = await GetJobTitles(),
                 Levels = await GetLevels(),
                 Shifts = await GetShifts()
+            };
+
+            return viewModel;
+        }
+
+        public async Task RegisterEmployee(RegisterViewModel viewModel)
+        {
+            byte[] passwordHash;
+            byte[] passwordSalt;
+
+            CreatePassword(viewModel.Password, out passwordHash, out passwordSalt);
+
+            var employee = new EmployeeModel
+            {
+                EmployeeId = viewModel.EmployeeId,
+                GlobalId = viewModel.GlobalId,
+                CardId = viewModel.CardId,
+                EmployeeType = viewModel.EmployeeType,
+                Title = viewModel.Title,
+                FirstName = viewModel.FirstName,
+                LastName = viewModel.LastName,
+                FirstNameThai = viewModel.FirstNameThai,
+                LastNameThai = viewModel.LastNameThai,
+                Gender = viewModel.Gender,
+                BirthDate = viewModel.BirthDate,
+                HireDate = viewModel.HireDate,
+                AvailableFlag = true,
+                ChangedDate = DateTime.Now,
+            };
+
+            employee = await _employeeService.AddAsync(employee);
+
+            if (employee != null)
+            {
+                var employeePassword = new EmployeePasswordModel
+                {
+                    EmployeeId = employee.EmployeeId,
+                    PasswordHash = passwordHash,
+                    PasswordSalt = passwordSalt,
+                    ChangedDate = DateTime.Now
+                };
+
+                await _employeePassword.AddAsync(employeePassword);
+            }
+
+        }
+
+        public async Task<RegisterViewModel> GetRegisterViewModel()
+        {
+            var viewModel = new RegisterViewModel
+            {
+
             };
 
             return viewModel;
@@ -190,5 +248,37 @@ namespace EMS.WebCore.Services
 
             return item;
         }
+
+        public async Task<bool> Exists(string employeeId)
+        {
+            return await _employeeService.Exists(employeeId);
+        }
+
+        private void CreatePassword(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            using (var hmac = new HMACSHA512())
+            {
+                passwordSalt = hmac.Key;
+                passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+            }
+        }
+
+        private bool VerifyPassword(string password, byte[] passwordHash, byte[] passwordSalt)
+        {
+            using (var hmac = new HMACSHA512(passwordSalt))
+            {
+                var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+
+                for (int i = 0; i < computedHash.Length; i++)
+                {
+                    if (computedHash[i] != passwordHash[i])
+                        return false;
+                }
+            }
+
+            return true;
+        }
+
+
     }
 }

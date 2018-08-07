@@ -31,6 +31,17 @@ namespace EMS.ApplicationCore.Services
             return MappingEmployeeModels(employees);
         }
 
+        public async Task<EmployeeModel> GetByEmployeeIdAsync(string employeeId)
+        {
+            var employees = await _employeeRepository.GetSingleAsync(x => x.EmployeeId == employeeId);
+            return MappingEmployeeModel(employees);
+        }
+
+        public async Task<bool> Exists(string employeeId)
+        {
+            return await _employeeRepository.ExistsAsync(x => x.EmployeeId == employeeId);
+        }
+
         public async Task<EmployeeModel> AddAsync(EmployeeModel model)
         {
             var entity = new Employee

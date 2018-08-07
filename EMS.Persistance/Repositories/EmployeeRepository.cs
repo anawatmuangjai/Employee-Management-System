@@ -16,7 +16,7 @@ namespace EMS.Persistance.Repositories
         {
         }
 
-        public async Task<List<Employee>> GetEmployeeListAsync()
+        public async Task<List<Employee>> GetProfileAsync()
         {
             var result = await _dbContext.Employee
                 .Include(image => image.EmployeeImage)

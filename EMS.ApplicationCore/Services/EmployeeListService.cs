@@ -20,7 +20,7 @@ namespace EMS.ApplicationCore.Services
 
         public async Task<List<EmployeeListModel>> GetAllAsync()
         {
-            var entities = await _employeeRepository.GetEmployeeListAsync();
+            var entities = await _employeeRepository.GetProfileAsync();
 
             var result = entities.Select(x => new EmployeeListModel
             {

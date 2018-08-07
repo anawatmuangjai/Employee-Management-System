@@ -127,6 +127,9 @@ namespace EMS.Persistance.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-
+        public async Task<bool> ExistsAsync(Expression<Func<T, bool>> filter)
+        {
+            return await _dbContext.Set<T>().AnyAsync(filter);
+        }
     }
 }

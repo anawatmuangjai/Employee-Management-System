@@ -6,30 +6,26 @@
 }
 
 
-<div class="container-fluid">
-    <div class="jumbotron">
-        <div class="container text-center">
-            <h2>Sign in with your credentials</h2>
-        </div>
-    </div>
-    <div class="container">
+<div class="row">
+    <div class="col-md-8 mx-auto my-5">
 
-        @if (!ViewContext.ModelState.IsValid)
-        {
-            <div class="alert alert-danger">
-                <div asp-validation-summary="All"></div>
+        <div class="card text-center">
+            <div class="card-header">
+                <h1 class="h3 font-weight-normal">Sign in with your credentials</h1>
             </div>
-        }
+            <div class="card-body">
+                <form asp-action="Login" method="post" class="form-signin">
 
-        <form asp-action="Login" method="post" class="form-signin">
-            <label asp-for="UserName" class="sr-only">Email address</label>
-            <input asp-for="UserName" type="text" class="form-control" placeholder="Username" required autofocus>
-            <label asp-for="Password" class="sr-only">Password</label>
-            <input asp-for="Password" type="password" class="form-control" placeholder="Password" required>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        </form>
+                    <label asp-for="UserName" class="sr-only">Employee ID</label>
+                    <input asp-for="UserName" type="text" class="form-control mb-4" placeholder="Employee ID" required="" autofocus="">
+                    <label asp-for="Password" class="sr-only">Password</label>
+                    <input asp-for="Password" type="password" class="form-control mb-4" placeholder="Password" required="">
+
+                    <button class="btn btn-lg btn-primary btn-block mb-4" type="submit">Sign in</button>
+                    <a class="mt-5 mb-3 text-muted" href="#">Forgot Password - Tel 2960</a>
+                </form>
+            </div>
+        </div>
 
     </div>
 </div>
-
-

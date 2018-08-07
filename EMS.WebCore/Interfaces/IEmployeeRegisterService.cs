@@ -1,4 +1,5 @@
-﻿using EMS.WebCore.ViewModels.Employee;
+﻿using EMS.WebCore.ViewModels.Account;
+using EMS.WebCore.ViewModels.Employee;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,11 @@ namespace EMS.WebCore.Interfaces
     {
         Task<RegisterEmployeeViewModel> GetRegisterEmployeeViewModel();
         Task CreateEmployee(RegisterEmployeeViewModel viewModel);
+
+        Task<RegisterViewModel> GetRegisterViewModel();
+        Task RegisterEmployee(RegisterViewModel viewModel);
+
+        Task<bool> Exists(string employeeId);
         Task<IEnumerable<SelectListItem>> GetJobTitles();
         Task<IEnumerable<SelectListItem>> GetLevels();
         Task<IEnumerable<SelectListItem>> GetDepartments();

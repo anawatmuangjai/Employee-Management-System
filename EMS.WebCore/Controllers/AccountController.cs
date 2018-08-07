@@ -1,4 +1,6 @@
 ﻿using EMS.ApplicationCore.Interfaces.Services;
+using EMS.ApplicationCore.Models;
+using EMS.WebCore.Interfaces;
 using EMS.WebCore.ViewModels.Account;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -14,10 +16,13 @@ namespace EMS.WebCore.Controllers
     public class AccountController : Controller
     {
         private readonly IEmployeePasswordService _passwordService;
+        private readonly IEmployeeRegisterService _registerService;
 
-        public AccountController(IEmployeePasswordService passwordService)
+        public AccountController(IEmployeePasswordService passwordService,
+            IEmployeeRegisterService registerService)
         {
             _passwordService = passwordService;
+            _registerService = registerService;
         }
 
         [HttpGet]
@@ -53,6 +58,36 @@ namespace EMS.WebCore.Controllers
 
             ModelState.AddModelError("", "User name or password not found");
             return View(loginViewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Register()
+        {
+            var viewModel = await _registerService.GetRegisterViewModel();
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                registerViewModel.EmployeeId = registerViewModel.EmployeeId.ToLower();
+
+                if (await _registerService.Exists(registerViewModel.EmployeeId))
+                {
+                    ModelState.AddModelError("", "Username already exists");
+                    return View();
+                }
+
+                await _registerService.RegisterEmployee(registerViewModel);
+
+                return RedirectToAction(nameof(Login));
+            }
+
+            return View();
         }
 
         [HttpGet]

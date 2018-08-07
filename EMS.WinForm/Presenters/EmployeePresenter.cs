@@ -117,9 +117,9 @@ namespace EMS.WinForm.Presenters
             var employeePassword = new EmployeePasswordModel
             {
                 EmployeeId = employee.EmployeeId,
-                PasswordHash = "HashTest",
-                PasswordSalt = "SaltTest",
-                ChangedDate = _view.ChangedDate
+                ChangedDate = _view.ChangedDate,
+                //PasswordHash = "HashTest",
+                //PasswordSalt = "SaltTest",
             };
 
             employeePassword = await _employeePasswordService.AddAsync(employeePassword);

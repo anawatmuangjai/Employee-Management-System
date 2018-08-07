@@ -18,14 +18,14 @@ namespace EMS.WebCore.Controllers
     [Authorize]
     public class EmployeeController : Controller
     {
-        private readonly IEmployeeListService _employeeListService;
         private readonly IEmployeeRegisterService _registerService;
+        private readonly IEmployeeViewModelService _employeeViewModelService;
 
-        public EmployeeController(IEmployeeListService employeeListService,
-            IEmployeeRegisterService registerService)
+        public EmployeeController(IEmployeeRegisterService registerService,
+            IEmployeeViewModelService profileService)
         {
-            _employeeListService = employeeListService;
             _registerService = registerService;
+            _employeeViewModelService = profileService;
         }
 
         public IActionResult Index()
@@ -47,7 +47,6 @@ namespace EMS.WebCore.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 await _registerService.CreateEmployee(model);
 
                 return RedirectToAction(nameof(EmployeeList));
@@ -56,14 +55,18 @@ namespace EMS.WebCore.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Profile(string employeeId)
+        {
+            var viewModel = await _employeeViewModelService.GetEmployeeProfile(employeeId);
+
+            return View(viewModel);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> EmployeeList()
         {
-            var employees = await _employeeListService.GetAllAsync();
-
-            var viewModel = new EmployeeViewModel
-            {
-                Employees = employees
-            };
+            var viewModel = await _employeeViewModelService.GetEmployeeList();
 
             return View(viewModel);
         }

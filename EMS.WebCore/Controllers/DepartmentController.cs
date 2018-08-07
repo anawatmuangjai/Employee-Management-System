@@ -23,6 +23,7 @@ namespace EMS.WebCore.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var departments = await _departmentService.GetAllAsync();

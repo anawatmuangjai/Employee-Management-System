@@ -10,6 +10,8 @@ namespace EMS.ApplicationCore.Interfaces.Services
     {
         Task<List<EmployeeModel>> GetAllAsync();
         Task<List<EmployeeModel>> GetByNameAsync(string name);
+        Task<EmployeeModel> GetByEmployeeIdAsync(string employeeId);
+        Task<bool> Exists(string employeeId);
         Task<EmployeeModel> AddAsync(EmployeeModel model);
         Task UpdateAsync(EmployeeModel model);
         Task DeleteAsync(int id);

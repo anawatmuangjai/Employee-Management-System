@@ -5,43 +5,56 @@
 }
 
 <!-- content -->
-<div id="content">
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+    <h1 class="h2">Employee List</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">
+            <button class="btn btn-sm btn-outline-secondary">Share</button>
+            <button class="btn btn-sm btn-outline-secondary">Export</button>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar"></span>
+            This week
+        </button>
+    </div>
+</div>
 
-    <h3><b>Employee List</b></h3>
-
-    <div class="content-inner">
-        @if (Model.Employees.Any())
-        {
-            <div class="row">
-
-                <table class="table table-bordered table-responsive table-hover">
+@if (Model.Employees.Any())
+{
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped table-bordered table-hover table-sm">
+                <thead>
                     <tr>
+                        <th>Type</th>
                         <th>Employee ID</th>
+                        <th>Global ID</th>
                         <th>Name (English)</th>
                         <th>Name (Thai)</th>
-                        <th>Job Title</th>
-                        <th>Department</th>
+                        <th>Hire Date</th>
                         <th>Profile</th>
                     </tr>
+                </thead>
+                <tbody>
                     @foreach (var e in Model.Employees)
                     {
 
                         <tr>
+                            <td>@e.EmployeeType</td>
                             <td>@e.EmployeeId</td>
+                            <td>@e.GlobalId</td>
                             <td>@e.Title @e.FirstName @e.LastName</td>
                             <td>@e.FirstNameThai @e.LastNameThai</td>
-                            <td>@e.JobTitle</td>
-                            <td>@e.DepartmentName</td>
-                            <td><button type="submit" class="btn btn-primary pull-right">View</button></td>
+                            <td>@e.HireDate</td>
+                            <td class="text-center">
+                                <a asp-action="Profile" asp-route-employeeId="@e.EmployeeId" class="btn btn-success btn-sm">View</a>
+                            </td>
                         </tr>
 
                     }
-                </table>
-
-            </div>
-
-        }
+                </tbody>
+            </table>
+        </div>
     </div>
-
-</div>
+}
 

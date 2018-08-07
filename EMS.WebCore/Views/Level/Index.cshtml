@@ -5,29 +5,38 @@
 }
 
 <!-- content -->
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+    <h1 class="h2">Level Configuration</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">
+            <a class="btn btn-sm btn-outline-secondary" asp-action="Create">Create</a>
+            <button class="btn btn-sm btn-outline-secondary">Share</button>
+            <button class="btn btn-sm btn-outline-secondary">Export</button>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar"></span>
+            This week
+        </button>
+    </div>
+</div>
 
 @if (Model.EmployeeLevels.Any())
 {
-    <div class="row">
+    <table class="table table-striped table-bordered table-hover">
+        <tr>
+            <th>Level ID</th>
+            <th>Level Name</th>
+            <th>Level Code</th>
+        </tr>
+        @foreach (var lv in Model.EmployeeLevels)
+        {
 
-        <div class="content-inner">
-            <table class="table table-bordered table-responsive table-hover">
-                <tr>
-                    <th>Level ID</th>
-                    <th>Level Name</th>
-                    <th>Level Code</th>
-                </tr>
-                @foreach (var lv in Model.EmployeeLevels)
-                {
+            <tr>
+                <td>@lv.LevelId</td>
+                <td>@lv.LevelName</td>
+                <td>@lv.LevelCode</td>
+            </tr>
 
-                    <tr>
-                        <td>@lv.LevelId</td>
-                        <td>@lv.LevelName</td>
-                        <td>@lv.LevelCode</td>
-                    </tr>
-
-                }
-            </table>
-        </div>
-    </div>
+        }
+    </table>
 }
