@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,6 +18,7 @@ namespace EMS.WebCore.ViewModels.Employee
         public string FirstNameThai { get; set; }
         public string LastNameThai { get; set; }
         public string Gender { get; set; }
+        public int Age { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTime HireDate { get; set; }
         public DateTime ChangedDate { get; set; }

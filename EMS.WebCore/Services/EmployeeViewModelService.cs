@@ -45,12 +45,21 @@ namespace EMS.WebCore.Services
                 FirstNameThai = employee.FirstNameThai,
                 LastNameThai = employee.LastNameThai,
                 Gender = employee.Gender,
+                Age = CalculateAge(employee.BirthDate),
                 BirthDate = employee.BirthDate,
                 HireDate = employee.HireDate,
                 ChangedDate = employee.ChangedDate,
             };
 
             return viewModel;
+        }
+
+        private int CalculateAge(DateTime birthDate)
+        {
+            var today = DateTime.Today;
+            var age = today.Year - birthDate.Year;
+            if (birthDate > today.AddYears(-age)) age--;
+            return age;
         }
     }
 }

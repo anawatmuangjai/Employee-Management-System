@@ -24,7 +24,7 @@
     <div class="row">
         <div class="col">
             <table class="table table-striped table-bordered table-hover table-sm">
-                <thead>
+                <thead class="bg-dark text-white">
                     <tr>
                         <th>Type</th>
                         <th>Employee ID</th>
@@ -43,9 +43,9 @@
                             <td>@e.EmployeeType</td>
                             <td>@e.EmployeeId</td>
                             <td>@e.GlobalId</td>
-                            <td>@e.Title @e.FirstName @e.LastName</td>
+                            <td>@e.Title. @e.FirstName @e.LastName</td>
                             <td>@e.FirstNameThai @e.LastNameThai</td>
-                            <td>@e.HireDate</td>
+                            <td>@e.HireDate.Date.ToString("yyyy-MM-dd")</td>
                             <td class="text-center">
                                 <a asp-action="Profile" asp-route-employeeId="@e.EmployeeId" class="btn btn-success btn-sm">View</a>
                             </td>
