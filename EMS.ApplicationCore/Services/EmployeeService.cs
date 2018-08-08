@@ -129,6 +129,7 @@ namespace EMS.ApplicationCore.Services
                 LastNameThai = employee.LastNameThai,
                 Gender = employee.Gender,
                 AvailableFlag = employee.AvailableFlag,
+                BirthDate = employee.BirthDate,
                 HireDate = employee.HireDate,
                 ChangedDate = employee.ChangedDate,
             };

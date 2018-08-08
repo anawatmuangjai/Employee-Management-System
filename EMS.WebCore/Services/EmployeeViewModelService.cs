@@ -47,8 +47,7 @@ namespace EMS.WebCore.Services
                 Gender = employee.Gender,
                 Age = CalculateAge(employee.BirthDate),
                 BirthDate = employee.BirthDate,
-                HireDate = employee.HireDate,
-                ChangedDate = employee.ChangedDate,
+                HireDate = employee.HireDate
             };
 
             return viewModel;

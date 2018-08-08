@@ -13,9 +13,6 @@
                 <a href="" data-target="#profile" data-toggle="tab" class="nav-link active" aria-expanded="true">Profile</a>
             </li>
             <li class="nav-item">
-                <a href="" data-target="#messages" data-toggle="tab" class="nav-link" aria-expanded="false">Messages</a>
-            </li>
-            <li class="nav-item">
                 <a href="" data-target="#edit" data-toggle="tab" class="nav-link" aria-expanded="false">Edit</a>
             </li>
             <li class="nav-item">
@@ -23,6 +20,9 @@
             </li>
             <li class="nav-item">
                 <a href="" data-target="#training" data-toggle="tab" class="nav-link" aria-expanded="false">Training</a>
+            </li>
+            <li class="nav-item">
+                <a href="" data-target="#messages" data-toggle="tab" class="nav-link" aria-expanded="false">Messages</a>
             </li>
         </ul>
         <div class="tab-content py-4">
@@ -42,25 +42,35 @@
                                         <p class="card-text">@Model.GlobalId</p>
                                         <h6 class="card-title">Card ID</h6>
                                         <p class="card-text">@Model.CardId</p>
-                                        <h6 class="card-title">Department</h6>
-                                        <p class="card-text">Department Name</p>
-                                    </div>
-                                    <div class="col-md-6">
                                         <h6 class="card-title">Employye Type</h6>
                                         <p class="card-text">@Model.EmployeeType</p>
+                                        <h6 class="card-title">Hire Type</h6>
+                                        <p class="card-text">Direct</p>
                                         <h6 class="card-title">Hire Date</h6>
                                         <p class="card-text">@Model.HireDate.ToString("yyyy-MM-dd")</p>
-                                        <h6 class="card-title">Job Title</h6>
-                                        <p class="card-text">Operator</p>
+                                        <h6 class="card-title">Bus Station</h6>
+                                        <p class="card-text">X14</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6 class="card-title">Department</h6>
+                                        <p class="card-text">Department Name</p>
                                         <h6 class="card-title">Section</h6>
                                         <p class="card-text">Section Name</p>
+                                        <h6 class="card-title">Job Title</h6>
+                                        <p class="card-text">Operator</p>
+                                        <h6 class="card-title">Level</h6>
+                                        <p class="card-text">SP1</p>
+                                        <h6 class="card-title">Work Shift</h6>
+                                        <p class="card-text">Day Only</p>
+                                        <h6 class="card-title">Duration of Employment</h6>
+                                        <p class="card-text">4 Year</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- personal information -->
-                    <div class="col-md-12 mb-3">
+                    <div class="col-md-12 mb-4">
                         <div class="card">
                             <h5 class="card-header">Personal Information</h5>
                             <div class="card-body">
@@ -105,80 +115,189 @@
                                         <p class="card-text">Bangkok</p>
                                     </div>
                                     <div class="col-md-6">
+                                        <h6 class="card-title">Zip Code</h6>
+                                        <p class="card-text">20000</p>
                                         <h6 class="card-title">Phone</h6>
-                                        <p class="card-text">@Model.Gender</p>
-                                        <h6 class="card-title">Last Name</h6>
-                                        <p class="card-text">@Model.LastName</p>
-                                        <h6 class="card-title">Last Name (Thai)</h6>
-                                        <p class="card-text">@Model.LastNameThai</p>
+                                        <p class="card-text">081-123-4567</p>
+                                        <h6 class="card-title">Email</h6>
+                                        <p class="card-text">user@company.com</p>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-md-6">
-                        <h6>About</h6>
-                        <p>
-                            Web Designer, UI/UX Engineer
-                        </p>
-                        <h6>Hobbies</h6>
-                        <p>
-                            Indie music, skiing and hiking. I love the great outdoors.
-                        </p>
-                    </div>
-
-                    <div class="col-md-6">
-                        <h6>Recent badges</h6>
-                        <a href="#" class="badge badge-dark badge-pill">html5</a>
-                        <a href="#" class="badge badge-dark badge-pill">react</a>
-                        <a href="#" class="badge badge-dark badge-pill">codeply</a>
-                        <a href="#" class="badge badge-dark badge-pill">angularjs</a>
-                        <a href="#" class="badge badge-dark badge-pill">css3</a>
-                        <a href="#" class="badge badge-dark badge-pill">jquery</a>
-                        <a href="#" class="badge badge-dark badge-pill">bootstrap</a>
-                        <a href="#" class="badge badge-dark badge-pill">responsive-design</a>
-                        <hr>
-                        <span class="badge badge-primary"><i class="fa fa-user"></i> 900 Followers</span>
-                        <span class="badge badge-success"><i class="fa fa-cog"></i> 43 Forks</span>
-                        <span class="badge badge-danger"><i class="fa fa-eye"></i> 245 Views</span>
-                    </div>
-
-                    <div class="col-md-12">
-                        <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span> Recent Activity</h5>
-                        <table class="table table-sm table-hover table-striped">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <strong>Abby</strong> joined ACME Project Team in <strong>`Collaboration`</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <strong>Gary</strong> deleted My Board1 in <strong>`Discussions`</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <strong>Kensington</strong> deleted MyBoard3 in <strong>`Discussions`</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <strong>John</strong> deleted My Board1 in <strong>`Discussions`</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <strong>Skell</strong> deleted his post Look at Why this is.. in <strong>`Discussions`</strong>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
                 <!--/row-->
+            </div>
+            <!-- edit -->
+            <div class="tab-pane" id="edit" aria-expanded="false">
+                <form role="form">
+                    <!-- employee type -->
+                    <div class="form-group row">
+                        <label asp-for="EmployeeType" class="col-lg-3 col-form-label form-control-label">Employee Type</label>
+                        <div class="col-lg-9">
+                            <select asp-for="EmployeeType" id="title" class="form-control">
+                                <option value=""></option>
+                                <option value="EM">Employee</option>
+                                <option value="SC">Sub Contract</option>
+                                <option value="SD">Student Internship</option>
+                            </select>
+                            <span asp-validation-for="EmployeeType" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!-- department -->
+                    <div class="form-group row">
+                        <label asp-for="DepartmentId" class="col-lg-3 col-form-label form-control-label">Department</label>
+                        <div class="col-lg-9">
+                            <select asp-for="DepartmentId" asp-items="@Model.Departments" id="title" class="form-control"></select>
+                            <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!-- section -->
+                    <div class="form-group row">
+                        <label asp-for="SectionId" class="col-lg-3 col-form-label form-control-label">Section</label>
+                        <div class="col-lg-9">
+                            <select asp-for="SectionId" asp-items="@Model.Sections" id="title" class="form-control"></select>
+                            <span asp-validation-for="SectionId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!-- shift -->
+                    <div class="form-group row">
+                        <label asp-for="ShiftId" class="col-lg-3 col-form-label form-control-label">Shift</label>
+                        <div class="col-lg-9">
+                            <select asp-for="ShiftId" asp-items="@Model.Shifts" id="title" class="form-control"></select>
+                            <span asp-validation-for="ShiftId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!-- job title -->
+                    <div class="form-group row">
+                        <label asp-for="JobTitleId" class="col-lg-3 col-form-label form-control-label">Job Title</label>
+                        <div class="col-lg-9">
+                            <select asp-for="JobTitleId" asp-items="@Model.JobTitles" id="title" class="form-control"></select>
+                            <span asp-validation-for="JobTitleId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!-- level -->
+                    <div class="form-group row">
+                        <label asp-for="LevelId" class="col-lg-3 col-form-label form-control-label">Level</label>
+                        <div class="col-lg-9">
+                            <select asp-for="LevelId" asp-items="@Model.Levels" id="title" class="form-control"></select>
+                            <span asp-validation-for="LevelId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!-- first name -->
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Title</label>
+                        <div class="col-lg-9">
+                            <select id="title" class="form-control">
+                                <option value=""></option>
+                                <option value="Mr">Mr</option>
+                                <option value="Mrs">Mrs</option>
+                                <option value="Miss">Miss</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- first name -->
+                    <div class="form-group row">
+                        <label asp-for="FirstName" class="col-lg-3 col-form-label form-control-label">First name</label>
+                        <div class="col-lg-9">
+                            <input asp-for="FirstName" class="form-control" type="text" value="@Model.FirstName">
+                        </div>
+                    </div>
+                    <!-- last name -->
+                    <div class="form-group row">
+                        <label asp-for="LastName" class="col-lg-3 col-form-label form-control-label">Last name</label>
+                        <div class="col-lg-9">
+                            <input asp-for="LastName" class="form-control" type="text" value="@Model.LastName">
+                        </div>
+                    </div>
+                    <!-- first name (Thai) -->
+                    <div class="form-group row">
+                        <label asp-for="FirstNameThai" class="col-lg-3 col-form-label form-control-label">First name (Thai)</label>
+                        <div class="col-lg-9">
+                            <input asp-for="FirstNameThai" class="form-control" type="text" value="@Model.FirstNameThai">
+                        </div>
+                    </div>
+                    <!-- last name (Thai) -->
+                    <div class="form-group row">
+                        <label asp-for="LastNameThai" class="col-lg-3 col-form-label form-control-label">Last name (Thai)</label>
+                        <div class="col-lg-9">
+                            <input asp-for="LastNameThai" class="form-control" type="text" value="@Model.LastNameThai">
+                        </div>
+                    </div>
+                    <!-- address -->
+                    <div class="form-group row">
+                        <label asp-for="HomeAddress" class="col-lg-3 col-form-label form-control-label">Address</label>
+                        <div class="col-lg-9">
+                            <input asp-for="HomeAddress" class="form-control" type="text" value="@Model.HomeAddress" placeholder="Street">
+                        </div>
+                    </div>
+                    <!-- city country -->
+                    <div class="form-group row">
+                        <label asp-for="City" class="col-lg-3 col-form-label form-control-label"></label>
+                        <div class="col-lg-6">
+                            <input asp-for="City" class="form-control" type="text" value="@Model.City" placeholder="City">
+                        </div>
+                        <div class="col-lg-3">
+                            <input asp-for="Country" class="form-control" type="text" value="@Model.Country" placeholder="Country">
+                        </div>
+                    </div>
+                    <!-- zip cpde -->
+                    <div class="form-group row">
+                        <label asp-for="PostalCode" class="col-lg-3 col-form-label form-control-label">Zip Code</label>
+                        <div class="col-lg-9">
+                            <input asp-for="PostalCode" class="form-control" type="text" value="@Model.PostalCode">
+                        </div>
+                    </div>
+                    <!-- email -->
+                    <div class="form-group row">
+                        <label asp-for="EmailAddress" class="col-lg-3 col-form-label form-control-label">Email</label>
+                        <div class="col-lg-9">
+                            <input asp-for="EmailAddress" class="form-control" type="email" value="@Model.EmailAddress">
+                        </div>
+                    </div>
+                    <!-- phone -->
+                    <div class="form-group row">
+                        <label asp-for="PhoneNumber" class="col-lg-3 col-form-label form-control-label">Phone</label>
+                        <div class="col-lg-9">
+                            <input asp-for="PhoneNumber" class="form-control" type="text" value="@Model.PhoneNumber">
+                        </div>
+                    </div>
+                    <!-- company -->
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Company</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="text" value="">
+                        </div>
+                    </div>
+                    <!-- card id -->
+                    <div class="form-group row">
+                        <label asp-for="CardId" class="col-lg-3 col-form-label form-control-label">Card ID</label>
+                        <div class="col-lg-9">
+                            <input asp-for="CardId" class="form-control" type="text" value="@Model.CardId">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Password</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="password" value="11111122333">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="password" value="11111122333">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label"></label>
+                        <div class="col-lg-9">
+                            <input type="reset" class="btn btn-secondary" value="Cancel">
+                            <input type="button" class="btn btn-primary" value="Save Changes">
+                        </div>
+                    </div>
+                </form>
             </div>
             <!-- message -->
             <div class="tab-pane" id="messages" aria-expanded="false">
@@ -214,96 +333,66 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
-            <!-- edit -->
-            <div class="tab-pane" id="edit" aria-expanded="false">
-                <form role="form">
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">First name</label>
-                        <div class="col-lg-9">
-                            <input class="form-control" type="text" value="Jane">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Last name</label>
-                        <div class="col-lg-9">
-                            <input class="form-control" type="text" value="Bishop">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Email</label>
-                        <div class="col-lg-9">
-                            <input class="form-control" type="email" value="email@gmail.com">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Company</label>
-                        <div class="col-lg-9">
-                            <input class="form-control" type="text" value="">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Website</label>
-                        <div class="col-lg-9">
-                            <input class="form-control" type="url" value="">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Address</label>
-                        <div class="col-lg-9">
-                            <input class="form-control" type="text" value="" placeholder="Street">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label"></label>
-                        <div class="col-lg-6">
-                            <input class="form-control" type="text" value="" placeholder="City">
-                        </div>
-                        <div class="col-lg-3">
-                            <input class="form-control" type="text" value="" placeholder="State">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Time Zone</label>
-                        <div class="col-lg-9">
-                            <select id="user_time_zone" class="form-control" size="0">
-                                <option value="Hawaii">(GMT-10:00) Hawaii</option>
-                                <option value="Alaska">(GMT-09:00) Alaska</option>
-                                <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
-                                <option value="Arizona">(GMT-07:00) Arizona</option>
-                                <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
-                                <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>
-                                <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
-                                <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Username</label>
-                        <div class="col-lg-9">
-                            <input class="form-control" type="text" value="janeuser">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Password</label>
-                        <div class="col-lg-9">
-                            <input class="form-control" type="password" value="11111122333">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
-                        <div class="col-lg-9">
-                            <input class="form-control" type="password" value="11111122333">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label"></label>
-                        <div class="col-lg-9">
-                            <input type="reset" class="btn btn-secondary" value="Cancel">
-                            <input type="button" class="btn btn-primary" value="Save Changes">
-                        </div>
-                    </div>
-                </form>
+
+                <div class="col-md-6">
+                    <h6>About</h6>
+                    <p>
+                        Web Designer, UI/UX Engineer
+                    </p>
+                    <h6>Hobbies</h6>
+                    <p>
+                        Indie music, skiing and hiking. I love the great outdoors.
+                    </p>
+                </div>
+
+                <div class="col-md-6">
+                    <h6>Recent badges</h6>
+                    <a href="#" class="badge badge-dark badge-pill">html5</a>
+                    <a href="#" class="badge badge-dark badge-pill">react</a>
+                    <a href="#" class="badge badge-dark badge-pill">codeply</a>
+                    <a href="#" class="badge badge-dark badge-pill">angularjs</a>
+                    <a href="#" class="badge badge-dark badge-pill">css3</a>
+                    <a href="#" class="badge badge-dark badge-pill">jquery</a>
+                    <a href="#" class="badge badge-dark badge-pill">bootstrap</a>
+                    <a href="#" class="badge badge-dark badge-pill">responsive-design</a>
+                    <hr>
+                    <span class="badge badge-primary"><i class="fa fa-user"></i> 900 Followers</span>
+                    <span class="badge badge-success"><i class="fa fa-cog"></i> 43 Forks</span>
+                    <span class="badge badge-danger"><i class="fa fa-eye"></i> 245 Views</span>
+                </div>
+
+                <div class="col-md-12">
+                    <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span> Recent Activity</h5>
+                    <table class="table table-sm table-hover table-striped">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong>Abby</strong> joined ACME Project Team in <strong>`Collaboration`</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Gary</strong> deleted My Board1 in <strong>`Discussions`</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Kensington</strong> deleted MyBoard3 in <strong>`Discussions`</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>John</strong> deleted My Board1 in <strong>`Discussions`</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Skell</strong> deleted his post Look at Why this is.. in <strong>`Discussions`</strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <!-- skill -->
             <div class="tab-pane" id="skill" aria-expanded="false">
