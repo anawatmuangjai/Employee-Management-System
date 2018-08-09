@@ -35,17 +35,17 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var d in Model.Departments)
+            @foreach (var item in Model.Departments)
             {
 
                 <tr>
-                    <td>@d.DepartmentId</td>
-                    <td>@d.DepartmentName</td>
-                    <td>@d.DepartmentCode</td>
-                    <td>@d.DepartmentGroup</td>
+                    <td>@item.DepartmentId</td>
+                    <td>@item.DepartmentName</td>
+                    <td>@item.DepartmentCode</td>
+                    <td>@item.DepartmentGroup</td>
                     <td>
-                        <a asp-action="Edit" class="btn btn-info btn-sm">Edit</a>
-                        <a asp-action="Delete" class="btn btn-danger btn-sm">Delete</a>
+                        <a asp-controller="Department" asp-action="Edit" asp-route-id="@item.DepartmentId" class="btn btn-info btn-sm">Edit</a>
+                        <a asp-controller="Department" asp-action="Delete" asp-route-id="@item.DepartmentId" class="btn btn-danger btn-sm">Delete</a>
                     </td>
                 </tr>
 

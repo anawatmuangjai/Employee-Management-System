@@ -4,6 +4,8 @@ namespace EMS.WebCore.ViewModels.Department
 {
     public class DepartmentEditModel
     {
+        public int DepartmentId { get; set; }
+
         [Required, StringLength(50)]
         public string DepartmentName { get; set; }
 

@@ -1,11 +1,11 @@
 ﻿@model DepartmentEditModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Add New Department</h1>
+    <h1 class="h2">Edit Department</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group mr-2">
             <a asp-controller="Department" asp-action="Index" class="btn btn-sm btn-outline-secondary">View</a>
@@ -15,6 +15,7 @@
 
 <form asp-action="Create" method="post" class="form-horizontal" role="form">
 
+    <input asp-for="DepartmentId" type="hidden" />
     <div class="form-group row">
         <label asp-for="DepartmentName" class="col-lg-3 col-form-label form-control-label">Department Name</label>
         <div class="col-lg-9">

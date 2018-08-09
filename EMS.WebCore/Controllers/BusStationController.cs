@@ -57,5 +57,52 @@ namespace EMS.WebCore.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var busStation = await _busStationService.GetByIdAsync(id);
+
+            if (busStation == null)
+                return NotFound();
+
+            return View(busStation);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(BusStationModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                await _busStationService.UpdateAsync(model);
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var busStation = await _busStationService.GetByIdAsync(id);
+
+            if (busStation == null)
+                return NotFound();
+
+            return View(busStation);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var busStation = await _busStationService.GetByIdAsync(id);
+
+            if (busStation != null)
+                await _busStationService.DeleteAsync(busStation);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

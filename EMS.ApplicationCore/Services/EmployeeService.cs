@@ -109,6 +109,7 @@ namespace EMS.ApplicationCore.Services
                 LastNameThai = x.LastNameThai,
                 Gender = x.Gender,
                 AvailableFlag = x.AvailableFlag,
+                BirthDate = x.BirthDate,
                 HireDate = x.HireDate,
                 ChangedDate = x.ChangedDate,
             }).ToList();

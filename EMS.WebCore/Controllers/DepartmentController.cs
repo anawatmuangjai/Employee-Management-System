@@ -66,7 +66,53 @@ namespace EMS.WebCore.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var department = await _departmentService.GetByIdAsync(id);
+
+            if (department == null)
+                return NotFound();
+
+            return View(department);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(DepartmentEditModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var department = new DepartmentModel
+                {
+                    DepartmentId = model.DepartmentId,
+                    DepartmentName = model.DepartmentName,
+                    DepartmentCode = model.DepartmentCode,
+                    DepartmentGroup = model.DepartmentGroup
+                };
+
+                await _departmentService.UpdateAsync(department);
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View();
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Delete(int id)
+        {
+            var department = await _departmentService.GetByIdAsync(id);
+
+            if (department == null)
+                return NotFound();
+
+            return View(department);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var department = await _departmentService.GetByIdAsync(id);
 
