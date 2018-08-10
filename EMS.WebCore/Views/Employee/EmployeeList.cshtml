@@ -5,7 +5,7 @@
 }
 
 <!-- content -->
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2">
     <h1 class="h2">Employee List</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group mr-2">
@@ -18,6 +18,18 @@
         </button>
     </div>
 </div>
+
+<form asp-controller="Employee" asp-action="EmployeeList" method="get">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text">Employee ID</label>
+        </div>
+        <input type="text" name="employeeId" class="form-control" placeholder="Please enter employee ID">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search mr-2"></i>Search</button>
+        </div>
+    </div>
+</form>
 
 @if (Model.Employees.Any())
 {

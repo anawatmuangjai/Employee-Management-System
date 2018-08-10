@@ -49,7 +49,7 @@
                                 <span>Employee</span>
                             </a>
                             <ul class="collapse collapseable" id="collapse-employee">
-                                <li><a asp-area="" asp-controller="Employee" asp-action="Register">New Employee</a></li>
+                                <li><a asp-area="" asp-controller="Employee" asp-action="Register">Register</a></li>
                                 <li><a asp-area="" asp-controller="Employee" asp-action="EmployeeList">Employee List</a></li>
                             </ul>
                         </li>
@@ -66,13 +66,14 @@
                         </li>
                         <!-- monitoring -->
                         <li class="nav-item">
-                            <a class="nav-link" href="#collapse-monitoring" data-toggle="collapse" aria-controls="collapse-monitoring">
+                            <a class="nav-link" href="#collapse-mapview" data-toggle="collapse" aria-controls="collapse-mapview">
                                 <span><i class="fa fa-tv text-white fa-lg mr-3"></i></span>
-                                Monitoring
+                                Map Viewer
                             </a>
-                            <ul class="collapse collapseable" id="collapse-monitoring">
-                                <li><a asp-area="" asp-controller="Monitor" asp-action="MapViewer">Map View</a></li>
-                                <li><a asp-area="" asp-controller="Monitor" asp-action="Index">Skill Mapping</a></li>
+                            <ul class="collapse collapseable" id="collapse-mapview">
+                                <li><a asp-area="" asp-controller="MapViewer" asp-action="Line">By Line</a></li>
+                                <li><a asp-area="" asp-controller="MapViewer" asp-action="Zone">By Zone</a></li>
+                                <li><a asp-area="" asp-controller="MapViewer" asp-action="Area">By Area</a></li>
                             </ul>
                         </li>
                         <!-- allocation -->

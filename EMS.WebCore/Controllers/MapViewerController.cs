@@ -6,19 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EMS.WebCore.Controllers
 {
-    public class MonitorController : Controller
+    public class MapViewerController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult MapViewer()
-        {
-            return View();
-        }
-
-        public IActionResult Layout()
+        public IActionResult Area()
         {
             return View();
         }
@@ -32,7 +27,5 @@ namespace EMS.WebCore.Controllers
         {
             return View();
         }
-
-
     }
 }

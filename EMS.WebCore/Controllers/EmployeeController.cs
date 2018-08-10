@@ -64,9 +64,18 @@ namespace EMS.WebCore.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> EmployeeList()
+        public async Task<IActionResult> EmployeeList(string employeeId)
         {
-            var viewModel = await _employeeViewModelService.GetEmployeeList();
+            var viewModel = new EmployeeViewModel();
+
+            if (!String.IsNullOrEmpty(employeeId))
+            {
+                viewModel = await _employeeViewModelService.GetEmployeeList(employeeId);
+            }
+            else
+            {
+                viewModel = await _employeeViewModelService.GetEmployeeList();
+            }
 
             return View(viewModel);
         }

@@ -35,6 +35,8 @@ namespace EMS.WebCore.ViewModels.Employee
 
         public DateTime HireDate { get; set; }
 
+        public int EmploymentDuration { get; set; }
+
         public int DepartmentId { get; set; }
 
         public int SectionId { get; set; }
@@ -48,7 +50,7 @@ namespace EMS.WebCore.ViewModels.Employee
         public int BusStationId { get; set; }
 
         public DateTime JoinDate { get; set; }
-    
+
         public string HomeAddress { get; set; }
 
         public string City { get; set; }
