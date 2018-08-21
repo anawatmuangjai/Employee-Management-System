@@ -57,7 +57,7 @@ namespace EMS.WebCore.Controllers
                     DepartmentGroup = model.DepartmentGroup
                 };
 
-                department = await _departmentService.AddAsync(department);
+                await _departmentService.AddAsync(department);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -113,12 +113,7 @@ namespace EMS.WebCore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var department = await _departmentService.GetByIdAsync(id);
-
-            if (department != null)
-            {
-                await _departmentService.DeleteAsync(department);
-            }
+            await _departmentService.DeleteAsync(id);
 
             return RedirectToAction(nameof(Index));
         }
