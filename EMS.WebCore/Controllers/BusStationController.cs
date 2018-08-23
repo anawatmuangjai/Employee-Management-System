@@ -97,10 +97,7 @@ namespace EMS.WebCore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var busStation = await _busStationService.GetByIdAsync(id);
-
-            if (busStation != null)
-                await _busStationService.DeleteAsync(busStation);
+            await _busStationService.DeleteAsync(id);
 
             return RedirectToAction(nameof(Index));
         }
