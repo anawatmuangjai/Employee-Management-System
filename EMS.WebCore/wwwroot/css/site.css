@@ -170,3 +170,12 @@
 .card-common:hover {
     transform: translateY(-1px);
 }
+
+.input-group-prepend {
+    width: 20%; /*adjust as needed*/
+}
+
+.input-group-prepend label {
+    width: 100%;
+    overflow: hidden;
+}

@@ -54,6 +54,7 @@ namespace EMS.WebCore
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IEmployeeListService, EmployeeListService>();
             services.AddScoped<IBusStationService, BusStationService>();
+            services.AddScoped<IAttendanceService, AttendanceService>();
 
             services.AddScoped<IEmployeeRegisterService, EmployeeRegisterService>();
             services.AddScoped<IEmployeeViewModelService, EmployeeViewModelService>();

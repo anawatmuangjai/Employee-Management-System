@@ -1,0 +1,164 @@
+﻿@model AttendanceViewModel
+
+@{
+    ViewData["Title"] = "Absent";
+}
+
+<!-- content -->
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2">
+    <h2>Attendance <span class="badge badge-danger">Absent List</span></h2>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">
+            <button class="btn btn-sm btn-outline-secondary">Share</button>
+            <button class="btn btn-sm btn-outline-secondary">Export</button>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar"></span>
+            This week
+        </button>
+    </div>
+</div>
+
+<form asp-controller="Employee" asp-action="EmployeeList" method="get">
+    <div class="form-row">
+        <div class="col-md-6 mb-2">
+            <div class="input-group">
+                <div class="input-group-prepend w-25">
+                    <label class="input-group-text w-100">Date</label>
+                </div>
+                <input type="date" class="form-control" value="2018-01-01" required>
+            </div>
+        </div>
+        <div class="col-md-6 mb-2">
+            <div class="input-group">
+                <div class="input-group-prepend w-25">
+                    <label class="input-group-text w-100" for="inputGroupSelect01">Shift</label>
+                </div>
+                <select class="custom-select">
+                    <option selected>Choose...</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6 mb-2">
+            <div class="input-group">
+                <div class="input-group-prepend w-25">
+                    <label class="input-group-text w-100" for="inputGroupSelect01">Job Title</label>
+                </div>
+                <select class="custom-select">
+                    <option selected>Choose...</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6 mb-2">
+            <div class="input-group">
+                <div class="input-group-prepend w-25">
+                    <label class="input-group-text w-100" for="inputGroupSelect01">Job Function</label>
+                </div>
+                <select class="custom-select">
+                    <option selected>Choose...</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6 mb-2">
+            <div class="input-group">
+                <div class="input-group-prepend w-25">
+                    <label class="input-group-text w-100" for="inputGroupSelect01">Department</label>
+                </div>
+                <select class="custom-select">
+                    <option selected>Choose...</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6 mb-2">
+            <div class="input-group">
+                <div class="input-group-prepend w-25">
+                    <label class="input-group-text w-100" for="inputGroupSelect01">Section</label>
+                </div>
+                <select class="custom-select">
+                    <option selected>Choose...</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-12 mb-3">
+            <div class="input-group">
+                <input type="text" name="employeeId" class="form-control" placeholder="Employee ID">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="submit"><i class="fa fa-search mr-2"></i>Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@if (Model.Attendances.Any())
+{
+    <div class="card mb-3">
+        <h5 class="card-header bg-danger text-white">Absent List</h5>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover table-sm w-100">
+                    <thead class="thead-light">
+                        <tr class="d-flex">
+                            <th class="col-1 align-middle">Type</th>
+                            <th class="col-2 align-middle">Employee ID</th>
+                            <th class="col-3 align-middle">Name (English)</th>
+                            <th class="col-3 align-middle">Name (Thai)</th>
+                            <th class="col-1 align-middle text-center">Level</th>
+                            <th class="col-1 align-middle text-center">Shift</th>
+                            <th class="col-2 align-middle text-center">Department</th>
+                            <th class="col-2 align-middle text-center">Section</th>
+                            <th class="col-2 align-middle text-center">Job Title</th>
+                            <th class="col-3 align-middle text-center">Job Function</th>
+                            <th class="col-2 align-middle text-center">Bus Station</th>
+                            <th class="col-2 align-middle text-center">Scan In Time</th>
+                            <th class="col-2 align-middle text-center">Scan Out Time</th>
+                            <th class="col-1 align-middle text-center">History</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var e in Model.Attendances)
+                        {
+                            <tr class="d-flex">
+                                <td class="col-1 align-middle">@e.EmployeeType</td>
+                                <td class="col-2 align-middle">@e.EmployeeId</td>
+                                <td class="col-3 align-middle">@e.Title. @e.FirstName @e.LastName</td>
+                                <td class="col-3 align-middle">@e.FirstNameThai @e.LastNameThai</td>
+                                <td class="col-1 align-middle text-center">@e.LevelCode</td>
+                                <td class="col-1 align-middle text-center">@e.ShiftName</td>
+                                <td class="col-2 align-middle text-center">@e.DepartmentCode</td>
+                                <td class="col-2 align-middle text-center">@e.SectionCode</td>
+                                <td class="col-2 align-middle text-center">@e.JobTitle</td>
+                                <td class="col-3 align-middle text-center">@e.FunctionName</td>
+                                <td class="col-2 align-middle text-center">@e.BusStationName</td>
+                                <td class="col-2 align-middle text-center">@e.ScanInTime</td>
+                                <td class="col-2 align-middle text-center">@e.ScanOutTime</td>
+                                <td class="col-1 align-middle text-center">
+                                    <a asp-action="History" asp-route-employeeId="@e.EmployeeId" class="badge badge-danger">View</a>
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer bg-danger text-white">
+            <h6>Total Absent : @Model.Attendances.Count() Person.</h6>
+        </div>
+    </div>
+}

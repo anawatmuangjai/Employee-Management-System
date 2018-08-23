@@ -1,0 +1,98 @@
+﻿@model AttendanceHistoryViewModel
+
+@{
+    ViewData["Title"] = "History";
+}
+
+<!-- content -->
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2">
+    <h2>Attendance History</h2>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">
+            <button class="btn btn-sm btn-outline-secondary">Share</button>
+            <button class="btn btn-sm btn-outline-secondary">Export</button>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar"></span>
+            This week
+        </button>
+    </div>
+</div>
+
+<div class="row mb-0">
+    <div class="col">
+        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+                <strong class="d-inline-block mb-2 text-success">Employee Information</strong>
+                <h3 class="mb-auto">
+                    <a class="text-dark" href="#">@Model.Employee.FirstName @Model.Employee.LastName</a>
+                </h3>
+                <div class="mb-auto text-muted">@Model.Employee.FirstNameThai @Model.Employee.LastNameThai</div>
+                <p class="card-text mb-auto text-muted">Department : Automotive Auto Mount</p>
+                <p class="card-text mb-auto text-muted">Section : Production</p>
+                <p class="card-text mb-auto text-muted">Job Title : Operator</p>
+                <p class="card-text mb-auto text-muted">Job Function : Kitting Operator</p>
+            </div>
+            <img class="card-img-right flex-auto d-none d-lg-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22250%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20250%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_16564e1b0e2%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A13pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_16564e1b0e2%22%3E%3Crect%20width%3D%22200%22%20height%3D%22250%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2256.203125%22%20y%3D%22131%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" style="width: 200px; height: 250px;">
+        </div>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <label class="input-group-text">Start Date</label>
+            </div>
+            <input type="date" class="form-control" value="2018-01-01" required>
+            <div class="input-group-prepend">
+                <label class="input-group-text">End Date</label>
+            </div>
+            <input type="date" class="form-control" value="2018-01-01" required>
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search mr-2"></i>Search</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-2">
+    <div class="col">
+        @if (Model.Attendances.Any())
+        {
+            <div class="card">
+                <h5 class="card-header bg-secondary text-white">Attendance Record Time</h5>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-sm w-100">
+                            <thead class="thead-light">
+                                <tr class="d-flex">
+                                    <th class="col-2 align-middle text-center">Attendance Date</th>
+                                    <th class="col-2 align-middle text-center">Employee ID</th>
+                                    <th class="col-2 align-middle text-center">Work Shift</th>
+                                    <th class="col-2 align-middle text-center">Work Time</th>
+                                    <th class="col-2 align-middle text-center">Scan In Time</th>
+                                    <th class="col-2 align-middle text-center">Scan Out Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var e in Model.Attendances)
+                                {
+                                    <tr class="d-flex">
+                                        <td class="col-2 align-middle text-center">2018/08/01</td>
+                                        <td class="col-2 align-middle text-center">@e.EmployeeId</td>
+                                        <td class="col-2 align-middle text-center">A</td>
+                                        <td class="col-2 align-middle text-center">Day</td>
+                                        <td class="col-2 align-middle text-center">@e.ScanInTime</td>
+                                        <td class="col-2 align-middle text-center">@e.ScanOutTime</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
