@@ -20,6 +20,7 @@ namespace EMS.WebCore.Controllers
             _busStationService = busStationService;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var busStations = await _busStationService.GetAllAsync();
@@ -40,7 +41,7 @@ namespace EMS.WebCore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(CreateBusStationViewModel viewModel)
+        public IActionResult Create(BusStationEditViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
@@ -52,7 +53,7 @@ namespace EMS.WebCore.Controllers
 
                 _busStationService.AddAsync(busStation);
 
-                return RedirectToAction("Index", "BusStation");
+                return RedirectToAction(nameof(Index));
             }
 
             return View();
@@ -93,7 +94,7 @@ namespace EMS.WebCore.Controllers
             return View(busStation);
         }
 
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

@@ -46,7 +46,7 @@ namespace EMS.WebCore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(DepartmentEditModel model)
+        public async Task<IActionResult> Create(DepartmentEditViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -73,12 +73,20 @@ namespace EMS.WebCore.Controllers
             if (department == null)
                 return NotFound();
 
-            return View(department);
+            var editModel = new DepartmentEditViewModel
+            {
+                DepartmentId = department.DepartmentId,
+                DepartmentName = department.DepartmentName,
+                DepartmentCode = department.DepartmentCode,
+                DepartmentGroup = department.DepartmentGroup
+            };
+
+            return View(editModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(DepartmentEditModel model)
+        public async Task<IActionResult> Edit(DepartmentEditViewModel model)
         {
             if (ModelState.IsValid)
             {

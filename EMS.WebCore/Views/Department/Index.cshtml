@@ -22,34 +22,49 @@
     </div>
 </div>
 
-@if (Model.Departments.Any())
-{
-    <table class="table table-striped table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Department Name</th>
-                <th>Department Code</th>
-                <th>Department Group</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Departments)
-            {
+<div class="row mb-2">
+    <div class="col">
+        @if (Model.Departments.Any())
+        {
+            <div class="card">
+                <h5 class="card-header bg-secondary text-white">Department List</h5>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover w-100">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Department Name</th>
+                                    <th>Department Code</th>
+                                    <th>Department Group</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Departments)
+                                {
 
-                <tr>
-                    <td>@item.DepartmentId</td>
-                    <td>@item.DepartmentName</td>
-                    <td>@item.DepartmentCode</td>
-                    <td>@item.DepartmentGroup</td>
-                    <td>
-                        <a asp-controller="Department" asp-action="Edit" asp-route-id="@item.DepartmentId" class="btn btn-info btn-sm">Edit</a>
-                        <a asp-controller="Department" asp-action="Delete" asp-route-id="@item.DepartmentId" class="btn btn-danger btn-sm">Delete</a>
-                    </td>
-                </tr>
+                                    <tr>
+                                        <td>@item.DepartmentId</td>
+                                        <td>@item.DepartmentName</td>
+                                        <td>@item.DepartmentCode</td>
+                                        <td>@item.DepartmentGroup</td>
+                                        <td>
+                                            <a asp-controller="Department" asp-action="Edit" asp-route-id="@item.DepartmentId" class="btn btn-info btn-sm">Edit</a>
+                                            <a asp-controller="Department" asp-action="Delete" asp-route-id="@item.DepartmentId" class="btn btn-danger btn-sm">Delete</a>
+                                        </td>
+                                    </tr>
 
-            }
-        </tbody>
-    </table>
-}
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+        }
+
+    </div>
+</div>
+

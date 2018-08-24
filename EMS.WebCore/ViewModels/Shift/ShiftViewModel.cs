@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EMS.WebCore.ViewModels.Job
+namespace EMS.WebCore.ViewModels.Shift
 {
-    public class JobViewModel
+    public class ShiftViewModel
     {
-        public IEnumerable<JobTitleModel> JobTitles { get; set; }
+        public IEnumerable<ShiftModel> Shifts { get; set; }
     }
 }

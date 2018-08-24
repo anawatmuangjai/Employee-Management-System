@@ -2,7 +2,7 @@
 
 namespace EMS.WebCore.ViewModels.Department
 {
-    public class DepartmentEditModel
+    public class DepartmentEditViewModel
     {
         public int DepartmentId { get; set; }
 
