@@ -8,7 +8,13 @@ using System.Threading.Tasks;
 
 namespace EMS.ApplicationCore.Interfaces.Services
 {
-    public interface IShiftService : IService<ShiftModel, MasterShift, IAsyncRepository<MasterSection>>
+    public interface IShiftService
     {
+        Task<ShiftModel> GetByIdAsync(int id);
+        Task<List<ShiftModel>> GetAllAsync();
+        Task<List<ShiftModel>> GetByNameAsync(string name);
+        Task AddAsync(ShiftModel model);
+        Task UpdateAsync(ShiftModel model);
+        Task DeleteAsync(int id);
     }
 }

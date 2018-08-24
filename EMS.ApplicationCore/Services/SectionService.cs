@@ -1,4 +1,5 @@
-﻿using EMS.ApplicationCore.Interfaces.Repositories;
+﻿using AutoMapper;
+using EMS.ApplicationCore.Interfaces.Repositories;
 using EMS.ApplicationCore.Interfaces.Services;
 using EMS.ApplicationCore.Models;
 using EMS.ApplicationCore.Specifications;
@@ -11,29 +12,65 @@ using System.Threading.Tasks;
 
 namespace EMS.ApplicationCore.Services
 {
-    public class SectionService : BaseService<SectionModel, MasterSection, IAsyncRepository<MasterSection>>, ISectionService
+    public class SectionService : ISectionService
     {
+        private readonly IMapper _mapper;
+        private readonly IAsyncRepository<MasterSection> _repository;
+
         public SectionService(IAsyncRepository<MasterSection> repository)
-            : base(repository)
         {
+            _repository = repository;
+
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<MasterSection, SectionModel>());
+
+            _mapper = config.CreateMapper();
         }
 
-        public async Task<List<SectionModel>> GetSectionAsync(string name)
+        public async Task<SectionModel> GetByIdAsync(int id)
         {
-            var sectionSpec = new SectionSpecification(name);
+            var section = await _repository.GetByIdAsync(id);
+            return _mapper.Map<MasterSection, SectionModel>(section);
+        }
 
-            var entities = await _repository.GetAsync(sectionSpec);
+        public async Task<List<SectionModel>> GetAllAsync()
+        {
+            var sections = await _repository.GetAllAsync();
+            return _mapper.Map<List<MasterSection>, List<SectionModel>>(sections);
+        }
 
-            var model = entities.Select(x => new SectionModel
+        public async Task<List<SectionModel>> GetByNameAsync(string name)
+        {
+            var sections = await _repository.GetAsync(x => x.SectionName == name);
+            return _mapper.Map<List<MasterSection>, List<SectionModel>>(sections);
+        }
+
+        public async Task AddAsync(SectionModel model)
+        {
+            var section = new MasterSection
             {
-                SectionId = x.SectionId,
-                DepartmentName = x.Department.DepartmentName,
-                SectionName = x.SectionName,
-                SectionCode = x.SectionCode,
-                DepartmentId = x.DepartmentId
-            });
+                SectionName = model.SectionName,
+                SectionCode = model.SectionCode,
+                DepartmentId = model.DepartmentId
+            };
 
-            return model.ToList();
+            await _repository.AddAsync(section);
+        }
+
+        public async Task UpdateAsync(SectionModel model)
+        {
+            var section = await _repository.GetByIdAsync(model.SectionId);
+
+            section.SectionName = model.SectionName;
+            section.SectionCode = model.SectionCode;
+            section.DepartmentId = model.DepartmentId;
+
+            await _repository.UpdateAsync(section);
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var section = await _repository.GetByIdAsync(id);
+            await _repository.DeleteAsync(section);
         }
     }
 }

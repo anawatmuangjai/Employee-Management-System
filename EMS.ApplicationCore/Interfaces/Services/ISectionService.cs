@@ -8,8 +8,13 @@ using System.Threading.Tasks;
 
 namespace EMS.ApplicationCore.Interfaces.Services
 {
-    public interface ISectionService : IService<SectionModel, MasterSection, IAsyncRepository<MasterSection>>
+    public interface ISectionService
     {
-        Task<List<SectionModel>> GetSectionAsync(string name);
+        Task<SectionModel> GetByIdAsync(int id);
+        Task<List<SectionModel>> GetAllAsync();
+        Task<List<SectionModel>> GetByNameAsync(string name);
+        Task AddAsync(SectionModel model);
+        Task UpdateAsync(SectionModel model);
+        Task DeleteAsync(int id);
     }
 }
