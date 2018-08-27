@@ -1,0 +1,35 @@
+﻿@model ShiftEditViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row mb-2 mt-3">
+    <div class="col">
+        <div class="card">
+            <h5 class="card-header bg-light text-dark">Create Section</h5>
+            <div class="card-body">
+                <form asp-action="Create" method="post" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label asp-for="ShiftName">Route Name</label>
+                        <input asp-for="ShiftName" type="text" class="form-control">
+                        <span asp-validation-for="ShiftName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="StartTime">Station Name</label>
+                        <input asp-for="StartTime" type="text" class="form-control">
+                        <span asp-validation-for="StartTime" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EndTime">Station Name</label>
+                        <input asp-for="EndTime" type="text" class="form-control">
+                        <span asp-validation-for="EndTime" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

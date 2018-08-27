@@ -1,7 +1,39 @@
-﻿
+﻿@model JobFunctionEditViewModel
+
 @{
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+<div class="row mb-2 mt-3">
+    <div class="col">
+        <div class="card">
+            <h5 class="card-header bg-light text-dark">Create Job Function</h5>
+            <div class="card-body">
+                <form asp-action="Edit" method="post" class="form-horizontal" role="form">
+                    <input asp-for="JobFunctionId" type="hidden" />
+                    <div class="form-group">
+                        <label asp-for="JobTitleId">Department</label>
+                        <select asp-for="JobTitleId" asp-items="@Model.JobTitles" class="form-control"></select>
+                        <span asp-validation-for="JobTitleId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FunctionName">Job Title</label>
+                        <input asp-for="FunctionName" type="text" class="form-control">
+                        <span asp-validation-for="FunctionName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FunctionDescription">Job Description</label>
+                        <input asp-for="FunctionDescription" type="text" class="form-control">
+                        <span asp-validation-for="FunctionDescription" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 

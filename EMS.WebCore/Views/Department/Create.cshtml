@@ -4,47 +4,31 @@
     ViewData["Title"] = "Create";
 }
 
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Add New Department</h1>
-    <div class="btn-toolbar mb-2 mb-md-0">
-        <div class="btn-group mr-2">
-            <a asp-controller="Department" asp-action="Index" class="btn btn-sm btn-outline-secondary">View</a>
+<div class="row mb-2 mt-3">
+    <div class="col">
+        <div class="card">
+            <h5 class="card-header bg-light text-dark">Create Department</h5>
+            <div class="card-body">
+                <form asp-action="Create" method="post" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label asp-for="DepartmentName">Department Name</label>
+                        <input asp-for="DepartmentName" type="text" class="form-control">
+                        <span asp-validation-for="DepartmentName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DepartmentCode">Department Code</label>
+                        <input asp-for="DepartmentCode" type="text" class="form-control">
+                        <span asp-validation-for="DepartmentCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DepartmentGroup">Department Group</label>
+                        <input asp-for="DepartmentGroup" type="text" class="form-control">
+                        <span asp-validation-for="DepartmentGroup" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
         </div>
     </div>
 </div>
-
-<form asp-action="Create" method="post" class="form-horizontal" role="form">
-
-    <div class="form-group row">
-        <label asp-for="DepartmentName" class="col-lg-3 col-form-label form-control-label">Department Name</label>
-        <div class="col-lg-9">
-            <input asp-for="DepartmentName" class="form-control" placeholder="Department Name" />
-            <span asp-validation-for="DepartmentName" class="text-danger"></span>
-        </div>
-    </div>
-
-    <div class="form-group row">
-        <label asp-for="DepartmentCode" class="col-lg-3 col-form-label form-control-label">Department Code</label>
-        <div class="col-lg-9">
-            <input asp-for="DepartmentCode" class="form-control" placeholder="Department Code" />
-            <span asp-validation-for="DepartmentCode" class="text-danger"></span>
-        </div>
-    </div>
-
-    <div class="form-group row">
-        <label asp-for="DepartmentGroup" class="col-lg-3 col-form-label form-control-label">Department Group</label>
-        <div class="col-lg-9">
-            <input asp-for="DepartmentGroup" class="form-control" placeholder="Department Group" />
-            <span asp-validation-for="DepartmentGroup" class="text-danger"></span>
-        </div>
-    </div>
-
-    <div class="form-group row">
-        <label class="col-lg-3 col-form-label form-control-label"></label>
-        <div class="col-lg-9">
-            <input type="reset" class="btn btn-secondary" value="Cancel">
-            <input type="submit" class="btn btn-primary" value="Save Changes">
-        </div>
-    </div>
-
-</form>

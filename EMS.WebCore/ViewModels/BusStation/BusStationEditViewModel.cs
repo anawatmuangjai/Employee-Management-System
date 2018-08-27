@@ -8,6 +8,8 @@ namespace EMS.WebCore.ViewModels.BusStation
 {
     public class BusStationEditViewModel
     {
+        public int BusStationId { get; set; }
+
         [Required, StringLength(50)]
         public string BusStationName { get; set; }
 

@@ -31,16 +31,16 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var b in Model.BusStations)
+            @foreach (var item in Model.BusStations)
             {
 
                 <tr>
-                    <td>@b.BusStationId</td>
-                    <td>@b.BusStationRoute</td>
-                    <td>@b.BusStationName</td>
+                    <td>@item.BusStationId</td>
+                    <td>@item.BusStationRoute</td>
+                    <td>@item.BusStationName</td>
                     <td>
-                        <a asp-action="Edit" class="btn btn-info btn-sm">Edit</a>
-                        <a asp-action="Delete" class="btn btn-danger btn-sm">Delete</a>
+                        <a asp-controller="BusStation" asp-action="Edit" asp-route-id="@item.BusStationId" class="btn btn-info btn-sm">Edit</a>
+                        <a asp-controller="BusStation" asp-action="Delete" asp-route-id="@item.BusStationId" class="btn btn-danger btn-sm">Delete</a>
                     </td>
                 </tr>
 

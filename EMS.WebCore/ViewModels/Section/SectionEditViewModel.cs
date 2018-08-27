@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace EMS.WebCore.ViewModels.Section
     {
         public int SectionId { get; set; }
 
+        [Required]
         public int DepartmentId { get; set; }
 
         [Required, StringLength(50)]
@@ -17,5 +19,7 @@ namespace EMS.WebCore.ViewModels.Section
 
         [Required, StringLength(10)]
         public string SectionCode { get; set; }
+
+        public IEnumerable<SelectListItem> Departments { get; set; }
     }
 }

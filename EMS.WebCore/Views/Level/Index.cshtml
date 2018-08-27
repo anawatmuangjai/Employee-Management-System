@@ -27,14 +27,19 @@
             <th>Level ID</th>
             <th>Level Name</th>
             <th>Level Code</th>
+            <th>Action</th>
         </tr>
-        @foreach (var lv in Model.EmployeeLevels)
+        @foreach (var item in Model.EmployeeLevels)
         {
 
             <tr>
-                <td>@lv.LevelId</td>
-                <td>@lv.LevelName</td>
-                <td>@lv.LevelCode</td>
+                <td>@item.LevelId</td>
+                <td>@item.LevelName</td>
+                <td>@item.LevelCode</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.LevelId" class="btn btn-info btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.LevelId" class="btn btn-danger btn-sm">Delete</a>
+                </td>
             </tr>
 
         }

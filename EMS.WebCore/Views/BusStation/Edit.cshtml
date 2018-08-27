@@ -1,7 +1,31 @@
-﻿
+﻿@model BusStationEditViewModel
+
 @{
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+<div class="row mb-2 mt-3">
+    <div class="col">
+        <div class="card">
+            <h5 class="card-header bg-light text-dark">Edit Bus Station</h5>
+            <div class="card-body">
+                <form asp-action="Edit" method="post" class="form-horizontal" role="form">
+                    <input asp-for="BusStationId" type="hidden" />
+                    <div class="form-group">
+                        <label asp-for="BusStationRoute">Route Name</label>
+                        <input asp-for="BusStationRoute" type="text" class="form-control">
+                        <span asp-validation-for="BusStationRoute" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BusStationName">Station Name</label>
+                        <input asp-for="BusStationName" type="text" class="form-control">
+                        <span asp-validation-for="BusStationName" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 

@@ -28,22 +28,24 @@
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>Department</th>
                         <th>Section Name</th>
                         <th>Section Code</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var s in Model.Sections)
+                    @foreach (var item in Model.Sections)
                     {
 
                         <tr>
-                            <td>@s.SectionId</td>
-                            <td>@s.SectionName</td>
-                            <td>@s.SectionCode</td>
+                            <td>@item.SectionId</td>
+                            <td>@item.Department.DepartmentName</td>
+                            <td>@item.SectionName</td>
+                            <td>@item.SectionCode</td>
                             <td>
-                                <a asp-action="Edit" class="btn btn-info btn-sm">Edit</a>
-                                <a asp-action="Delete" class="btn btn-danger btn-sm">Delete</a>
+                                <a asp-action="Edit" asp-route-id="@item.SectionId" class="btn btn-info btn-sm">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@item.SectionId" class="btn btn-danger btn-sm">Delete</a>
                             </td>
                         </tr>
 
