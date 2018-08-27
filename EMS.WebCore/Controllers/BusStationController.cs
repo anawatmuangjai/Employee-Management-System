@@ -41,22 +41,19 @@ namespace EMS.WebCore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(BusStationEditViewModel viewModel)
+        public async Task<IActionResult> Create(BusStationEditViewModel viewModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+                return View();
+
+            var busStation = new BusStationModel
             {
-                var busStation = new BusStationModel
-                {
-                    BusStationName = viewModel.BusStationName,
-                    BusStationRoute = viewModel.BusStationRoute
-                };
+                BusStationName = viewModel.BusStationName,
+                BusStationRoute = viewModel.BusStationRoute
+            };
 
-                _busStationService.AddAsync(busStation);
-
-                return RedirectToAction(nameof(Index));
-            }
-
-            return View();
+            await _busStationService.AddAsync(busStation);
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
@@ -67,20 +64,32 @@ namespace EMS.WebCore.Controllers
             if (busStation == null)
                 return NotFound();
 
-            return View(busStation);
+            var editModel = new BusStationEditViewModel
+            {
+                BusStationId = busStation.BusStationId,
+                BusStationName = busStation.BusStationName,
+                BusStationRoute = busStation.BusStationRoute
+            };
+
+            return View(editModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(BusStationModel model)
+        public async Task<IActionResult> Edit(BusStationEditViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                await _busStationService.UpdateAsync(model);
-                return RedirectToAction(nameof(Index));
-            }
+            if (!ModelState.IsValid)
+                return View();
 
-            return View(model);
+            var editModel = new BusStationModel
+            {
+                BusStationId = model.BusStationId,
+                BusStationName = model.BusStationName,
+                BusStationRoute = model.BusStationRoute
+            };
+
+            await _busStationService.UpdateAsync(editModel);
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]

@@ -7,6 +7,7 @@ using EMS.ApplicationCore.Models;
 using EMS.WebCore.ViewModels.Section;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EMS.WebCore.Controllers
 {
@@ -14,10 +15,14 @@ namespace EMS.WebCore.Controllers
     public class SectionController : Controller
     {
         private readonly ISectionService _sectionService;
+        private readonly IDepartmentService _departmentService;
 
-        public SectionController(ISectionService sectionService)
+        public SectionController(
+            ISectionService sectionService,
+            IDepartmentService departmentService)
         {
             _sectionService = sectionService;
+            _departmentService = departmentService;
         }
 
         [HttpGet]
@@ -34,9 +39,14 @@ namespace EMS.WebCore.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var viewModel = new SectionEditViewModel
+            {
+                Departments = await GetDepartments()
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -53,7 +63,6 @@ namespace EMS.WebCore.Controllers
                 };
 
                 await _sectionService.AddAsync(section);
-
                 return RedirectToAction(nameof(Index));
             }
 
@@ -73,7 +82,8 @@ namespace EMS.WebCore.Controllers
                 SectionId = section.SectionId,
                 DepartmentId = section.DepartmentId,
                 SectionName = section.SectionName,
-                SectionCode = section.SectionCode
+                SectionCode = section.SectionCode,
+                Departments = await GetDepartments()
             };
 
             return View(editViewModel);
@@ -117,6 +127,27 @@ namespace EMS.WebCore.Controllers
             await _sectionService.DeleteAsync(id);
 
             return RedirectToAction(nameof(Index));
+        }
+
+        private async Task<IEnumerable<SelectListItem>> GetDepartments()
+        {
+            var departments = await _departmentService.GetAllAsync();
+
+            var item = new List<SelectListItem>
+            {
+                new SelectListItem() { Value = null, Text ="",Selected = true }
+            };
+
+            foreach (var department in departments)
+            {
+                item.Add(new SelectListItem()
+                {
+                    Value = department.DepartmentId.ToString(),
+                    Text = department.DepartmentName
+                });
+            }
+
+            return item;
         }
     }
 }

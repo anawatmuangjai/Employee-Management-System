@@ -53,7 +53,6 @@ namespace EMS.WebCore.Controllers
             };
 
             await _levelService.AddAsync(level);
-
             return RedirectToAction(nameof(Index));
         }
 
@@ -79,7 +78,7 @@ namespace EMS.WebCore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(LevelEditViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return View();
 
             var level = new EmployeeLevelModel
@@ -90,7 +89,6 @@ namespace EMS.WebCore.Controllers
             };
 
             await _levelService.UpdateAsync(level);
-
             return RedirectToAction(nameof(Index));
         }
 

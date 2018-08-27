@@ -55,7 +55,6 @@ namespace EMS.WebCore.Controllers
             };
 
             await _shiftService.AddAsync(shift);
-
             return RedirectToAction(nameof(Index));
         }
 
@@ -67,7 +66,15 @@ namespace EMS.WebCore.Controllers
             if (shift == null)
                 return NotFound();
 
-            return View(shift);
+            var editModel = new ShiftEditViewModel
+            {
+                ShiftId = shift.ShiftId,
+                ShiftName = shift.ShiftName,
+                StartTime = shift.StartTime,
+                EndTime = shift.EndTime
+            };
+
+            return View(editModel);
         }
 
         [HttpPost]
@@ -86,7 +93,6 @@ namespace EMS.WebCore.Controllers
             };
 
             await _shiftService.UpdateAsync(shift);
-
             return RedirectToAction(nameof(Index));
         }
 
