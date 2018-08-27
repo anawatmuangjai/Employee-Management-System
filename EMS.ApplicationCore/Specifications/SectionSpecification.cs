@@ -8,6 +8,12 @@ namespace EMS.ApplicationCore.Specifications
 {
     public class SectionSpecification : BaseSpecification<MasterSection>
     {
+        public SectionSpecification()
+            : base(s => s.SectionId > 0)
+        {
+            AddInclude(s => s.Department);
+        }
+
         public SectionSpecification(string sectionName)
             : base(s => s.SectionName.Contains(sectionName))
         {

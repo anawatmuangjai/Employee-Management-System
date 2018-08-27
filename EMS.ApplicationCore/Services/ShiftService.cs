@@ -26,7 +26,7 @@ namespace EMS.ApplicationCore.Services
 
         public async Task<ShiftModel> GetByIdAsync(int id)
         {
-            var shift = await _repository.GetByIdAsync(id);
+            var shift = await _repository.GetSingleAsync(x => x.ShiftId == id);
             return _mapper.Map<MasterShift, ShiftModel>(shift);
         }
 

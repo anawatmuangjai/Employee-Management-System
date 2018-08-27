@@ -34,13 +34,15 @@ namespace EMS.ApplicationCore.Services
 
         public async Task<List<SectionModel>> GetAllAsync()
         {
-            var sections = await _repository.GetAllAsync();
+            var spec = new SectionSpecification();
+            var sections = await _repository.GetAsync(spec);
             return _mapper.Map<List<MasterSection>, List<SectionModel>>(sections);
         }
 
         public async Task<List<SectionModel>> GetByNameAsync(string name)
         {
-            var sections = await _repository.GetAsync(x => x.SectionName == name);
+            var spec = new SectionSpecification(name);
+            var sections = await _repository.GetAsync(spec);
             return _mapper.Map<List<MasterSection>, List<SectionModel>>(sections);
         }
 

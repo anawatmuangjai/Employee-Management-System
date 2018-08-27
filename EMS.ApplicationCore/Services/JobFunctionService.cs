@@ -2,6 +2,7 @@
 using EMS.ApplicationCore.Interfaces.Repositories;
 using EMS.ApplicationCore.Interfaces.Services;
 using EMS.ApplicationCore.Models;
+using EMS.ApplicationCore.Specifications;
 using EMS.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,13 @@ namespace EMS.ApplicationCore.Services
         public async Task<List<JobFunctionModel>> GetAllAsync()
         {
             var jobFunctions = await _repository.GetAllAsync();
+            return _mapper.Map<List<MasterJobFunction>, List<JobFunctionModel>>(jobFunctions);
+        }
+
+        public async Task<List<JobFunctionModel>> GetAllWithJobTitleAsync()
+        {
+            var spec = new JobFunctionSpecification();
+            var jobFunctions = await _repository.GetAsync(spec);
             return _mapper.Map<List<MasterJobFunction>, List<JobFunctionModel>>(jobFunctions);
         }
 
@@ -70,5 +78,7 @@ namespace EMS.ApplicationCore.Services
             var jobFunction = await _repository.GetByIdAsync(id);
             await _repository.DeleteAsync(jobFunction);
         }
+
+
     }
 }

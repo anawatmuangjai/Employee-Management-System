@@ -10,5 +10,6 @@ namespace EMS.ApplicationCore.Models
         public int JobTitleId { get; set; }
         public string FunctionName { get; set; }
         public string FunctionDescription { get; set; }
+        public JobTitleModel JobTitle { get; set; }
     }
 }

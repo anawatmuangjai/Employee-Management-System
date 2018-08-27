@@ -69,5 +69,10 @@ namespace EMS.ApplicationCore.Services
                 ChangedDate = employee.ChangedDate
             };
         }
+
+        public async Task<bool> ExistsAsync(string employeeId)
+        {
+            return await _repository.ExistsAsync(x => x.EmployeeId == employeeId);
+        }
     }
 }

@@ -12,6 +12,7 @@ namespace EMS.ApplicationCore.Interfaces.Services
     {
         Task<JobFunctionModel> GetByIdAsync(int id);
         Task<List<JobFunctionModel>> GetAllAsync();
+        Task<List<JobFunctionModel>> GetAllWithJobTitleAsync();
         Task<List<JobFunctionModel>> GetByNameAsync(string name);
         Task AddAsync(JobFunctionModel model);
         Task UpdateAsync(JobFunctionModel model);

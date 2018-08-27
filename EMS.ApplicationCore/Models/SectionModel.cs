@@ -10,7 +10,6 @@ namespace EMS.ApplicationCore.Models
         public int DepartmentId { get; set; }
         public string SectionName { get; set; }
         public string SectionCode { get; set; }
-        public string DepartmentName { get; set; }
-
+        public DepartmentModel Department { get; set; }
     }
 }
