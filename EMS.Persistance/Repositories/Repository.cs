@@ -131,5 +131,10 @@ namespace EMS.Persistance.Repositories
         {
             return await _dbContext.Set<T>().AnyAsync(filter);
         }
+
+        public async Task<int> CountAsync(Expression<Func<T, bool>> filter)
+        {
+            return await _dbContext.Set<T>().CountAsync(filter);
+        }
     }
 }

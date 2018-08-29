@@ -21,10 +21,13 @@ namespace EMS.Persistance.Repositories
             var result = await _dbContext.Employee
                 .Include(image => image.EmployeeImage)
                 .Include(state => state.EmployeeState)
-                    .ThenInclude(job => job.JobTitle)
+                    .ThenInclude(dep => dep.Department)
                 .Include(state => state.EmployeeState)
                     .ThenInclude(sec => sec.Section)
-                    .ThenInclude(dept => dept.Department)
+                .Include(state => state.EmployeeState)
+                    .ThenInclude(pos => pos.Position)
+                .Include(state => state.EmployeeState)
+                    .ThenInclude(job => job.JobFunction)
                 .ToListAsync();
 
             return result;

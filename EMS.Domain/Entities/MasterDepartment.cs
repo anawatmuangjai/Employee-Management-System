@@ -7,7 +7,7 @@ namespace EMS.Domain.Entities
     {
         public MasterDepartment()
         {
-            MasterSection = new HashSet<MasterSection>();
+            EmployeeState = new HashSet<EmployeeState>();
         }
 
         public int DepartmentId { get; set; }
@@ -15,6 +15,6 @@ namespace EMS.Domain.Entities
         public string DepartmentCode { get; set; }
         public string DepartmentGroup { get; set; }
 
-        public ICollection<MasterSection> MasterSection { get; set; }
+        public ICollection<EmployeeState> EmployeeState { get; set; }
     }
 }
