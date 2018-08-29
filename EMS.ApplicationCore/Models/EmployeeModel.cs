@@ -20,5 +20,7 @@ namespace EMS.ApplicationCore.Models
         public DateTime HireDate { get; set; }
         public bool? AvailableFlag { get; set; }
         public DateTime ChangedDate { get; set; }
+
+        public EmployeeStateModel EmployeeState { get; set; }
     }
 }
