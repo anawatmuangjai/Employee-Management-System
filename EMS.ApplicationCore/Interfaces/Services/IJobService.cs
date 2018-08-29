@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace EMS.ApplicationCore.Interfaces.Services
 {
-    public interface IJobService
+    public interface IJobPositionService
     {
-        Task<JobTitleModel> GetByIdAsync(int id);
-        Task<List<JobTitleModel>> GetAllAsync();
-        Task<List<JobTitleModel>> GetByNameAsync(string name);
-        Task AddAsync(JobTitleModel model);
-        Task UpdateAsync(JobTitleModel model);
+        Task<JobPositionModel> GetByIdAsync(int id);
+        Task<List<JobPositionModel>> GetAllAsync();
+        Task<List<JobPositionModel>> GetByNameAsync(string name);
+        Task AddAsync(JobPositionModel model);
+        Task UpdateAsync(JobPositionModel model);
         Task DeleteAsync(int id);
     }
 }

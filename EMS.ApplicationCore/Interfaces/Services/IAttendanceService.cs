@@ -8,7 +8,6 @@ namespace EMS.ApplicationCore.Interfaces.Services
 {
     public interface IAttendanceService
     {
-        Task<List<AttendanceModel>> GetAllAsync();
         Task<List<AttendanceModel>> GetActiveAsync();
         Task<List<AttendanceModel>> GetAbsentAsync();
         Task<List<AttendanceModel>> GetHistoryAsync(string employeeId, string startDate, string endDate);

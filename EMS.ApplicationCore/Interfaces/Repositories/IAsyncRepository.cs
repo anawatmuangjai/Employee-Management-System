@@ -16,6 +16,7 @@ namespace EMS.ApplicationCore.Interfaces.Repositories
         Task<List<T>> GetAsync(ISpecification<T> spec);
         Task<List<T>> GetAsync(Expression<Func<T, bool>> filter);
         Task<bool> ExistsAsync(Expression<Func<T, bool>> filter);
+        Task<int> CountAsync(Expression<Func<T, bool>> filter);
         Task<T> AddAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(T entity);
