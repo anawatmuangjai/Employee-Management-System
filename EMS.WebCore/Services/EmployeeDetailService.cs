@@ -13,7 +13,7 @@ namespace EMS.WebCore.Services
         private readonly IDepartmentService _departmentService;
         private readonly ISectionService _sectionService;
         private readonly IShiftService _shiftService;
-        private readonly IJobService _jobTitleService;
+        private readonly IJobPositionService _jobPositionService;
         private readonly IJobFunctionService _jobFunctionService;
         private readonly IEmployeeLevelService _levelService;
         private readonly IBusStationService _busStationService;
@@ -22,7 +22,7 @@ namespace EMS.WebCore.Services
             IDepartmentService departmentService,
             ISectionService sectionService,
             IShiftService shiftService,
-            IJobService jobTitleService,
+            IJobPositionService jobPositionService,
             IJobFunctionService jobFunctionService,
             IEmployeeLevelService levelService,
             IBusStationService busStationService)
@@ -30,7 +30,7 @@ namespace EMS.WebCore.Services
             _departmentService = departmentService;
             _sectionService = sectionService;
             _shiftService = shiftService;
-            _jobTitleService = jobTitleService;
+            _jobPositionService = jobPositionService;
             _jobFunctionService = jobFunctionService;
             _levelService = levelService;
             _busStationService = busStationService;
@@ -106,7 +106,7 @@ namespace EMS.WebCore.Services
 
         public async Task<IEnumerable<SelectListItem>> GetJobTitles()
         {
-            var jobTitles = await _jobTitleService.GetAllAsync();
+            var jobTitles = await _jobPositionService.GetAllAsync();
 
             var item = new List<SelectListItem>
             {
@@ -122,8 +122,8 @@ namespace EMS.WebCore.Services
             {
                 item.Add(new SelectListItem()
                 {
-                    Value = job.JobTitleId.ToString(),
-                    Text = job.JobTitle
+                    Value = job.PositionId.ToString(),
+                    Text = job.PositionName
                 });
             }
 

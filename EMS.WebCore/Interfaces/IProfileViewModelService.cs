@@ -8,6 +8,7 @@ namespace EMS.WebCore.Interfaces
 {
     public interface IProfileViewModelService
     {
+        Task<ProfileViewModel> GetProfile(string employeeId);
         Task<ProfileEditViewModel> EditProfile(string employeeId);
         Task UpdateProfile(ProfileEditViewModel model);
     }

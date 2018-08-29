@@ -12,6 +12,7 @@ using EMS.WebCore.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,6 +40,8 @@ namespace EMS.WebCore
                     option.LoginPath = "/Account/Login";
                 });
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(IAsyncRepository<>), typeof(Repository<>));
 
@@ -47,13 +50,15 @@ namespace EMS.WebCore
             services.AddScoped<IEmployeePasswordService, EmployeePasswordService>();
             services.AddScoped<IDepartmentService, DepartmentService>();
             services.AddScoped<ISectionService, SectionService>();
-            services.AddScoped<IJobService, JobService>();
+            services.AddScoped<IJobPositionService, JobPositiobService>();
             services.AddScoped<IJobFunctionService, JobFunctionService>();
             services.AddScoped<IShiftService, ShiftService>();
             services.AddScoped<IEmployeeLevelService, EmployeeLevelService>();
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IEmployeeListService, EmployeeListService>();
             services.AddScoped<IEmployeeStateService, EmployeeStateService>();
+            services.AddScoped<IEmployeeAddressService, EmployeeAddressService>();
+            services.AddScoped<IEmployeeImageService, EmployeeImageService>();
             services.AddScoped<IBusStationService, BusStationService>();
             services.AddScoped<IAttendanceService, AttendanceService>();
 
