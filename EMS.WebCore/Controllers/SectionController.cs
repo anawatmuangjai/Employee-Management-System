@@ -39,14 +39,9 @@ namespace EMS.WebCore.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
-            var viewModel = new SectionEditViewModel
-            {
-                Departments = await GetDepartments()
-            };
-
-            return View(viewModel);
+            return View();
         }
 
         [HttpPost]
@@ -57,7 +52,6 @@ namespace EMS.WebCore.Controllers
             {
                 var section = new SectionModel
                 {
-                    DepartmentId = model.DepartmentId,
                     SectionName = model.SectionName,
                     SectionCode = model.SectionCode
                 };
@@ -80,10 +74,8 @@ namespace EMS.WebCore.Controllers
             var editViewModel = new SectionEditViewModel
             {
                 SectionId = section.SectionId,
-                DepartmentId = section.DepartmentId,
                 SectionName = section.SectionName,
                 SectionCode = section.SectionCode,
-                Departments = await GetDepartments()
             };
 
             return View(editViewModel);
@@ -99,7 +91,6 @@ namespace EMS.WebCore.Controllers
             var section = new SectionModel
             {
                 SectionId = model.SectionId,
-                DepartmentId = model.DepartmentId,
                 SectionName = model.SectionName,
                 SectionCode = model.SectionCode
             };
@@ -127,27 +118,6 @@ namespace EMS.WebCore.Controllers
             await _sectionService.DeleteAsync(id);
 
             return RedirectToAction(nameof(Index));
-        }
-
-        private async Task<IEnumerable<SelectListItem>> GetDepartments()
-        {
-            var departments = await _departmentService.GetAllAsync();
-
-            var item = new List<SelectListItem>
-            {
-                new SelectListItem() { Value = null, Text ="",Selected = true }
-            };
-
-            foreach (var department in departments)
-            {
-                item.Add(new SelectListItem()
-                {
-                    Value = department.DepartmentId.ToString(),
-                    Text = department.DepartmentName
-                });
-            }
-
-            return item;
         }
     }
 }

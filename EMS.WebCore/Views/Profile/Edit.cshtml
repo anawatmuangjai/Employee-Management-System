@@ -9,8 +9,33 @@
         <div class="card">
             <h5 class="card-header bg-light text-dark">Edit Profile</h5>
             <div class="card-body">
-                <form asp-action="Edit" method="post" class="form-horizontal" role="form">
+                <form asp-action="Edit" enctype="multipart/form-data" method="post" class="form-horizontal" role="form">
                     <input asp-for="EmployeeId" type="hidden" />
+                    <input asp-for="EmployeeAddressId" type="hidden" />
+                    <div class="form-group">
+                        <label asp-for="EmployeeImage">Profile Image</label>
+                        <input type="file" name="EmployeeImage" multiple id="fileUpload" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="GlobalId">Global ID</label>
+                        <input asp-for="GlobalId" type="text" class="form-control">
+                        <span asp-validation-for="GlobalId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CardId">Card ID</label>
+                        <input asp-for="CardId" type="text" class="form-control">
+                        <span asp-validation-for="CardId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Title">Title</label>
+                        <input asp-for="Title" type="text" class="form-control">
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EmployeeType">Employee Type</label>
+                        <input asp-for="EmployeeType" type="text" class="form-control">
+                        <span asp-validation-for="EmployeeType" class="text-danger"></span>
+                    </div>
                     <div class="form-group">
                         <label asp-for="FirstName">First Name (Eng)</label>
                         <input asp-for="FirstName" type="text" class="form-control">
@@ -21,6 +46,63 @@
                         <input asp-for="LastName" type="text" class="form-control">
                         <span asp-validation-for="LastName" class="text-danger"></span>
                     </div>
+
+                    <div class="form-group">
+                        <label asp-for="FirstNameThai">First Name (Thai)</label>
+                        <input asp-for="FirstNameThai" type="text" class="form-control">
+                        <span asp-validation-for="FirstNameThai" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LastNameThai">Last Name (Thai)</label>
+                        <input asp-for="LastNameThai" type="text" class="form-control">
+                        <span asp-validation-for="LastNameThai" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Gender">Gender</label>
+                        <input asp-for="Gender" type="text" class="form-control">
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BirthDate">Birth Date</label>
+                        <input asp-for="BirthDate" type="date" class="form-control">
+                        <span asp-validation-for="BirthDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="HireDate">Hire Date</label>
+                        <input asp-for="HireDate" type="date" class="form-control">
+                        <span asp-validation-for="HireDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="HomeAddress">Home Address</label>
+                        <input asp-for="HomeAddress" type="text" class="form-control">
+                        <span asp-validation-for="HomeAddress" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="City">City</label>
+                        <input asp-for="City" type="text" class="form-control">
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Country">Country</label>
+                        <input asp-for="Country" type="text" class="form-control">
+                        <span asp-validation-for="Country" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PostalCode">Postal Code</label>
+                        <input asp-for="PostalCode" type="text" class="form-control">
+                        <span asp-validation-for="PostalCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PhoneNumber">Phone Number</label>
+                        <input asp-for="PhoneNumber" type="text" class="form-control">
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EmailAddress">Email Address</label>
+                        <input asp-for="EmailAddress" type="text" class="form-control">
+                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                    </div>
+
                     <div class="form-group">
                         <label asp-for="DepartmentId">Department</label>
                         <select asp-for="DepartmentId" asp-items="@Model.Departments" class="form-control"></select>
@@ -37,9 +119,9 @@
                         <span asp-validation-for="ShiftId" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="JobTitleId">Job Title</label>
-                        <select asp-for="JobTitleId" asp-items="@Model.JobTitles" class="form-control"></select>
-                        <span asp-validation-for="JobTitleId" class="text-danger"></span>
+                        <label asp-for="JobPositionId">Job Title</label>
+                        <select asp-for="JobPositionId" asp-items="@Model.JobTitles" class="form-control"></select>
+                        <span asp-validation-for="JobPositionId" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="JobFunctionId">Job Function</label>

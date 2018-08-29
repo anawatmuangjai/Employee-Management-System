@@ -13,20 +13,20 @@ namespace EMS.WebCore.Controllers
     public class JobFunctionController : Controller
     {
         private readonly IJobFunctionService _jobFunctionService;
-        private readonly IJobService _jobService;
+        private readonly IJobPositionService _jobPositionService;
 
         public JobFunctionController(
             IJobFunctionService jobFunctionService,
-            IJobService jobService)
+            IJobPositionService jobPositionService)
         {
             _jobFunctionService = jobFunctionService;
-            _jobService = jobService;
+            _jobPositionService = jobPositionService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var jobFunctions = await _jobFunctionService.GetAllWithJobTitleAsync();
+            var jobFunctions = await _jobFunctionService.GetAllAsync();
 
             if (jobFunctions == null)
                 return View();
@@ -40,14 +40,9 @@ namespace EMS.WebCore.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
-            var viewModel = new JobFunctionEditViewModel
-            {
-                JobTitles = await GetJobTitle()
-            };
-
-            return View(viewModel);
+            return View();
         }
 
         [HttpPost]
@@ -59,7 +54,6 @@ namespace EMS.WebCore.Controllers
 
             var jobFunction = new JobFunctionModel
             {
-                JobTitleId = model.JobTitleId,
                 FunctionName = model.FunctionName,
                 FunctionDescription = model.FunctionDescription
             };
@@ -79,10 +73,8 @@ namespace EMS.WebCore.Controllers
             var editViewModel = new JobFunctionEditViewModel
             {
                 JobFunctionId = jobFunction.JobFunctionId,
-                JobTitleId = jobFunction.JobTitleId,
                 FunctionName = jobFunction.FunctionName,
                 FunctionDescription = jobFunction.FunctionDescription,
-                JobTitles = await GetJobTitle()
             };
 
             return View(editViewModel);
@@ -98,7 +90,6 @@ namespace EMS.WebCore.Controllers
             var jobFunction = new JobFunctionModel
             {
                 JobFunctionId = model.JobFunctionId,
-                JobTitleId = model.JobTitleId,
                 FunctionName = model.FunctionName,
                 FunctionDescription = model.FunctionName
             };
@@ -129,7 +120,7 @@ namespace EMS.WebCore.Controllers
 
         private async Task<IEnumerable<SelectListItem>> GetJobTitle()
         {
-            var jobTitles = await _jobService.GetAllAsync();
+            var jobTitles = await _jobPositionService.GetAllAsync();
 
             var item = new List<SelectListItem>
             {
@@ -140,8 +131,8 @@ namespace EMS.WebCore.Controllers
             {
                 item.Add(new SelectListItem()
                 {
-                    Value = job.JobTitleId.ToString(),
-                    Text = job.JobTitle
+                    Value = job.PositionId.ToString(),
+                    Text = job.PositionName
                 });
             }
 

@@ -4,30 +4,30 @@ using System.Linq;
 using System.Threading.Tasks;
 using EMS.ApplicationCore.Interfaces.Services;
 using EMS.ApplicationCore.Models;
-using EMS.WebCore.ViewModels.Job;
+using EMS.WebCore.ViewModels.JobPosition;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EMS.WebCore.Controllers
 {
     [Authorize]
-    public class JobController : Controller
+    public class JobPositionController : Controller
     {
-        private readonly IJobService _jobService;
+        private readonly IJobPositionService _jobPositionService;
 
-        public JobController(IJobService jobService)
+        public JobPositionController(IJobPositionService jobPositionService)
         {
-            _jobService = jobService;
+            _jobPositionService = jobPositionService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var jobTitles = await _jobService.GetAllAsync();
+            var jobPositions = await _jobPositionService.GetAllAsync();
 
             var viewModel = new JobViewModel
             {
-                JobTitles = jobTitles
+                JobTitles = jobPositions
             };
 
             return View(viewModel);
@@ -45,13 +45,13 @@ namespace EMS.WebCore.Controllers
             if (!ModelState.IsValid)
                 return View();
 
-            var jobTitle = new JobTitleModel
+            var jobPosition = new JobPositionModel
             {
-                JobTitle = model.JobTitle,
-                JobDescription = model.JobDescription
+                PositionName = model.PositionName,
+                PositionCode = model.PositionCode
             };
 
-            await _jobService.AddAsync(jobTitle);
+            await _jobPositionService.AddAsync(jobPosition);
 
             return RedirectToAction(nameof(Index));
         }
@@ -59,16 +59,16 @@ namespace EMS.WebCore.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var jobTitle = await _jobService.GetByIdAsync(id);
+            var jobPosition = await _jobPositionService.GetByIdAsync(id);
 
-            if (jobTitle == null)
+            if (jobPosition == null)
                 return NotFound();
 
             var editViewModel = new JobEditViewModel
             {
-                JobTitleId = jobTitle.JobTitleId,
-                JobTitle = jobTitle.JobTitle,
-                JobDescription = jobTitle.JobDescription
+                PositionId = jobPosition.PositionId,
+                PositionName = jobPosition.PositionName,
+                PositionCode = jobPosition.PositionCode
             };
 
             return View(editViewModel);
@@ -81,14 +81,14 @@ namespace EMS.WebCore.Controllers
             if (!ModelState.IsValid)
                 return View();
 
-            var jobTitle = new JobTitleModel
+            var jobPosition = new JobPositionModel
             {
-                JobTitleId = model.JobTitleId,
-                JobTitle = model.JobTitle,
-                JobDescription = model.JobDescription
+                PositionId = model.PositionId,
+                PositionName = model.PositionName,
+                PositionCode = model.PositionCode
             };
 
-            await _jobService.UpdateAsync(jobTitle);
+            await _jobPositionService.UpdateAsync(jobPosition);
 
             return RedirectToAction(nameof(Index));
         }
@@ -96,19 +96,19 @@ namespace EMS.WebCore.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            var jobTitle = await _jobService.GetByIdAsync(id);
+            var jobPosition = await _jobPositionService.GetByIdAsync(id);
 
-            if (jobTitle == null)
+            if (jobPosition == null)
                 return NotFound();
 
-            return View(jobTitle);
+            return View(jobPosition);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await _jobService.DeleteAsync(id);
+            await _jobPositionService.DeleteAsync(id);
 
             return RedirectToAction(nameof(Index));
         }

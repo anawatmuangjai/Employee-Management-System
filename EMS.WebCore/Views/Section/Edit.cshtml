@@ -12,11 +12,6 @@
                 <form asp-action="Edit" method="post" class="form-horizontal" role="form">
                     <input asp-for="SectionId" type="hidden" />
                     <div class="form-group">
-                        <label asp-for="DepartmentId">Department</label>
-                        <select asp-for="DepartmentId" asp-items="@Model.Departments" class="form-control"></select>
-                        <span asp-validation-for="DepartmentId" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
                         <label asp-for="SectionName">Section Name</label>
                         <input asp-for="SectionName" type="text" class="form-control">
                         <span asp-validation-for="SectionName" class="text-danger"></span>

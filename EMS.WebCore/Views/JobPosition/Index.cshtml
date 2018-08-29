@@ -6,7 +6,7 @@
 
 <!-- content -->
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-    <h1 class="h2">Job Title Configuration</h1>
+    <h1 class="h2">Job Position Configuration</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group mr-2">
             <a class="btn btn-sm btn-outline-secondary" asp-action="Create">Create</a>
@@ -26,8 +26,8 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Job Title</th>
-                <th>Job Description</th>
+                <th>Position Name</th>
+                <th>Position Code</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -36,12 +36,12 @@
             {
 
                 <tr>
-                    <td>@item.JobTitleId</td>
-                    <td>@item.JobTitle</td>
-                    <td>@item.JobDescription</td>
+                    <td>@item.PositionId</td>
+                    <td>@item.PositionName</td>
+                    <td>@item.PositionCode</td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.JobTitleId" class="btn btn-info btn-sm">Edit</a>
-                        <a asp-action="Delete" asp-route-id="@item.JobTitleId" class="btn btn-danger btn-sm">Delete</a>
+                        <a asp-action="Edit" asp-route-id="@item.PositionId" class="btn btn-info btn-sm">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.PositionId" class="btn btn-danger btn-sm">Delete</a>
                     </td>
                 </tr>
 

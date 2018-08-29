@@ -26,7 +26,6 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Job Title</th>
                 <th>Job Function</th>
                 <th>Description</th>
                 <th>Action</th>
@@ -35,10 +34,8 @@
         <tbody>
             @foreach (var item in Model.JobFunctions)
             {
-
                 <tr>
                     <td>@item.JobFunctionId</td>
-                    <td>@item.JobTitle.JobTitle</td>
                     <td>@item.FunctionName</td>
                     <td>@item.FunctionDescription</td>
                     <td>

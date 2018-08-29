@@ -21,11 +21,13 @@ namespace EMS.WebCore.Controllers
             _attendanceService = attendanceService;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
 
+        [HttpGet]
         public async Task<IActionResult> ActiveWork()
         {
             var attendances = await _attendanceService.GetActiveAsync();
@@ -38,6 +40,7 @@ namespace EMS.WebCore.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
         public async Task<IActionResult> Absent()
         {
             var attendances = await _attendanceService.GetAbsentAsync();
@@ -50,10 +53,15 @@ namespace EMS.WebCore.Controllers
             return View(viewModel);
         }
 
-        public async Task<IActionResult> History(string employeeId)
+        [HttpGet]
+        public async Task<IActionResult> History(string employeeId, string startDate, string endDate)
         {
-            var startDate = DateTime.Today.AddDays(-10).ToString("yyyy/MM/dd");
-            var endDate = DateTime.Today.ToString("yyyy/Mm/dd");
+            if (String.IsNullOrEmpty(startDate))
+                startDate = DateTime.Today.AddDays(-10).ToString("yyyy/MM/dd");
+
+            if (String.IsNullOrEmpty(endDate))
+                endDate = DateTime.Today.ToString("yyyy/MM/dd");
+
             var viewModel = new AttendanceHistoryViewModel();
 
             if (!String.IsNullOrEmpty(employeeId))

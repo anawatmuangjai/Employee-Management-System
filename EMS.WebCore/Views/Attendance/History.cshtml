@@ -70,21 +70,19 @@
                                     <th class="col-2 align-middle text-center">Attendance Date</th>
                                     <th class="col-2 align-middle text-center">Employee ID</th>
                                     <th class="col-2 align-middle text-center">Work Shift</th>
-                                    <th class="col-2 align-middle text-center">Work Time</th>
-                                    <th class="col-2 align-middle text-center">Scan In Time</th>
-                                    <th class="col-2 align-middle text-center">Scan Out Time</th>
+                                    <th class="col-2 align-middle text-center">Scan Type</th>
+                                    <th class="col-2 align-middle text-center">Scan Time</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var e in Model.Attendances)
                                 {
                                     <tr class="d-flex">
-                                        <td class="col-2 align-middle text-center">2018/08/01</td>
+                                        <td class="col-2 align-middle text-center">@e.AttendanceDate</td>
                                         <td class="col-2 align-middle text-center">@e.EmployeeId</td>
-                                        <td class="col-2 align-middle text-center">A</td>
-                                        <td class="col-2 align-middle text-center">Day</td>
+                                        <td class="col-2 align-middle text-center">@e.ShiftName</td>
+                                        <td class="col-2 align-middle text-center">@e.PassCode</td>
                                         <td class="col-2 align-middle text-center">@e.ScanInTime</td>
-                                        <td class="col-2 align-middle text-center">@e.ScanOutTime</td>
                                     </tr>
                                 }
                             </tbody>

@@ -11,11 +11,6 @@
             <div class="card-body">
                 <form asp-action="Create" method="post" class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label asp-for="JobTitleId">Job Title</label>
-                        <select asp-for="JobTitleId" asp-items="@Model.JobTitles" class="form-control"></select>
-                        <span asp-validation-for="JobTitleId" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
                         <label asp-for="FunctionName">Job Function</label>
                         <input asp-for="FunctionName" type="text" class="form-control">
                         <span asp-validation-for="FunctionName" class="text-danger"></span>

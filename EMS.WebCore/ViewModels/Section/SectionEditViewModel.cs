@@ -11,15 +11,10 @@ namespace EMS.WebCore.ViewModels.Section
     {
         public int SectionId { get; set; }
 
-        [Required]
-        public int DepartmentId { get; set; }
-
         [Required, StringLength(50)]
         public string SectionName { get; set; }
 
         [Required, StringLength(10)]
         public string SectionCode { get; set; }
-
-        public IEnumerable<SelectListItem> Departments { get; set; }
     }
 }
