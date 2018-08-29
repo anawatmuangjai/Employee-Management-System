@@ -1,4 +1,5 @@
-﻿using EMS.ApplicationCore.Interfaces.Repositories;
+﻿using AutoMapper;
+using EMS.ApplicationCore.Interfaces.Repositories;
 using EMS.ApplicationCore.Interfaces.Services;
 using EMS.ApplicationCore.Models;
 using EMS.Domain.Entities;
@@ -11,11 +12,16 @@ namespace EMS.ApplicationCore.Services
 {
     public class EmployeeImageService : IEmployeeImageService
     {
+        private readonly IMapper _mapper;
         private readonly IAsyncRepository<EmployeeImage> _repository;
 
         public EmployeeImageService(IAsyncRepository<EmployeeImage> repository)
         {
             _repository = repository;
+
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<EmployeeImage, EmployeeImageModel>());
+
+            _mapper = config.CreateMapper();
         }
 
         public async Task<EmployeeImageModel> AddAsync(EmployeeImageModel model)
@@ -29,7 +35,18 @@ namespace EMS.ApplicationCore.Services
             };
 
             entity = await _repository.AddAsync(entity);
-            return MappingEntityAndModel(entity);
+            return _mapper.Map<EmployeeImage, EmployeeImageModel>(entity);
+        }
+
+        public async Task<bool> ExistsAsync(string employeeId)
+        {
+            return await _repository.ExistsAsync(x => x.EmployeeId == employeeId);
+        }
+
+        public async Task<EmployeeImageModel> GetByEmployeeId(string employeeId)
+        {
+            var entity = await _repository.GetSingleAsync(x => x.EmployeeId == employeeId);
+            return _mapper.Map<EmployeeImage, EmployeeImageModel>(entity);
         }
 
         public async Task UpdateAsync(EmployeeImageModel model)
@@ -40,16 +57,6 @@ namespace EMS.ApplicationCore.Services
             entity.Images = model.Images;
 
             await _repository.UpdateAsync(entity);
-        }
-
-        private EmployeeImageModel MappingEntityAndModel(EmployeeImage entity)
-        {
-            return new EmployeeImageModel
-            {
-                ImageId = entity.ImageId,
-                EmployeeId = entity.EmployeeId,
-                Images = entity.Images
-            };
         }
     }
 }

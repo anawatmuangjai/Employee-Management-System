@@ -10,63 +10,63 @@ using System.Threading.Tasks;
 
 namespace EMS.ApplicationCore.Services
 {
-    public class JobService : IJobService
+    public class JobPositiobService : IJobPositionService
     {
         private readonly IMapper _mapper;
-        private readonly IAsyncRepository<MasterJobTitle> _repository;
+        private readonly IAsyncRepository<MasterJobPosition> _repository;
 
-        public JobService(IAsyncRepository<MasterJobTitle> repository)
+        public JobPositiobService(IAsyncRepository<MasterJobPosition> repository)
         {
             _repository = repository;
 
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<MasterJobTitle, JobTitleModel>());
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<MasterJobPosition, JobPositionModel>());
 
             _mapper = config.CreateMapper();
         }
 
-        public async Task<JobTitleModel> GetByIdAsync(int id)
+        public async Task<JobPositionModel> GetByIdAsync(int id)
         {
-            var jobTitle = await _repository.GetByIdAsync(id);
-            return _mapper.Map<MasterJobTitle, JobTitleModel>(jobTitle);
+            var position = await _repository.GetByIdAsync(id);
+            return _mapper.Map<MasterJobPosition, JobPositionModel>(position);
         }
 
-        public async Task<List<JobTitleModel>> GetAllAsync()
+        public async Task<List<JobPositionModel>> GetAllAsync()
         {
-            var jobTitles = await _repository.GetAllAsync();
-            return _mapper.Map<List<MasterJobTitle>, List<JobTitleModel>>(jobTitles);
+            var position = await _repository.GetAllAsync();
+            return _mapper.Map<List<MasterJobPosition>, List<JobPositionModel>>(position);
         }
 
-        public async Task<List<JobTitleModel>> GetByNameAsync(string name)
+        public async Task<List<JobPositionModel>> GetByNameAsync(string name)
         {
-            var jobTitles = await _repository.GetAsync(x => x.JobTitle == name);
-            return _mapper.Map<List<MasterJobTitle>, List<JobTitleModel>>(jobTitles);
+            var position = await _repository.GetAsync(x => x.PositionName == name);
+            return _mapper.Map<List<MasterJobPosition>, List<JobPositionModel>>(position);
         }
 
-        public async Task AddAsync(JobTitleModel model)
+        public async Task AddAsync(JobPositionModel model)
         {
-            var jobTitle = new MasterJobTitle
+            var position = new MasterJobPosition
             {
-                JobTitle = model.JobTitle,
-                JobDescription = model.JobDescription
+                PositionName = model.PositionName,
+                PositionCode = model.PositionCode
             };
 
-            await _repository.AddAsync(jobTitle);
+            await _repository.AddAsync(position);
         }
 
-        public async Task UpdateAsync(JobTitleModel model)
+        public async Task UpdateAsync(JobPositionModel model)
         {
-            var jobTitle = await _repository.GetByIdAsync(model.JobTitleId);
+            var position = await _repository.GetByIdAsync(model.PositionId);
 
-            jobTitle.JobTitle = model.JobTitle;
-            jobTitle.JobDescription = model.JobDescription;
+            position.PositionName = model.PositionName;
+            position.PositionCode = model.PositionCode;
 
-            await _repository.UpdateAsync(jobTitle);
+            await _repository.UpdateAsync(position);
         }
 
         public async Task DeleteAsync(int id)
         {
-            var jobTitle = await _repository.GetByIdAsync(id);
-            await _repository.DeleteAsync(jobTitle);
+            var position = await _repository.GetByIdAsync(id);
+            await _repository.DeleteAsync(position);
         }
     }
 }

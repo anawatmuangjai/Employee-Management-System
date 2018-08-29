@@ -37,13 +37,6 @@ namespace EMS.ApplicationCore.Services
             return _mapper.Map<List<MasterJobFunction>, List<JobFunctionModel>>(jobFunctions);
         }
 
-        public async Task<List<JobFunctionModel>> GetAllWithJobTitleAsync()
-        {
-            var spec = new JobFunctionSpecification();
-            var jobFunctions = await _repository.GetAsync(spec);
-            return _mapper.Map<List<MasterJobFunction>, List<JobFunctionModel>>(jobFunctions);
-        }
-
         public async Task<List<JobFunctionModel>> GetByNameAsync(string name)
         {
             var jobFunctions = await _repository.GetAsync(x => x.FunctionName == name);
@@ -54,7 +47,6 @@ namespace EMS.ApplicationCore.Services
         {
             var jobFunction = new MasterJobFunction
             {
-                JobTitleId = model.JobTitleId,
                 FunctionName = model.FunctionName,
                 FunctionDescription = model.FunctionDescription,
             };
@@ -66,7 +58,6 @@ namespace EMS.ApplicationCore.Services
         {
             var jobFunction = await _repository.GetByIdAsync(model.JobFunctionId);
 
-            jobFunction.JobTitleId = model.JobTitleId;
             jobFunction.FunctionName = model.FunctionName;
             jobFunction.FunctionDescription = model.FunctionDescription;
 

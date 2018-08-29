@@ -34,15 +34,13 @@ namespace EMS.ApplicationCore.Services
 
         public async Task<List<SectionModel>> GetAllAsync()
         {
-            var spec = new SectionSpecification();
-            var sections = await _repository.GetAsync(spec);
+            var sections = await _repository.GetAllAsync();
             return _mapper.Map<List<MasterSection>, List<SectionModel>>(sections);
         }
 
         public async Task<List<SectionModel>> GetByNameAsync(string name)
         {
-            var spec = new SectionSpecification(name);
-            var sections = await _repository.GetAsync(spec);
+            var sections = await _repository.GetAsync(x => x.SectionName == name);
             return _mapper.Map<List<MasterSection>, List<SectionModel>>(sections);
         }
 
@@ -52,7 +50,6 @@ namespace EMS.ApplicationCore.Services
             {
                 SectionName = model.SectionName,
                 SectionCode = model.SectionCode,
-                DepartmentId = model.DepartmentId
             };
 
             await _repository.AddAsync(section);
@@ -64,7 +61,6 @@ namespace EMS.ApplicationCore.Services
 
             section.SectionName = model.SectionName;
             section.SectionCode = model.SectionCode;
-            section.DepartmentId = model.DepartmentId;
 
             await _repository.UpdateAsync(section);
         }

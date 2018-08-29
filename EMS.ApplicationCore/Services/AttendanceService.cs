@@ -1,6 +1,7 @@
 ﻿using EMS.ApplicationCore.Interfaces.Repositories;
 using EMS.ApplicationCore.Interfaces.Services;
 using EMS.ApplicationCore.Models;
+using EMS.ApplicationCore.Specifications;
 using EMS.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,34 +14,41 @@ namespace EMS.ApplicationCore.Services
     public class AttendanceService : IAttendanceService
     {
         private readonly IAsyncRepository<Employee> _employeeRepository;
+        private readonly IAsyncRepository<Attendance> _attendanceRepository;
 
-        public AttendanceService(IAsyncRepository<Employee> employeeRepository)
+        public AttendanceService(
+            IAsyncRepository<Employee> employeeRepository,
+            IAsyncRepository<Attendance> attendanceRepository)
         {
             _employeeRepository = employeeRepository;
+            _attendanceRepository = attendanceRepository;
         }
 
         public async Task<List<AttendanceModel>> GetActiveAsync()
         {
-            var employee = await _employeeRepository.GetAllAsync();
+            var today = DateTime.Today.ToString("yyyy/MM/dd");
+            var spec = new AttendanceSpecification(x => x.PassCode == "I" && x.PassTime.Contains(today));
+            var attendance = await _attendanceRepository.GetAsync(spec);
 
-            return employee.Select(x => new AttendanceModel
+            return attendance.Select(x => new AttendanceModel
             {
                 EmployeeId = x.EmployeeId,
-                Title = x.Title,
-                EmployeeType = x.EmployeeType,
-                FirstName = x.FirstName,
-                LastName = x.LastName,
-                FirstNameThai = x.FirstNameThai,
-                LastNameThai = x.LastNameThai,
+                Title = x.Employee.Title,
+                EmployeeType = x.Employee.EmployeeType,
+                FirstName = x.Employee.FirstName,
+                LastName = x.Employee.LastName,
+                FirstNameThai = x.Employee.FirstNameThai,
+                LastNameThai = x.Employee.LastNameThai,
                 LevelCode = "SP1",
                 ShiftName = "A",
                 DepartmentCode = "AM",
                 SectionCode = "Test",
                 JobTitle = "Engineer",
-                FunctionName = "System Engineer",
+                FunctionName = "Developer",
                 BusStationName = "X14",
-                ScanInTime = "2018/08/01 08:00:00",
-                ScanOutTime = "2018/08/01 08:00:00",
+                PassCode = "In",
+                ScanInTime = x.PassTime,
+                ScanOutTime = "-",
             }).ToList();
         }
 
@@ -69,66 +77,46 @@ namespace EMS.ApplicationCore.Services
             }).Take(15).ToList();
         }
 
-        public async Task<List<AttendanceModel>> GetAllAsync()
-        {
-            var employee = await _employeeRepository.GetAllAsync();
-
-            var attendances = employee.Select(x => new AttendanceModel
-            {
-                EmployeeId = x.EmployeeId,
-                Title = x.Title,
-                EmployeeType = x.EmployeeType,
-                FirstName = x.FirstName,
-                LastName = x.LastName,
-                FirstNameThai = x.FirstNameThai,
-                LastNameThai = x.LastNameThai,
-                LevelCode = "SP1",
-                ShiftName = "A",
-                DepartmentCode = "AM",
-                SectionCode = "Test",
-                JobTitle = "Engineer",
-                FunctionName = "System Engineer",
-                BusStationName = "X14",
-                ScanInTime = "2018/08/01 08:00:00",
-                ScanOutTime = "2018/08/01 08:00:00",
-            }).ToList();
-
-            return attendances;
-        }
-
         public async Task<List<AttendanceModel>> GetHistoryAsync(string employeeId, string startDate, string endDate)
         {
-            var employee = await _employeeRepository.GetAllAsync();
+            var today = DateTime.Today.ToString("yyyy/MM/dd");
 
-            return employee.Select(x => new AttendanceModel
+            var spec = new AttendanceSpecification(x => x.Employee.AvailableFlag == true);
+            var attendance = await _attendanceRepository.GetAsync(spec);
+
+            return attendance.Select(x => new AttendanceModel
             {
                 EmployeeId = x.EmployeeId,
-                Title = x.Title,
-                EmployeeType = x.EmployeeType,
-                FirstName = x.FirstName,
-                LastName = x.LastName,
-                FirstNameThai = x.FirstNameThai,
-                LastNameThai = x.LastNameThai,
+                Title = x.Employee.Title,
+                EmployeeType = x.Employee.EmployeeType,
+                FirstName = x.Employee.FirstName,
+                LastName = x.Employee.LastName,
+                FirstNameThai = x.Employee.FirstNameThai,
+                LastNameThai = x.Employee.LastNameThai,
                 LevelCode = "SP1",
                 ShiftName = "A",
                 DepartmentCode = "AM",
                 SectionCode = "Test",
                 JobTitle = "Engineer",
-                FunctionName = "System Engineer",
+                FunctionName = "Developer",
                 BusStationName = "X14",
-                ScanInTime = "2018/08/01 08:00:00",
-                ScanOutTime = "2018/08/01 08:00:00",
-            }).Take(15).ToList();
+                PassCode = x.PassCode == "I" ? "In" : "Out",
+                ScanInTime = x.PassTime,
+                ScanOutTime = "-",
+                AttendanceDate = x.PassTime.Substring(0, 10)
+            }).OrderBy(x => x.ScanInTime).ToList();
         }
 
         public async Task<int> CountActiveAsync(string date)
         {
-            return 340;
+            return await _attendanceRepository.CountAsync(x => x.PassTime.Contains(date));
         }
 
         public async Task<int> CountAbsentAsync(string date)
         {
-            return 20;
+            var totalEmployee = await _employeeRepository.CountAsync(x => x.AvailableFlag == true);
+            var attedance = await _attendanceRepository.CountAsync(x => x.PassTime.Contains(date) && x.PassCode == "I");
+            return totalEmployee - attedance;
         }
     }
 }

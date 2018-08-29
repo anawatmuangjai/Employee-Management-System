@@ -1,6 +1,8 @@
-﻿using EMS.ApplicationCore.Interfaces.Repositories;
+﻿using AutoMapper;
+using EMS.ApplicationCore.Interfaces.Repositories;
 using EMS.ApplicationCore.Interfaces.Services;
 using EMS.ApplicationCore.Models;
+using EMS.ApplicationCore.Specifications;
 using EMS.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,11 +14,16 @@ namespace EMS.ApplicationCore.Services
 {
     public class EmployeeService : IEmployeeService
     {
+        private readonly IMapper _mapper;
         private readonly IAsyncRepository<Employee> _employeeRepository;
 
         public EmployeeService(IAsyncRepository<Employee> employeeRepository)
         {
             _employeeRepository = employeeRepository;
+
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Employee, EmployeeModel>());
+
+            _mapper = config.CreateMapper();
         }
 
         public async Task<List<EmployeeModel>> GetAllAsync()
@@ -35,6 +42,13 @@ namespace EMS.ApplicationCore.Services
         {
             var employees = await _employeeRepository.GetSingleAsync(x => x.EmployeeId == employeeId);
             return MappingEmployeeModel(employees);
+        }
+
+        public async Task<EmployeeModel> GetByEmployeeIdWithDetailAsync(string employeeId)
+        {
+            var spec = new EmployeeFilterSpecification(employeeId);
+            var employees = await _employeeRepository.GetSingleAsync(spec);
+            return _mapper.Map<Employee, EmployeeModel>(employees);
         }
 
         public async Task<bool> Exists(string employeeId)
@@ -68,7 +82,6 @@ namespace EMS.ApplicationCore.Services
 
         public async Task UpdateAsync(EmployeeModel model)
         {
-            //var entity = await _employeeRepository.GetByIdAsync(model.EmployeeId);
             var entity = await _employeeRepository.GetSingleAsync(x => x.EmployeeId == model.EmployeeId);
 
             entity.GlobalId = model.GlobalId;
@@ -135,6 +148,7 @@ namespace EMS.ApplicationCore.Services
                 ChangedDate = employee.ChangedDate,
             };
         }
+
 
     }
 }
