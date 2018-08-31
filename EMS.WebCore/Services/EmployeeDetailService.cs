@@ -104,7 +104,7 @@ namespace EMS.WebCore.Services
             return item;
         }
 
-        public async Task<IEnumerable<SelectListItem>> GetJobTitles()
+        public async Task<IEnumerable<SelectListItem>> GetPositions()
         {
             var jobTitles = await _jobPositionService.GetAllAsync();
 

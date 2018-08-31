@@ -251,7 +251,7 @@ namespace EMS.WebCore.Services
 
         public async Task<bool> Exists(string employeeId)
         {
-            return await _employeeService.Exists(employeeId);
+            return await _employeeService.ExistsAsync(employeeId);
         }
 
         private void CreatePassword(string password, out byte[] passwordHash, out byte[] passwordSalt)

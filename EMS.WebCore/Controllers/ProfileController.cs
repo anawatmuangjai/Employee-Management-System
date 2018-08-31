@@ -55,15 +55,5 @@ namespace EMS.WebCore.Controllers
             await _profileViewModelService.UpdateProfile(model);
             return RedirectToAction(nameof(Index));
         }
-
-        [HttpGet]
-        public async Task<FileStreamResult> ViewImage(string employeeId)
-        {
-            var employeeImage = await _employeeImageService.GetByEmployeeId(employeeId);
-
-            var memoryStream = new MemoryStream(employeeImage.Images);
-
-            return new FileStreamResult(memoryStream, employeeImage.EmployeeId);
-        }
     }
 }

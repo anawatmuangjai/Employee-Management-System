@@ -53,7 +53,7 @@ namespace EMS.WebCore.Controllers
                     CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(claimsIdentity));
 
-                return RedirectToAction("Index", "Employee");
+                return RedirectToAction("Index", "Dashboard");
             }
 
             ModelState.AddModelError("", "User name or password not found");
