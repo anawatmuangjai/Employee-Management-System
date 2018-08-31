@@ -11,6 +11,7 @@ namespace EMS.ApplicationCore.Interfaces.Services
         Task<List<AttendanceModel>> GetActiveAsync();
         Task<List<AttendanceModel>> GetAbsentAsync();
         Task<List<AttendanceModel>> GetHistoryAsync(string employeeId, string startDate, string endDate);
+        Task<int> CountTotalEmployeeAsync();
         Task<int> CountActiveAsync(string date);
         Task<int> CountAbsentAsync(string date);
     }

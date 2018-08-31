@@ -51,7 +51,7 @@ namespace EMS.ApplicationCore.Services
             return _mapper.Map<Employee, EmployeeModel>(employees);
         }
 
-        public async Task<bool> Exists(string employeeId)
+        public async Task<bool> ExistsAsync(string employeeId)
         {
             return await _employeeRepository.ExistsAsync(x => x.EmployeeId == employeeId);
         }
@@ -148,7 +148,6 @@ namespace EMS.ApplicationCore.Services
                 ChangedDate = employee.ChangedDate,
             };
         }
-
 
     }
 }
