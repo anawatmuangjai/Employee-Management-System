@@ -1,0 +1,62 @@
+﻿@model AttendanceFilterModel
+
+<form asp-controller="Attendance" asp-action="ActiveWork" method="get">
+    <div class="form-row">
+        <div class="col-md-6 mb-2">
+            <div class="input-group">
+                <div class="input-group-prepend w-25">
+                    <label asp-for="AttendanceDate" class="input-group-text w-100">Date</label>
+                </div>
+                <input asp-for="AttendanceDate" type="date" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-6 mb-2">
+            <div class="input-group">
+                <div class="input-group-prepend w-25">
+                    <label asp-for="ShiftId" class="input-group-text w-100">Shift</label>
+                </div>
+                <select asp-for="ShiftId" asp-items="@Model.Shifts" class="form-control"></select>
+            </div>
+        </div>
+        <div class="col-md-6 mb-2">
+            <div class="input-group">
+                <div class="input-group-prepend w-25">
+                    <label asp-for="PositionId" class="input-group-text w-100">Position</label>
+                </div>
+                <select asp-for="PositionId" asp-items="@Model.Positions" class="form-control"></select>
+            </div>
+        </div>
+        <div class="col-md-6 mb-2">
+            <div class="input-group">
+                <div class="input-group-prepend w-25">
+                    <label asp-for="FunctionId" class="input-group-text w-100">Job Function</label>
+                </div>
+                <select asp-for="FunctionId" asp-items="@Model.JobFunctions" class="form-control"></select>
+            </div>
+        </div>
+        <div class="col-md-6 mb-2">
+            <div class="input-group">
+                <div class="input-group-prepend w-25">
+                    <label asp-for="DepartmentId" class="input-group-text w-100">Department</label>
+                </div>
+                <select asp-for="DepartmentId" asp-items="@Model.Departments" class="form-control"></select>
+            </div>
+        </div>
+        <div class="col-md-6 mb-2">
+            <div class="input-group">
+                <div class="input-group-prepend w-25">
+                    <label asp-for="SectionId" class="input-group-text w-100">Section</label>
+                </div>
+                <select asp-for="SectionId" asp-items="@Model.Sections" class="form-control"></select>
+            </div>
+        </div>
+        <div class="col-md-12 mb-3">
+            <div class="input-group">
+                <input asp-for="EmployeeId" type="text" name="employeeId" class="form-control" placeholder="Employee ID">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="submit"><i class="fa fa-search mr-2"></i>Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -7,7 +7,57 @@
 <!-- content -->
 <div class="row my-4">
 
-    <div class="col-lg-8 order-lg-2 mx-auto">
+    <div class="col col-lg-4">
+        <!-- profile image -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Profile</h5>
+            </div>
+            @if (String.IsNullOrEmpty(Model.ProfileImage))
+            {
+                <img src="//placehold.it/150" class="img-thumbnail mx-auto mt-4" alt="avatar">
+            }
+            else
+            {
+                <img src="@Model.ProfileImage" class="img-thumbnail mx-auto mt-4" alt="avatar">
+            }
+            <div class="card-body text-center">
+                <h4 class="card-title">@Model.FirstName @Model.LastName</h4>
+                <h5 class="card-text">@Model.FirstNameThai @Model.LastNameThai</h5>
+                <a class="btn btn-primary my-2" asp-controller="Profile" asp-action="Edit" asp-route-employeeId="@Model.EmployeeId">Edit Profile</a>
+            </div>
+        </div>
+        <!-- contact -->
+        <div class="card mb-4">
+            <h5 class="card-header"><i class="fa fa-phone text-primary mr-3"></i>Contact</h5>
+            <div class="card-body">
+                <h5 class="card-title">Phone</h5>
+                <p class="card-text">@Model.PhoneNumber</p>
+                <h5 class="card-title">Email</h5>
+                <p class="card-text">@Model.EmailAddress</p>
+            </div>
+        </div>
+        <!-- skill -->
+        <div class="card mb-4">
+            <h5 class="card-header"><i class="fa fa-star text-primary mr-3"></i>Top Skill</h5>
+            <div class="card-body">
+                <h6>C# Programming</h6>
+                <div class="progress mb-2">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                </div>
+                <h6>SQL Server</h6>
+                <div class="progress mb-2">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%"></div>
+                </div>
+                <h6>Problem Solving</h6>
+                <div class="progress mb-2">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: 65%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col col-lg-8 mx-auto">
         <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a href="" data-target="#profile" data-toggle="tab" class="nav-link active" aria-expanded="true">Profile</a>
@@ -41,8 +91,6 @@
                                         <p class="card-text">@Model.CardId</p>
                                         <h6 class="card-title">Employye Type</h6>
                                         <p class="card-text">@Model.EmployeeType</p>
-                                        <h6 class="card-title">Hire Type</h6>
-                                        <p class="card-text">Direct</p>
                                         <h6 class="card-title">Hire Date</h6>
                                         <p class="card-text">@Model.HireDate.ToString("yyyy-MM-dd")</p>
                                         <h6 class="card-title">Bus Station</h6>
@@ -374,46 +422,5 @@
         </div>
     </div>
 
-    <div class="col-lg-4 order-lg-1">
-        <!-- profile image -->
-        <div class="card mb-4">
-            <div class="card-header">
-                <h5>Profile</h5>
-            </div>
-            <img src="//placehold.it/150" class="rounded-circle h-50 w-50 mx-auto mt-4" alt="avatar">
-            <div class="card-body text-center">
-                <h4 class="card-title">@Model.FirstName @Model.LastName</h4>
-                <h5 class="card-text">@Model.FirstNameThai @Model.LastNameThai</h5>
-                <a class="btn btn-primary my-2" asp-controller="Profile" asp-action="Edit" asp-route-employeeId="@Model.EmployeeId">Edit Profile</a>
-            </div>
-        </div>
-        <!-- skill -->
-        <div class="card mb-4">
-            <h5 class="card-header"><i class="fa fa-star text-primary mr-3"></i>Top Skill</h5>
-            <div class="card-body">
-                <h6>C# Programming</h6>
-                <div class="progress mb-2">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-                </div>
-                <h6>SQL Server</h6>
-                <div class="progress mb-2">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%"></div>
-                </div>
-                <h6>Problem Solving</h6>
-                <div class="progress mb-2">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: 65%"></div>
-                </div>
-            </div>
-        </div>
-        <!-- contact -->
-        <div class="card mb-4">
-            <h5 class="card-header"><i class="fa fa-phone text-primary mr-3"></i>Contact</h5>
-            <div class="card-body">
-                <h5 class="card-title">Phone</h5>
-                <p class="card-text">@Model.PhoneNumber</p>
-                <h5 class="card-title">Email</h5>
-                <p class="card-text">@Model.EmailAddress</p>
-            </div>
-        </div>
-    </div>
+
 </div>

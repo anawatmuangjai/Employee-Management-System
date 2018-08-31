@@ -67,6 +67,7 @@ namespace EMS.WebCore
 
             services.AddScoped<IEmployeeViewModelService, EmployeeViewModelService>();
             services.AddScoped<IProfileViewModelService, ProfileViewModelService>();
+            services.AddScoped<IAttendanceViewModelService, AttendanceViewModelService>();
 
             services.AddMvc();
         }

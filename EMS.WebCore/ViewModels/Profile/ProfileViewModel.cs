@@ -62,5 +62,7 @@ namespace EMS.WebCore.ViewModels.Profile
         public string PhoneNumber { get; set; }
 
         public string EmailAddress { get; set; }
+
+        public string ProfileImage { get; set; }
     }
 }

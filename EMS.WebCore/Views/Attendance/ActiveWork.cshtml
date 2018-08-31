@@ -19,84 +19,59 @@
     </div>
 </div>
 
-<form asp-controller="Employee" asp-action="EmployeeList" method="get">
+<form asp-controller="Attendance" asp-action="ActiveWork" method="get">
     <div class="form-row">
         <div class="col-md-6 mb-2">
             <div class="input-group">
                 <div class="input-group-prepend w-25">
-                    <label class="input-group-text w-100">Date</label>
+                    <label asp-for="AttendanceDate" class="input-group-text w-100">Date</label>
                 </div>
-                <input type="date" class="form-control" value="2018-01-01" required>
+                <input asp-for="AttendanceDate" type="date" class="form-control">
             </div>
         </div>
         <div class="col-md-6 mb-2">
             <div class="input-group">
                 <div class="input-group-prepend w-25">
-                    <label class="input-group-text w-100" for="inputGroupSelect01">Shift</label>
+                    <label asp-for="ShiftId" class="input-group-text w-100">Shift</label>
                 </div>
-                <select class="custom-select">
-                    <option selected>Choose...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
+                <select asp-for="ShiftId" asp-items="@Model.FilterModel.Shifts" class="form-control"></select>
             </div>
         </div>
         <div class="col-md-6 mb-2">
             <div class="input-group">
                 <div class="input-group-prepend w-25">
-                    <label class="input-group-text w-100" for="inputGroupSelect01">Job Title</label>
+                    <label asp-for="PositionId" class="input-group-text w-100">Position</label>
                 </div>
-                <select class="custom-select">
-                    <option selected>Choose...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
+                <select asp-for="PositionId" asp-items="@Model.FilterModel.Positions" class="form-control"></select>
             </div>
         </div>
         <div class="col-md-6 mb-2">
             <div class="input-group">
                 <div class="input-group-prepend w-25">
-                    <label class="input-group-text w-100" for="inputGroupSelect01">Job Function</label>
+                    <label asp-for="FunctionId" class="input-group-text w-100">Job Function</label>
                 </div>
-                <select class="custom-select">
-                    <option selected>Choose...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
+                <select asp-for="FunctionId" asp-items="@Model.FilterModel.JobFunctions" class="form-control"></select>
             </div>
         </div>
         <div class="col-md-6 mb-2">
             <div class="input-group">
                 <div class="input-group-prepend w-25">
-                    <label class="input-group-text w-100" for="inputGroupSelect01">Department</label>
+                    <label asp-for="DepartmentId" class="input-group-text w-100">Department</label>
                 </div>
-                <select class="custom-select">
-                    <option selected>Choose...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
+                <select asp-for="DepartmentId" asp-items="@Model.FilterModel.Departments" class="form-control"></select>
             </div>
         </div>
         <div class="col-md-6 mb-2">
             <div class="input-group">
                 <div class="input-group-prepend w-25">
-                    <label class="input-group-text w-100" for="inputGroupSelect01">Section</label>
+                    <label asp-for="SectionId" class="input-group-text w-100">Section</label>
                 </div>
-                <select class="custom-select">
-                    <option selected>Choose...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
+                <select asp-for="SectionId" asp-items="@Model.FilterModel.Sections" class="form-control"></select>
             </div>
         </div>
         <div class="col-md-12 mb-3">
             <div class="input-group">
-                <input type="text" name="employeeId" class="form-control" placeholder="Employee ID">
+                <input asp-for="EmployeeId" type="text" name="employeeId" class="form-control" placeholder="Employee ID">
                 <div class="input-group-append">
                     <button class="btn btn-secondary" type="submit"><i class="fa fa-search mr-2"></i>Search</button>
                 </div>
@@ -108,10 +83,10 @@
 @if (Model.Attendances.Any())
 {
     <div class="card mb-3">
-        <h5 class="card-header bg-success text-white">Active List</h5>
+        <h5 class="card-header bg-white text-success">Active List</h5>
         <div class="card-body p-0">
             <div class="table-responsive">
-                <table class="table table-hover table-sm w-100">
+                <table class="table table-hover table-sm w-100 mb-0">
                     <thead class="thead-light">
                         <tr class="d-flex">
                             <th class="col-1 align-middle">Type</th>
@@ -156,8 +131,8 @@
                 </table>
             </div>
         </div>
-        <div class="card-footer bg-success text-white">
-            <h6>Total Active Work : @Model.Attendances.Count() Person.</h6>
+        <div class="card-footer bg-white text-dark">
+            <p class="mb-0">Total Active Work : @Model.Attendances.Count() Person.</p>
         </div>
     </div>
 }

@@ -108,10 +108,10 @@
 @if (Model.Attendances.Any())
 {
     <div class="card mb-3">
-        <h5 class="card-header bg-danger text-white">Absent List</h5>
+        <h5 class="card-header bg-dark text-danger">Absent List</h5>
         <div class="card-body p-0">
             <div class="table-responsive">
-                <table class="table table-hover table-sm w-100">
+                <table class="table table-hover table-sm w-100 mb-0">
                     <thead class="thead-light">
                         <tr class="d-flex">
                             <th class="col-1 align-middle">Type</th>
@@ -157,8 +157,8 @@
                 </table>
             </div>
         </div>
-        <div class="card-footer bg-danger text-white">
-            <h6>Total Absent : @Model.Attendances.Count() Person.</h6>
+        <div class="card-footer bg-white text-dark">
+            <p class="mb-0">Total Absent : @Model.Attendances.Count() Person.</p>
         </div>
     </div>
 }

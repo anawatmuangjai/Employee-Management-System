@@ -16,10 +16,19 @@
             <div class="card-body">
                 <form asp-action="Login" method="post" class="form-signin">
 
-                    <label asp-for="UserName" class="sr-only">Employee ID</label>
-                    <input asp-for="UserName" type="text" class="form-control mb-4" placeholder="Employee ID" required="" autofocus="">
-                    <label asp-for="Password" class="sr-only">Password</label>
-                    <input asp-for="Password" type="password" class="form-control mb-4" placeholder="Password" required="">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+                        </div>
+                        <input asp-for="UserName" type="text" class="form-control" placeholder="Username" required="" autofocus="" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon2"><i class="fa fa-lock"></i></span>
+                        </div>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Password" required="" aria-label="Password" aria-describedby="basic-addon2">
+                    </div>
 
                     <button class="btn btn-lg btn-primary btn-block mb-4" type="submit">Sign in</button>
                     <a class="mt-5 mb-3 text-muted" href="#">Forgot Password - Tel 2960</a>

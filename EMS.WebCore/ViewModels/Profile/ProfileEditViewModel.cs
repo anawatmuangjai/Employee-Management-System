@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -29,8 +30,10 @@ namespace EMS.WebCore.ViewModels.Profile
 
         public string Gender { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime HireDate { get; set; }
 
         public int DepartmentId { get; set; }
@@ -47,6 +50,7 @@ namespace EMS.WebCore.ViewModels.Profile
 
         public int BusStationId { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime JoinDate { get; set; }
 
         public int EmployeeAddressId { get; set; }
