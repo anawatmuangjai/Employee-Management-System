@@ -10,8 +10,6 @@ namespace EMS.Domain.Entities
         public string PassTime { get; set; }
         public string PassCode { get; set; }
         public string Location { get; set; }
-        public bool NewFlag { get; set; }
-
-        public Employee Employee { get; set; }
+        public long IdAttendanceC { get; set; }
     }
 }

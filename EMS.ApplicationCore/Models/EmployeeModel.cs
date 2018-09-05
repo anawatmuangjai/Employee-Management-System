@@ -10,6 +10,7 @@ namespace EMS.ApplicationCore.Models
         public string GlobalId { get; set; }
         public string CardId { get; set; }
         public string Title { get; set; }
+        public string TitleThai { get; set; }
         public string EmployeeType { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

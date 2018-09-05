@@ -7,7 +7,6 @@ namespace EMS.Domain.Entities
     {
         public Employee()
         {
-            Attendance = new HashSet<Attendance>();
             EmployeeAddress = new HashSet<EmployeeAddress>();
             EmployeeEducation = new HashSet<EmployeeEducation>();
             EmployeeImage = new HashSet<EmployeeImage>();
@@ -18,6 +17,7 @@ namespace EMS.Domain.Entities
         public string GlobalId { get; set; }
         public string CardId { get; set; }
         public string Title { get; set; }
+        public string TitleThai { get; set; }
         public string EmployeeType { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -31,7 +31,6 @@ namespace EMS.Domain.Entities
 
         public EmployeePassword EmployeePassword { get; set; }
         public EmployeeState EmployeeState { get; set; }
-        public ICollection<Attendance> Attendance { get; set; }
         public ICollection<EmployeeAddress> EmployeeAddress { get; set; }
         public ICollection<EmployeeEducation> EmployeeEducation { get; set; }
         public ICollection<EmployeeImage> EmployeeImage { get; set; }
