@@ -29,24 +29,24 @@ namespace EMS.ApplicationCore.Services
         public async Task<List<EmployeeModel>> GetAllAsync()
         {
             var employees = await _employeeRepository.GetAllAsync();
-            return MappingEmployeeModels(employees);
+            return _mapper.Map<List<Employee>, List<EmployeeModel>>(employees);
         }
 
         public async Task<List<EmployeeModel>> GetByNameAsync(string name)
         {
             var employees = await _employeeRepository.GetAsync(x => x.FirstName.Contains(name));
-            return MappingEmployeeModels(employees);
+            return _mapper.Map<List<Employee>, List<EmployeeModel>>(employees);
         }
 
         public async Task<EmployeeModel> GetByEmployeeIdAsync(string employeeId)
         {
-            var employees = await _employeeRepository.GetSingleAsync(x => x.EmployeeId == employeeId);
-            return MappingEmployeeModel(employees);
+            var employee = await _employeeRepository.GetSingleAsync(x => x.EmployeeId == employeeId);
+            return _mapper.Map<Employee, EmployeeModel>(employee);
         }
 
         public async Task<EmployeeModel> GetByEmployeeIdWithDetailAsync(string employeeId)
         {
-            var spec = new EmployeeFilterSpecification(employeeId);
+            var spec = new EmployeeSpecification(x => x.EmployeeId == employeeId);
             var employees = await _employeeRepository.GetSingleAsync(spec);
             return _mapper.Map<Employee, EmployeeModel>(employees);
         }
@@ -65,6 +65,7 @@ namespace EMS.ApplicationCore.Services
                 CardId = model.CardId,
                 EmployeeType = model.EmployeeType,
                 Title = model.Title,
+                TitleThai = model.TitleThai,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 FirstNameThai = model.FirstNameThai,
@@ -77,7 +78,7 @@ namespace EMS.ApplicationCore.Services
             };
 
             entity = await _employeeRepository.AddAsync(entity);
-            return MappingEmployeeModel(entity);
+            return _mapper.Map<Employee, EmployeeModel>(entity);
         }
 
         public async Task UpdateAsync(EmployeeModel model)
@@ -88,6 +89,7 @@ namespace EMS.ApplicationCore.Services
             entity.CardId = model.CardId;
             entity.EmployeeType = model.EmployeeType;
             entity.Title = model.Title;
+            entity.TitleThai = model.TitleThai;
             entity.FirstName = model.FirstName;
             entity.LastName = model.LastName;
             entity.FirstNameThai = model.FirstNameThai;
@@ -106,48 +108,5 @@ namespace EMS.ApplicationCore.Services
             var entity = await _employeeRepository.GetByIdAsync(id);
             await _employeeRepository.DeleteAsync(entity);
         }
-
-        private List<EmployeeModel> MappingEmployeeModels(List<Employee> employees)
-        {
-            return employees.Select(x => new EmployeeModel
-            {
-                EmployeeId = x.EmployeeId,
-                GlobalId = x.GlobalId,
-                CardId = x.CardId,
-                EmployeeType = x.EmployeeType,
-                Title = x.Title,
-                FirstName = x.FirstName,
-                LastName = x.LastName,
-                FirstNameThai = x.FirstNameThai,
-                LastNameThai = x.LastNameThai,
-                Gender = x.Gender,
-                AvailableFlag = x.AvailableFlag,
-                BirthDate = x.BirthDate,
-                HireDate = x.HireDate,
-                ChangedDate = x.ChangedDate,
-            }).ToList();
-        }
-
-        private EmployeeModel MappingEmployeeModel(Employee employee)
-        {
-            return new EmployeeModel
-            {
-                EmployeeId = employee.EmployeeId,
-                GlobalId = employee.GlobalId,
-                CardId = employee.CardId,
-                EmployeeType = employee.EmployeeType,
-                Title = employee.Title,
-                FirstName = employee.FirstName,
-                LastName = employee.LastName,
-                FirstNameThai = employee.FirstNameThai,
-                LastNameThai = employee.LastNameThai,
-                Gender = employee.Gender,
-                AvailableFlag = employee.AvailableFlag,
-                BirthDate = employee.BirthDate,
-                HireDate = employee.HireDate,
-                ChangedDate = employee.ChangedDate,
-            };
-        }
-
     }
 }

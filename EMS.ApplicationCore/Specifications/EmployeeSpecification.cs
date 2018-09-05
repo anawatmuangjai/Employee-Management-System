@@ -6,10 +6,10 @@ using System.Text;
 
 namespace EMS.ApplicationCore.Specifications
 {
-    public class EmployeeFilterSpecification : BaseSpecification<Employee>
+    public class EmployeeSpecification : BaseSpecification<Employee>
     {
-        public EmployeeFilterSpecification(string employeeId)
-            : base(e => e.EmployeeId == employeeId)
+        public EmployeeSpecification(Expression<Func<Employee, bool>> filter)
+            : base(filter)
         {
             AddInclude(e => e.EmployeeAddress);
             AddInclude(e => e.EmployeeState);

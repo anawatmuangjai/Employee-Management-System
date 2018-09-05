@@ -27,63 +27,67 @@ namespace EMS.ApplicationCore.Services
         public async Task<List<AttendanceModel>> GetActiveAsync()
         {
             var today = DateTime.Today.ToString("yyyy/MM/dd");
+            var spec = new EmployeeSpecification(x => x.AvailableFlag == true);
+            var employees = await _employeeRepository.GetAsync(spec);
+            var attendances = await _attendanceRepository.GetAsync(x => x.PassCode == "I" && x.PassTime.Contains(today));
 
-            var spec = new AttendanceSpecification(x => x.PassCode == "I" && x.PassTime.Contains(today));
+            var attendanceResult = (from e in employees
+                                    join a in attendances on e.EmployeeId equals a.EmployeeId
+                                    select new AttendanceModel
+                                    {
+                                        AttendanceDate = today,
+                                        EmployeeId = e.EmployeeId,
+                                        Title = e.Title,
+                                        EmployeeType = e.EmployeeType,
+                                        FirstName = e.FirstName,
+                                        LastName = e.LastName,
+                                        FirstNameThai = e.FirstNameThai,
+                                        LastNameThai = e.LastNameThai,
+                                        LevelCode = e.EmployeeState?.Level.LevelCode ?? "-",
+                                        ShiftName = e.EmployeeState?.Shift.ShiftName ?? "-",
+                                        DepartmentCode = e.EmployeeState?.Department.DepartmentCode ?? "-",
+                                        SectionCode = e.EmployeeState?.Section.SectionCode ?? "-",
+                                        JobTitle = e.EmployeeState?.Position.PositionName ?? "-",
+                                        FunctionName = e.EmployeeState?.JobFunction.FunctionName ?? "-",
+                                        BusStationName = e.EmployeeState?.BusStation.BusStationName ?? "-",
+                                        PassCode = a.PassCode,
+                                        ScanInTime = a?.PassTime ?? "-",
+                                        ScanOutTime = "-",
+                                    }).ToList();
 
-            var attendances = await _attendanceRepository.GetAsync(spec);
-
-            return attendances.Select(x => new AttendanceModel
-            {
-                EmployeeId = x.EmployeeId,
-                Title = x.Employee.Title,
-                EmployeeType = x.Employee.EmployeeType,
-                FirstName = x.Employee.FirstName,
-                LastName = x.Employee.LastName,
-                FirstNameThai = x.Employee.FirstNameThai,
-                LastNameThai = x.Employee.LastNameThai,
-                LevelCode = x.Employee.EmployeeState.Level.LevelCode,
-                ShiftName = x.Employee.EmployeeState.Shift.ShiftName,
-                DepartmentCode = x.Employee.EmployeeState.Department.DepartmentCode,
-                SectionCode = x.Employee.EmployeeState.Section.SectionName,
-                JobTitle = x.Employee.EmployeeState.Position.PositionName,
-                FunctionName = x.Employee.EmployeeState.JobFunction.FunctionName,
-                BusStationName = x.Employee.EmployeeState.BusStation.BusStationName,
-                PassCode = "In",
-                ScanInTime = x.PassTime,
-                ScanOutTime = "-",
-            }).ToList();
+            return attendanceResult;
         }
 
         public async Task<List<AttendanceModel>> GetAbsentAsync()
         {
             var today = DateTime.Today.ToString("yyyy/MM/dd");
-
-            var employees = await _employeeRepository.GetAsync(x => x.AvailableFlag == true);
-            var attendances = await _attendanceRepository.GetAsync(x => x.PassTime.Contains(today) && x.PassCode == "I");
+            var spec = new EmployeeSpecification(x => x.AvailableFlag == true);
+            var employees = await _employeeRepository.GetAsync(spec);
+            var attendances = await _attendanceRepository.GetAsync(x => x.PassCode == "I" && x.PassTime.Contains(today));
 
             var query = (from e in employees
                          join a in attendances on e.EmployeeId equals a.EmployeeId into g
                          from s in g.DefaultIfEmpty()
                          select new
                          {
-                             EmployeeId = e.EmployeeId,
-                             Title = e.Title,
-                             EmployeeType = e.EmployeeType,
-                             FirstName = e.FirstName,
-                             LastName = e.LastName,
-                             FirstNameThai = e.FirstNameThai,
-                             LastNameThai = e.LastNameThai,
-                             LevelCode = "SP1",
-                             ShiftName = "A",
-                             DepartmentCode = "AM",
-                             SectionCode = "Test",
-                             JobTitle = "Engineer",
-                             FunctionName = "System Engineer",
-                             BusStationName = "X14",
+                             e.EmployeeId,
+                             e.Title,
+                             e.EmployeeType,
+                             e.FirstName,
+                             e.LastName,
+                             e.FirstNameThai,
+                             e.LastNameThai,
+                             LevelCode = e.EmployeeState?.Level.LevelCode ?? "-",
+                             ShiftName = e.EmployeeState?.Shift.ShiftName ?? "-",
+                             DepartmentCode = e.EmployeeState?.Department.DepartmentCode ?? "-",
+                             SectionCode = e.EmployeeState?.Section.SectionCode ?? "-",
+                             PositionName = e.EmployeeState?.Position.PositionName ?? "-",
+                             FunctionName = e.EmployeeState?.JobFunction.FunctionName ?? "-",
+                             BusStationName = e.EmployeeState?.BusStation.BusStationName ?? "-",
                              PassTime = s?.PassTime ?? "-"
                          }).ToList();
 
-            var attendanceModels = query
+            var attendanceResult = query
                 .Where(x => x.PassTime == "-")
                 .Select(x => new AttendanceModel
                 {
@@ -95,69 +99,67 @@ namespace EMS.ApplicationCore.Services
                     LastName = x.LastName,
                     FirstNameThai = x.FirstNameThai,
                     LastNameThai = x.LastNameThai,
-                    LevelCode = "SP1",
-                    ShiftName = "A",
-                    DepartmentCode = "AM",
-                    SectionCode = "Test",
-                    JobTitle = "Engineer",
-                    FunctionName = "System Engineer",
-                    BusStationName = "X14",
+                    LevelCode = x.LevelCode,
+                    ShiftName = x.ShiftName,
+                    DepartmentCode = x.DepartmentCode,
+                    SectionCode = x.SectionCode,
+                    JobTitle = x.PositionName,
+                    FunctionName = x.FunctionName,
+                    BusStationName = x.BusStationName,
                     ScanInTime = "-",
                     ScanOutTime = "-",
                 }).ToList();
 
-            return attendanceModels;
+            return attendanceResult;
         }
 
         public async Task<List<AttendanceModel>> GetHistoryAsync(string employeeId, string startDate, string endDate)
         {
             var today = DateTime.Today.ToString("yyyy/MM/dd");
-            var spec = new AttendanceSpecification(x => x.Employee.AvailableFlag == true && x.EmployeeId == employeeId);
-            var attendances = await _attendanceRepository.GetAsync(spec);
+            var spec = new EmployeeSpecification(x => x.AvailableFlag == true && x.EmployeeId == employeeId);
+            var employees = await _employeeRepository.GetAsync(spec);
+            var attendances = await _attendanceRepository.GetAsync(x => x.EmployeeId == employeeId);
 
-            var result = attendances
-                .Select(x => new
-                {
-                    AttendanceDate = x.PassTime.Substring(0, 10),
-                    x.EmployeeId,
-                    x.Employee.Title,
-                    x.Employee.EmployeeType,
-                    x.Employee.FirstName,
-                    x.Employee.LastName,
-                    x.Employee.FirstNameThai,
-                    x.Employee.LastNameThai,
-                    LevelCode = "SP1",
-                    ShiftName = "A",
-                    DepartmentCode = "AM",
-                    SectionCode = "Test",
-                    JobTitle = "Engineer",
-                    FunctionName = "Developer",
-                    BusStationName = "X14",
-                    x.PassCode,
-                    x.PassTime,
-                }).ToList();
+            var attendanceByDate = attendances
+                                    .Select(x => new
+                                    {
+                                        AttendanceDate = x.PassTime.Substring(0, 10),
+                                        x.EmployeeId,
+                                        x.PassCode,
+                                        x.PassTime
+                                    }).ToList();
 
-            var attendanceModels = (from e in result
-                                    group e by new { e.EmployeeId, e.AttendanceDate } into g
+            var attendanceResult = (from a in attendanceByDate
+                                    group a by new { a.EmployeeId, a.AttendanceDate } into g
+                                    select new
+                                    {
+                                        g.Key.AttendanceDate,
+                                        g.Key.EmployeeId,
+                                        ScanInTime = g.Where(x => x.PassCode == "I").Min(x => x.PassTime) ?? "-",
+                                        ScanOutTime = g.Where(x => x.PassCode == "O").Max(x => x.PassTime) ?? "-",
+                                    }).ToList();
+
+            var attendanceModels = (from e in employees
+                                    join a in attendanceResult on e.EmployeeId equals a.EmployeeId
                                     select new AttendanceModel
                                     {
-                                        AttendanceDate = g.Key.AttendanceDate,
-                                        EmployeeId = g.Key.EmployeeId,
-                                        Title = g.First().Title,
-                                        EmployeeType = g.First().EmployeeType,
-                                        FirstName = g.First().FirstName,
-                                        LastName = g.First().LastName,
-                                        FirstNameThai = g.First().FirstNameThai,
-                                        LastNameThai = g.First().LastNameThai,
-                                        LevelCode = "SP1",
-                                        ShiftName = "A",
-                                        DepartmentCode = "AM",
-                                        SectionCode = "Test",
-                                        JobTitle = "Engineer",
-                                        FunctionName = "Developer",
-                                        BusStationName = "X14",
-                                        ScanInTime = g.Where(x => x.PassCode == "I").Min(x => x.PassTime) ?? "-",
-                                        ScanOutTime = g.Where(x => x.PassCode == "O").Max(x => x.PassTime) ?? "-"
+                                        AttendanceDate = a.AttendanceDate,
+                                        EmployeeId = e.EmployeeId,
+                                        Title = e.Title,
+                                        EmployeeType = e.EmployeeType,
+                                        FirstName = e.FirstName,
+                                        LastName = e.LastName,
+                                        FirstNameThai = e.FirstNameThai,
+                                        LastNameThai = e.LastNameThai,
+                                        LevelCode = e.EmployeeState.Level.LevelCode,
+                                        ShiftName = e.EmployeeState.Shift.ShiftName,
+                                        DepartmentCode = e.EmployeeState.Department.DepartmentCode,
+                                        SectionCode = e.EmployeeState.Section.SectionCode,
+                                        JobTitle = e.EmployeeState.Position.PositionName,
+                                        FunctionName = e.EmployeeState.JobFunction.FunctionName,
+                                        BusStationName = e.EmployeeState.BusStation.BusStationName,
+                                        ScanInTime = a.ScanInTime,
+                                        ScanOutTime = a.ScanOutTime
                                     }).ToList();
 
             return attendanceModels;

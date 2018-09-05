@@ -1,4 +1,5 @@
-﻿using EMS.ApplicationCore.Interfaces.Repositories;
+﻿using AutoMapper;
+using EMS.ApplicationCore.Interfaces.Repositories;
 using EMS.ApplicationCore.Interfaces.Services;
 using EMS.ApplicationCore.Models;
 using EMS.Domain.Entities;
@@ -12,23 +13,35 @@ namespace EMS.ApplicationCore.Services
 {
     public class EducationDegreeService : IEducationDegreeService
     {
+        private readonly IMapper _mapper;
         private readonly IAsyncRepository<MasterEducationDegree> _repository;
 
         public EducationDegreeService(IAsyncRepository<MasterEducationDegree> repository)
         {
             _repository = repository;
+
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<MasterEducationDegree, EducationDegreeModel>());
+
+            _mapper = config.CreateMapper();
+        }
+
+
+        public async Task<EducationDegreeModel> GetByIdAsync(int id)
+        {
+            var degree = await _repository.GetByIdAsync(id);
+            return _mapper.Map<MasterEducationDegree, EducationDegreeModel>(degree);
         }
 
         public async Task<List<EducationDegreeModel>> GetAllAsync()
         {
             var degree = await _repository.GetAllAsync();
-            return MappingDegreeModel(degree);
+            return _mapper.Map<List<MasterEducationDegree>, List<EducationDegreeModel>>(degree);
         }
 
         public async Task<List<EducationDegreeModel>> GetByNameAsync(string name)
         {
             var degree = await _repository.GetAsync(x => x.DegreeName.Contains(name));
-            return MappingDegreeModel(degree);
+            return _mapper.Map<List<MasterEducationDegree>, List<EducationDegreeModel>>(degree);
         }
 
         public async Task<EducationDegreeModel> AddAsync(EducationDegreeModel model)
@@ -40,7 +53,7 @@ namespace EMS.ApplicationCore.Services
             };
 
             degree = await _repository.AddAsync(degree);
-            return MappingDegreeModel(degree);
+            return _mapper.Map<MasterEducationDegree, EducationDegreeModel>(degree);
         }
 
         public async Task UpdateAsync(EducationDegreeModel model)
@@ -57,26 +70,6 @@ namespace EMS.ApplicationCore.Services
         {
             var degree = await _repository.GetByIdAsync(id);
             await _repository.DeleteAsync(degree);
-        }
-
-        private List<EducationDegreeModel> MappingDegreeModel(List<MasterEducationDegree> degrees)
-        {
-            return degrees.Select(x => new EducationDegreeModel
-            {
-                DegreeId = x.DegreeId,
-                DegreeName = x.DegreeName,
-                DegreeNameThai = x.DegreeNameThai
-            }).ToList();
-        }
-
-        private EducationDegreeModel MappingDegreeModel(MasterEducationDegree degree)
-        {
-            return new EducationDegreeModel
-            {
-                DegreeId = degree.DegreeId,
-                DegreeName = degree.DegreeName,
-                DegreeNameThai = degree.DegreeNameThai
-            };
         }
     }
 }
