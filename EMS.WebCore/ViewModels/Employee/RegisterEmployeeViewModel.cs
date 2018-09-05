@@ -26,6 +26,9 @@ namespace EMS.WebCore.ViewModels.Employee
         public string Title { get; set; }
 
         [Required]
+        public string TitleThai { get; set; }
+
+        [Required]
         public string EmployeeType { get; set; }
 
         [Required]

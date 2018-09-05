@@ -100,13 +100,15 @@
                         <span asp-validation-for="Title" class="text-danger"></span>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label asp-for="Gender">Gender</label>
-                        <select asp-for="Gender" class="custom-select d-block w-100" required>
+                        <label asp-for="TitleThai">Title Thai</label>
+                        <select asp-for="TitleThai" class="custom-select d-block w-100" required>
                             <option value="">Choose...</option>
-                            <option value="M">Male</option>
-                            <option value="F">Female</option>
+                            <option value="นาย">นาย</option>
+                            <option value="นาง">นาง</option>
+                            <option value="นางสาว">นางสาว</option>
+                            <option value="ว่าที่ร้อยตรี">ว่าที่ร้อยตรี</option>
                         </select>
-                        <span asp-validation-for="Gender" class="text-danger"></span>
+                        <span asp-validation-for="TitleThai" class="text-danger"></span>
                     </div>
                 </div>
                 <!-- name eng -->
@@ -136,17 +138,27 @@
                     </div>
                 </div>
                 <!-- birth date -->
-                <div class="mb-3">
-                    <label asp-for="BirthDate">Birth Date</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">*</span>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="BirthDate">Birth Date</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">*</span>
+                            </div>
+                            <input asp-for="BirthDate" type="date" class="form-control" value="2018-01-01" required>
+                            <span asp-validation-for="BirthDate" class="text-danger"></span>
                         </div>
-                        <input asp-for="BirthDate" type="date" class="form-control" value="2018-01-01" required>
-                        <span asp-validation-for="BirthDate" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Gender">Gender</label>
+                        <select asp-for="Gender" class="custom-select d-block w-100" required>
+                            <option value="">Choose...</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
+                        <span asp-validation-for="Gender" class="text-danger"></span>
                     </div>
                 </div>
-
                 <button class="btn btn-primary btn-lg btn-block mb-4" type="submit">Submit</button>
             </form>
         </div>

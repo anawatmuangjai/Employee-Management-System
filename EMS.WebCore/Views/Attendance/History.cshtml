@@ -28,10 +28,10 @@
                     <a class="text-dark" href="#">@Model.Employee.FirstName @Model.Employee.LastName</a>
                 </h3>
                 <div class="mb-auto text-muted">@Model.Employee.FirstNameThai @Model.Employee.LastNameThai</div>
-                <p class="card-text mb-auto text-muted">Department : Automotive Auto Mount</p>
-                <p class="card-text mb-auto text-muted">Section : Production</p>
-                <p class="card-text mb-auto text-muted">Job Title : Operator</p>
-                <p class="card-text mb-auto text-muted">Job Function : Kitting Operator</p>
+                <p class="card-text mb-auto text-muted">Department : @Model.Employee.EmployeeState.Department.DepartmentName</p>
+                <p class="card-text mb-auto text-muted">Section : @Model.Employee.EmployeeState.Section.SectionName</p>
+                <p class="card-text mb-auto text-muted">Job Title : @Model.Employee.EmployeeState.Position.PositionName</p>
+                <p class="card-text mb-auto text-muted">Job Function : @Model.Employee.EmployeeState.JobFunction.FunctionName</p>
             </div>
             @if (String.IsNullOrEmpty(Model.ProfileImage))
             {
@@ -84,8 +84,8 @@
                                     <th class="col-2 align-middle text-center">Attendance Date</th>
                                     <th class="col-2 align-middle text-center">Employee ID</th>
                                     <th class="col-2 align-middle text-center">Work Shift</th>
-                                    <th class="col-2 align-middle text-center">Scan In Time</th>
-                                    <th class="col-2 align-middle text-center">Scan Out Time</th>
+                                    <th class="col-3 align-middle text-center">Scan In Time</th>
+                                    <th class="col-3 align-middle text-center">Scan Out Time</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -95,8 +95,8 @@
                                         <td class="col-2 align-middle text-center">@e.AttendanceDate</td>
                                         <td class="col-2 align-middle text-center">@e.EmployeeId</td>
                                         <td class="col-2 align-middle text-center">@e.ShiftName</td>
-                                        <td class="col-2 align-middle text-center">@e.ScanInTime</td>
-                                        <td class="col-2 align-middle text-center">@e.ScanOutTime</td>
+                                        <td class="col-3 align-middle text-center">@e.ScanInTime</td>
+                                        <td class="col-3 align-middle text-center">@e.ScanOutTime</td>
                                     </tr>
                                 }
                             </tbody>
