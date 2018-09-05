@@ -82,7 +82,7 @@ namespace EMS.WebCore.Controllers
 
             if (!String.IsNullOrEmpty(employeeId))
             {
-                var employee = await _employeeService.GetByEmployeeIdAsync(employeeId);
+                var employee = await _employeeService.GetByEmployeeIdWithDetailAsync(employeeId);
                 var attendances = await _attendanceService.GetHistoryAsync(employeeId, startDate, endDate);
 
                 viewModel.Employee = employee;

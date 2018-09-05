@@ -23,15 +23,17 @@ namespace EMS.WebCore.Controllers
             var today = DateTime.Today.ToString("yyyy/MM/dd");
 
             var totalEmployee = await _attendanceService.CountTotalEmployeeAsync();
-            var totalActive = await _attendanceService.CountActiveAsync(today);
-            var totalAbsent = await _attendanceService.CountAbsentAsync(today);
-            var percentAbsent = Math.Round(((double)totalAbsent / (double)totalEmployee) * 100, 2);
+
+            var totalActive = await _attendanceService.GetActiveAsync();
+            var totalAbsent = await _attendanceService.GetAbsentAsync();
+
+            var percentAbsent = Math.Round(((double)totalAbsent.Count / (double)totalEmployee) * 100, 2);
 
             var viewModel = new DashboardViewModel
             {
                 CountTotalEmployee = totalEmployee,
-                CountActiveWork = totalActive,
-                CountAbsent = totalAbsent,
+                CountActiveWork = totalActive.Count,
+                CountAbsent = totalAbsent.Count,
                 PercentAbsent = $"{percentAbsent}%"
             };
 

@@ -68,6 +68,7 @@ namespace EMS.WebCore.Services
                 CardId = viewModel.CardId,
                 EmployeeType = viewModel.EmployeeType,
                 Title = viewModel.Title,
+                TitleThai = viewModel.TitleThai,
                 FirstName = viewModel.FirstName,
                 LastName = viewModel.LastName,
                 FirstNameThai = viewModel.FirstNameThai,

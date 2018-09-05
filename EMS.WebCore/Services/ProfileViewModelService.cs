@@ -183,6 +183,7 @@ namespace EMS.WebCore.Services
                 GlobalId = model.GlobalId,
                 CardId = model.CardId,
                 Title = model.Title,
+                TitleThai = model.TitleThai,
                 EmployeeType = model.EmployeeType,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
