@@ -15,17 +15,17 @@ namespace EMS.IntegrationTests.Repositories
     [TestClass]
     public class JobRepositoryTests
     {
-        private MasterJobTitle _jobTitle;
+        private MasterJobPosition _jobPosition;
         private EmployeeContext _context;
-        private IAsyncRepository<MasterJobTitle> _repository;
+        private IAsyncRepository<MasterJobPosition> _repository;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            _jobTitle = new MasterJobTitle
+            _jobPosition = new MasterJobPosition
             {
-                JobTitle = "A",
-                JobDescription = "A"
+                PositionName = "A",
+                PositionCode = "A"
             };
 
             var option = new DbContextOptionsBuilder<EmployeeContext>()
@@ -33,29 +33,29 @@ namespace EMS.IntegrationTests.Repositories
                 .Options;
 
             _context = new EmployeeContext(option);
-            _repository = new Repository<MasterJobTitle>(_context);
+            _repository = new Repository<MasterJobPosition>(_context);
         }
 
         [TestMethod]
         public async Task GetByIdAysnc_WithSpecifiedId_ReturnExpectedResult()
         {
             // Arrange
-            await _repository.AddAsync(_jobTitle);
-            var jobTitleId = 1;
-            var jobTitleExpected = "A";
+            await _repository.AddAsync(_jobPosition);
+            var jobPositionId = 1;
+            var jobPositionExpected = "A";
 
             // Act
-            var actaul = await _repository.GetByIdAsync(jobTitleId);
+            var actaul = await _repository.GetByIdAsync(jobPositionId);
 
             // Assert
-            Assert.AreEqual(jobTitleExpected, actaul.JobTitle);
+            Assert.AreEqual(jobPositionExpected, actaul.PositionName);
         }
 
         [TestMethod]
         public async Task GetAllAsync_WhenCall_PopulateResult()
         {
             // Arrange
-            await _repository.AddAsync(_jobTitle);
+            await _repository.AddAsync(_jobPosition);
 
             // Act
             var items = await _repository.GetAllAsync();
@@ -68,7 +68,7 @@ namespace EMS.IntegrationTests.Repositories
         public async Task AddAsync_NewItem_ReturnAssignedId()
         {
             // Arrange
-            await _repository.AddAsync(_jobTitle);
+            await _repository.AddAsync(_jobPosition);
 
             // Act
             var items = await _repository.GetAllAsync();
@@ -76,17 +76,17 @@ namespace EMS.IntegrationTests.Repositories
 
             // Assert
             Assert.IsTrue(items.Count > 0, "No items");
-            Assert.IsTrue(newItem.JobTitleId > 0, "Add new item does not return id");
+            Assert.IsTrue(newItem.PositionId > 0, "Add new item does not return id");
         }
 
         [TestMethod]
         public async Task UpdateAsync_ExistingItem_NotSameResult()
         {
             // Arrange
-            await _repository.AddAsync(_jobTitle);
+            await _repository.AddAsync(_jobPosition);
             var newItem = await _repository.GetByIdAsync(1);
-            newItem.JobTitle = "B";
-            newItem.JobDescription = "B";
+            newItem.PositionName = "B";
+            newItem.PositionCode = "B";
 
             // Act
             await _repository.UpdateAsync(newItem);
@@ -94,14 +94,14 @@ namespace EMS.IntegrationTests.Repositories
 
             // Assert
             Assert.IsNotNull(updatedItem);
-            Assert.AreEqual("B", updatedItem.JobTitle, "Record is not updated");
+            Assert.AreEqual("B", updatedItem.PositionName, "Record is not updated");
         }
 
         [TestMethod]
         public async Task DeleteAsync_WithSepecifiedId_RemoveExistingItem()
         {
             // Arrange
-            await _repository.AddAsync(_jobTitle);
+            await _repository.AddAsync(_jobPosition);
             var existingItem = await _repository.GetByIdAsync(1);
 
             // Act
