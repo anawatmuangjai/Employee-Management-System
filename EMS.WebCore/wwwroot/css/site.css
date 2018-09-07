@@ -179,3 +179,30 @@
     width: 100%;
     overflow: hidden;
 }
+
+.table-responsive {
+    display: table;
+}
+
+.table {
+    table-layout: auto;
+}
+
+.table thead th {
+    vertical-align: middle;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
+
+th, td {
+    white-space: nowrap;
+}
+
+.scroll-box {
+    overflow-y: scroll;
+    height: 100vh;
+    overflow-x: scroll;
+    padding: 1rem
+}

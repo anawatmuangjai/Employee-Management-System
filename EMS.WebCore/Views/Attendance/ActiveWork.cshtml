@@ -84,45 +84,46 @@
 {
     <div class="card mb-3">
         <h5 class="card-header bg-white text-success">Active List</h5>
-        <div class="card-body p-0">
+        <div class="card-body scroll-box p-0">
+
             <div class="table-responsive">
-                <table class="table table-hover table-sm w-100 mb-0">
+                <table class="table table-hover table-bordered table-sm w-100 mb-0">
                     <thead class="thead-light">
-                        <tr class="d-flex">
-                            <th class="col-1 align-middle">Type</th>
-                            <th class="col-2 align-middle">Employee ID</th>
-                            <th class="col-3 align-middle">Name (English)</th>
-                            <th class="col-3 align-middle">Name (Thai)</th>
-                            <th class="col-1 align-middle text-center">Level</th>
-                            <th class="col-1 align-middle text-center">Shift</th>
-                            <th class="col-2 align-middle text-center">Department</th>
-                            <th class="col-2 align-middle text-center">Section</th>
-                            <th class="col-2 align-middle text-center">Job Title</th>
-                            <th class="col-3 align-middle text-center">Job Function</th>
-                            <th class="col-2 align-middle text-center">Bus Station</th>
-                            <th class="col-2 align-middle text-center">Scan In Time</th>
-                            <th class="col-2 align-middle text-center">Scan Out Time</th>
-                            <th class="col-1 align-middle text-center">History</th>
+                        <tr>
+                            <th>Type</th>
+                            <th>Employee ID</th>
+                            <th>Name (English)</th>
+                            <th>Name (Thai)</th>
+                            <th>Level</th>
+                            <th>Shift</th>
+                            <th>Department</th>
+                            <th>Section</th>
+                            <th>Job Title</th>
+                            <th>Job Function</th>
+                            <th>Bus Station</th>
+                            <th>Scan In Time</th>
+                            <th>Scan Out Time</th>
+                            <th>History</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var e in Model.Attendances)
                         {
-                            <tr class="d-flex">
-                                <td class="col-1 align-middle">@e.EmployeeType</td>
-                                <td class="col-2 align-middle">@e.EmployeeId</td>
-                                <td class="col-3 align-middle">@e.Title. @e.FirstName @e.LastName</td>
-                                <td class="col-3 align-middle">@e.FirstNameThai @e.LastNameThai</td>
-                                <td class="col-1 align-middle text-center">@e.LevelCode</td>
-                                <td class="col-1 align-middle text-center">@e.ShiftName</td>
-                                <td class="col-2 align-middle text-center">@e.DepartmentCode</td>
-                                <td class="col-2 align-middle text-center">@e.SectionCode</td>
-                                <td class="col-2 align-middle text-center">@e.JobTitle</td>
-                                <td class="col-3 align-middle text-center">@e.FunctionName</td>
-                                <td class="col-2 align-middle text-center">@e.BusStationName</td>
-                                <td class="col-2 align-middle text-center">@e.ScanInTime</td>
-                                <td class="col-2 align-middle text-center">@e.ScanOutTime</td>
-                                <td class="col-1 align-middle text-center">
+                            <tr>
+                                <td>@e.EmployeeType</td>
+                                <td>@e.EmployeeId</td>
+                                <td>@e.Title. @e.FirstName @e.LastName</td>
+                                <td>@e.FirstNameThai @e.LastNameThai</td>
+                                <td>@e.LevelCode</td>
+                                <td>@e.ShiftName</td>
+                                <td>@e.DepartmentCode</td>
+                                <td>@e.SectionCode</td>
+                                <td>@e.JobTitle</td>
+                                <td>@e.FunctionName</td>
+                                <td>@e.BusStationName</td>
+                                <td>@e.ScanInTime</td>
+                                <td>@e.ScanOutTime</td>
+                                <td>
                                     <a class="badge badge-success" asp-action="History" asp-route-employeeId="@e.EmployeeId">View</a>
                                 </td>
                             </tr>
@@ -130,9 +131,14 @@
                     </tbody>
                 </table>
             </div>
+
+
         </div>
         <div class="card-footer bg-white text-dark">
             <p class="mb-0">Total Active Work : @Model.Attendances.Count() Person.</p>
         </div>
+
     </div>
+
+
 }
