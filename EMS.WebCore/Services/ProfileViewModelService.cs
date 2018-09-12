@@ -176,7 +176,7 @@ namespace EMS.WebCore.Services
                     await _employeeImageService.AddAsync(employeeImage);
             }
 
-            // add or update employee
+            // update employee
             var employee = new EmployeeModel
             {
                 EmployeeId = model.EmployeeId,

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EMS.ApplicationCore.Interfaces.Services;
 using EMS.ApplicationCore.Models;
+using EMS.WebCore.Interfaces;
 using EMS.WebCore.ViewModels.JobFunction;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -13,14 +14,14 @@ namespace EMS.WebCore.Controllers
     public class JobFunctionController : Controller
     {
         private readonly IJobFunctionService _jobFunctionService;
-        private readonly IJobPositionService _jobPositionService;
+        private readonly IEmployeeDetailService _employeeDetailService;
 
         public JobFunctionController(
             IJobFunctionService jobFunctionService,
-            IJobPositionService jobPositionService)
+            IEmployeeDetailService employeeDetailService)
         {
             _jobFunctionService = jobFunctionService;
-            _jobPositionService = jobPositionService;
+            _employeeDetailService = employeeDetailService;
         }
 
         [HttpGet]
@@ -40,9 +41,14 @@ namespace EMS.WebCore.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var viewModel = new JobFunctionEditViewModel
+            {
+                Sections = await _employeeDetailService.GetSections()
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -54,6 +60,7 @@ namespace EMS.WebCore.Controllers
 
             var jobFunction = new JobFunctionModel
             {
+                SectionId = model.SectionId,
                 FunctionName = model.FunctionName,
                 FunctionDescription = model.FunctionDescription
             };
@@ -73,8 +80,10 @@ namespace EMS.WebCore.Controllers
             var editViewModel = new JobFunctionEditViewModel
             {
                 JobFunctionId = jobFunction.JobFunctionId,
+                SectionId = jobFunction.SectionId,
                 FunctionName = jobFunction.FunctionName,
                 FunctionDescription = jobFunction.FunctionDescription,
+                Sections = await _employeeDetailService.GetSections()
             };
 
             return View(editViewModel);
@@ -90,6 +99,7 @@ namespace EMS.WebCore.Controllers
             var jobFunction = new JobFunctionModel
             {
                 JobFunctionId = model.JobFunctionId,
+                SectionId = model.SectionId,
                 FunctionName = model.FunctionName,
                 FunctionDescription = model.FunctionName
             };
@@ -116,27 +126,6 @@ namespace EMS.WebCore.Controllers
             await _jobFunctionService.DeleteAsync(id);
 
             return RedirectToAction(nameof(Index));
-        }
-
-        private async Task<IEnumerable<SelectListItem>> GetJobTitle()
-        {
-            var jobTitles = await _jobPositionService.GetAllAsync();
-
-            var item = new List<SelectListItem>
-            {
-                new SelectListItem() { Value = null, Text ="",Selected = true }
-            };
-
-            foreach (var job in jobTitles)
-            {
-                item.Add(new SelectListItem()
-                {
-                    Value = job.PositionId.ToString(),
-                    Text = job.PositionName
-                });
-            }
-
-            return item;
         }
     }
 }

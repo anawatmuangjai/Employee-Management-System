@@ -11,9 +11,13 @@ namespace EMS.WebCore.ViewModels.JobFunction
     {
         public int JobFunctionId { get; set; }
 
+        public int SectionId { get; set; }
+
         [Required]
         public string FunctionName { get; set; }
 
         public string FunctionDescription { get; set; }
+
+        public IEnumerable<SelectListItem> Sections { get; set; }
     }
 }

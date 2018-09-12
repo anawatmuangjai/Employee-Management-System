@@ -26,6 +26,7 @@
         <thead>
             <tr>
                 <th>#</th>
+                <th>Section</th>
                 <th>Job Function</th>
                 <th>Description</th>
                 <th>Action</th>
@@ -34,15 +35,16 @@
         <tbody>
             @foreach (var item in Model.JobFunctions)
             {
-                <tr>
-                    <td>@item.JobFunctionId</td>
-                    <td>@item.FunctionName</td>
-                    <td>@item.FunctionDescription</td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.JobFunctionId" class="btn btn-info btn-sm">Edit</a>
-                        <a asp-action="Delete" asp-route-id="@item.JobFunctionId" class="btn btn-danger btn-sm">Delete</a>
-                    </td>
-                </tr>
+            <tr>
+                <td>@item.JobFunctionId</td>
+                <td>@item.Section.SectionName</td>
+                <td>@item.FunctionName</td>
+                <td>@item.FunctionDescription</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.JobFunctionId" class="btn btn-info btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.JobFunctionId" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
 
             }
         </tbody>
