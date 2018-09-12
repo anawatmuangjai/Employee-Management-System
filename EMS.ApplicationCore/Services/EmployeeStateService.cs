@@ -34,13 +34,11 @@ namespace EMS.ApplicationCore.Services
         {
             var entity = new EmployeeState
             {
-                EmployeeId = model.EmployeeId,
-                DepartmentId = model.DepartmentId,
-                SectionId = model.SectionId,
-                ShiftId = model.ShiftId,
-                LevelId = model.LevelId,
                 PositionId = model.PositionId,
                 JobFunctionId = model.JobFunctionId,
+                EmployeeId = model.EmployeeId,
+                ShiftId = model.ShiftId,
+                LevelId = model.LevelId,
                 BusStationId = model.BusStationId,
                 JoinDate = model.JoinDate,
                 ChangedDate = model.ChangedDate
@@ -54,12 +52,10 @@ namespace EMS.ApplicationCore.Services
         {
             var entity = await _repository.GetSingleAsync(x => x.EmployeeId == model.EmployeeId);
 
-            entity.DepartmentId = model.DepartmentId;
-            entity.SectionId = model.SectionId;
-            entity.ShiftId = model.ShiftId;
-            entity.LevelId = model.LevelId;
             entity.PositionId = model.PositionId;
             entity.JobFunctionId = model.JobFunctionId;
+            entity.ShiftId = model.ShiftId;
+            entity.LevelId = model.LevelId;
             entity.BusStationId = model.BusStationId;
             entity.JoinDate = model.JoinDate;
             entity.ChangedDate = model.ChangedDate;

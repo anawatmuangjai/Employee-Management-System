@@ -33,7 +33,7 @@ namespace EMS.Persistance.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:DefaultSchema", "MAN");
+            modelBuilder.HasAnnotation("Relational:DefaultSchema", "dbo");
 
             modelBuilder.Entity<Attendance>(entity =>
             {
@@ -45,9 +45,7 @@ namespace EMS.Persistance.Context
                     .HasMaxLength(30)
                     .IsUnicode(false);
 
-                entity.Property(e => e.IdAttendanceC)
-                    .HasColumnName("ID_AttendanceC")
-                    .HasDefaultValueSql("((-1))");
+                entity.Property(e => e.IdAttendanceC).HasColumnName("ID_AttendanceC");
 
                 entity.Property(e => e.Location)
                     .IsRequired()
@@ -67,7 +65,7 @@ namespace EMS.Persistance.Context
             modelBuilder.Entity<Employee>(entity =>
             {
                 entity.HasIndex(e => e.GlobalId)
-                    .HasName("UQ__Employee__A50E89930CEC5A62")
+                    .HasName("UQ__Employee__A50E89934242D080")
                     .IsUnique();
 
                 entity.Property(e => e.EmployeeId)
@@ -258,8 +256,7 @@ namespace EMS.Persistance.Context
 
                 entity.HasOne(d => d.Employee)
                     .WithOne(p => p.EmployeePassword)
-                    .HasForeignKey<EmployeePassword>(d => d.EmployeeId)
-                    .HasConstraintName("FK_Password_Employee_EmployeeID");
+                    .HasForeignKey<EmployeePassword>(d => d.EmployeeId);
             });
 
             modelBuilder.Entity<EmployeeState>(entity =>
@@ -278,8 +275,6 @@ namespace EMS.Persistance.Context
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.DepartmentId).HasColumnName("DepartmentID");
-
                 entity.Property(e => e.JobFunctionId).HasColumnName("JobFunctionID");
 
                 entity.Property(e => e.JoinDate).HasColumnType("date");
@@ -288,18 +283,11 @@ namespace EMS.Persistance.Context
 
                 entity.Property(e => e.PositionId).HasColumnName("PositionID");
 
-                entity.Property(e => e.SectionId).HasColumnName("SectionID");
-
                 entity.Property(e => e.ShiftId).HasColumnName("ShiftID");
 
                 entity.HasOne(d => d.BusStation)
                     .WithMany(p => p.EmployeeState)
-                    .HasForeignKey(d => d.BusStationId)
-                    .HasConstraintName("FK_EmployeeState_MasterBusStation");
-
-                entity.HasOne(d => d.Department)
-                    .WithMany(p => p.EmployeeState)
-                    .HasForeignKey(d => d.DepartmentId);
+                    .HasForeignKey(d => d.BusStationId);
 
                 entity.HasOne(d => d.Employee)
                     .WithOne(p => p.EmployeeState)
@@ -317,10 +305,6 @@ namespace EMS.Persistance.Context
                     .WithMany(p => p.EmployeeState)
                     .HasForeignKey(d => d.PositionId);
 
-                entity.HasOne(d => d.Section)
-                    .WithMany(p => p.EmployeeState)
-                    .HasForeignKey(d => d.SectionId);
-
                 entity.HasOne(d => d.Shift)
                     .WithMany(p => p.EmployeeState)
                     .HasForeignKey(d => d.ShiftId);
@@ -329,14 +313,6 @@ namespace EMS.Persistance.Context
             modelBuilder.Entity<MasterBusStation>(entity =>
             {
                 entity.HasKey(e => e.BusStationId);
-
-                entity.HasIndex(e => e.BusStationName)
-                    .HasName("UQ__MasterBu__948825A8F8EB972D")
-                    .IsUnique();
-
-                entity.HasIndex(e => e.BusStationRoute)
-                    .HasName("UQ__MasterBu__1AA367503087B5DE")
-                    .IsUnique();
 
                 entity.Property(e => e.BusStationId).HasColumnName("BusStationID");
 
@@ -357,6 +333,7 @@ namespace EMS.Persistance.Context
                 entity.Property(e => e.DepartmentId).HasColumnName("DepartmentID");
 
                 entity.Property(e => e.DepartmentCode)
+                    .IsRequired()
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
@@ -375,11 +352,7 @@ namespace EMS.Persistance.Context
                 entity.HasKey(e => e.DegreeId);
 
                 entity.HasIndex(e => e.DegreeName)
-                    .HasName("UQ__MasterEd__9C9AC10BDBEECB12")
-                    .IsUnique();
-
-                entity.HasIndex(e => e.DegreeNameThai)
-                    .HasName("UQ__MasterEd__09BC69B37F8E87F1")
+                    .HasName("UQ_MasterEducationDegree_DegreeName")
                     .IsUnique();
 
                 entity.Property(e => e.DegreeId).HasColumnName("DegreeID");
@@ -397,14 +370,6 @@ namespace EMS.Persistance.Context
             modelBuilder.Entity<MasterEducationMajor>(entity =>
             {
                 entity.HasKey(e => e.MajorId);
-
-                entity.HasIndex(e => e.MajorNameThai)
-                    .HasName("UQ__MasterEd__435581B5B68D997D")
-                    .IsUnique();
-
-                entity.HasIndex(e => e.MarjorName)
-                    .HasName("UQ__MasterEd__42EA55B905784455")
-                    .IsUnique();
 
                 entity.Property(e => e.MajorId).HasColumnName("MajorID");
 
@@ -434,6 +399,12 @@ namespace EMS.Persistance.Context
                 entity.Property(e => e.FunctionName)
                     .IsRequired()
                     .HasMaxLength(100);
+
+                entity.Property(e => e.SectionId).HasColumnName("SectionID");
+
+                entity.HasOne(d => d.Section)
+                    .WithMany(p => p.MasterJobFunction)
+                    .HasForeignKey(d => d.SectionId);
             });
 
             modelBuilder.Entity<MasterJobPosition>(entity =>
@@ -492,6 +463,8 @@ namespace EMS.Persistance.Context
 
                 entity.Property(e => e.SectionId).HasColumnName("SectionID");
 
+                entity.Property(e => e.DepartmentId).HasColumnName("DepartmentID");
+
                 entity.Property(e => e.SectionCode)
                     .HasMaxLength(10)
                     .IsUnicode(false);
@@ -499,6 +472,10 @@ namespace EMS.Persistance.Context
                 entity.Property(e => e.SectionName)
                     .IsRequired()
                     .HasMaxLength(50);
+
+                entity.HasOne(d => d.Department)
+                    .WithMany(p => p.MasterSection)
+                    .HasForeignKey(d => d.DepartmentId);
             });
 
             modelBuilder.Entity<MasterShift>(entity =>

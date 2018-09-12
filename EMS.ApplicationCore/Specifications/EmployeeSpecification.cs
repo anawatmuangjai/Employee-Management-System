@@ -13,12 +13,10 @@ namespace EMS.ApplicationCore.Specifications
         {
             AddInclude(e => e.EmployeeAddress);
             AddInclude(e => e.EmployeeState);
-            AddInclude(e => e.EmployeeState.Department);
-            AddInclude(e => e.EmployeeState.Section);
-            AddInclude(e => e.EmployeeState.Shift);
-            AddInclude(e => e.EmployeeState.Level);
             AddInclude(e => e.EmployeeState.Position);
             AddInclude(e => e.EmployeeState.JobFunction);
+            AddInclude(e => e.EmployeeState.Shift);
+            AddInclude(e => e.EmployeeState.Level);
             AddInclude(e => e.EmployeeState.BusStation);
         }
     }
