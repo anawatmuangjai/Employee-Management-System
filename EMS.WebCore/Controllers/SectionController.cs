@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EMS.ApplicationCore.Interfaces.Services;
 using EMS.ApplicationCore.Models;
+using EMS.WebCore.Interfaces;
 using EMS.WebCore.ViewModels.Section;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,14 +16,14 @@ namespace EMS.WebCore.Controllers
     public class SectionController : Controller
     {
         private readonly ISectionService _sectionService;
-        private readonly IDepartmentService _departmentService;
+        private readonly IEmployeeDetailService _employeeDetailService;
 
         public SectionController(
             ISectionService sectionService,
-            IDepartmentService departmentService)
+            IEmployeeDetailService employeeDetailService)
         {
             _sectionService = sectionService;
-            _departmentService = departmentService;
+            _employeeDetailService = employeeDetailService;
         }
 
         [HttpGet]
@@ -39,9 +40,14 @@ namespace EMS.WebCore.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var viewModel = new SectionEditViewModel
+            {
+                Departments = await _employeeDetailService.GetDepartments()
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -52,6 +58,7 @@ namespace EMS.WebCore.Controllers
             {
                 var section = new SectionModel
                 {
+                    DepartmentId = model.DepartmentId,
                     SectionName = model.SectionName,
                     SectionCode = model.SectionCode
                 };
@@ -74,8 +81,10 @@ namespace EMS.WebCore.Controllers
             var editViewModel = new SectionEditViewModel
             {
                 SectionId = section.SectionId,
+                DepartmentId = section.DepartmentId,
                 SectionName = section.SectionName,
                 SectionCode = section.SectionCode,
+                Departments = await _employeeDetailService.GetDepartments()
             };
 
             return View(editViewModel);
@@ -91,6 +100,7 @@ namespace EMS.WebCore.Controllers
             var section = new SectionModel
             {
                 SectionId = model.SectionId,
+                DepartmentId = model.DepartmentId,
                 SectionName = model.SectionName,
                 SectionCode = model.SectionCode
             };
