@@ -47,6 +47,12 @@ namespace EMS.ApplicationCore.Services
             return _mapper.Map<List<MasterSection>, List<SectionModel>>(sections);
         }
 
+        public async Task<List<SectionModel>> GetByDepartmentIdAsync(int departmentId)
+        {
+            var sections = await _repository.GetAsync(x => x.DepartmentId == departmentId);
+            return _mapper.Map<List<MasterSection>, List<SectionModel>>(sections);
+        }
+
         public async Task AddAsync(SectionModel model)
         {
             var section = new MasterSection
@@ -75,5 +81,7 @@ namespace EMS.ApplicationCore.Services
             var section = await _repository.GetByIdAsync(id);
             await _repository.DeleteAsync(section);
         }
+
+
     }
 }

@@ -13,6 +13,7 @@ namespace EMS.ApplicationCore.Interfaces.Services
         Task<SectionModel> GetByIdAsync(int id);
         Task<List<SectionModel>> GetAllAsync();
         Task<List<SectionModel>> GetByNameAsync(string name);
+        Task<List<SectionModel>> GetByDepartmentIdAsync(int departmentId);
         Task AddAsync(SectionModel model);
         Task UpdateAsync(SectionModel model);
         Task DeleteAsync(int id);

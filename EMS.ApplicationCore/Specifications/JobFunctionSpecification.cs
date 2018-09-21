@@ -8,10 +8,11 @@ namespace EMS.ApplicationCore.Specifications
 {
     public class JobFunctionSpecification : BaseSpecification<MasterJobFunction>
     {
-        public JobFunctionSpecification(Expression<Func<MasterJobFunction, bool>> filter) 
+        public JobFunctionSpecification(Expression<Func<MasterJobFunction, bool>> filter)
             : base(filter)
         {
             AddInclude(x => x.Section);
+            AddInclude(x => x.Section.Department);
         }
     }
 }
