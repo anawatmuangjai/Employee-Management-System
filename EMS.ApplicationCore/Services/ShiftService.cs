@@ -42,6 +42,12 @@ namespace EMS.ApplicationCore.Services
             return _mapper.Map<List<MasterShift>, List<ShiftModel>>(shifts);
         }
 
+        public async Task<List<ShiftModel>> GetByTimeAsync(TimeSpan currentTime)
+        {
+            var shifts = await _repository.GetAsync(x => x.EndTime > currentTime && x.StartTime < currentTime);
+            return _mapper.Map<List<MasterShift>, List<ShiftModel>>(shifts);
+        }
+
         public async Task AddAsync(ShiftModel model)
         {
             var shift = new MasterShift

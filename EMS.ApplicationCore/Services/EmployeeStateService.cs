@@ -73,5 +73,10 @@ namespace EMS.ApplicationCore.Services
         {
             return await _repository.ExistsAsync(x => x.EmployeeId == employeeId);
         }
+
+        public async Task<int> CountShiftAsync(int shiftId)
+        {
+            return await _repository.CountAsync(x => x.ShiftId == shiftId);
+        }
     }
 }

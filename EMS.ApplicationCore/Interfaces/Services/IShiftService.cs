@@ -11,6 +11,7 @@ namespace EMS.ApplicationCore.Interfaces.Services
     public interface IShiftService
     {
         Task<ShiftModel> GetByIdAsync(int id);
+        Task<List<ShiftModel>> GetByTimeAsync(TimeSpan currentTime);
         Task<List<ShiftModel>> GetAllAsync();
         Task<List<ShiftModel>> GetByNameAsync(string name);
         Task AddAsync(ShiftModel model);
