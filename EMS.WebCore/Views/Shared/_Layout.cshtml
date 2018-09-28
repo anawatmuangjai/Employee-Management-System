@@ -25,13 +25,21 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-dark fixed-top bg-secondary flex-md-nowrap p-0 shadow">
+    <nav class="navbar navbar-dark fixed-top bg-nav flex-md-nowrap p-0 shadow">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">EMS</a>
-        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+        @*<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">*@
         <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
-                <a class="nav-link" asp-controller="Account" asp-action="Logout">Sign out</a>
+            <li class="nav-item text-nowrap mx-2">
+                <a class="nav-link text-white" asp-controller="Account" asp-action="Logout">
+                    <span><i class="fa fa-sign-out text-white fa-lg mr-3"></i></span>
+                </a>
             </li>
+            <li class="nav-item text-nowrap mx-2">
+                <a class="nav-link text-white" asp-controller="Profile" asp-action="Index">
+                    <span><i class="fa fa-user-circle text-white fa-lg mr-3"></i></span>
+                </a>
+            </li>
+
         </ul>
     </nav>
 
@@ -47,17 +55,6 @@
                                 <span><i class="fa fa-th text-white fa-lg mr-3"></i></span>
                                 Dashboard <span class="sr-only">(current)</span>
                             </a>
-                        </li>
-                        <!-- employee -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="#collapse-employee" data-toggle="collapse" aria-controls="collapse-employee">
-                                <span><i class="fa fa-user-circle text-white fa-lg mr-3"></i></span>
-                                <span>Employee</span>
-                            </a>
-                            <ul class="collapse collapseable" id="collapse-employee">
-                                <li><a asp-area="" asp-controller="Profile" asp-action="Index">Employee Profile</a></li>
-                                <li><a asp-area="" asp-controller="Employee" asp-action="EmployeeList">Employee List</a></li>
-                            </ul>
                         </li>
                         <!-- attendance -->
                         <li class="nav-item">
@@ -113,6 +110,17 @@
                         </a>
                     </h6>
                     <ul class="nav flex-column mb-2">
+                        <!-- employee -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#collapse-employee" data-toggle="collapse" aria-controls="collapse-employee">
+                                <span><i class="fa fa-user-circle text-white fa-lg mr-3"></i></span>
+                                <span>Employee</span>
+                            </a>
+                            <ul class="collapse collapseable" id="collapse-employee">
+                                <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
+                                <li><a asp-area="" asp-controller="Employee" asp-action="EmployeeList">Employee List</a></li>
+                            </ul>
+                        </li>
                         <!-- organization -->
                         <li class="nav-item">
                             <a class="nav-link" href="#collapse-organize" data-toggle="collapse" aria-controls="collapse-organize">
@@ -195,6 +203,7 @@
             </div>
         </div>*@
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
 
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>

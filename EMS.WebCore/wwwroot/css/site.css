@@ -11,6 +11,13 @@
 /*
  * Sidebar
  */
+.navbar-nav {
+    flex-direction: row;
+}
+
+.bg-nav {
+    background-color: #1d3c51;
+}
 
 .sidebar {
     position: fixed;
@@ -20,11 +27,10 @@
     z-index: 100; /* Behind the navbar */
     padding: 48px 0 0; /* Height of navbar */
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-
 }
 
 .sidebar-sticky {
-    background-color: #2f353a;
+    background-color: #1d3c51;
     position: relative;
     top: 0;
     height: calc(100vh - 48px);
@@ -132,6 +138,7 @@
 
 [role="main"] {
     padding-top: 48px; /* Space for fixed navbar */
+    background-color : #fcfcfc
 }
 
 /*
@@ -206,3 +213,21 @@ th, td {
     overflow-x: scroll;
     padding: 1rem
 }
+
+.scroll-box-dashboard {
+    overflow-y: scroll;
+    height: 350px;
+    overflow-x: scroll;
+    padding: 1rem
+}
+
+.text-header {
+    color: #234359;
+}
+
+/*.chart-container {
+    position: relative;
+    margin: auto;
+    height: 80vh;
+    width: 80vw;
+}*/

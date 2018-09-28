@@ -12,6 +12,17 @@
                 <form asp-action="Edit" method="post" class="form-horizontal" role="form">
                     <input asp-for="JobFunctionId" type="hidden" />
                     <div class="form-group">
+                        <label asp-for="DepartmentId">Department</label>
+                        <select asp-for="DepartmentId" asp-items="@Model.Departments" class="form-control"></select>
+                        <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Section</label>
+                        <select class="form-control" id="SectionId" name="SectionId" asp-for="SectionId"
+                                asp-items="@(new SelectList(string.Empty, "Value","Text"))"></select>
+                        <span asp-validation-for="SectionId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
                         <label asp-for="FunctionName">Job Title</label>
                         <input asp-for="FunctionName" type="text" class="form-control">
                         <span asp-validation-for="FunctionName" class="text-danger"></span>
@@ -29,6 +40,31 @@
     </div>
 </div>
 
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var items = "<option value='0'>-- Select --</option>";
+            $('#SectionId').html(items);
+        });
+    </script>
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $('#DepartmentId').change(function () {
+                    var url = '@Url.Content("~/")' + "JobFunction/GetSectionByDepartmentId";
+                    $.getJSON(url, { departmentId: $("#DepartmentId").val() }, function (data) {
+                        var items = '';
+                        $("#SectionId").empty();
+                        $.each(data, function (i, section) {
+                            items += "<option value='" + section.value + "'>" + section.text + "</option>";
+                        });
+                        $('#SectionId').html(items);
+                    });
+                });
+            });
+    </script>
+}
 
 
 

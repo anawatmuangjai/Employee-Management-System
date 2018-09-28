@@ -1,215 +1,182 @@
-﻿@model RegisterEmployeeViewModel
+﻿@model RegisterViewModel
+
 @{
     ViewData["Title"] = "Register";
 }
 
-<!-- content -->
-<div id="content">
+<div class="container">
+    <div class="pt-5 text-center">
+        <h2>Registration Form</h2>
+        <p class="lead">Employee Managements System.</p>
+    </div>
 
-    <div class="content-inner">
+    <div class="row pt-4">
+        <div class="col-md-8 mx-auto">
 
-        <h3>Register New Employee</h3>
+            <form asp-action="Register" method="post" class="needs-validation" novalidate>
 
-        <hr />
-
-        <form asp-action="Register" class="form-horizontal" method="post" role="form">
-
-            <div class="form-group">
-                <label asp-for="EmployeeId" class="control-label col-sm-2">Employee ID</label>
-                <div class="col-sm-10">
-                    <input asp-for="EmployeeId" class="form-control" placeholder="Employee ID" />
-                    <span asp-validation-for="EmployeeId" class="text-danger"></span>
+                <h4 class="mb-3">Employee Information</h4>
+                <!-- employee id -->
+                <div class="mb-3">
+                    <label asp-for="EmployeeId">Employee ID</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">*</span>
+                        </div>
+                        <input asp-for="EmployeeId" type="text" class="form-control" placeholder="Employee ID" required>
+                        <span asp-validation-for="EmployeeId" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="GlobalId" class="control-label col-sm-2">Global ID</label>
-                <div class="col-sm-10">
-                    <input asp-for="GlobalId" class="form-control" placeholder="Global ID" />
-                    <span asp-validation-for="GlobalId" class="text-danger"></span>
+                <!-- global id -->
+                <div class="mb-3">
+                    <label asp-for="GlobalId">Global ID</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">*</span>
+                        </div>
+                        <input asp-for="GlobalId" type="text" class="form-control" placeholder="Global ID" required>
+                        <span asp-validation-for="GlobalId" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="CardId" class="control-label col-sm-2">Card ID</label>
-                <div class="col-sm-10">
-                    <input asp-for="CardId" class="form-control" placeholder="Card ID" />
-                    <span asp-validation-for="CardId" class="text-danger"></span>
+                <!-- card id -->
+                <div class="mb-3">
+                    <label asp-for="CardId">Card ID</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">*</span>
+                        </div>
+                        <input asp-for="CardId" type="text" class="form-control" placeholder="Card ID" required>
+                        <div class="invalid-feedback" style="width: 100%;">
+                            Your username is required.
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Password" class="control-label col-sm-2">Password</label>
-                <div class="col-sm-10">
-                    <input asp-for="Password" class="form-control" placeholder="Password" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
+                <!-- password -->
+                <div class="mb-3">
+                    <label asp-for="Password">Password</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">*</span>
+                        </div>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Password" required>
+                        <span asp-validation-for="GlobalId" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
-
-            <hr />
-            <h3>Employee Information</h3>
-
-            <div class="form-group">
-                <label asp-for="EmployeeType" class="control-label col-sm-2">Employee Type</label>
-                <div class="col-sm-10">
-                    <select asp-for="EmployeeType" class="form-control">
-                        <option value=""></option>
+                <!-- employee type -->
+                <div class="mb-3">
+                    <label asp-for="EmployeeType">Person Type</label>
+                    <select asp-for="EmployeeType" class="custom-select d-block w-100" required>
+                        <option value="">Choose...</option>
                         <option value="EM">Employee</option>
+                        <option value="SC">Sub Contract</option>
                         <option value="SD">Student Internship</option>
-                        <option value="SU">Sub Contract</option>
                     </select>
                     <span asp-validation-for="EmployeeType" class="text-danger"></span>
                 </div>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="JobTitleId" class="control-label col-sm-2">Job Title</label>
-                <div class="col-sm-10">
-                    <select asp-for="JobTitleId" asp-items="@Model.JobTitles" class="form-control"></select>
-                    <span asp-validation-for="JobTitleId" class="text-danger"></span>
+                <!-- hire date -->
+                <div class="mb-3">
+                    <label asp-for="HireDate">Hire Date</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">*</span>
+                        </div>
+                        <input asp-for="HireDate" type="date" class="form-control" value="2018-01-01" required>
+                        <span asp-validation-for="HireDate" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label asp-for="LevelId" class="control-label col-sm-2">Level</label>
-                <div class="col-sm-10">
-                    <select asp-for="LevelId" asp-items="@Model.Levels" class="form-control"></select>
-                    <span asp-validation-for="LevelId" class="text-danger"></span>
+                <h4 class="mb-3">Personal Information</h4>
+                <!-- selection -->
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Title">Title</label>
+                        <select asp-for="Title" class="custom-select d-block w-100" required>
+                            <option value="">Choose...</option>
+                            <option value="Mr">Mr</option>
+                            <option value="Mrs">Mrs</option>
+                            <option value="Miss">Miss</option>
+                        </select>
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="TitleThai">Title Thai</label>
+                        <select asp-for="TitleThai" class="custom-select d-block w-100" required>
+                            <option value="">Choose...</option>
+                            <option value="นาย">นาย</option>
+                            <option value="นาง">นาง</option>
+                            <option value="นางสาว">นางสาว</option>
+                            <option value="ว่าที่ร้อยตรี">ว่าที่ร้อยตรี</option>
+                        </select>
+                        <span asp-validation-for="TitleThai" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="DepartmentId" class="control-label col-sm-2">Department</label>
-                <div class="col-sm-10">
-                    <select asp-for="DepartmentId" asp-items="@Model.Departments" class="form-control"></select>
-                    <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                <!-- name eng -->
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="FirstName">First name</label>
+                        <input asp-for="FirstName" type="text" class="form-control" placeholder="" value="" required>
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="LastName">Last name</label>
+                        <input asp-for="LastName" type="text" class="form-control" placeholder="" value="" required>
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="SectionId" class="control-label col-sm-2">Section</label>
-                <div class="col-sm-10">
-                    <select asp-for="SectionId" asp-items="@Model.Sections" class="form-control"></select>
-                    <span asp-validation-for="SectionId" class="text-danger"></span>
+                <!-- name thai -->
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="FirstNameThai">First name (Thai)</label>
+                        <input asp-for="FirstNameThai" type="text" class="form-control" placeholder="" value="" required>
+                        <span asp-validation-for="FirstNameThai" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="LastNameThai" for="lastName">Last name (Thai)</label>
+                        <input asp-for="LastNameThai" type="text" class="form-control" placeholder="" value="" required>
+                        <span asp-validation-for="LastNameThai" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="ShiftId" class="control-label col-sm-2">Shift</label>
-                <div class="col-sm-10">
-                    <select asp-for="ShiftId" asp-items="@Model.Shifts" class="form-control"></select>
-                    <span asp-validation-for="ShiftId" class="text-danger"></span>
+                <!-- height and hand -->
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Height">Height</label>
+                        <input asp-for="Height" type="text" class="form-control" placeholder="" value="" required>
+                        <span asp-validation-for="Height" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Hand">Hand</label>
+                        <select asp-for="Hand" class="custom-select d-block w-100" required>
+                            <option value="">Choose...</option>
+                            <option value="Left">Left</option>
+                            <option value="Right">Right</option>
+                        </select>
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
-
-            <hr />
-            <h3>Personal Information</h3>
-
-            <div class="form-group">
-                <label asp-for="Title" class="control-label col-sm-2">Title</label>
-                <div class="col-sm-10">
-                    <select asp-for="Title" class="form-control">
-                        <option value=""></option>
-                        <option value="Mr">Mr</option>
-                        <option value="Mrs">Mrs</option>
-                        <option value="Miss">Miss</option>
-                    </select>
-                    <span asp-validation-for="CardId" class="text-danger"></span>
+                <!-- birth date -->
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="BirthDate">Birth Date</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">*</span>
+                            </div>
+                            <input asp-for="BirthDate" type="date" class="form-control" value="2018-01-01" required>
+                            <span asp-validation-for="BirthDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Gender">Gender</label>
+                        <select asp-for="Gender" class="custom-select d-block w-100" required>
+                            <option value="">Choose...</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="FirstName" class="control-label col-sm-2">First Name</label>
-                <div class="col-sm-10">
-                    <input asp-for="FirstName" class="form-control" placeholder="First Name" />
-                    <span asp-validation-for="FirstName" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label col-sm-2">Last Name</label>
-                <div class="col-sm-10">
-                    <input asp-for="LastName" class="form-control" placeholder="Last Name" />
-                    <span asp-validation-for="LastName" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="FirstNameThai" class="control-label col-sm-2">First Name (TH)</label>
-                <div class="col-sm-10">
-                    <input asp-for="FirstNameThai" class="form-control" placeholder="First Name (Thai)" />
-                    <span asp-validation-for="FirstNameThai" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="LastNameThai" class="control-label col-sm-2">Last Name (TH)</label>
-                <div class="col-sm-10">
-                    <input asp-for="LastNameThai" class="form-control" placeholder="Last Name (Thai)" />
-                    <span asp-validation-for="LastNameThai" class="text-danger"></span>
-                </div>
-            </div>
-
-            <hr />
-            <h3>Address Information</h3>
-
-            <div class="form-group">
-                <label asp-for="HomeAddress" class="control-label col-sm-2">Home Address</label>
-                <div class="col-sm-10">
-                    <input asp-for="HomeAddress" class="form-control" placeholder="Home Address" />
-                    <span asp-validation-for="HomeAddress" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Country" class="control-label col-sm-2">Country</label>
-                <div class="col-sm-10">
-                    <input asp-for="Country" class="form-control" placeholder="Country" />
-                    <span asp-validation-for="Country" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="City" class="control-label col-sm-2">City</label>
-                <div class="col-sm-10">
-                    <input asp-for="City" class="form-control" placeholder="City" />
-                    <span asp-validation-for="City" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="PostalCode" class="control-label col-sm-2">Postal Code</label>
-                <div class="col-sm-10">
-                    <input asp-for="PostalCode" class="form-control" placeholder="Postal Code" />
-                    <span asp-validation-for="PostalCode" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="PhoneNumber" class="control-label col-sm-2">Phone Number</label>
-                <div class="col-sm-10">
-                    <input asp-for="PhoneNumber" class="form-control" placeholder="Phone Number" />
-                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="EmailAddress" class="control-label col-sm-2">Email Address</label>
-                <div class="col-sm-10">
-                    <input asp-for="EmailAddress" class="form-control" placeholder="Email Address" />
-                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-primary pull-left">Save</button>
-                </div>
-            </div>
-
-        </form>
+                <button class="btn btn-primary btn-lg btn-block mb-4" type="submit">Submit</button>
+            </form>
+        </div>
     </div>
-
-
-
 </div>
