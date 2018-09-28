@@ -1,4 +1,5 @@
-﻿using EMS.WebCore.ViewModels.Account;
+﻿using EMS.ApplicationCore.Models;
+using EMS.WebCore.ViewModels.Account;
 using EMS.WebCore.ViewModels.Employee;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -8,12 +9,13 @@ using System.Threading.Tasks;
 
 namespace EMS.WebCore.Interfaces
 {
-    public interface IEmployeeRegisterService
+    public interface IAccountService
     {
+        Task<EmployeePasswordModel> GetPasswordAsync(string employeeId);
+        bool VerifyPassword(string password, byte[] passwordHash, byte[] passwordSalt);
+
         Task<RegisterEmployeeViewModel> GetRegisterEmployeeViewModel();
         Task CreateEmployee(RegisterEmployeeViewModel viewModel);
-
-        Task<RegisterViewModel> GetRegisterViewModel();
         Task RegisterEmployee(RegisterViewModel viewModel);
 
         Task<bool> Exists(string employeeId);

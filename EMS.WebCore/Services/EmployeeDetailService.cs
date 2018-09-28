@@ -1,4 +1,5 @@
 ﻿using EMS.ApplicationCore.Interfaces.Services;
+using EMS.ApplicationCore.Models;
 using EMS.WebCore.Interfaces;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -197,6 +198,48 @@ namespace EMS.WebCore.Services
                 {
                     Value = bus.BusStationId.ToString(),
                     Text = bus.BusStationName
+                });
+            }
+
+            return item;
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetSectionsByDepartmentId(int departmentId)
+        {
+            var sections = await _sectionService.GetByDepartmentIdAsync(departmentId);
+
+            var item = new List<SelectListItem>
+            {
+                new SelectListItem() { Value = null, Text ="",Selected = true }
+            };
+
+            foreach (var section in sections)
+            {
+                item.Add(new SelectListItem()
+                {
+                    Value = section.SectionId.ToString(),
+                    Text = section.SectionName
+                });
+            }
+
+            return item;
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetJobFunctionsBySectionId(int sectionId)
+        {
+            var jobFunctions = await _jobFunctionService.GetBySectionIdAsync(sectionId);
+
+            var item = new List<SelectListItem>
+            {
+                new SelectListItem() { Value = null, Text ="",Selected = true }
+            };
+
+            foreach (var job in jobFunctions)
+            {
+                item.Add(new SelectListItem()
+                {
+                    Value = job.JobFunctionId.ToString(),
+                    Text = job.FunctionName
                 });
             }
 

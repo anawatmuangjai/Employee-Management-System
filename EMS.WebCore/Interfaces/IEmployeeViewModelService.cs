@@ -10,6 +10,5 @@ namespace EMS.WebCore.Interfaces
     {
         Task<EmployeeViewModel> GetEmployeeList();
         Task<EmployeeViewModel> GetEmployeeList(string employeeId);
-        Task<EmployeeProfileViewModel> GetEmployeeProfile(string employeeId);
     }
 }

@@ -41,46 +41,5 @@ namespace EMS.WebCore.Services
 
             return viewModel;
         }
-
-        public async Task<EmployeeProfileViewModel> GetEmployeeProfile(string employeeId)
-        {
-            var employee = await _employeeService.GetByEmployeeIdAsync(employeeId);
-
-            var viewModel = new EmployeeProfileViewModel
-            {
-                EmployeeId = employee.EmployeeId,
-                GlobalId = employee.GlobalId,
-                CardId = employee.CardId,
-                EmployeeType = employee.EmployeeType,
-                Title = employee.Title,
-                FirstName = employee.FirstName,
-                LastName = employee.LastName,
-                FirstNameThai = employee.FirstNameThai,
-                LastNameThai = employee.LastNameThai,
-                Gender = employee.Gender,
-                Age = CalculateAge(employee.BirthDate),
-                BirthDate = employee.BirthDate,
-                HireDate = employee.HireDate,
-                EmploymentDuration = CalculateDurationOfEmployment(employee.HireDate)
-            };
-
-            return viewModel;
-        }
-
-        private int CalculateAge(DateTime birthDate)
-        {
-            var today = DateTime.Today;
-            var age = today.Year - birthDate.Year;
-            if (birthDate > today.AddYears(-age)) age--;
-            return age;
-        }
-
-        private int CalculateDurationOfEmployment(DateTime hierDate)
-        {
-            var today = DateTime.Today;
-            var duration = today.Year - hierDate.Year;
-            if (hierDate > today.AddYears(-duration)) duration--;
-            return duration;
-        }
     }
 }

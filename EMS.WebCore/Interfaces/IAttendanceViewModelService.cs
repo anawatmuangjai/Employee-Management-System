@@ -9,8 +9,8 @@ namespace EMS.WebCore.Interfaces
 {
     public interface IAttendanceViewModelService
     {
-        Task<AttendanceViewModel> GetActive();
+        Task<AttendanceViewModel> GetActive(string date);
         Task<AttendanceViewModel> GetActive(AttendanceFilterModel filter);
-        Task<AttendanceViewModel> GetAbsent();
+        Task<AttendanceViewModel> GetAbsent(string date);
     }
 }

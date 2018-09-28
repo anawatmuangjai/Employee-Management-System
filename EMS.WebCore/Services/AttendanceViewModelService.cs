@@ -28,11 +28,11 @@ namespace EMS.WebCore.Services
             _employeeDetailService = employeeDetailService;
         }
 
-        public async Task<AttendanceViewModel> GetActive()
+        public async Task<AttendanceViewModel> GetActive(string date)
         {
             var viewModel = new AttendanceViewModel();
 
-            var attendances = await _attendanceService.GetActiveAsync();
+            var attendances = await _attendanceService.GetActiveAsync(date);
 
             viewModel.Attendances = attendances;
             viewModel.FilterModel = await GetAttendanceFilterAsync();
@@ -42,9 +42,11 @@ namespace EMS.WebCore.Services
 
         public async Task<AttendanceViewModel> GetActive(AttendanceFilterModel filter)
         {
+            var date = DateTime.Today.ToString("yyyy/MM/dd");
+
             var viewModel = new AttendanceViewModel();
 
-            var attendances = await _attendanceService.GetActiveAsync();
+            var attendances = await _attendanceService.GetActiveAsync(date);
 
             viewModel.Attendances = attendances;
             viewModel.FilterModel = await GetAttendanceFilterAsync();
@@ -52,11 +54,11 @@ namespace EMS.WebCore.Services
             return viewModel;
         }
 
-        public async Task<AttendanceViewModel> GetAbsent()
+        public async Task<AttendanceViewModel> GetAbsent(string date)
         {
             var viewModel = new AttendanceViewModel();
 
-            var attendances = await _attendanceService.GetAbsentAsync();
+            var attendances = await _attendanceService.GetAbsentAsync(date);
 
             viewModel.Attendances = attendances;
             viewModel.FilterModel = await GetAttendanceFilterAsync();

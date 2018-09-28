@@ -2,6 +2,7 @@
 using EMS.ApplicationCore.Models;
 using EMS.WebCore.Interfaces;
 using EMS.WebCore.ViewModels.Profile;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -45,6 +46,7 @@ namespace EMS.WebCore.Services
                 viewModel.CardId = employee.CardId;
                 viewModel.EmployeeType = employee.EmployeeType;
                 viewModel.Title = employee.Title;
+                viewModel.TitleThai = employee.TitleThai;
                 viewModel.FirstName = employee.FirstName;
                 viewModel.LastName = employee.LastName;
                 viewModel.FirstNameThai = employee.FirstNameThai;
@@ -96,10 +98,10 @@ namespace EMS.WebCore.Services
             var viewModel = new ProfileEditViewModel();
 
             viewModel.Departments = await _employeeDetailService.GetDepartments();
-            viewModel.Sections = await _employeeDetailService.GetSections();
+            //viewModel.Sections = await _employeeDetailService.GetSections();
             viewModel.Shifts = await _employeeDetailService.GetShifts();
             viewModel.JobTitles = await _employeeDetailService.GetPositions();
-            viewModel.JobFunctions = await _employeeDetailService.GetJobFunctions();
+            //viewModel.JobFunctions = await _employeeDetailService.GetJobFunctions();
             viewModel.JobLevels = await _employeeDetailService.GetLevels();
             viewModel.BusStations = await _employeeDetailService.GetBusStations();
 
@@ -111,6 +113,7 @@ namespace EMS.WebCore.Services
                 viewModel.GlobalId = employee.GlobalId;
                 viewModel.CardId = employee.CardId;
                 viewModel.Title = employee.Title;
+                viewModel.TitleThai = employee.TitleThai;
                 viewModel.EmployeeType = employee.EmployeeType;
                 viewModel.FirstName = employee.FirstName;
                 viewModel.LastName = employee.LastName;
@@ -241,7 +244,17 @@ namespace EMS.WebCore.Services
 
         }
 
-        private int CalculateAge(DateTime birthDate)
+        public async Task<IEnumerable<SelectListItem>> GetSectionsByDepartmentId(int departmentId)
+        {
+            return await _employeeDetailService.GetSectionsByDepartmentId(departmentId);
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetJobFunctionBySectionId(int sectionId)
+        {
+            return await _employeeDetailService.GetJobFunctionsBySectionId(sectionId);
+        }
+
+        public int CalculateAge(DateTime birthDate)
         {
             var today = DateTime.Today;
             var age = today.Year - birthDate.Year;
@@ -249,12 +262,14 @@ namespace EMS.WebCore.Services
             return age;
         }
 
-        private int CalculateDurationOfEmployment(DateTime hierDate)
+        public int CalculateDurationOfEmployment(DateTime hierDate)
         {
             var today = DateTime.Today;
             var duration = today.Year - hierDate.Year;
             if (hierDate > today.AddYears(-duration)) duration--;
             return duration;
         }
+
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using EMS.ApplicationCore.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,11 @@ namespace EMS.WebCore.Interfaces
     {
         Task<IEnumerable<SelectListItem>> GetDepartments();
         Task<IEnumerable<SelectListItem>> GetSections();
-        Task<IEnumerable<SelectListItem>> GetShifts();
-        Task<IEnumerable<SelectListItem>> GetPositions();
+        Task<IEnumerable<SelectListItem>> GetSectionsByDepartmentId(int departmentId);
         Task<IEnumerable<SelectListItem>> GetJobFunctions();
+        Task<IEnumerable<SelectListItem>> GetJobFunctionsBySectionId(int sectionId);
+        Task<IEnumerable<SelectListItem>> GetPositions();
+        Task<IEnumerable<SelectListItem>> GetShifts();
         Task<IEnumerable<SelectListItem>> GetLevels();
         Task<IEnumerable<SelectListItem>> GetBusStations();
     }
