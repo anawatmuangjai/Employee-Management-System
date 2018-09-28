@@ -24,6 +24,8 @@ namespace EMS.Domain.Entities
         public string FirstNameThai { get; set; }
         public string LastNameThai { get; set; }
         public string Gender { get; set; }
+        public decimal Height { get; set; }
+        public string Hand { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTime HireDate { get; set; }
         public bool? AvailableFlag { get; set; }

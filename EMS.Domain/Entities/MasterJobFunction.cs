@@ -13,7 +13,7 @@ namespace EMS.Domain.Entities
         public int JobFunctionId { get; set; }
         public int SectionId { get; set; }
         public string FunctionName { get; set; }
-        public string FunctionDescription { get; set; }
+        public string FunctionCode { get; set; }
 
         public MasterSection Section { get; set; }
         public ICollection<EmployeeState> EmployeeState { get; set; }

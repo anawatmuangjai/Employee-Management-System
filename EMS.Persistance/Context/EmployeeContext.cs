@@ -7,7 +7,7 @@ namespace EMS.Persistance.Context
 {
     public partial class EmployeeContext : DbContext
     {
-        public virtual DbSet<Attendance> Attendance { get; set; }
+        public virtual DbSet<AttendanceC> AttendanceC { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<EmployeeAddress> EmployeeAddress { get; set; }
         public virtual DbSet<EmployeeEducation> EmployeeEducation { get; set; }
@@ -35,9 +35,9 @@ namespace EMS.Persistance.Context
         {
             modelBuilder.HasAnnotation("Relational:DefaultSchema", "dbo");
 
-            modelBuilder.Entity<Attendance>(entity =>
+            modelBuilder.Entity<AttendanceC>(entity =>
             {
-                entity.Property(e => e.AttendanceId).HasColumnName("AttendanceID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.EmployeeId)
                     .IsRequired()
@@ -45,27 +45,52 @@ namespace EMS.Persistance.Context
                     .HasMaxLength(30)
                     .IsUnicode(false);
 
-                entity.Property(e => e.IdAttendanceC).HasColumnName("ID_AttendanceC");
+                entity.Property(e => e.Ot15)
+                    .HasColumnName("OT_15")
+                    .HasDefaultValueSql("((0))");
 
-                entity.Property(e => e.Location)
-                    .IsRequired()
-                    .HasMaxLength(15)
-                    .IsUnicode(false);
+                entity.Property(e => e.Ot3)
+                    .HasColumnName("OT_3")
+                    .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.PassCode)
                     .IsRequired()
+                    .HasColumnName("Pass_Code")
                     .HasColumnType("char(1)");
 
-                entity.Property(e => e.PassTime)
+                entity.Property(e => e.TimeIn)
                     .IsRequired()
+                    .HasColumnName("Time_In")
                     .HasMaxLength(19)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.TimeOut)
+                    .HasColumnName("Time_Out")
+                    .HasMaxLength(19)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.WorkDate)
+                    .IsRequired()
+                    .HasColumnName("Work_Date")
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.WorkDay)
+                    .HasColumnName("Work_Day")
+                    .HasColumnType("decimal(2, 1)")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.WorkShift)
+                    .IsRequired()
+                    .HasColumnName("Work_Shift")
+                    .HasMaxLength(5)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<Employee>(entity =>
             {
                 entity.HasIndex(e => e.GlobalId)
-                    .HasName("UQ__Employee__A50E89934242D080")
+                    .HasName("UQ__Employee__A50E89936FD49106")
                     .IsUnique();
 
                 entity.Property(e => e.EmployeeId)
@@ -109,6 +134,13 @@ namespace EMS.Persistance.Context
                     .HasColumnName("GlobalID")
                     .HasMaxLength(30)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Hand)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Height).HasColumnType("decimal(18, 0)");
 
                 entity.Property(e => e.HireDate).HasColumnType("date");
 
@@ -394,7 +426,10 @@ namespace EMS.Persistance.Context
 
                 entity.Property(e => e.JobFunctionId).HasColumnName("JobFunctionID");
 
-                entity.Property(e => e.FunctionDescription).HasMaxLength(100);
+                entity.Property(e => e.FunctionCode)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.FunctionName)
                     .IsRequired()
