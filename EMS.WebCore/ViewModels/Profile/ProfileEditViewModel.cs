@@ -42,11 +42,11 @@ namespace EMS.WebCore.ViewModels.Profile
 
         public int SectionId { get; set; }
 
-        public int ShiftId { get; set; }
+        public int JobFunctionId { get; set; }
 
         public int JobPositionId { get; set; }
 
-        public int JobFunctionId { get; set; }
+        public int ShiftId { get; set; }
 
         public int LevelId { get; set; }
 
@@ -75,13 +75,13 @@ namespace EMS.WebCore.ViewModels.Profile
 
         public IEnumerable<SelectListItem> Departments { get; set; }
 
-        public IEnumerable<SelectListItem> Sections { get; set; }
+        //public IEnumerable<SelectListItem> Sections { get; set; }
 
         public IEnumerable<SelectListItem> Shifts { get; set; }
 
         public IEnumerable<SelectListItem> JobTitles { get; set; }
 
-        public IEnumerable<SelectListItem> JobFunctions { get; set; }
+        //public IEnumerable<SelectListItem> JobFunctions { get; set; }
 
         public IEnumerable<SelectListItem> JobLevels { get; set; }
 

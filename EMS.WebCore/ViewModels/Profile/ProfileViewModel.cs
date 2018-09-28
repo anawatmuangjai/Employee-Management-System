@@ -15,6 +15,8 @@ namespace EMS.WebCore.ViewModels.Profile
 
         public string Title { get; set; }
 
+        public string TitleThai { get; set; }
+
         public string EmployeeType { get; set; }
 
         public string FirstName { get; set; }
