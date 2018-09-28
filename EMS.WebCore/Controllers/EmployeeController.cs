@@ -15,13 +15,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EMS.WebCore.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public class EmployeeController : Controller
     {
-        private readonly IEmployeeRegisterService _registerService;
+        private readonly IAccountService _registerService;
         private readonly IEmployeeViewModelService _employeeViewModelService;
 
-        public EmployeeController(IEmployeeRegisterService registerService,
+        public EmployeeController(IAccountService registerService,
             IEmployeeViewModelService profileService)
         {
             _registerService = registerService;
@@ -53,14 +53,6 @@ namespace EMS.WebCore.Controllers
             }
 
             return View();
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Profile(string employeeId)
-        {
-            var viewModel = await _employeeViewModelService.GetEmployeeProfile(employeeId);
-
-            return View(viewModel);
         }
 
         [HttpGet]

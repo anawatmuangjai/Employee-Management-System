@@ -37,7 +37,8 @@ namespace EMS.WebCore
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(option =>
                 {
-                    option.LoginPath = "/Account/Login";
+                    option.LoginPath = new PathString("/Account/Login");
+                    option.AccessDeniedPath = new PathString("/Account/AccessDenied");
                 });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -46,6 +47,7 @@ namespace EMS.WebCore
             services.AddScoped(typeof(IAsyncRepository<>), typeof(Repository<>));
 
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IAttendanceRepository, AttendanceRepository>();
 
             services.AddScoped<IEmployeePasswordService, EmployeePasswordService>();
             services.AddScoped<IDepartmentService, DepartmentService>();
@@ -62,7 +64,7 @@ namespace EMS.WebCore
             services.AddScoped<IBusStationService, BusStationService>();
             services.AddScoped<IAttendanceService, AttendanceService>();
 
-            services.AddScoped<IEmployeeRegisterService, EmployeeRegisterService>();
+            services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IEmployeeDetailService, EmployeeDetailService>();
             services.AddScoped<IEducationDegreeService, EducationDegreeService>();
             services.AddScoped<IEducationMajorService, EducationMajorService>();
@@ -70,6 +72,7 @@ namespace EMS.WebCore
             services.AddScoped<IEmployeeViewModelService, EmployeeViewModelService>();
             services.AddScoped<IProfileViewModelService, ProfileViewModelService>();
             services.AddScoped<IAttendanceViewModelService, AttendanceViewModelService>();
+            services.AddScoped<IDashboardViewModelService, DashboardViewModelService>();
 
             services.AddMvc();
         }

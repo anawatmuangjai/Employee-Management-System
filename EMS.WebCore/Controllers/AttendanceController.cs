@@ -39,24 +39,30 @@ namespace EMS.WebCore.Controllers
         [HttpGet]
         public async Task<IActionResult> ActiveWork(string employeeId)
         {
+            var today = DateTime.Today.ToString("yyyy/MM/dd");
+
             var filter = new AttendanceFilterModel
             {
                 EmployeeId = employeeId
             };
 
-            var viewModel = await _attendanceViewModelService.GetActive();
+            var viewModel = await _attendanceViewModelService.GetActive(today);
             return View(viewModel);
         }
 
         [HttpGet]
         public async Task<IActionResult> Absent()
         {
-            var attendances = await _attendanceService.GetAbsentAsync();
+            var today = DateTime.Today.ToString("yyyy/MM/dd");
 
-            var viewModel = new AttendanceViewModel
-            {
-                Attendances = attendances
-            };
+            //var attendances = await _attendanceService.GetAbsentAsync(today);
+
+            //var viewModel = new AttendanceViewModel
+            //{
+            //    Attendances = attendances
+            //};
+
+            var viewModel = await _attendanceViewModelService.GetAbsent(today);
 
             return View(viewModel);
         }

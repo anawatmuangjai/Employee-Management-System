@@ -11,6 +11,7 @@ using EMS.WebCore.ViewModels.Profile;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using EMS.ApplicationCore.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EMS.WebCore.Controllers
 {
@@ -18,16 +19,13 @@ namespace EMS.WebCore.Controllers
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IProfileViewModelService _profileViewModelService;
-        private readonly IEmployeeImageService _employeeImageService;
 
         public ProfileController(
             IHttpContextAccessor httpContextAccessor,
-            IProfileViewModelService profileViewModelService,
-            IEmployeeImageService employeeImageService)
+            IProfileViewModelService profileViewModelService)
         {
             _httpContextAccessor = httpContextAccessor;
             _profileViewModelService = profileViewModelService;
-            _employeeImageService = employeeImageService;
         }
 
         [HttpGet]
@@ -54,6 +52,20 @@ namespace EMS.WebCore.Controllers
 
             await _profileViewModelService.UpdateProfile(model);
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<JsonResult> GetSectionByDepartmentId(int departmentId)
+        {
+            var items = await _profileViewModelService.GetSectionsByDepartmentId(departmentId);
+
+            return Json(new SelectList(items, "Value", "Text"));
+        }
+
+        public async Task<JsonResult> GetJobFunctionBySectionId(int sectionId)
+        {
+            var items = await _profileViewModelService.GetJobFunctionBySectionId(sectionId);
+
+            return Json(new SelectList(items, "Value", "Text"));
         }
     }
 }
