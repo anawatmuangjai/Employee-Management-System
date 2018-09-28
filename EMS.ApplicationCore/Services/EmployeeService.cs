@@ -71,6 +71,8 @@ namespace EMS.ApplicationCore.Services
                 FirstNameThai = model.FirstNameThai,
                 LastNameThai = model.LastNameThai,
                 Gender = model.Gender,
+                Height = model.Height,
+                Hand = model.Hand,
                 BirthDate = model.BirthDate,
                 HireDate = model.HireDate,
                 AvailableFlag = model.AvailableFlag,
@@ -95,6 +97,8 @@ namespace EMS.ApplicationCore.Services
             entity.FirstNameThai = model.FirstNameThai;
             entity.LastNameThai = model.LastNameThai;
             entity.Gender = model.Gender;
+            entity.Height = model.Height;
+            entity.Hand = model.Hand;
             entity.AvailableFlag = model.AvailableFlag;
             entity.BirthDate = model.BirthDate;
             entity.HireDate = model.HireDate;

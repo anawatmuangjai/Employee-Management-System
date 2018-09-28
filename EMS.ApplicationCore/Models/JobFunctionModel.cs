@@ -9,7 +9,7 @@ namespace EMS.ApplicationCore.Models
         public int JobFunctionId { get; set; }
         public int SectionId { get; set; }
         public string FunctionName { get; set; }
-        public string FunctionDescription { get; set; }
+        public string FunctionCode { get; set; }
 
         public SectionModel Section { get; set; }
     }

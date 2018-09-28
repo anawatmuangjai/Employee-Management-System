@@ -57,7 +57,7 @@ namespace EMS.ApplicationCore.Services
             {
                 SectionId = model.SectionId,
                 FunctionName = model.FunctionName,
-                FunctionDescription = model.FunctionDescription,
+                FunctionCode = model.FunctionCode,
             };
 
             await _repository.AddAsync(jobFunction);
@@ -69,7 +69,7 @@ namespace EMS.ApplicationCore.Services
 
             jobFunction.SectionId = model.SectionId;
             jobFunction.FunctionName = model.FunctionName;
-            jobFunction.FunctionDescription = model.FunctionDescription;
+            jobFunction.FunctionCode = model.FunctionCode;
 
             await _repository.UpdateAsync(jobFunction);
         }
