@@ -15,14 +15,11 @@ namespace EMS.WebCore.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly IEmployeePasswordService _passwordService;
-        private readonly IEmployeeRegisterService _registerService;
+        private readonly IAccountService _accountService;
 
-        public AccountController(IEmployeePasswordService passwordService,
-            IEmployeeRegisterService registerService)
+        public AccountController(IAccountService accountService)
         {
-            _passwordService = passwordService;
-            _registerService = registerService;
+            _accountService = accountService;
         }
 
         [HttpGet]
@@ -37,35 +34,52 @@ namespace EMS.WebCore.Controllers
             if (!ModelState.IsValid)
                 return View(loginViewModel);
 
-            var user = await _passwordService.GetByEmployeeId(loginViewModel.UserName);
+            // Go to change password page if password = null
+            var user = await _accountService.GetPasswordAsync(loginViewModel.UserName);
 
-            if (user != null)
+            if (user == null)
             {
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, user.EmployeeId)
-                };
-
-                var claimsIdentity = new ClaimsIdentity(
-                    claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-                await HttpContext.SignInAsync(
-                    CookieAuthenticationDefaults.AuthenticationScheme,
-                    new ClaimsPrincipal(claimsIdentity));
-
-                return RedirectToAction("Index", "Dashboard");
+                ModelState.AddModelError("Error", "User name or password is not valid.");
+                return View(loginViewModel);
             }
 
-            ModelState.AddModelError("", "User name or password not found");
-            return View(loginViewModel);
+            // Check password
+            var isCorrect = _accountService.VerifyPassword(loginViewModel.Password, user.PasswordHash, user.PasswordSalt);
+            if (isCorrect == false)
+            {
+                ModelState.AddModelError("Error", "Password is not valid.");
+                return View(loginViewModel);
+            }
+
+            // Add cookie authentication
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, user.EmployeeId),
+                new Claim("FullName", user.EmployeeId),
+                new Claim(ClaimTypes.Role, "Administrator"),
+                //new Claim(ClaimTypes.Role, "user.Role"),
+            };
+
+            var claimsIdentity = new ClaimsIdentity(
+                claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity),
+                new AuthenticationProperties
+                {
+                    ExpiresUtc = DateTime.UtcNow.AddMinutes(20),
+                    IsPersistent = false,
+                    AllowRefresh = false
+                });
+
+            return RedirectToAction("Index", "Dashboard");
         }
 
         [HttpGet]
-        public async Task<IActionResult> Register()
+        public IActionResult Register()
         {
-            var viewModel = await _registerService.GetRegisterViewModel();
-
-            return View(viewModel);
+            return View();
         }
 
         [HttpPost]
@@ -76,13 +90,13 @@ namespace EMS.WebCore.Controllers
             {
                 registerViewModel.EmployeeId = registerViewModel.EmployeeId.ToLower();
 
-                if (await _registerService.Exists(registerViewModel.EmployeeId))
+                if (await _accountService.Exists(registerViewModel.EmployeeId))
                 {
                     ModelState.AddModelError("", "Username already exists");
                     return View();
                 }
 
-                await _registerService.RegisterEmployee(registerViewModel);
+                await _accountService.RegisterEmployee(registerViewModel);
 
                 return RedirectToAction(nameof(Login));
             }
@@ -95,6 +109,12 @@ namespace EMS.WebCore.Controllers
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login", "Account");
+        }
+
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }

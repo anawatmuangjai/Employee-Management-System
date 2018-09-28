@@ -50,6 +50,12 @@ namespace EMS.WebCore.ViewModels.Account
         public string Gender { get; set; }
 
         [Required]
+        public decimal Height { get; set; }
+
+        [Required]
+        public string Hand { get; set; }
+
+        [Required]
         public DateTime BirthDate { get; set; }
 
         [Required]

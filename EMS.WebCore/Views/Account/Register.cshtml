@@ -137,6 +137,23 @@
                         <span asp-validation-for="LastNameThai" class="text-danger"></span>
                     </div>
                 </div>
+                <!-- height and hand -->
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Height">Height</label>
+                        <input asp-for="Height" type="text" class="form-control" placeholder="" value="" required>
+                        <span asp-validation-for="Height" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Hand">Hand</label>
+                        <select asp-for="Hand" class="custom-select d-block w-100" required>
+                            <option value="">Choose...</option>
+                            <option value="Left">Left</option>
+                            <option value="Right">Right</option>
+                        </select>
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
+                </div>
                 <!-- birth date -->
                 <div class="row">
                     <div class="col-md-6 mb-3">

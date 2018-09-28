@@ -14,7 +14,16 @@
                 <h1 class="h3 font-weight-normal">Sign in with your credentials</h1>
             </div>
             <div class="card-body">
+
+                @if (!ViewData.ModelState.IsValid && ViewData.ModelState["Error"].Errors.Count > 0)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Authentication failed : @ViewData.ModelState["Error"].Errors.First().ErrorMessage</strong>
+                    </div>
+                }
+
                 <form asp-action="Login" method="post" class="form-signin">
+                    @*<div asp-validation-summary="All" class="text-danger"></div>*@
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
