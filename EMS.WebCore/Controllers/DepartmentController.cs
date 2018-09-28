@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EMS.WebCore.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public class DepartmentController : Controller
     {
         private readonly IDepartmentService _departmentService;

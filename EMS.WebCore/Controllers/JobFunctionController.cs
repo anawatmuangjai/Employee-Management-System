@@ -6,11 +6,14 @@ using EMS.ApplicationCore.Interfaces.Services;
 using EMS.ApplicationCore.Models;
 using EMS.WebCore.Interfaces;
 using EMS.WebCore.ViewModels.JobFunction;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EMS.WebCore.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class JobFunctionController : Controller
     {
         private readonly IJobFunctionService _jobFunctionService;
@@ -45,7 +48,7 @@ namespace EMS.WebCore.Controllers
         {
             var viewModel = new JobFunctionEditViewModel
             {
-                Sections = await _employeeDetailService.GetSections()
+                Departments = await _employeeDetailService.GetDepartments(),
             };
 
             return View(viewModel);
@@ -55,18 +58,25 @@ namespace EMS.WebCore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(JobFunctionEditViewModel model)
         {
-            if (!ModelState.IsValid)
-                return View();
-
-            var jobFunction = new JobFunctionModel
+            if (model.SectionId == 0)
             {
-                SectionId = model.SectionId,
-                FunctionName = model.FunctionName,
-                FunctionDescription = model.FunctionDescription
-            };
+                ModelState.AddModelError("", "Please select section");
+            }
 
-            await _jobFunctionService.AddAsync(jobFunction);
-            return RedirectToAction(nameof(Index));
+            if (ModelState.IsValid)
+            {
+                var jobFunction = new JobFunctionModel
+                {
+                    SectionId = model.SectionId,
+                    FunctionName = model.FunctionName,
+                    FunctionCode = model.FunctionCode
+                };
+
+                await _jobFunctionService.AddAsync(jobFunction);
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View();
         }
 
         [HttpGet]
@@ -82,8 +92,8 @@ namespace EMS.WebCore.Controllers
                 JobFunctionId = jobFunction.JobFunctionId,
                 SectionId = jobFunction.SectionId,
                 FunctionName = jobFunction.FunctionName,
-                FunctionDescription = jobFunction.FunctionDescription,
-                Sections = await _employeeDetailService.GetSections()
+                FunctionCode = jobFunction.FunctionCode,
+                Departments = await _employeeDetailService.GetDepartments()
             };
 
             return View(editViewModel);
@@ -101,7 +111,7 @@ namespace EMS.WebCore.Controllers
                 JobFunctionId = model.JobFunctionId,
                 SectionId = model.SectionId,
                 FunctionName = model.FunctionName,
-                FunctionDescription = model.FunctionName
+                FunctionCode = model.FunctionName
             };
 
             await _jobFunctionService.UpdateAsync(jobFunction);
@@ -126,6 +136,13 @@ namespace EMS.WebCore.Controllers
             await _jobFunctionService.DeleteAsync(id);
 
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<JsonResult> GetSectionByDepartmentId(int departmentId)
+        {
+            var sections = await _employeeDetailService.GetSectionsByDepartmentId(departmentId);
+
+            return Json(new SelectList(sections, "Value", "Text"));
         }
     }
 }

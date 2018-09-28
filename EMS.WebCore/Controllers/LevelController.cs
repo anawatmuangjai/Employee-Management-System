@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EMS.WebCore.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public class LevelController : Controller
     {
         private readonly IEmployeeLevelService _levelService;

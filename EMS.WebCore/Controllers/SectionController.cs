@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EMS.WebCore.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public class SectionController : Controller
     {
         private readonly ISectionService _sectionService;

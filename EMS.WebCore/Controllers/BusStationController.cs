@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EMS.WebCore.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public class BusStationController : Controller
     {
         private readonly IBusStationService _busStationService;
