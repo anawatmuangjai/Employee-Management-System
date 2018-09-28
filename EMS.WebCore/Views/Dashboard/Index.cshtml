@@ -5,7 +5,7 @@
 }
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Dashboard</h1>
+    <h1 class="h2 text-header">Dashboard</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group mr-2">
             <button class="btn btn-sm btn-outline-secondary">Share</button>
@@ -13,27 +13,27 @@
         </div>
         <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
             <span data-feather="calendar"></span>
-            This week
+            Shift A
         </button>
     </div>
 </div>
 
 <!-- card -->
-<div class="row pt-md-3 mt-3 mb-5">
+<div class="row pt-md-3 mt-3 mb-3">
     <div class="col-xl-3 col-sm-6 p-2">
         <div class="card card-common">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
-                    <i class="fa fa-user-circle fa-3x text-info"></i>
-                    <div class="text-right text-secondary">
+                    <i class="fa fa-user-circle fa-3x text-header"></i>
+                    <div class="text-right text-header">
                         <h5>Total Employee</h5>
                         <h3>@Model.CountTotalEmployee</h3>
                     </div>
                 </div>
             </div>
-            <div class="card-footer text-white bg-info">
+            <div class="card-footer text-white bg-primary">
                 <i class="fa fa-refresh fa-spin mr-3"></i>
-                <span>Update Now</span>
+                <span>All department</span>
             </div>
         </div>
     </div>
@@ -41,8 +41,8 @@
         <div class="card card-common">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
-                    <i class="fa fa-user fa-3x text-primary"></i>
-                    <div class="text-right text-secondary">
+                    <i class="fa fa-user fa-3x text-header"></i>
+                    <div class="text-right text-header">
                         <h5>Active Work</h5>
                         <h3>@Model.CountActiveWork</h3>
                     </div>
@@ -50,7 +50,7 @@
             </div>
             <div class="card-footer text-white bg-primary">
                 <i class="fa fa-refresh fa-spin mr-3"></i>
-                <span>Update Now</span>
+                <span>Current shift </span>
             </div>
         </div>
     </div>
@@ -59,7 +59,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <i class="fa fa-user-times fa-3x text-danger"></i>
-                    <div class="text-right text-secondary">
+                    <div class="text-right text-header">
                         <h5>Absent</h5>
                         <h3>@Model.CountAbsent</h3>
                     </div>
@@ -76,7 +76,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <i class="fa fa-percent fa-3x text-warning"></i>
-                    <div class="text-right text-secondary">
+                    <div class="text-right text-header">
                         <h5>Absent Percent</h5>
                         <h3>@Model.PercentAbsent</h3>
                     </div>
@@ -90,97 +90,346 @@
     </div>
 </div>
 
-<!-- chart -->
-<div class="row mb-5">
-    <div class="col-xl-6 col-12 mb-4 mb-xl-0">
-        <div class="card card-common">
-            <div class="card-header">
-                <h3 class="card-title">Attendance Tendencies</h3>
+<!-- chart bar adn pie-->
+<div class="row">
+    <div class="col-md-8">
+        <div class="card mb-4">
+            <div class="card-header bg-white text-header">
+                <h5 class="my-0">Attendance By Level</h5>
+                <p class="my-0">Summary attendance active by level</p>
             </div>
             <div class="card-body">
-                <div id="chart_div"></div>
+                <div class="chart-container">
+                    <canvas id="attendanceLevelChart" style="width:100%; height:250px"></canvas>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-xl-6 col-12">
-        <div class="card card-common">
-            <div class="card-header">
-                <h3 class="card-title">Employee Status</h3>
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header bg-white text-header">
+                <h5 class="my-0">Average Percent</h5>
+                <p class="my-0">Average attendance active and absent</p>
             </div>
             <div class="card-body">
-                <div id="Anthony_chart_div"></div>
+                <div class="chart-container">
+                    <canvas id="attendancePercentChart" style="width:100%; height:250px"></canvas>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+<!-- chart pie -->
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mb-3">
+            <div class="card-header bg-white text-header">
+                <h5 class="my-0">Attendance By Department</h5>
+                <p class="my-0">Summary attendance active by department</p>
+            </div>
+            <div class="card-body">
+                <div class="chart-container">
+                    <canvas id="departmentChart" style="width:100%; height:250px"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header bg-white text-header">
+                <h5 class="my-0">Attendance By Section</h5>
+                <p class="my-0">Summary employee active work</p>
+            </div>
+            <div class="card-body">
+                <div class="chart-container">
+                    <canvas id="sectionChart" style="width:100%; height:250px"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header bg-white text-header">
+                <h5 class="my-0">Attendance By Shift</h5>
+                <p class="my-0">Summary employee by shift</p>
+            </div>
+            <div class="card-body">
+                <div style="height:250px">
+                    <div class="table-responsive">
+                        <table class="table table-hover w-100">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Shift Name</th>
+                                    <th>Employee</th>
+                                    <th>Active</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.AttendanceByShift)
+                                {
+                                    <tr>
+                                        <td>@item.ShiftName</td>
+                                        <td>@item.TotalEmployee</td>
+                                        <td>@item.ActiveEmployee</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- chart bar -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mb-4">
+            <div class="card-header bg-white text-header">
+                <h5 class="my-0">Transportation</h5>
+                <p class="my-0">Summary transportation by routes</p>
+            </div>
+            <div class="card-body">
+                <div class="chart-container">
+                    <canvas id="transportChart" style="width:100%; height:250px"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- employee absent -->
+<div class="card mb-4">
+    <div class="card-header bg-white text-header">
+        <h5 class="my-0">Employee Leave</h5>
+        <p class="my-0">Summary employee active work</p>
+    </div>
+    <div class="card-body scroll-box-dashboard p-0">
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered table-sm w-100 mb-0">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Type</th>
+                        <th>Employee ID</th>
+                        <th>Name (English)</th>
+                        <th>Name (Thai)</th>
+                        <th>Level</th>
+                        <th>Shift</th>
+                        <th>Department</th>
+                        <th>Section</th>
+                        <th>Job Title</th>
+                        <th>Job Function</th>
+                        <th>Bus Station</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Attendances.Any())
+                    {
+                        @foreach (var e in Model.Attendances)
+                        {
+                            <tr>
+                                <td>@e.EmployeeType</td>
+                                <td>@e.EmployeeId</td>
+                                <td>@e.Title. @e.FirstName @e.LastName</td>
+                                <td>@e.FirstNameThai @e.LastNameThai</td>
+                                <td>@e.LevelCode</td>
+                                <td>@e.ShiftName</td>
+                                <td>@e.DepartmentCode</td>
+                                <td>@e.SectionName</td>
+                                <td>@e.JobTitle</td>
+                                <td>@e.FunctionName</td>
+                                <td>@e.BusStationName</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer bg-white text-dark">
+        <p class="mb-0">Total Absent : @Model.Attendances.Count() Person.</p>
+    </div>
+</div>
+
+<!-- chart -->
+@*<div class="row mb-5">
+        <div class="col-xl-6 col-12 mb-4 mb-xl-0">
+            <div class="card card-common">
+                <div class="card-header">
+                    <h3 class="card-title">Attendance Tendencies</h3>
+                </div>
+                <div class="card-body">
+                    <div id="chart_div"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 col-12">
+            <div class="card card-common">
+                <div class="card-header">
+                    <h3 class="card-title">Employee Status</h3>
+                </div>
+                <div class="card-body">
+                    <div id="Anthony_chart_div"></div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
+
+
 @section scripts {
 
-    <!--Load the AJAX API-->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-
-        // Load the Visualization API and the corechart package.
-        google.charts.load('current', { 'packages': ['corechart'] });
-
-        // Set a callback to run when the Google Visualization API is loaded.
-        google.charts.setOnLoadCallback(drawChart);
-
-        // Draw the pie chart for the Anthony's pizza when Charts is loaded.
-        google.charts.setOnLoadCallback(drawAnthonyChart);
-
-        // Callback that creates and populates a data table,
-        // instantiates the pie chart, passes in the data and
-        // draws it.
-        function drawChart() {
-
-            // Create the data table.
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Topping');
-            data.addColumn('number', 'Active');
-            data.addRows([
-                ['6 Aug', 332],
-                ['7 Aug', 339],
-                ['8 Aug', 344],
-                ['9 Aug', 329],
-                ['10 Aug', 324]
-            ]);
-
-            // Set chart options
-            var options = {
-                'title': 'Attendance',
-                'width': 400,
-                'height': 300
-            };
-
-            // Instantiate and draw our chart, passing in some options.
-            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-            chart.draw(data, options);
-        }
-
-        // Callback that draws the pie chart for Anthony's pizza.
-        function drawAnthonyChart() {
-
-            // Create the data table for Anthony's pizza.
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Topping');
-            data.addColumn('number', 'Status');
-            data.addRows([
-                ['Active', 2],
-                ['Leave', 1]
-            ]);
-
-            // Set options for Anthony's pie chart.
-            var options = {
-                title: 'Employee Status',
-                width: 400,
-                height: 300
-            };
-
-            // Instantiate and draw the chart for Anthony's pizza.
-            var chart = new google.visualization.PieChart(document.getElementById('Anthony_chart_div'));
-            chart.draw(data, options);
-        }
+    <script>
+        var ctx = document.getElementById("attendanceLevelChart");
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(Model.AttendanceLevelLabel),
+                datasets: [{
+                    label: 'Attendance By Level',
+                    data: @Html.Raw(Model.AttendanceLevelValue),
+                    backgroundColor: "#234359",
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                layout: {
+                    padding: {
+                        left: 0,
+                        right: 0,
+                        top: 30,
+                        bottom: 0
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            fontSize: 8
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            autoSkip: false,
+                            fontSize: 8
+                        }
+                    }]
+                }
+            }
+        });
     </script>
+
+    <script>
+        var ctx = document.getElementById("transportChart");
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(Model.TransportChartLabel),
+                datasets: [{
+                    label: 'Daily Transportation',
+                    data: @Html.Raw(Model.TransportChartValue),
+                    backgroundColor: "#234359",
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                layout: {
+                    padding: {
+                        left: 0,
+                        right: 0,
+                        top: 30,
+                        bottom: 0
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            fontSize: 8
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            autoSkip: false,
+                            fontSize: 8
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+    <script>
+        new Chart(document.getElementById("attendancePercentChart"), {
+            type: 'pie',
+            data: {
+                labels: ["Active", "Absent"],
+                datasets: [{
+                    label: "Population (millions)",
+                    backgroundColor: ["#234359", "#f44168"],
+                    data: @Html.Raw(Model.AttendancePercentValue)
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Attendance by department'
+                }
+            }
+        });
+    </script>
+
+    <script>
+        new Chart(document.getElementById("departmentChart"), {
+            type: 'pie',
+            data: {
+                labels: @Html.Raw(Model.DepartmentChartLabel),
+                datasets: [{
+                    label: "Population (millions)",
+                    backgroundColor: ["#234359", "#54dcff", "#3cba9f", "#e8c3b9", "#c45850"],
+                    data: @Html.Raw(Model.DepartmentChartValue)
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Attendance by department'
+                }
+            }
+        });
+    </script>
+
+    <script>
+        new Chart(document.getElementById("sectionChart"), {
+            type: 'doughnut',
+            data: {
+                labels: @Html.Raw(Model.SectiobChartLabel),
+                datasets: [{
+                    label: "Population (millions)",
+                    backgroundColor: ["#234359", "#54dcff", "#3cba9f", "#e8c3b9", "#c45850"],
+                    data: @Html.Raw(Model.SectiobChartValue)
+                }]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: 'Attendance by section'
+                }
+            }
+        });
+    </script>
+
 }
 

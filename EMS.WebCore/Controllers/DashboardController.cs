@@ -1,42 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using EMS.ApplicationCore.Interfaces.Services;
-using EMS.WebCore.ViewModels.Dashboard;
+using EMS.WebCore.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EMS.WebCore.Controllers
 {
     public class DashboardController : Controller
     {
-        private readonly IAttendanceService _attendanceService;
+        private readonly IDashboardViewModelService _dashboardViewModelService;
 
-        public DashboardController(IAttendanceService attendanceService)
+        public DashboardController(IDashboardViewModelService dashboardViewModelService)
         {
-            _attendanceService = attendanceService;
+            _dashboardViewModelService = dashboardViewModelService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             var today = DateTime.Today.ToString("yyyy/MM/dd");
-
-            var totalEmployee = await _attendanceService.CountTotalEmployeeAsync();
-
-            var totalActive = await _attendanceService.GetActiveAsync();
-            var totalAbsent = await _attendanceService.GetAbsentAsync();
-
-            var percentAbsent = Math.Round(((double)totalAbsent.Count / (double)totalEmployee) * 100, 2);
-
-            var viewModel = new DashboardViewModel
-            {
-                CountTotalEmployee = totalEmployee,
-                CountActiveWork = totalActive.Count,
-                CountAbsent = totalAbsent.Count,
-                PercentAbsent = $"{percentAbsent}%"
-            };
-
+            var viewModel = await _dashboardViewModelService.GetDashboardResult(today);
             return View(viewModel);
         }
     }
