@@ -16,7 +16,7 @@ namespace EMS.ApplicationCore.Models
         public string LevelCode { get; set; }
         public string ShiftName { get; set; }
         public string DepartmentCode { get; set; }
-        public string SectionCode { get; set; }
+        public string SectionName { get; set; }
         public string JobTitle { get; set; }
         public string FunctionName { get; set; }
         public string BusStationName { get; set; }
