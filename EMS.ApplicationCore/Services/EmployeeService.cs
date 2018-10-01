@@ -74,6 +74,7 @@ namespace EMS.ApplicationCore.Services
                 Height = model.Height,
                 Hand = model.Hand,
                 BirthDate = model.BirthDate,
+                HireType = model.HireType,
                 HireDate = model.HireDate,
                 AvailableFlag = model.AvailableFlag,
                 ChangedDate = model.ChangedDate,
@@ -101,6 +102,7 @@ namespace EMS.ApplicationCore.Services
             entity.Hand = model.Hand;
             entity.AvailableFlag = model.AvailableFlag;
             entity.BirthDate = model.BirthDate;
+            entity.HireType = model.HireType;
             entity.HireDate = model.HireDate;
             entity.ChangedDate = model.ChangedDate;
 

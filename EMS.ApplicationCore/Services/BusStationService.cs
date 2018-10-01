@@ -46,8 +46,11 @@ namespace EMS.ApplicationCore.Services
         {
             var busStation = new MasterBusStation
             {
+                RouteId = model.RouteId,
                 BusStationName = model.BusStationName,
-                BusStationRoute = model.BusStationRoute,
+                BusStationCode = model.BusStationCode,
+                TimeInDay = model.TimeInDay,
+                TimeInNight = model.TimeInNight,
             };
 
             await _repository.AddAsync(busStation);
@@ -57,8 +60,11 @@ namespace EMS.ApplicationCore.Services
         {
             var busStation = await _repository.GetByIdAsync(model.BusStationId);
 
+            busStation.RouteId = model.RouteId;
             busStation.BusStationName = model.BusStationName;
-            busStation.BusStationRoute = model.BusStationRoute;
+            busStation.BusStationCode = model.BusStationCode;
+            busStation.TimeInDay = model.TimeInDay;
+            busStation.TimeInNight = model.TimeInNight;
 
             await _repository.UpdateAsync(busStation);
         }

@@ -20,6 +20,7 @@ namespace EMS.ApplicationCore.Models
         public decimal Height { get; set; }
         public string Hand { get; set; }
         public DateTime BirthDate { get; set; }
+        public string HireType { get; set; }
         public DateTime HireDate { get; set; }
         public bool? AvailableFlag { get; set; }
         public DateTime ChangedDate { get; set; }
