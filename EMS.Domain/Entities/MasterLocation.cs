@@ -11,11 +11,10 @@ namespace EMS.Domain.Entities
         }
 
         public int LocationId { get; set; }
+        public int LocationGroupId { get; set; }
         public string LocationName { get; set; }
-        public string LocationGroup { get; set; }
-        public string LocationImagePath { get; set; }
-        public byte[] LocationImage { get; set; }
 
+        public MasterLocationGroup LocationGroup { get; set; }
         public ICollection<EmployeeLocation> EmployeeLocation { get; set; }
     }
 }
