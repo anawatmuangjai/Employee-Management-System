@@ -49,7 +49,10 @@ namespace EMS.WebCore
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IAttendanceRepository, AttendanceRepository>();
 
-            services.AddScoped<IEmployeePasswordService, EmployeePasswordService>();
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IAuthorityService, AuthorityService>();
+            services.AddScoped<IAccountAuthorityService, AccountAuthorityService>();
+
             services.AddScoped<IDepartmentService, DepartmentService>();
             services.AddScoped<ISectionService, SectionService>();
             services.AddScoped<IJobPositionService, JobPositiobService>();
@@ -64,7 +67,7 @@ namespace EMS.WebCore
             services.AddScoped<IBusStationService, BusStationService>();
             services.AddScoped<IAttendanceService, AttendanceService>();
 
-            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IAuthenService, AuthenService>();
             services.AddScoped<IEmployeeDetailService, EmployeeDetailService>();
             services.AddScoped<IEducationDegreeService, EducationDegreeService>();
             services.AddScoped<IEducationMajorService, EducationMajorService>();
@@ -78,7 +81,7 @@ namespace EMS.WebCore
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider services)
         {
             if (env.IsDevelopment())
             {
@@ -100,6 +103,38 @@ namespace EMS.WebCore
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            CreateDefaultUserAndRoles(services).Wait();
+        }
+
+        private async Task CreateDefaultUserAndRoles(IServiceProvider serviceProvider)
+        {
+            var authService = serviceProvider.GetRequiredService<IAuthenService>();
+
+            var username = "administrator";
+            var password = "admin-1234";
+            string[] roleNames = { "Administrator", "Member" };
+
+            // Create role and seeding them to database
+            foreach (var roleName in roleNames)
+            {
+                var roleExists = await authService.RoleExistsAsync(roleName);
+                if (!roleExists)
+                {
+                    await authService.CreateRoleAsync(roleName);
+                }
+            }
+
+            // Create a super user who could maintain application
+            var accountExists = await authService.AccountExistsAsync(username);
+            if (!accountExists)
+            {
+                // Create admin account
+                var account = await authService.CreateAccountAsync(username, password);
+
+                // Assign role to admin account
+                await authService.AddUserRoleAsync(account, "Admin");
+            }
         }
     }
 }

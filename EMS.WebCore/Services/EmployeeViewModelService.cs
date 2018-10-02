@@ -18,6 +18,29 @@ namespace EMS.WebCore.Services
             _employeeService = employeeService;
         }
 
+        public async Task CreateAsync(RegisterEmployeeViewModel viewModel)
+        {
+            var employee = new EmployeeModel
+            {
+                EmployeeId = viewModel.EmployeeId,
+                GlobalId = viewModel.GlobalId,
+                CardId = viewModel.CardId,
+                EmployeeType = viewModel.EmployeeType,
+                Title = viewModel.Title,
+                FirstName = viewModel.FirstName,
+                LastName = viewModel.LastName,
+                FirstNameThai = viewModel.FirstNameThai,
+                LastNameThai = viewModel.LastNameThai,
+                Gender = viewModel.Gender,
+                BirthDate = viewModel.BirthDate,
+                HireDate = viewModel.HireDate,
+                AvailableFlag = true,
+                ChangedDate = DateTime.Now,
+            };
+
+            await _employeeService.AddAsync(employee);
+        }
+
         public async Task<EmployeeViewModel> GetEmployeeList()
         {
             var employee = await _employeeService.GetAllAsync();
@@ -41,5 +64,7 @@ namespace EMS.WebCore.Services
 
             return viewModel;
         }
+
+
     }
 }
