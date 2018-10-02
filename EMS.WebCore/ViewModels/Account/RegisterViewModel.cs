@@ -9,56 +9,17 @@ namespace EMS.WebCore.ViewModels.Account
     public class RegisterViewModel
     {
         [Required]
-        [StringLength(8, MinimumLength = 8, ErrorMessage = "Employee ID must be 8 characters")]
-        public string EmployeeId { get; set; }
+        public string UserName { get; set; }
 
         [Required]
-        [StringLength(10, MinimumLength = 10, ErrorMessage = "Global ID must be 10 characters")]
-        public string GlobalId { get; set; }
-
-        [Required]
-        public string CardId { get; set; }
-
-        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [StringLength(12, MinimumLength = 4, ErrorMessage = "You must specify password between 4 and 12 characters")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Required]
-        public string Title { get; set; }
-
-        [Required]
-        public string TitleThai { get; set; }
-
-        [Required]
-        public string EmployeeType { get; set; }
-
-        [Required]
-        public string FirstName { get; set; }
-
-        [Required]
-        public string LastName { get; set; }
-
-        [Required]
-        public string FirstNameThai { get; set; }
-
-        [Required]
-        public string LastNameThai { get; set; }
-
-        [Required]
-        [StringLength(1, ErrorMessage = "String leangth must be 1 charactor")]
-        public string Gender { get; set; }
-
-        [Required]
-        public decimal Height { get; set; }
-
-        [Required]
-        public string Hand { get; set; }
-
-        [Required]
-        public DateTime BirthDate { get; set; }
-
-        [Required]
-        public DateTime HireDate { get; set; }
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
     }
 }

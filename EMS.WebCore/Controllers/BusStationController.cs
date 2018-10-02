@@ -48,8 +48,11 @@ namespace EMS.WebCore.Controllers
 
             var busStation = new BusStationModel
             {
+                RouteId = viewModel.RouteId,
                 BusStationName = viewModel.BusStationName,
-                BusStationRoute = viewModel.BusStationRoute
+                BusStationCode = viewModel.BusStationCode,
+                TimeInDay = viewModel.TimeInDay,
+                TimeInNight = viewModel.TimeInNight
             };
 
             await _busStationService.AddAsync(busStation);
@@ -67,8 +70,11 @@ namespace EMS.WebCore.Controllers
             var editModel = new BusStationEditViewModel
             {
                 BusStationId = busStation.BusStationId,
+                RouteId = busStation.RouteId,
                 BusStationName = busStation.BusStationName,
-                BusStationRoute = busStation.BusStationRoute
+                BusStationCode = busStation.BusStationCode,
+                TimeInDay = busStation.TimeInDay,
+                TimeInNight = busStation.TimeInNight
             };
 
             return View(editModel);
@@ -84,8 +90,11 @@ namespace EMS.WebCore.Controllers
             var editModel = new BusStationModel
             {
                 BusStationId = model.BusStationId,
+                RouteId = model.RouteId,
                 BusStationName = model.BusStationName,
-                BusStationRoute = model.BusStationRoute
+                BusStationCode = model.BusStationCode,
+                TimeInDay = model.TimeInDay,
+                TimeInNight = model.TimeInNight
             };
 
             await _busStationService.UpdateAsync(editModel);

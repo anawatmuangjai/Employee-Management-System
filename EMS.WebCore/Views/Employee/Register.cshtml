@@ -1,4 +1,4 @@
-﻿@model RegisterViewModel
+﻿@model RegisterEmployeeViewModel
 
 @{
     ViewData["Title"] = "Register";
@@ -13,76 +13,54 @@
     <div class="row pt-4">
         <div class="col-md-8 mx-auto">
 
-            <form asp-action="Register" method="post" class="needs-validation" novalidate>
+            <form asp-action="Register" method="post">
 
                 <h4 class="mb-3">Employee Information</h4>
                 <!-- employee id -->
-                <div class="mb-3">
+                <div class="form-group mb-3">
                     <label asp-for="EmployeeId">Employee ID</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">*</span>
-                        </div>
-                        <input asp-for="EmployeeId" type="text" class="form-control" placeholder="Employee ID" required>
-                        <span asp-validation-for="EmployeeId" class="text-danger"></span>
-                    </div>
+                    <input asp-for="EmployeeId" type="text" class="form-control" placeholder="Employee ID" required>
+                    <span asp-validation-for="EmployeeId" class="text-danger"></span>
                 </div>
                 <!-- global id -->
-                <div class="mb-3">
+                <div class="form-group mb-3">
                     <label asp-for="GlobalId">Global ID</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">*</span>
-                        </div>
-                        <input asp-for="GlobalId" type="text" class="form-control" placeholder="Global ID" required>
-                        <span asp-validation-for="GlobalId" class="text-danger"></span>
-                    </div>
+                    <input asp-for="GlobalId" type="text" class="form-control" placeholder="Global ID" required>
+                    <span asp-validation-for="GlobalId" class="text-danger"></span>
                 </div>
                 <!-- card id -->
-                <div class="mb-3">
-                    <label asp-for="CardId">Card ID</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">*</span>
-                        </div>
-                        <input asp-for="CardId" type="text" class="form-control" placeholder="Card ID" required>
-                        <div class="invalid-feedback" style="width: 100%;">
-                            Your username is required.
-                        </div>
-                    </div>
-                </div>
-                <!-- password -->
-                <div class="mb-3">
-                    <label asp-for="Password">Password</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">*</span>
-                        </div>
-                        <input asp-for="Password" type="password" class="form-control" placeholder="Password" required>
-                        <span asp-validation-for="GlobalId" class="text-danger"></span>
-                    </div>
+                <div class="form-group mb-3">
+                    <label asp-for="CardId">Global ID</label>
+                    <input asp-for="CardId" type="text" class="form-control" placeholder="Global ID" required>
+                    <span asp-validation-for="CardId" class="text-danger"></span>
                 </div>
                 <!-- employee type -->
-                <div class="mb-3">
+                <div class="form-group mb-3">
                     <label asp-for="EmployeeType">Person Type</label>
                     <select asp-for="EmployeeType" class="custom-select d-block w-100" required>
                         <option value="">Choose...</option>
                         <option value="EM">Employee</option>
                         <option value="SC">Sub Contract</option>
                         <option value="SD">Student Internship</option>
+                        <option value="SP">Special Person</option>
                     </select>
                     <span asp-validation-for="EmployeeType" class="text-danger"></span>
                 </div>
+                <!-- hire type -->
+                <div class="form-group mb-3">
+                    <label asp-for="HireType">Person Type</label>
+                    <select asp-for="HireType" class="custom-select d-block w-100" required>
+                        <option value="">Choose...</option>
+                        <option value="Direct">Direct</option>
+                        <option value="Indirect">Indirect</option>
+                    </select>
+                    <span asp-validation-for="HireType" class="text-danger"></span>
+                </div>
                 <!-- hire date -->
-                <div class="mb-3">
+                <div class="form-group mb-3">
                     <label asp-for="HireDate">Hire Date</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">*</span>
-                        </div>
-                        <input asp-for="HireDate" type="date" class="form-control" value="2018-01-01" required>
-                        <span asp-validation-for="HireDate" class="text-danger"></span>
-                    </div>
+                    <input asp-for="HireDate" type="date" class="form-control" value="2018-01-01" required>
+                    <span asp-validation-for="HireDate" class="text-danger"></span>
                 </div>
 
                 <h4 class="mb-3">Personal Information</h4>
@@ -157,13 +135,8 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label asp-for="BirthDate">Birth Date</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">*</span>
-                            </div>
-                            <input asp-for="BirthDate" type="date" class="form-control" value="2018-01-01" required>
-                            <span asp-validation-for="BirthDate" class="text-danger"></span>
-                        </div>
+                        <input asp-for="BirthDate" type="date" class="form-control" value="2018-01-01" required>
+                        <span asp-validation-for="BirthDate" class="text-danger"></span>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label asp-for="Gender">Gender</label>
@@ -175,8 +148,11 @@
                         <span asp-validation-for="Gender" class="text-danger"></span>
                     </div>
                 </div>
+
                 <button class="btn btn-primary btn-lg btn-block mb-4" type="submit">Submit</button>
+
             </form>
+
         </div>
     </div>
 </div>

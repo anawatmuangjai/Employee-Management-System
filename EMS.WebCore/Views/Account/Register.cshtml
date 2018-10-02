@@ -5,180 +5,41 @@
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 
-<div class="container">
-    <div class="pt-5 text-center">
-        <h2>Registration Form</h2>
+<div class="register-bg"></div>
+
+<div class="container register-content">
+
+    <div class="text-center">
+        <h2>Create a new account.</h2>
         <p class="lead">Employee Managements System.</p>
     </div>
 
     <div class="row pt-4">
-        <div class="col-md-8 mx-auto">
+        <div class="col-md-6 mx-auto">
 
-            <form asp-action="Register" method="post" class="needs-validation" novalidate>
-
-                <h4 class="mb-3">Employee Information</h4>
-                <!-- employee id -->
-                <div class="mb-3">
-                    <label asp-for="EmployeeId">Employee ID</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">*</span>
-                        </div>
-                        <input asp-for="EmployeeId" type="text" class="form-control" placeholder="Employee ID" required>
-                        <span asp-validation-for="EmployeeId" class="text-danger"></span>
-                    </div>
+            <form asp-action="Register" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="UserName"></label>
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
                 </div>
-                <!-- global id -->
-                <div class="mb-3">
-                    <label asp-for="GlobalId">Global ID</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">*</span>
-                        </div>
-                        <input asp-for="GlobalId" type="text" class="form-control" placeholder="Global ID" required>
-                        <span asp-validation-for="GlobalId" class="text-danger"></span>
-                    </div>
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
-                <!-- card id -->
-                <div class="mb-3">
-                    <label asp-for="CardId">Card ID</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">*</span>
-                        </div>
-                        <input asp-for="CardId" type="text" class="form-control" placeholder="Card ID" required>
-                        <div class="invalid-feedback" style="width: 100%;">
-                            Your username is required.
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <label asp-for="ConfirmPassword"></label>
+                    <input asp-for="ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                 </div>
-                <!-- password -->
-                <div class="mb-3">
-                    <label asp-for="Password">Password</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">*</span>
-                        </div>
-                        <input asp-for="Password" type="password" class="form-control" placeholder="Password" required>
-                        <span asp-validation-for="GlobalId" class="text-danger"></span>
-                    </div>
-                </div>
-                <!-- employee type -->
-                <div class="mb-3">
-                    <label asp-for="EmployeeType">Person Type</label>
-                    <select asp-for="EmployeeType" class="custom-select d-block w-100" required>
-                        <option value="">Choose...</option>
-                        <option value="EM">Employee</option>
-                        <option value="SC">Sub Contract</option>
-                        <option value="SD">Student Internship</option>
-                    </select>
-                    <span asp-validation-for="EmployeeType" class="text-danger"></span>
-                </div>
-                <!-- hire date -->
-                <div class="mb-3">
-                    <label asp-for="HireDate">Hire Date</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">*</span>
-                        </div>
-                        <input asp-for="HireDate" type="date" class="form-control" value="2018-01-01" required>
-                        <span asp-validation-for="HireDate" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <h4 class="mb-3">Personal Information</h4>
-                <!-- selection -->
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label asp-for="Title">Title</label>
-                        <select asp-for="Title" class="custom-select d-block w-100" required>
-                            <option value="">Choose...</option>
-                            <option value="Mr">Mr</option>
-                            <option value="Mrs">Mrs</option>
-                            <option value="Miss">Miss</option>
-                        </select>
-                        <span asp-validation-for="Title" class="text-danger"></span>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label asp-for="TitleThai">Title Thai</label>
-                        <select asp-for="TitleThai" class="custom-select d-block w-100" required>
-                            <option value="">Choose...</option>
-                            <option value="นาย">นาย</option>
-                            <option value="นาง">นาง</option>
-                            <option value="นางสาว">นางสาว</option>
-                            <option value="ว่าที่ร้อยตรี">ว่าที่ร้อยตรี</option>
-                        </select>
-                        <span asp-validation-for="TitleThai" class="text-danger"></span>
-                    </div>
-                </div>
-                <!-- name eng -->
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label asp-for="FirstName">First name</label>
-                        <input asp-for="FirstName" type="text" class="form-control" placeholder="" value="" required>
-                        <span asp-validation-for="FirstName" class="text-danger"></span>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label asp-for="LastName">Last name</label>
-                        <input asp-for="LastName" type="text" class="form-control" placeholder="" value="" required>
-                        <span asp-validation-for="LastName" class="text-danger"></span>
-                    </div>
-                </div>
-                <!-- name thai -->
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label asp-for="FirstNameThai">First name (Thai)</label>
-                        <input asp-for="FirstNameThai" type="text" class="form-control" placeholder="" value="" required>
-                        <span asp-validation-for="FirstNameThai" class="text-danger"></span>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label asp-for="LastNameThai" for="lastName">Last name (Thai)</label>
-                        <input asp-for="LastNameThai" type="text" class="form-control" placeholder="" value="" required>
-                        <span asp-validation-for="LastNameThai" class="text-danger"></span>
-                    </div>
-                </div>
-                <!-- height and hand -->
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label asp-for="Height">Height</label>
-                        <input asp-for="Height" type="text" class="form-control" placeholder="" value="" required>
-                        <span asp-validation-for="Height" class="text-danger"></span>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label asp-for="Hand">Hand</label>
-                        <select asp-for="Hand" class="custom-select d-block w-100" required>
-                            <option value="">Choose...</option>
-                            <option value="Left">Left</option>
-                            <option value="Right">Right</option>
-                        </select>
-                        <span asp-validation-for="Gender" class="text-danger"></span>
-                    </div>
-                </div>
-                <!-- birth date -->
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label asp-for="BirthDate">Birth Date</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">*</span>
-                            </div>
-                            <input asp-for="BirthDate" type="date" class="form-control" value="2018-01-01" required>
-                            <span asp-validation-for="BirthDate" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label asp-for="Gender">Gender</label>
-                        <select asp-for="Gender" class="custom-select d-block w-100" required>
-                            <option value="">Choose...</option>
-                            <option value="M">Male</option>
-                            <option value="F">Female</option>
-                        </select>
-                        <span asp-validation-for="Gender" class="text-danger"></span>
-                    </div>
-                </div>
-                <button class="btn btn-primary btn-lg btn-block mb-4" type="submit">Submit</button>
+                <button type="submit" class="btn btn-primary">Register</button>
             </form>
+
         </div>
     </div>
 </div>
+
+
 

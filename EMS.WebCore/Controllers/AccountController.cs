@@ -15,11 +15,11 @@ namespace EMS.WebCore.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly IAccountService _accountService;
+        private readonly IAuthenService _authenService;
 
-        public AccountController(IAccountService accountService)
+        public AccountController(IAuthenService authenService)
         {
-            _accountService = accountService;
+            _authenService = authenService;
         }
 
         [HttpGet]
@@ -35,29 +35,38 @@ namespace EMS.WebCore.Controllers
                 return View(loginViewModel);
 
             // Go to change password page if password = null
-            var user = await _accountService.GetPasswordAsync(loginViewModel.UserName);
+            //var user = await _accountService.SignInAsync(loginViewModel.UserName);
+            var account = await _authenService.SignInAsync(loginViewModel.UserName);
 
-            if (user == null)
+            if (account == null)
             {
                 ModelState.AddModelError("Error", "User name or password is not valid.");
                 return View(loginViewModel);
             }
 
             // Check password
-            var isCorrect = _accountService.VerifyPassword(loginViewModel.Password, user.PasswordHash, user.PasswordSalt);
+            var isCorrect = _authenService.VerifyPassword(loginViewModel.Password, account.PasswordHash, account.PasswordSalt);
             if (isCorrect == false)
             {
                 ModelState.AddModelError("Error", "Password is not valid.");
                 return View(loginViewModel);
             }
 
+            // Get user role
+            var roleName = await _authenService.GetRoleAsync(account.AccountId);
+
+            if (roleName == null)
+            {
+                ModelState.AddModelError("Error", "Authentication failed.");
+                return View(loginViewModel);
+            }
+
             // Add cookie authentication
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.EmployeeId),
-                new Claim("FullName", user.EmployeeId),
-                new Claim(ClaimTypes.Role, "Administrator"),
-                //new Claim(ClaimTypes.Role, "user.Role"),
+                new Claim(ClaimTypes.Name, account.UserName),
+                new Claim("FullName", account.UserName),
+                new Claim(ClaimTypes.Role, roleName),
             };
 
             var claimsIdentity = new ClaimsIdentity(
@@ -84,24 +93,26 @@ namespace EMS.WebCore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
+        public async Task<IActionResult> Register(RegisterViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                registerViewModel.EmployeeId = registerViewModel.EmployeeId.ToLower();
+                viewModel.UserName = viewModel.UserName.ToLower();
 
-                if (await _accountService.Exists(registerViewModel.EmployeeId))
+                if (await _authenService.AccountExistsAsync(viewModel.UserName))
                 {
                     ModelState.AddModelError("", "Username already exists");
-                    return View();
+                    return View(viewModel);
                 }
 
-                await _accountService.RegisterEmployee(registerViewModel);
+                var account = await _authenService.CreateAccountAsync(viewModel.UserName, viewModel.Password);
+
+                await _authenService.AddUserRoleAsync(account, "Member");
 
                 return RedirectToAction(nameof(Login));
             }
 
-            return View();
+            return View(viewModel);
         }
 
         [HttpGet]

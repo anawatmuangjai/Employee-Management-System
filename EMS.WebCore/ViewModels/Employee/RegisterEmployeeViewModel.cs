@@ -10,9 +10,11 @@ namespace EMS.WebCore.ViewModels.Employee
     public class RegisterEmployeeViewModel
     {
         [Required]
+        [StringLength(8, MinimumLength = 8, ErrorMessage = "Employee ID must be 8 characters")]
         public string EmployeeId { get; set; }
 
         [Required]
+        [StringLength(10, MinimumLength = 10, ErrorMessage = "Global ID must be 10 characters")]
         public string GlobalId { get; set; }
 
         [Required]
@@ -20,6 +22,7 @@ namespace EMS.WebCore.ViewModels.Employee
 
         [Required]
         [DataType(DataType.Password)]
+        [StringLength(12, MinimumLength = 4, ErrorMessage = "You must specify password between 4 and 12 characters")]
         public string Password { get; set; }
 
         [Required]
@@ -44,51 +47,22 @@ namespace EMS.WebCore.ViewModels.Employee
         public string LastNameThai { get; set; }
 
         [Required]
+        [StringLength(1, ErrorMessage = "String leangth must be 1 charactor")]
         public string Gender { get; set; }
+
+        [Required]
+        public decimal Height { get; set; }
+
+        [Required]
+        public string Hand { get; set; }
 
         [Required]
         public DateTime BirthDate { get; set; }
 
         [Required]
+        public DateTime HireType { get; set; }
+
+        [Required]
         public DateTime HireDate { get; set; }
-
-        public int DepartmentId { get; set; }
-
-        public int SectionId { get; set; }
-
-        public byte ShiftId { get; set; }
-
-        public int JobTitleId { get; set; }
-
-        public int LevelId { get; set; }
-
-        public int BusStationId { get; set; }
-
-        public DateTime JoinDate { get; set; }
-
-        public string HomeAddress { get; set; }
-
-        public string City { get; set; }
-
-        public string Country { get; set; }
-
-        public string PostalCode { get; set; }
-
-        public string PhoneNumber { get; set; }
-
-        public string EmailAddress { get; set; }
-
-        public IEnumerable<SelectListItem> EmployeeTypes { get; set; }
-
-        public IEnumerable<SelectListItem> Departments { get; set; }
-
-        public IEnumerable<SelectListItem> Sections { get; set; }
-
-        public IEnumerable<SelectListItem> Levels { get; set; }
-
-        public IEnumerable<SelectListItem> JobTitles { get; set; }
-
-        public IEnumerable<SelectListItem> Shifts { get; set; }
-
     }
 }
