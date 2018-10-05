@@ -29,9 +29,13 @@ namespace EMS.WebCore.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string employeeId)
         {
-            var employeeId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Name).Value;
+            if (string.IsNullOrEmpty(employeeId))
+            {
+                employeeId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Name).Value;
+            }
+
             var viewModel = await _profileViewModelService.GetProfile(employeeId);
             return View(viewModel);
         }
@@ -45,12 +49,12 @@ namespace EMS.WebCore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(ProfileEditViewModel model)
+        public async Task<IActionResult> Edit(ProfileEditViewModel viewModel)
         {
-            //if (!ModelState.IsValid)
-            //    return View();
+            if (!ModelState.IsValid)
+                return View(viewModel);
 
-            await _profileViewModelService.UpdateProfile(model);
+            await _profileViewModelService.UpdateProfile(viewModel);
             return RedirectToAction(nameof(Index));
         }
 

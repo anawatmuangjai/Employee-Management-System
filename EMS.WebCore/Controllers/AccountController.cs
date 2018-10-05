@@ -34,8 +34,6 @@ namespace EMS.WebCore.Controllers
             if (!ModelState.IsValid)
                 return View(loginViewModel);
 
-            // Go to change password page if password = null
-            //var user = await _accountService.SignInAsync(loginViewModel.UserName);
             var account = await _authenService.SignInAsync(loginViewModel.UserName);
 
             if (account == null)
@@ -95,24 +93,24 @@ namespace EMS.WebCore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel viewModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                viewModel.UserName = viewModel.UserName.ToLower();
-
-                if (await _authenService.AccountExistsAsync(viewModel.UserName))
-                {
-                    ModelState.AddModelError("", "Username already exists");
-                    return View(viewModel);
-                }
-
-                var account = await _authenService.CreateAccountAsync(viewModel.UserName, viewModel.Password);
-
-                await _authenService.AddUserRoleAsync(account, "Member");
-
-                return RedirectToAction(nameof(Login));
+                return View(viewModel);
             }
 
-            return View(viewModel);
+            viewModel.UserName = viewModel.UserName.ToLower();
+
+            if (await _authenService.AccountExistsAsync(viewModel.UserName))
+            {
+                ModelState.AddModelError("Error", "Username already exists");
+                return View(viewModel);
+            }
+
+            var account = await _authenService.CreateAccountAsync(viewModel.UserName, viewModel.Password);
+
+            await _authenService.AddUserRoleAsync(account, "Member");
+
+            return RedirectToAction(nameof(Login));
         }
 
         [HttpGet]
