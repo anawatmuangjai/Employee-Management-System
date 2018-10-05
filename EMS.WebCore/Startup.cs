@@ -64,8 +64,12 @@ namespace EMS.WebCore
             services.AddScoped<IEmployeeStateService, EmployeeStateService>();
             services.AddScoped<IEmployeeAddressService, EmployeeAddressService>();
             services.AddScoped<IEmployeeImageService, EmployeeImageService>();
+            services.AddScoped<IRouteService, RouteService>();
             services.AddScoped<IBusStationService, BusStationService>();
             services.AddScoped<IAttendanceService, AttendanceService>();
+            services.AddScoped<ISkillService, SkillService>();
+            services.AddScoped<ISkillGroupService, SkillGroupService>();
+            services.AddScoped<ISkillTypeService, SkillTypeService>();
 
             services.AddScoped<IAuthenService, AuthenService>();
             services.AddScoped<IEmployeeDetailService, EmployeeDetailService>();
@@ -133,7 +137,7 @@ namespace EMS.WebCore
                 var account = await authService.CreateAccountAsync(username, password);
 
                 // Assign role to admin account
-                await authService.AddUserRoleAsync(account, "Admin");
+                await authService.AddUserRoleAsync(account, "Administrator");
             }
         }
     }
