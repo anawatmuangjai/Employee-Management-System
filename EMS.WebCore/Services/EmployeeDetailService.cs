@@ -17,7 +17,9 @@ namespace EMS.WebCore.Services
         private readonly IJobPositionService _jobPositionService;
         private readonly IJobFunctionService _jobFunctionService;
         private readonly IEmployeeLevelService _levelService;
+        private readonly IRouteService _routeService;
         private readonly IBusStationService _busStationService;
+        private readonly ISkillGroupService _skillGroupService;
 
         public EmployeeDetailService(
             IDepartmentService departmentService,
@@ -26,7 +28,9 @@ namespace EMS.WebCore.Services
             IJobPositionService jobPositionService,
             IJobFunctionService jobFunctionService,
             IEmployeeLevelService levelService,
-            IBusStationService busStationService)
+            IRouteService routeService,
+            IBusStationService busStationService,
+            ISkillGroupService skillGroupService)
         {
             _departmentService = departmentService;
             _sectionService = sectionService;
@@ -34,7 +38,9 @@ namespace EMS.WebCore.Services
             _jobPositionService = jobPositionService;
             _jobFunctionService = jobFunctionService;
             _levelService = levelService;
+            _routeService = routeService;
             _busStationService = busStationService;
+            _skillGroupService = skillGroupService;
         }
 
         public async Task<IEnumerable<SelectListItem>> GetDepartments()
@@ -183,6 +189,27 @@ namespace EMS.WebCore.Services
             return item;
         }
 
+        public async Task<IEnumerable<SelectListItem>> GetRoutes()
+        {
+            var routes = await _routeService.GetAllAsync();
+
+            var item = new List<SelectListItem>
+            {
+                new SelectListItem() { Value = null, Text ="",Selected = true }
+            };
+
+            foreach (var route in routes)
+            {
+                item.Add(new SelectListItem()
+                {
+                    Value = route.RouteId.ToString(),
+                    Text = route.RouteName
+                });
+            }
+
+            return item;
+        }
+
         public async Task<IEnumerable<SelectListItem>> GetBusStations()
         {
             var busStations = await _busStationService.GetAllAsync();
@@ -240,6 +267,48 @@ namespace EMS.WebCore.Services
                 {
                     Value = job.JobFunctionId.ToString(),
                     Text = job.FunctionName
+                });
+            }
+
+            return item;
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetSkillGroups()
+        {
+            var skillGroups = await _skillGroupService.GetAllAsync();
+
+            var item = new List<SelectListItem>
+            {
+                new SelectListItem() { Value = null, Text ="",Selected = true }
+            };
+
+            foreach (var skillgroup in skillGroups)
+            {
+                item.Add(new SelectListItem()
+                {
+                    Value = skillgroup.SkillGroupId.ToString(),
+                    Text = skillgroup.SkillGroupName
+                });
+            }
+
+            return item;
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetSkillTypes()
+        {
+            var skillGroups = await _skillGroupService.GetAllAsync();
+
+            var item = new List<SelectListItem>
+            {
+                new SelectListItem() { Value = null, Text ="",Selected = true }
+            };
+
+            foreach (var skillgroup in skillGroups)
+            {
+                item.Add(new SelectListItem()
+                {
+                    Value = skillgroup.SkillGroupId.ToString(),
+                    Text = skillgroup.SkillGroupName
                 });
             }
 

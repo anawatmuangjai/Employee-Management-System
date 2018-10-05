@@ -17,6 +17,9 @@ namespace EMS.WebCore.Interfaces
         Task<IEnumerable<SelectListItem>> GetPositions();
         Task<IEnumerable<SelectListItem>> GetShifts();
         Task<IEnumerable<SelectListItem>> GetLevels();
+        Task<IEnumerable<SelectListItem>> GetRoutes();
         Task<IEnumerable<SelectListItem>> GetBusStations();
+        Task<IEnumerable<SelectListItem>> GetSkillGroups();
+        Task<IEnumerable<SelectListItem>> GetSkillTypes();
     }
 }

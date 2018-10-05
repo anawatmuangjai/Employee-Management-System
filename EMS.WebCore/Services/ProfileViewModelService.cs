@@ -53,18 +53,22 @@ namespace EMS.WebCore.Services
                 viewModel.LastNameThai = employee.LastNameThai;
                 viewModel.Gender = employee.Gender;
                 viewModel.Age = CalculateAge(employee.BirthDate);
+                viewModel.Height = employee.Height;
+                viewModel.Hand = employee.Hand;
                 viewModel.BirthDate = employee.BirthDate;
                 viewModel.HireDate = employee.HireDate;
+                viewModel.HireType = employee.HireType;
                 viewModel.EmploymentDuration = CalculateDurationOfEmployment(employee.HireDate);
 
                 if (employee.EmployeeState != null)
                 {
-                    viewModel.DepartmentName = employee.EmployeeState.Department.DepartmentName;
-                    viewModel.SectionName = employee.EmployeeState.Section.SectionName;
+                    viewModel.DepartmentName = employee.EmployeeState.JobFunction.Section.Department.DepartmentName;
+                    viewModel.SectionName = employee.EmployeeState.JobFunction.Section.SectionName;
                     viewModel.ShiftName = employee.EmployeeState.Shift.ShiftName;
                     viewModel.LevelCode = employee.EmployeeState.Level.LevelName;
                     viewModel.PositionName = employee.EmployeeState.Position.PositionName;
                     viewModel.FunctionName = employee.EmployeeState.JobFunction.FunctionName;
+                    viewModel.RouteName = employee.EmployeeState.BusStation.Route.RouteName;
                     viewModel.BusStationName = employee.EmployeeState.BusStation.BusStationName;
                     viewModel.JoinDate = employee.EmployeeState.JoinDate;
                 }
@@ -98,14 +102,13 @@ namespace EMS.WebCore.Services
             var viewModel = new ProfileEditViewModel();
 
             viewModel.Departments = await _employeeDetailService.GetDepartments();
-            //viewModel.Sections = await _employeeDetailService.GetSections();
             viewModel.Shifts = await _employeeDetailService.GetShifts();
-            viewModel.JobTitles = await _employeeDetailService.GetPositions();
-            //viewModel.JobFunctions = await _employeeDetailService.GetJobFunctions();
+            viewModel.JobPosition = await _employeeDetailService.GetPositions();
             viewModel.JobLevels = await _employeeDetailService.GetLevels();
+            viewModel.Routes = await _employeeDetailService.GetRoutes();
             viewModel.BusStations = await _employeeDetailService.GetBusStations();
 
-            var employee = await _employeeService.GetByEmployeeIdAsync(employeeId);
+            var employee = await _employeeService.GetByEmployeeIdWithDetailAsync(employeeId);
 
             if (employee != null)
             {
@@ -119,24 +122,40 @@ namespace EMS.WebCore.Services
                 viewModel.LastName = employee.LastName;
                 viewModel.FirstNameThai = employee.FirstNameThai;
                 viewModel.LastNameThai = employee.LastNameThai;
+                viewModel.Height = employee.Height;
+                viewModel.Hand = employee.Hand;
                 viewModel.Gender = employee.Gender;
                 viewModel.BirthDate = employee.BirthDate;
+                viewModel.HireType = employee.HireType;
                 viewModel.HireDate = employee.HireDate;
+
+                if (employee.EmployeeState != null)
+                {
+                    viewModel.DepartmentId = employee.EmployeeState.JobFunction.Section.Department.DepartmentId;
+                    viewModel.SectionId = employee.EmployeeState.JobFunction.Section.SectionId;
+                    viewModel.ShiftId = employee.EmployeeState.ShiftId;
+                    viewModel.JobPositionId = employee.EmployeeState.PositionId;
+                    viewModel.JobFunctionId = employee.EmployeeState.JobFunctionId;
+                    viewModel.LevelId = employee.EmployeeState.LevelId;
+                    viewModel.RouteId = employee.EmployeeState.BusStation.Route.RouteId;
+                    viewModel.BusStationId = employee.EmployeeState.BusStationId;
+                    viewModel.JoinDate = employee.EmployeeState.JoinDate;
+                }
             }
 
-            var employeeState = await _employeeStateService.GetByEmployeeId(employeeId);
+            //var employeeState = await _employeeStateService.GetByEmployeeId(employeeId);
 
-            if (employeeState != null)
-            {
-                viewModel.DepartmentId = employeeState.DepartmentId;
-                viewModel.SectionId = employeeState.SectionId;
-                viewModel.ShiftId = employeeState.ShiftId;
-                viewModel.JobPositionId = employeeState.PositionId;
-                viewModel.JobFunctionId = employeeState.JobFunctionId;
-                viewModel.LevelId = employeeState.LevelId;
-                viewModel.BusStationId = employeeState.BusStationId;
-                viewModel.JoinDate = employeeState.JoinDate;
-            }
+            //if (employeeState != null)
+            //{
+            //    viewModel.DepartmentId = employeeState.JobFunction.Section.Department.DepartmentId;
+            //    viewModel.SectionId = employeeState.JobFunction.Section.SectionId;
+            //    viewModel.ShiftId = employeeState.ShiftId;
+            //    viewModel.JobPositionId = employeeState.PositionId;
+            //    viewModel.JobFunctionId = employeeState.JobFunctionId;
+            //    viewModel.LevelId = employeeState.LevelId;
+            //    viewModel.BusStationId = employeeState.BusStationId;
+            //    viewModel.JoinDate = employeeState.JoinDate;
+            //}
 
             var address = await _employeeAddressService.GetByEmployeeId(employeeId);
 
@@ -150,7 +169,6 @@ namespace EMS.WebCore.Services
                 viewModel.PhoneNumber = address.PhoneNumber;
                 viewModel.EmailAddress = address.EmailAddress;
             }
-
 
             return viewModel;
         }
@@ -193,7 +211,10 @@ namespace EMS.WebCore.Services
                 FirstNameThai = model.FirstNameThai,
                 LastNameThai = model.LastNameThai,
                 Gender = model.Gender,
+                Hand = model.Hand,
+                Height = model.Height,
                 BirthDate = model.BirthDate,
+                HireType = model.HireType,
                 HireDate = model.HireDate,
                 AvailableFlag = true,
                 ChangedDate = DateTime.Now,
@@ -205,8 +226,6 @@ namespace EMS.WebCore.Services
             var employeeState = new EmployeeStateModel
             {
                 EmployeeId = model.EmployeeId,
-                DepartmentId = model.DepartmentId,
-                SectionId = model.SectionId,
                 ShiftId = (byte)model.ShiftId,
                 LevelId = model.LevelId,
                 PositionId = model.JobPositionId,

@@ -102,14 +102,14 @@ namespace EMS.WebCore.Services
 
             // Summary transportation by route
             var transportRoutes = employeeActive
-                .GroupBy(g => g.BusStationName)
+                .GroupBy(g => g.RouteName)
                 .Select(x => new
                 {
-                    BusStationName = x.Key,
+                    RouteName = x.Key,
                     Quantity = x.Select(e => e.EmployeeId).Count()
                 });
 
-            var transportChartLabel = JsonConvert.SerializeObject(transportRoutes.Select(x => x.BusStationName).ToList(), Formatting.None);
+            var transportChartLabel = JsonConvert.SerializeObject(transportRoutes.Select(x => x.RouteName).ToList(), Formatting.None);
             var transportChartValue = JsonConvert.SerializeObject(transportRoutes.Select(x => x.Quantity).ToList(), Formatting.None);
 
             var viewModel = new DashboardViewModel
