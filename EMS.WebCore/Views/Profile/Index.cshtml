@@ -15,15 +15,15 @@
             </div>
             @if (String.IsNullOrEmpty(Model.ProfileImage))
             {
-                <img src="//placehold.it/150" class="img-thumbnail mx-auto mt-4" alt="avatar">
+                <img src="~/images/female.png" class="img-thumbnail mx-auto d-block h-50 w-50 mt-4" />
             }
             else
             {
-                <img src="@Model.ProfileImage" class="img-thumbnail mx-auto mt-4" alt="avatar">
+                <img src="@Model.ProfileImage" class="img-thumbnail mx-auto d-block h-50 w-50 mt-4" alt="avatar">
             }
             <div class="card-body text-center">
-                <h4 class="card-title">@Model.FirstName @Model.LastName</h4>
-                <h5 class="card-text">@Model.FirstNameThai @Model.LastNameThai</h5>
+                <h5 class="card-title">@Model.Title. @Model.FirstName @Model.LastName</h5>
+                <h6 class="card-text">@Model.TitleThai @Model.FirstNameThai @Model.LastNameThai</h6>
                 <a class="btn btn-primary my-2" asp-controller="Profile" asp-action="Edit" asp-route-employeeId="@Model.EmployeeId">Edit Profile</a>
             </div>
         </div>
@@ -93,8 +93,10 @@
                                         <p class="card-text">@Model.EmployeeType</p>
                                         <h6 class="card-title">Hire Date</h6>
                                         <p class="card-text">@Model.HireDate.ToString("yyyy-MM-dd")</p>
-                                        <h6 class="card-title">Bus Station</h6>
-                                        <p class="card-text">@Model.BusStationName</p>
+                                        <h6 class="card-title">Hire Type</h6>
+                                        <p class="card-text">@Model.HireType</p>
+                                        <h6 class="card-title">Transport Route</h6>
+                                        <p class="card-text">@Model.RouteName</p>
                                     </div>
                                     <div class="col-md-6">
                                         <h6 class="card-title">Department</h6>
@@ -108,7 +110,9 @@
                                         <h6 class="card-title">Work Shift</h6>
                                         <p class="card-text">@Model.ShiftName</p>
                                         <h6 class="card-title">Duration of Employment</h6>
-                                        <p class="card-text">@Model.EmploymentDuration</p>
+                                        <p class="card-text">@Model.EmploymentDuration Year</p>
+                                        <h6 class="card-title">Bus Station (Point)</h6>
+                                        <p class="card-text">@Model.BusStationName</p>
                                     </div>
                                 </div>
                             </div>
@@ -127,6 +131,8 @@
                                         <p class="card-text">@Model.FirstName</p>
                                         <h6 class="card-title">First Name (Thai)</h6>
                                         <p class="card-text">@Model.FirstNameThai</p>
+                                        <h6 class="card-title">Height</h6>
+                                        <p class="card-text">@Model.Height</p>
                                         <h6 class="card-title">Date of Birth</h6>
                                         <p class="card-text">@Model.BirthDate.ToString("yyyy-MM-dd")</p>
                                     </div>
@@ -137,6 +143,8 @@
                                         <p class="card-text">@Model.LastName</p>
                                         <h6 class="card-title">Last Name (Thai)</h6>
                                         <p class="card-text">@Model.LastNameThai</p>
+                                        <h6 class="card-title">Hand</h6>
+                                        <p class="card-text">@Model.Hand</p>
                                         <h6 class="card-title">Age</h6>
                                         <p class="card-text">@Model.Age</p>
                                     </div>

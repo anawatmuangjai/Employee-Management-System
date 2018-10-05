@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" />
 
     @*<environment include="Development">
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -26,7 +26,7 @@
 </head>
 <body>
     <nav class="navbar navbar-dark fixed-top bg-nav flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">EMS</a>
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" asp-controller="Home" asp-action="Index">EMS</a>
         @*<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">*@
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap mx-2">
@@ -154,9 +154,9 @@
                                 Operation Skill
                             </a>
                             <ul class="collapse collapseable" id="collapse-skill">
-                                <li><a asp-area="" asp-controller="Department" asp-action="Index">Skill List</a></li>
-                                <li><a asp-area="" asp-controller="Section" asp-action="Index">Skill Group</a></li>
-                                <li><a asp-area="" asp-controller="Section" asp-action="Index">Skill Level</a></li>
+                                <li><a asp-area="" asp-controller="SkillGroup" asp-action="Index">Skill Group</a></li>
+                                <li><a asp-area="" asp-controller="SkillType" asp-action="Index">Skill Type</a></li>
+                                <li><a asp-area="" asp-controller="SKill" asp-action="Index">Skill List</a></li>
                             </ul>
                         </li>
                         <!-- transportation -->
@@ -166,6 +166,7 @@
                                 Transportation
                             </a>
                             <ul class="collapse collapseable" id="collapse-transport">
+                                <li><a asp-area="" asp-controller="Route" asp-action="Index">Route</a></li>
                                 <li><a asp-area="" asp-controller="BusStation" asp-action="Index">Bus Station</a></li>
                             </ul>
                         </li>
@@ -202,8 +203,8 @@
                 </div>
             </div>
         </div>*@
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+    <script src="~/lib/chartjs/dist/Chart.js"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>*@
 
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>

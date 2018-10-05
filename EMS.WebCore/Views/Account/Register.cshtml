@@ -5,41 +5,34 @@
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 
-<div class="register-bg"></div>
+<section id="signInPage">
 
-<div class="container register-content">
+    <div class="signUpBox">
+        <h1>Register</h1>
+        <h6>Employee Management</h6>
+        <form asp-action="Register" method="post" class="form-signin">
+            <div class="input-group mb-3">
+                <input asp-for="UserName" class="form-control" placeholder="Username" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="input-group mb-3">
+                <input asp-for="Password" class="form-control" placeholder="Password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="input-group mb-3">
+                <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
 
-    <div class="text-center">
-        <h2>Create a new account.</h2>
-        <p class="lead">Employee Managements System.</p>
+            @if (!ViewData.ModelState.IsValid && ViewData.ModelState["Error"].Errors.Count > 0)
+            {
+                <p class="text-danger"><b>@ViewData.ModelState["Error"].Errors.First().ErrorMessage</b></p>
+            }
+
+            <button type="submit" class="btn btn-lg btn-primary btn-block mb-4">Register</button>
+            <a class="mt-5 mb-3" asp-controller="Account" asp-action="Login">Aleardy have an account? <b>Sign In</b></a>
+
+        </form>
     </div>
 
-    <div class="row pt-4">
-        <div class="col-md-6 mx-auto">
-
-            <form asp-action="Register" method="post">
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="UserName"></label>
-                    <input asp-for="UserName" class="form-control" />
-                    <span asp-validation-for="UserName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Password"></label>
-                    <input asp-for="Password" class="form-control" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="ConfirmPassword"></label>
-                    <input asp-for="ConfirmPassword" class="form-control" />
-                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                </div>
-                <button type="submit" class="btn btn-primary">Register</button>
-            </form>
-
-        </div>
-    </div>
-</div>
-
-
-
+</section>

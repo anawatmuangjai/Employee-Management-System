@@ -27,11 +27,17 @@ namespace EMS.WebCore.ViewModels.Profile
 
         public string LastNameThai { get; set; }
 
+        public decimal Height { get; set; }
+
+        public string Hand { get; set; }
+
         public string Gender { get; set; }
 
         public int Age { get; set; }
 
         public DateTime BirthDate { get; set; }
+
+        public string HireType { get; set; }
 
         public DateTime HireDate { get; set; }
 
@@ -48,6 +54,8 @@ namespace EMS.WebCore.ViewModels.Profile
         public string PositionName { get; set; }
 
         public string FunctionName { get; set; }
+
+        public string RouteName { get; set; }
 
         public string BusStationName { get; set; }
 

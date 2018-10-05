@@ -10,30 +10,50 @@ namespace EMS.WebCore.ViewModels.Profile
 {
     public class ProfileEditViewModel
     {
+        [Required]
         public string EmployeeId { get; set; }
 
+        [Required]
         public string GlobalId { get; set; }
 
+        [Required]
         public string CardId { get; set; }
 
+        [Required]
         public string Title { get; set; }
 
+        [Required]
         public string TitleThai { get; set; }
 
+        [Required]
         public string EmployeeType { get; set; }
 
+        [Required]
         public string FirstName { get; set; }
 
+        [Required]
         public string LastName { get; set; }
 
+        [Required]
         public string FirstNameThai { get; set; }
 
+        [Required]
         public string LastNameThai { get; set; }
 
+        [Required]
         public string Gender { get; set; }
+
+        [Required]
+        public decimal Height { get; set; }
+
+        [Required]
+        public string Hand { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
+
+        [Required]
+        public string HireType { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime HireDate { get; set; }
@@ -49,6 +69,8 @@ namespace EMS.WebCore.ViewModels.Profile
         public int ShiftId { get; set; }
 
         public int LevelId { get; set; }
+
+        public int RouteId { get; set; }
 
         public int BusStationId { get; set; }
 
@@ -79,11 +101,13 @@ namespace EMS.WebCore.ViewModels.Profile
 
         public IEnumerable<SelectListItem> Shifts { get; set; }
 
-        public IEnumerable<SelectListItem> JobTitles { get; set; }
+        public IEnumerable<SelectListItem> JobPosition { get; set; }
 
         //public IEnumerable<SelectListItem> JobFunctions { get; set; }
 
         public IEnumerable<SelectListItem> JobLevels { get; set; }
+
+        public IEnumerable<SelectListItem> Routes { get; set; }
 
         public IEnumerable<SelectListItem> BusStations { get; set; }
     }

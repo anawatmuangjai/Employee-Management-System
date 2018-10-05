@@ -219,8 +219,9 @@
                         <th>Shift</th>
                         <th>Department</th>
                         <th>Section</th>
-                        <th>Job Title</th>
+                        <th>Position</th>
                         <th>Job Function</th>
+                        <th>Route</th>
                         <th>Bus Station</th>
                     </tr>
                 </thead>
@@ -240,6 +241,7 @@
                                 <td>@e.SectionName</td>
                                 <td>@e.JobTitle</td>
                                 <td>@e.FunctionName</td>
+                                <td>@e.RouteName</td>
                                 <td>@e.BusStationName</td>
                             </tr>
                         }
@@ -369,8 +371,10 @@
     </script>
 
     <script>
-        new Chart(document.getElementById("attendancePercentChart"), {
+        var ctx = document.getElementById("attendancePercentChart");
+        var myChart = new Chart(ctx, {
             type: 'pie',
+
             data: {
                 labels: ["Active", "Absent"],
                 datasets: [{
@@ -380,6 +384,8 @@
                 }]
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: false,
                 title: {
                     display: true,
                     text: 'Attendance by department'
@@ -400,6 +406,8 @@
                 }]
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: false,
                 title: {
                     display: true,
                     text: 'Attendance by department'
@@ -420,6 +428,8 @@
                 }]
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: false,
                 legend: {
                     display: false
                 },

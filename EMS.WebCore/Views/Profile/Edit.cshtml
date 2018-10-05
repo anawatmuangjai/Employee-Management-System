@@ -12,28 +12,34 @@
                 <form asp-action="Edit" enctype="multipart/form-data" method="post" class="form-horizontal" role="form">
                     <input asp-for="EmployeeId" type="hidden" />
                     <input asp-for="EmployeeAddressId" type="hidden" />
+
+                    <h3>Personal Information</h3>
+                    <hr />
+
                     <div class="form-group">
                         <label asp-for="EmployeeImage">Profile Image</label>
                         <input type="file" name="EmployeeImage" multiple id="fileUpload" class="form-control">
                     </div>
-                    <div class="form-group">
-                        <label asp-for="GlobalId">Global ID</label>
-                        <input asp-for="GlobalId" type="text" class="form-control">
-                        <span asp-validation-for="GlobalId" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="CardId">Card ID</label>
-                        <input asp-for="CardId" type="text" class="form-control">
-                        <span asp-validation-for="CardId" class="text-danger"></span>
-                    </div>
+
                     <div class="form-group">
                         <label asp-for="Title">Title</label>
-                        <input asp-for="Title" type="text" class="form-control">
+                        <select asp-for="Title" class="custom-select d-block w-100" required>
+                            <option value="">Choose...</option>
+                            <option value="Mr">Mr</option>
+                            <option value="Mrs">Mrs</option>
+                            <option value="Miss">Miss</option>
+                        </select>
                         <span asp-validation-for="Title" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="TitleThai">Title Thai</label>
-                        <input asp-for="TitleThai" type="text" class="form-control">
+                        <select asp-for="TitleThai" class="custom-select d-block w-100" required>
+                            <option value="">Choose...</option>
+                            <option value="นาย">นาย</option>
+                            <option value="นาง">นาง</option>
+                            <option value="นางสาว">นางสาว</option>
+                            <option value="ว่าที่ร้อยตรี">ว่าที่ร้อยตรี</option>
+                        </select>
                         <span asp-validation-for="TitleThai" class="text-danger"></span>
                     </div>
                     <div class="form-group">
@@ -63,20 +69,128 @@
                         <span asp-validation-for="LastNameThai" class="text-danger"></span>
                     </div>
                     <div class="form-group">
+                        <label asp-for="Height">Height</label>
+                        <input asp-for="Height" type="text" class="form-control">
+                        <span asp-validation-for="Height" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
                         <label asp-for="Gender">Gender</label>
-                        <input asp-for="Gender" type="text" class="form-control">
+                        <select asp-for="Gender" class="custom-select d-block w-100" required>
+                            <option value="">Choose...</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
                         <span asp-validation-for="Gender" class="text-danger"></span>
                     </div>
+                    <div class="form-group">
+                        <label asp-for="Hand">Hand</label>
+                        <select asp-for="Hand" class="custom-select d-block w-100" required>
+                            <option value="">Choose...</option>
+                            <option value="Left">Left</option>
+                            <option value="Right">Right</option>
+                        </select>
+                        <span asp-validation-for="Hand" class="text-danger"></span>
+                    </div>
+
                     <div class="form-group">
                         <label asp-for="BirthDate">Birth Date</label>
                         <input asp-for="BirthDate" type="date" class="form-control">
                         <span asp-validation-for="BirthDate" class="text-danger"></span>
                     </div>
+
+                    <h3>Employee Information</h3>
+                    <hr />
+
+                    <div class="form-group">
+                        <label asp-for="GlobalId">Global ID</label>
+                        <input asp-for="GlobalId" type="text" class="form-control">
+                        <span asp-validation-for="GlobalId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="CardId">Card ID</label>
+                        <input asp-for="CardId" type="text" class="form-control">
+                        <span asp-validation-for="CardId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="HireType">Hire Type</label>
+                        <select asp-for="HireType" class="custom-select d-block w-100" required>
+                            <option value="">Choose...</option>
+                            <option value="Direct">Direct</option>
+                            <option value="Indirect">Indirect</option>
+                        </select>
+                        <span asp-validation-for="HireType" class="text-danger"></span>
+                    </div>
+
                     <div class="form-group">
                         <label asp-for="HireDate">Hire Date</label>
                         <input asp-for="HireDate" type="date" class="form-control">
                         <span asp-validation-for="HireDate" class="text-danger"></span>
                     </div>
+
+
+                    <div class="form-group">
+                        <label asp-for="DepartmentId">Department</label>
+                        <select asp-for="DepartmentId" asp-items="@Model.Departments" class="form-control"></select>
+                        <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Section</label>
+                        <select class="form-control" id="SectionId" name="SectionId" asp-for="SectionId"
+                                asp-items="@(new SelectList(string.Empty, "Value","Text"))"></select>
+                        <span asp-validation-for="SectionId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Job Function</label>
+                        <select class="form-control" id="JobFunctionId" name="JobFunctionId" asp-for="JobFunctionId"
+                                asp-items="@(new SelectList(string.Empty, "Value","Text"))"></select>
+                        <span asp-validation-for="SectionId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="JobPositionId">Job Position</label>
+                        <select asp-for="JobPositionId" asp-items="@Model.JobPosition" class="form-control"></select>
+                        <span asp-validation-for="JobPositionId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="LevelId">Level</label>
+                        <select asp-for="LevelId" asp-items="@Model.JobLevels" class="form-control"></select>
+                        <span asp-validation-for="LevelId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ShiftId">Work Shift</label>
+                        <select asp-for="ShiftId" asp-items="@Model.Shifts" class="form-control"></select>
+                        <span asp-validation-for="ShiftId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="JoinDate">Join Date</label>
+                        <input asp-for="JoinDate" type="date" class="form-control">
+                        <span asp-validation-for="JoinDate" class="text-danger"></span>
+                    </div>
+
+                    <h3>Transport Information</h3>
+                    <hr />
+
+                    <div class="form-group">
+                        <label asp-for="RouteId">Transport Route</label>
+                        <select asp-for="RouteId" asp-items="@Model.Routes" class="form-control"></select>
+                        <span asp-validation-for="RouteId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BusStationId">Bus Station</label>
+                        <select asp-for="BusStationId" asp-items="@Model.BusStations" class="form-control"></select>
+                        <span asp-validation-for="BusStationId" class="text-danger"></span>
+                    </div>
+
+                    <h3>Address Information</h3>
+                    <hr />
+
                     <div class="form-group">
                         <label asp-for="HomeAddress">Home Address</label>
                         <input asp-for="HomeAddress" type="text" class="form-control">
@@ -107,56 +221,8 @@
                         <input asp-for="EmailAddress" type="text" class="form-control">
                         <span asp-validation-for="EmailAddress" class="text-danger"></span>
                     </div>
-
-                    <div class="form-group">
-                        <label asp-for="DepartmentId">Department</label>
-                        <select asp-for="DepartmentId" asp-items="@Model.Departments" class="form-control"></select>
-                        <span asp-validation-for="DepartmentId" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label>Section</label>
-                        <select class="form-control" id="SectionId" name="SectionId" asp-for="SectionId"
-                                asp-items="@(new SelectList(string.Empty, "Value","Text"))"></select>
-                        <span asp-validation-for="SectionId" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label>Job Function</label>
-                        <select class="form-control" id="JobFunctionId" name="JobFunctionId" asp-for="JobFunctionId"
-                                asp-items="@(new SelectList(string.Empty, "Value","Text"))"></select>
-                        <span asp-validation-for="SectionId" class="text-danger"></span>
-                    </div>
-                    @*<div class="form-group">
-                            <label asp-for="JobFunctionId">Job Function</label>
-                            <select asp-for="JobFunctionId" asp-items="@Model.JobFunctions" class="form-control"></select>
-                            <span asp-validation-for="JobFunctionId" class="text-danger"></span>
-                        </div>*@
-                    <div class="form-group">
-                        <label asp-for="ShiftId">Work Shift</label>
-                        <select asp-for="ShiftId" asp-items="@Model.Shifts" class="form-control"></select>
-                        <span asp-validation-for="ShiftId" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="JobPositionId">Job Title</label>
-                        <select asp-for="JobPositionId" asp-items="@Model.JobTitles" class="form-control"></select>
-                        <span asp-validation-for="JobPositionId" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="LevelId">Level</label>
-                        <select asp-for="LevelId" asp-items="@Model.JobLevels" class="form-control"></select>
-                        <span asp-validation-for="LevelId" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="BusStationId">Bus Station</label>
-                        <select asp-for="BusStationId" asp-items="@Model.BusStations" class="form-control"></select>
-                        <span asp-validation-for="BusStationId" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="JoinDate">Join Date</label>
-                        <input asp-for="JoinDate" type="date" class="form-control">
-                        <span asp-validation-for="JoinDate" class="text-danger"></span>
-                    </div>
                     <button type="submit" class="btn btn-primary">Save Changes</button>
-                    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                    <a asp-controller="Profile" asp-action="Index" asp-route-employeeId="@Model.EmployeeId" class="btn btn-secondary">Cancel</a>
                 </form>
             </div>
         </div>

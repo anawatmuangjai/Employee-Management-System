@@ -59,7 +59,7 @@
                             <td>@e.FirstNameThai @e.LastNameThai</td>
                             <td>@e.HireDate.Date.ToString("yyyy-MM-dd")</td>
                             <td class="text-center">
-                                <a asp-controller="Employee" asp-action="Profile" asp-route-employeeId="@e.EmployeeId" class="btn btn-success btn-sm">View</a>
+                                <a asp-controller="Profile" asp-action="Index" asp-route-employeeId="@e.EmployeeId" class="btn btn-success btn-sm">View</a>
                                 <a asp-controller="Profile" asp-action="Edit" asp-route-employeeId="@e.EmployeeId" class="btn btn-success btn-sm">Edit</a>
                             </td>
                         </tr>

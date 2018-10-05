@@ -28,8 +28,8 @@
                     <a class="text-dark" href="#">@Model.Employee.FirstName @Model.Employee.LastName</a>
                 </h3>
                 <div class="mb-auto text-muted">@Model.Employee.FirstNameThai @Model.Employee.LastNameThai</div>
-                <p class="card-text mb-auto text-muted">Department : @Model.Employee.EmployeeState.Department.DepartmentName</p>
-                <p class="card-text mb-auto text-muted">Section : @Model.Employee.EmployeeState.Section.SectionName</p>
+                <p class="card-text mb-auto text-muted">Department : @Model.Employee.EmployeeState.JobFunction.Section.Department.DepartmentName</p>
+                <p class="card-text mb-auto text-muted">Section : @Model.Employee.EmployeeState.JobFunction.Section.SectionName</p>
                 <p class="card-text mb-auto text-muted">Job Title : @Model.Employee.EmployeeState.Position.PositionName</p>
                 <p class="card-text mb-auto text-muted">Job Function : @Model.Employee.EmployeeState.JobFunction.FunctionName</p>
             </div>

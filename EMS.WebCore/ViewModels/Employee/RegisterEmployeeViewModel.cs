@@ -21,11 +21,6 @@ namespace EMS.WebCore.ViewModels.Employee
         public string CardId { get; set; }
 
         [Required]
-        [DataType(DataType.Password)]
-        [StringLength(12, MinimumLength = 4, ErrorMessage = "You must specify password between 4 and 12 characters")]
-        public string Password { get; set; }
-
-        [Required]
         public string Title { get; set; }
 
         [Required]
@@ -60,7 +55,7 @@ namespace EMS.WebCore.ViewModels.Employee
         public DateTime BirthDate { get; set; }
 
         [Required]
-        public DateTime HireType { get; set; }
+        public string HireType { get; set; }
 
         [Required]
         public DateTime HireDate { get; set; }

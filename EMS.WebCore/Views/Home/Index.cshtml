@@ -3,13 +3,11 @@
     Layout = "/Views/Shared/_LayoutHome.cshtml";
 }
 
-
-
-<div class="home-bg"></div>
-
-<div class="content">
-    <h3>Employee Managements System</h3>
+<header id="showcase">
+    <h1>Employee Management</h1>
     <p>Automotive & Imaging Auto Mount Department</p>
-    <a class="btn btn-outline-secondary" asp-controller="Account" asp-action="Register">Register Now</a>
-</div>
-
+    <div class="btn-group">
+        <a asp-controller="Account" asp-action="Register" class="button">Register</a>
+        <a asp-controller="Account" asp-action="Login" class="button">Sign In</a>
+    </div>
+</header>

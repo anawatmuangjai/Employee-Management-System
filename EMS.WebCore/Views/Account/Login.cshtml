@@ -5,45 +5,37 @@
     Layout = "/Views/Shared/_LayoutHome.cshtml";
 }
 
+<section id="signInPage">
 
-<div class="row">
-    <div class="col-md-8 mx-auto my-5">
+    <div class="signInBox">
 
-        <div class="card text-center">
-            <div class="card-header">
-                <h1 class="h3 font-weight-normal">Sign in with your credentials</h1>
+        <h1>Sign In</h1>
+        <h6>Employee Management</h6>
+        <form asp-action="Login" method="post" class="form-signin">
+            @*<div asp-validation-summary="All" class="text-danger"></div>*@
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+                </div>
+                <input asp-for="UserName" type="text" class="form-control" placeholder="Username" required="" autofocus="" aria-label="Username" aria-describedby="basic-addon1">
             </div>
-            <div class="card-body">
 
-                @if (!ViewData.ModelState.IsValid && ViewData.ModelState["Error"].Errors.Count > 0)
-                {
-                    <div class="alert alert-danger" role="alert">
-                        <strong>Authentication failed : @ViewData.ModelState["Error"].Errors.First().ErrorMessage</strong>
-                    </div>
-                }
-
-                <form asp-action="Login" method="post" class="form-signin">
-                    @*<div asp-validation-summary="All" class="text-danger"></div>*@
-
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
-                        </div>
-                        <input asp-for="UserName" type="text" class="form-control" placeholder="Username" required="" autofocus="" aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon2"><i class="fa fa-lock"></i></span>
-                        </div>
-                        <input asp-for="Password" type="password" class="form-control" placeholder="Password" required="" aria-label="Password" aria-describedby="basic-addon2">
-                    </div>
-
-                    <button class="btn btn-lg btn-primary btn-block mb-4" type="submit">Sign in</button>
-                    <a class="mt-5 mb-3 text-muted" href="#">Forgot Password - Tel 2960</a>
-                </form>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon2"><i class="fa fa-lock"></i></span>
+                </div>
+                <input asp-for="Password" type="password" class="form-control" placeholder="Password" required="" aria-label="Password" aria-describedby="basic-addon2">
             </div>
-        </div>
 
+            @if (!ViewData.ModelState.IsValid && ViewData.ModelState["Error"].Errors.Count > 0)
+            {
+                <p class="text-danger"><b>@ViewData.ModelState["Error"].Errors.First().ErrorMessage</b></p>
+            }
+
+            <button class="btn btn-lg btn-primary btn-block mb-4" type="submit">Sign In</button>
+            <a class="mt-5 mb-3" asp-controller="Account" asp-action="Register">Dot't have an account? <b>Register now</b></a>
+        </form>
     </div>
-</div>
+
+</section>

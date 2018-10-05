@@ -30,8 +30,8 @@
                 </div>
                 <!-- card id -->
                 <div class="form-group mb-3">
-                    <label asp-for="CardId">Global ID</label>
-                    <input asp-for="CardId" type="text" class="form-control" placeholder="Global ID" required>
+                    <label asp-for="CardId">Card ID</label>
+                    <input asp-for="CardId" type="text" class="form-control" placeholder="Card ID" required>
                     <span asp-validation-for="CardId" class="text-danger"></span>
                 </div>
                 <!-- employee type -->
@@ -48,7 +48,7 @@
                 </div>
                 <!-- hire type -->
                 <div class="form-group mb-3">
-                    <label asp-for="HireType">Person Type</label>
+                    <label asp-for="HireType">Hire Type</label>
                     <select asp-for="HireType" class="custom-select d-block w-100" required>
                         <option value="">Choose...</option>
                         <option value="Direct">Direct</option>
@@ -128,7 +128,7 @@
                             <option value="Left">Left</option>
                             <option value="Right">Right</option>
                         </select>
-                        <span asp-validation-for="Gender" class="text-danger"></span>
+                        <span asp-validation-for="Hand" class="text-danger"></span>
                     </div>
                 </div>
                 <!-- birth date -->
