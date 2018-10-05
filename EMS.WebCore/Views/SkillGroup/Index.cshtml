@@ -25,8 +25,7 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Skill Code</th>
-                <th>Route Name</th>
+                <th>Skill Group</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -37,7 +36,6 @@
                 <tr>
                     <td>@item.SkillGroupId</td>
                     <td>@item.SkillGroupName</td>
-                    <td>@item.Description</td>
                     <td>
                         <a asp-controller="BusStation" asp-action="Edit" asp-route-id="@item.SkillGroupId" class="btn btn-info btn-sm">Edit</a>
                         <a asp-controller="BusStation" asp-action="Delete" asp-route-id="@item.SkillGroupId" class="btn btn-danger btn-sm">Delete</a>

@@ -1,7 +1,33 @@
-﻿
+﻿@model SkillGroupEditViewModel
+
 @{
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+<div class="row mb-2 mt-3">
+    <div class="col">
+        <div class="card">
+            <h5 class="card-header bg-light text-dark">Edit Skill Group</h5>
+            <div class="card-body">
+                <form asp-action="Edit" method="post" class="form-horizontal" role="form">
+                    <input asp-for="SkillGroupId" type="hidden" />
+                    <div class="form-group">
+                        <label asp-for="SkillGroupName">Skill Group Name</label>
+                        <input asp-for="SkillGroupName" type="text" class="form-control">
+                        <span asp-validation-for="SkillGroupName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description">Description</label>
+                        <input asp-for="Description" type="text" class="form-control">
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 

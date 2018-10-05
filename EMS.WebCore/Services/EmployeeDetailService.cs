@@ -20,6 +20,7 @@ namespace EMS.WebCore.Services
         private readonly IRouteService _routeService;
         private readonly IBusStationService _busStationService;
         private readonly ISkillGroupService _skillGroupService;
+        private readonly ISkillTypeService _skillTypeService;
 
         public EmployeeDetailService(
             IDepartmentService departmentService,
@@ -30,7 +31,8 @@ namespace EMS.WebCore.Services
             IEmployeeLevelService levelService,
             IRouteService routeService,
             IBusStationService busStationService,
-            ISkillGroupService skillGroupService)
+            ISkillGroupService skillGroupService,
+            ISkillTypeService skillTypeService)
         {
             _departmentService = departmentService;
             _sectionService = sectionService;
@@ -41,6 +43,7 @@ namespace EMS.WebCore.Services
             _routeService = routeService;
             _busStationService = busStationService;
             _skillGroupService = skillGroupService;
+            _skillTypeService = skillTypeService;
         }
 
         public async Task<IEnumerable<SelectListItem>> GetDepartments()
@@ -296,19 +299,19 @@ namespace EMS.WebCore.Services
 
         public async Task<IEnumerable<SelectListItem>> GetSkillTypes()
         {
-            var skillGroups = await _skillGroupService.GetAllAsync();
+            var skillTypes = await _skillTypeService.GetAllAsync();
 
             var item = new List<SelectListItem>
             {
                 new SelectListItem() { Value = null, Text ="",Selected = true }
             };
 
-            foreach (var skillgroup in skillGroups)
+            foreach (var skillType in skillTypes)
             {
                 item.Add(new SelectListItem()
                 {
-                    Value = skillgroup.SkillGroupId.ToString(),
-                    Text = skillgroup.SkillGroupName
+                    Value = skillType.SkillTypeId.ToString(),
+                    Text = skillType.SkillTypeName
                 });
             }
 

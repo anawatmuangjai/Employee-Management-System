@@ -63,7 +63,8 @@ namespace EMS.WebCore.Controllers
 
             var editModel = new SkillGroupEditViewModel
             {
-
+                SkillGroupId = skillGroup.SkillGroupId,
+                SkillGroupName = skillGroup.SkillGroupName
             };
 
             return View(editModel);
@@ -78,7 +79,8 @@ namespace EMS.WebCore.Controllers
 
             var editModel = new SkillGroupModel
             {
-
+                SkillGroupId = model.SkillGroupId,
+                SkillGroupName = model.SkillGroupName
             };
 
             await _skillGroupService.UpdateAsync(editModel);
