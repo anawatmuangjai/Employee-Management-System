@@ -1,0 +1,50 @@
+﻿@model SkillTypeViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+    <h1 class="h2">Skill Group Configuration</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">
+            <a class="btn btn-sm btn-outline-secondary" asp-action="Create">Create</a>
+            <button class="btn btn-sm btn-outline-secondary">Share</button>
+            <button class="btn btn-sm btn-outline-secondary">Export</button>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar"></span>
+            This week
+        </button>
+    </div>
+</div>
+
+@if (Model.SkillTypes.Any())
+{
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Skill Group</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.SkillTypes)
+            {
+
+                <tr>
+                    <td>@item.SkillTypeId</td>
+                    <td>@item.SkillTypeName</td>
+                    <td>
+                        <a asp-controller="BusStation" asp-action="Edit" asp-route-id="@item.SkillTypeId" class="btn btn-info btn-sm">Edit</a>
+                        <a asp-controller="BusStation" asp-action="Delete" asp-route-id="@item.SkillTypeId" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+}
+
+
