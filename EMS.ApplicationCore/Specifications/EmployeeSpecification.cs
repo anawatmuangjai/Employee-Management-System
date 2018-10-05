@@ -20,6 +20,7 @@ namespace EMS.ApplicationCore.Specifications
             AddInclude(e => e.EmployeeState.Shift);
             AddInclude(e => e.EmployeeState.Level);
             AddInclude(e => e.EmployeeState.BusStation);
+            AddInclude(e => e.EmployeeState.BusStation.Route);
         }
     }
 }
