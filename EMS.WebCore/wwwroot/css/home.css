@@ -1,16 +1,63 @@
-﻿body {
-    padding-top: 40px;
+﻿* {
+    margin: 0;
+    padding: 0;
 }
 
-.content {
-    position: fixed;
-    left: 0;
-    right: 0;
-    z-index: 9999;
+body {
+    margin: 0;
+    font-size: 17px;
+    color: #fff;
+    line-height:1.6;
 }
 
-.home-bg {
+#showcase {
     background-image: url('../images/bg1.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    text-align:center;
+    padding: 0 20px;
+    opacity:0.80;
+}
+
+#showcase h1 {
+    font-size: 300%;
+    font-weight: 300;
+    letter-spacing: 2px;
+    line-height: 1.2;
+}
+
+#showcase p {
+    font-size: 18px;
+    font-weight: 200;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+#showcase .button {
+    margin: 0 5px;
+    font-size: 18px;
+    font-weight: 200;
+    letter-spacing: 2px;
+    text-decoration: none;
+    color: #e2e2e2;
+    border: #e2e2e2 1px solid;
+    padding: 10px 30px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+#showcase .button:hover {
+    background: #808080;
+    color:#fff;
+}
+
+#signInPage {
+    background-image: url('../images/bg3.jpg');
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -19,46 +66,93 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: #ffffff;
-    position: fixed;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    -webkit-filter: blur(3px);
-    -moz-filter: blur(3px);
-    -o-filter: blur(3px);
-    -ms-filter: blur(3px);
-    filter: blur(3px);
+    padding: 0 20px;
+    opacity: 0.80;
 }
 
-.register-bg {
-    background-image: url('../images/bg2.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #ffffff;
-    position: fixed;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    -webkit-filter: blur(3px);
-    -moz-filter: blur(3px);
-    -o-filter: blur(3px);
-    -ms-filter: blur(3px);
-    filter: blur(3px);
+.signInBox {
+    padding-top: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 350px;
+    height: 420px;
+    box-sizing: border-box;
+    background: rgba(0,0,0,0.5);
 }
 
-.register-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: fixed;
-    left: 0;
-    right: 0;
-    z-index: 9999;
-    margin-top: 20px;
+.signInBox h1 {
+    font-size: 200%;
+    font-weight: 300;
+    letter-spacing: 1px;
+    line-height: 1.2;
+}
+
+.signInBox h6 {
+    font-weight: 200;
+    letter-spacing: 1px;
+    line-height: 1.2;
+}
+
+.signInBox p {
+    font-size: 14px;
+    font-weight: 200;
+    letter-spacing: 2px;
+}
+
+.signInBox a {
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 200;
+}
+
+.signUpBox {
+    padding-top: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 350px;
+    height: 460px;
+    box-sizing: border-box;
+    background: rgba(0,0,0,0.5);
+}
+
+.signUpBox h1 {
+    font-size: 200%;
+    font-weight: 300;
+    letter-spacing: 1px;
+    line-height: 1.2;
+}
+
+.signUpBox h6 {
+    font-weight: 200;
+    letter-spacing: 1px;
+    line-height: 1.2;
+}
+
+.signUpBox p {
+    font-size: 14px;
+    font-weight: 200;
+    letter-spacing: 2px;
+}
+
+.signUpBox a {
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 200;
+}
+
+@media(max-width: 768px) {
+    #showcase h1 {
+        font-size: 200%;
+    }
+
+    #showcase p {
+        font-size: 16px;
+        letter-spacing: 10px;
+    }
 }
