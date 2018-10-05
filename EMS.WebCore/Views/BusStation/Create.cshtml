@@ -11,14 +11,29 @@
             <div class="card-body">
                 <form asp-action="Create" method="post" class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label asp-for="BusStationRoute">Route Name</label>
-                        <input asp-for="BusStationRoute" type="text" class="form-control">
-                        <span asp-validation-for="BusStationRoute" class="text-danger"></span>
+                        <label asp-for="RouteId">Route Name</label>
+                        <select asp-for="RouteId" asp-items="@Model.Routes" class="form-control"></select>
+                        <span asp-validation-for="RouteId" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="BusStationName">Station Name</label>
                         <input asp-for="BusStationName" type="text" class="form-control">
                         <span asp-validation-for="BusStationName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BusStationCode">Station Code</label>
+                        <input asp-for="BusStationCode" type="text" class="form-control">
+                        <span asp-validation-for="BusStationCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TimeInDay">Time In Day</label>
+                        <input asp-for="TimeInDay" type="time" class="form-control">
+                        <span asp-validation-for="TimeInDay" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TimeInNight">Time In Night</label>
+                        <input asp-for="TimeInNight" type="time" class="form-control">
+                        <span asp-validation-for="TimeInNight" class="text-danger"></span>
                     </div>
                     <button type="submit" class="btn btn-primary">Save</button>
                     <a asp-action="Index" class="btn btn-secondary">Cancel</a>

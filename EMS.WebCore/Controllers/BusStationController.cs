@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EMS.ApplicationCore.Interfaces.Services;
 using EMS.ApplicationCore.Models;
+using EMS.WebCore.Interfaces;
 using EMS.WebCore.ViewModels.BusStation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,10 +15,14 @@ namespace EMS.WebCore.Controllers
     public class BusStationController : Controller
     {
         private readonly IBusStationService _busStationService;
+        private readonly IEmployeeDetailService _employeeDetailService;
 
-        public BusStationController(IBusStationService busStationService)
+        public BusStationController(
+            IBusStationService busStationService,
+            IEmployeeDetailService employeeDetailService)
         {
             _busStationService = busStationService;
+            _employeeDetailService = employeeDetailService;
         }
 
         [HttpGet]
@@ -34,9 +39,14 @@ namespace EMS.WebCore.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var viewModel = new BusStationEditViewModel
+            {
+                Routes = await _employeeDetailService.GetRoutes()
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]

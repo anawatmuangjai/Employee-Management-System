@@ -12,5 +12,7 @@ namespace EMS.ApplicationCore.Models
         public string BusStationCode { get; set; }
         public TimeSpan TimeInDay { get; set; }
         public TimeSpan TimeInNight { get; set; }
+
+        public RouteModel Route { get; set; }
     }
 }

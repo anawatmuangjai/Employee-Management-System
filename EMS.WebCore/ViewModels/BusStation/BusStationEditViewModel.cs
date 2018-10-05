@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -21,5 +22,7 @@ namespace EMS.WebCore.ViewModels.BusStation
         public TimeSpan TimeInDay { get; set; }
 
         public TimeSpan TimeInNight { get; set; }
+
+        public IEnumerable<SelectListItem> Routes { get; set; }
     }
 }
