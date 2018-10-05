@@ -28,6 +28,7 @@ namespace EMS.Persistance.Repositories
                          join level in _context.MasterLevel on employeeState.LevelId equals level.LevelId
                          join shift in _context.MasterShift on employeeState.ShiftId equals shift.ShiftId
                          join bus in _context.MasterBusStation on employeeState.BusStationId equals bus.BusStationId
+                         join route in _context.MasterRoute on bus.RouteId equals route.RouteId
                          join position in _context.MasterJobPosition on employeeState.PositionId equals position.PositionId
                          join job in _context.MasterJobFunction on employeeState.JobFunctionId equals job.JobFunctionId
                          join section in _context.MasterSection on job.SectionId equals section.SectionId
@@ -50,6 +51,7 @@ namespace EMS.Persistance.Repositories
                              SectionName = section.SectionName,
                              JobTitle = position.PositionName,
                              FunctionName = job.FunctionName,
+                             RouteName = route.RouteName,
                              BusStationName = bus.BusStationName,
                              PassCode = attendance.PassCode,
                              ScanInTime = attendance.TimeIn,
@@ -71,6 +73,7 @@ namespace EMS.Persistance.Repositories
                          join level in _context.MasterLevel on employeeState.LevelId equals level.LevelId
                          join shift in _context.MasterShift on employeeState.ShiftId equals shift.ShiftId
                          join bus in _context.MasterBusStation on employeeState.BusStationId equals bus.BusStationId
+                         join route in _context.MasterRoute on bus.RouteId equals route.RouteId
                          join position in _context.MasterJobPosition on employeeState.PositionId equals position.PositionId
                          join job in _context.MasterJobFunction on employeeState.JobFunctionId equals job.JobFunctionId
                          join section in _context.MasterSection on job.SectionId equals section.SectionId
@@ -91,6 +94,7 @@ namespace EMS.Persistance.Repositories
                              SectionName = section.SectionName,
                              JobTitle = position.PositionName,
                              FunctionName = job.FunctionName,
+                             RouteName = route.RouteName,
                              BusStationName = bus.BusStationName,
                              PassCode = attendance.PassCode,
                              ScanInTime = attendance.TimeIn,

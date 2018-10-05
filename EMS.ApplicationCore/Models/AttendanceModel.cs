@@ -19,6 +19,7 @@ namespace EMS.ApplicationCore.Models
         public string SectionName { get; set; }
         public string JobTitle { get; set; }
         public string FunctionName { get; set; }
+        public string RouteName { get; set; }
         public string BusStationName { get; set; }
         public string PassCode { get; set; }
         public string ScanInTime { get; set; }
