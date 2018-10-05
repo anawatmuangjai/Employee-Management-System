@@ -1,0 +1,31 @@
+﻿@model RouteEditViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row mb-2 mt-3">
+    <div class="col">
+        <div class="card">
+            <h5 class="card-header bg-light text-dark">Edit Route</h5>
+            <div class="card-body">
+                <form asp-action="Edit" method="post" class="form-horizontal" role="form">
+                    <input asp-for="RouteId" type="hidden" />
+                    <div class="form-group">
+                        <label asp-for="RouteName">Route Name</label>
+                        <input asp-for="RouteName" type="text" class="form-control">
+                        <span asp-validation-for="RouteName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="RouteCode">Route Code</label>
+                        <input asp-for="RouteCode" type="text" class="form-control">
+                        <span asp-validation-for="RouteCode" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
