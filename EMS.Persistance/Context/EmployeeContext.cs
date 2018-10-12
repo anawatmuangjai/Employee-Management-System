@@ -31,6 +31,7 @@ namespace EMS.Persistance.Context
         public virtual DbSet<MasterRoute> MasterRoute { get; set; }
         public virtual DbSet<MasterSection> MasterSection { get; set; }
         public virtual DbSet<MasterShift> MasterShift { get; set; }
+        public virtual DbSet<MasterShiftCalendar> MasterShiftCalendar { get; set; }
         public virtual DbSet<MasterSkill> MasterSkill { get; set; }
         public virtual DbSet<MasterSkillGroup> MasterSkillGroup { get; set; }
         public virtual DbSet<MasterSkillType> MasterSkillType { get; set; }
@@ -99,7 +100,7 @@ namespace EMS.Persistance.Context
             modelBuilder.Entity<Employee>(entity =>
             {
                 entity.HasIndex(e => e.GlobalId)
-                    .HasName("UQ__Employee__A50E89932FBA0BF1")
+                    .HasName("UQ__Employee__A50E899371C7C670")
                     .IsUnique();
 
                 entity.Property(e => e.EmployeeId)
@@ -178,14 +179,14 @@ namespace EMS.Persistance.Context
 
             modelBuilder.Entity<EmployeeAccount>(entity =>
             {
-                entity.HasKey(e => new { e.AccountId, e.EmployeeId });
-
-                entity.Property(e => e.AccountId).HasColumnName("AccountID");
+                entity.HasKey(e => new { e.EmployeeId, e.AccountId });
 
                 entity.Property(e => e.EmployeeId)
                     .HasColumnName("EmployeeID")
                     .HasMaxLength(30)
                     .IsUnicode(false);
+
+                entity.Property(e => e.AccountId).HasColumnName("AccountID");
 
                 entity.HasOne(d => d.Account)
                     .WithMany(p => p.EmployeeAccount)
@@ -388,7 +389,7 @@ namespace EMS.Persistance.Context
                 entity.HasKey(e => e.AccountId);
 
                 entity.HasIndex(e => e.UserName)
-                    .HasName("UQ__MasterAc__C9F284564E3E9311")
+                    .HasName("UQ__MasterAc__C9F28456104C4D90")
                     .IsUnique();
 
                 entity.Property(e => e.AccountId).HasColumnName("AccountID");
@@ -650,6 +651,25 @@ namespace EMS.Persistance.Context
                 entity.Property(e => e.ShiftName)
                     .IsRequired()
                     .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<MasterShiftCalendar>(entity =>
+            {
+                entity.HasKey(e => e.WorkDate);
+
+                entity.Property(e => e.WorkDate).HasColumnType("date");
+
+                entity.Property(e => e.ShiftId).HasColumnName("ShiftID");
+
+                entity.Property(e => e.WorkType)
+                    .IsRequired()
+                    .HasMaxLength(1)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Shift)
+                    .WithMany(p => p.MasterShiftCalendar)
+                    .HasForeignKey(d => d.ShiftId)
+                    .HasConstraintName("FK_WorkCalendar_MasterShift_ShiftID");
             });
 
             modelBuilder.Entity<MasterSkill>(entity =>

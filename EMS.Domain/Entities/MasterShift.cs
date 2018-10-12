@@ -8,6 +8,7 @@ namespace EMS.Domain.Entities
         public MasterShift()
         {
             EmployeeState = new HashSet<EmployeeState>();
+            MasterShiftCalendar = new HashSet<MasterShiftCalendar>();
         }
 
         public byte ShiftId { get; set; }
@@ -16,5 +17,6 @@ namespace EMS.Domain.Entities
         public TimeSpan EndTime { get; set; }
 
         public ICollection<EmployeeState> EmployeeState { get; set; }
+        public ICollection<MasterShiftCalendar> MasterShiftCalendar { get; set; }
     }
 }
