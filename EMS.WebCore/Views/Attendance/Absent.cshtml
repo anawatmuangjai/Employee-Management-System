@@ -19,84 +19,61 @@
     </div>
 </div>
 
-<form asp-controller="Employee" asp-action="EmployeeList" method="get">
+<form asp-controller="Attendance" asp-action="Absent" method="get">
     <div class="form-row">
         <div class="col-md-6 mb-2">
             <div class="input-group">
                 <div class="input-group-prepend w-25">
-                    <label class="input-group-text w-100">Date</label>
+                    <label asp-for="FilterModel.AttendanceDate" class="input-group-text w-100">Date</label>
                 </div>
-                <input type="date" class="form-control" value="2018-01-01" required>
+                <input asp-for="FilterModel.AttendanceDate" type="text" id="datepicker" autocomplete="off" class="form-control">
             </div>
         </div>
         <div class="col-md-6 mb-2">
             <div class="input-group">
                 <div class="input-group-prepend w-25">
-                    <label class="input-group-text w-100" for="inputGroupSelect01">Shift</label>
+                    <label asp-for="FilterModel.ShiftId" class="input-group-text w-100">Shift</label>
                 </div>
-                <select class="custom-select">
-                    <option selected>Choose...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
+                <select asp-for="FilterModel.ShiftId" asp-items="@Model.Shifts" class="form-control"></select>
             </div>
         </div>
         <div class="col-md-6 mb-2">
             <div class="input-group">
                 <div class="input-group-prepend w-25">
-                    <label class="input-group-text w-100" for="inputGroupSelect01">Job Title</label>
+                    <label asp-for="FilterModel.DepartmentId" class="input-group-text w-100">Department</label>
                 </div>
-                <select class="custom-select">
-                    <option selected>Choose...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
+                <select asp-for="FilterModel.DepartmentId" asp-items="@Model.Departments" id="departmentSelectList" class="form-control"></select>
             </div>
         </div>
         <div class="col-md-6 mb-2">
             <div class="input-group">
                 <div class="input-group-prepend w-25">
-                    <label class="input-group-text w-100" for="inputGroupSelect01">Job Function</label>
+                    <label asp-for="FilterModel.SectionId" class="input-group-text w-100">Section</label>
                 </div>
-                <select class="custom-select">
-                    <option selected>Choose...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
+                <select class="form-control" id="sectionSelectList" asp-for="FilterModel.SectionId"
+                        asp-items="@(new SelectList(string.Empty, " Value","Text"))"></select>
             </div>
         </div>
         <div class="col-md-6 mb-2">
             <div class="input-group">
                 <div class="input-group-prepend w-25">
-                    <label class="input-group-text w-100" for="inputGroupSelect01">Department</label>
+                    <label asp-for="FilterModel.PositionId" class="input-group-text w-100">Position</label>
                 </div>
-                <select class="custom-select">
-                    <option selected>Choose...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
+                <select asp-for="FilterModel.PositionId" asp-items="@Model.Positions" class="form-control"></select>
             </div>
         </div>
         <div class="col-md-6 mb-2">
             <div class="input-group">
                 <div class="input-group-prepend w-25">
-                    <label class="input-group-text w-100" for="inputGroupSelect01">Section</label>
+                    <label asp-for="FilterModel.FunctionId" class="input-group-text w-100">Job Function</label>
                 </div>
-                <select class="custom-select">
-                    <option selected>Choose...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
+                <select class="form-control" id="jobFunctionSelectList" asp-for="FilterModel.FunctionId"
+                        asp-items="@(new SelectList(string.Empty, " Value","Text"))"></select>
             </div>
         </div>
         <div class="col-md-12 mb-3">
             <div class="input-group">
-                <input type="text" name="employeeId" class="form-control" placeholder="Employee ID">
+                <input asp-for="FilterModel.EmployeeId" type="text" class="form-control" placeholder="Employee ID">
                 <div class="input-group-append">
                     <button class="btn btn-secondary" type="submit"><i class="fa fa-search mr-2"></i>Search</button>
                 </div>
@@ -124,6 +101,7 @@
                             <th>Section</th>
                             <th>Job Title</th>
                             <th>Job Function</th>
+                            <th>Route</th>
                             <th>Bus Station</th>
                             <th>Scan In Time</th>
                             <th>Scan Out Time</th>
@@ -144,6 +122,7 @@
                                 <td>@e.SectionName</td>
                                 <td>@e.JobTitle</td>
                                 <td>@e.FunctionName</td>
+                                <td>@e.RouteName</td>
                                 <td>@e.BusStationName</td>
                                 <td>@e.ScanInTime</td>
                                 <td>@e.ScanOutTime</td>
@@ -161,4 +140,42 @@
             <p class="mb-0">Total Absent : @Model.Attendances.Count() Person.</p>
         </div>
     </div>
+}
+
+@section scripts {
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $('#departmentSelectList').change(function () {
+                    var url = '@Url.Content("~/")' + "Attendance/GetSectionByDepartmentId";
+                    $.getJSON(url, { departmentId: $("#departmentSelectList").val() }, function (data) {
+                        var items = '';
+                        $("#sectionSelectList").empty();
+                        $.each(data, function (i, section) {
+                            items += "<option value='" + section.value + "'>" + section.text + "</option>";
+                        });
+                        $('#sectionSelectList').html(items);
+                    });
+                });
+
+                $('#sectionSelectList').change(function () {
+                    var url = '@Url.Content("~/")' + "Attendance/GetJobFunctionBySectionId";
+                    $.getJSON(url, { sectionId: $("#sectionSelectList").val() }, function (data) {
+                        var items = '';
+                        $("#jobFunctionSelectList").empty();
+                        $.each(data, function (i, jobFunction) {
+                            items += "<option value='" + jobFunction.value + "'>" + jobFunction.text + "</option>";
+                        });
+                        $('#jobFunctionSelectList').html(items);
+                    });
+                });
+            });
+    </script>
+
+    <script>
+        $('#datepicker').datepicker({
+            format: 'yyyy/mm/dd',
+            autoclose: true,
+        });
+    </script>
 }

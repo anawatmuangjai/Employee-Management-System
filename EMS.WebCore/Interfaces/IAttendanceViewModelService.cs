@@ -1,4 +1,5 @@
-﻿using EMS.WebCore.Models;
+﻿using EMS.ApplicationCore.Helper;
+using EMS.WebCore.Models;
 using EMS.WebCore.ViewModels.Attendance;
 using System;
 using System.Collections.Generic;
@@ -9,8 +10,8 @@ namespace EMS.WebCore.Interfaces
 {
     public interface IAttendanceViewModelService
     {
+        Task<AttendanceViewModel> GetActive(AttendanceFilter filter);
         Task<AttendanceViewModel> GetActive(string date);
-        Task<AttendanceViewModel> GetActive(AttendanceFilterModel filter);
         Task<AttendanceViewModel> GetAbsent(string date);
     }
 }

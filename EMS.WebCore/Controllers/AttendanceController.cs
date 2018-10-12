@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EMS.ApplicationCore.Helper;
 using EMS.ApplicationCore.Interfaces.Services;
 using EMS.WebCore.Interfaces;
 using EMS.WebCore.Models;
 using EMS.WebCore.ViewModels.Attendance;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EMS.WebCore.Controllers
 {
@@ -14,20 +16,19 @@ namespace EMS.WebCore.Controllers
     {
         private readonly IEmployeeService _employeeService;
         private readonly IEmployeeImageService _employeeImageService;
+        private readonly IEmployeeDetailService _employeeDetailService;
         private readonly IAttendanceService _attendanceService;
-
-        private readonly IAttendanceViewModelService _attendanceViewModelService;
 
         public AttendanceController(
             IEmployeeService employeeService,
             IEmployeeImageService employeeImageService,
-            IAttendanceService attendanceService,
-            IAttendanceViewModelService attendanceViewModelService)
+            IEmployeeDetailService employeeDetailService,
+            IAttendanceService attendanceService)
         {
             _employeeService = employeeService;
             _employeeImageService = employeeImageService;
+            _employeeDetailService = employeeDetailService;
             _attendanceService = attendanceService;
-            _attendanceViewModelService = attendanceViewModelService;
         }
 
         [HttpGet]
@@ -37,32 +38,37 @@ namespace EMS.WebCore.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ActiveWork(string employeeId)
+        public async Task<IActionResult> ActiveWork(AttendanceFilter filterModel)
         {
-            var today = DateTime.Today.ToString("yyyy/MM/dd");
+            var viewModel = new AttendanceViewModel();
 
-            var filter = new AttendanceFilterModel
+            if (string.IsNullOrEmpty(filterModel.AttendanceDate))
             {
-                EmployeeId = employeeId
-            };
+                filterModel.AttendanceDate = DateTime.Today.ToString("yyyy/MM/dd");
+            }
 
-            var viewModel = await _attendanceViewModelService.GetActive(today);
+            viewModel.Attendances = await _attendanceService.GetActiveAsync(filterModel);
+            viewModel.Departments = await _employeeDetailService.GetDepartments();
+            viewModel.Shifts = await _employeeDetailService.GetShifts();
+            viewModel.Positions = await _employeeDetailService.GetPositions();
+
             return View(viewModel);
         }
 
         [HttpGet]
-        public async Task<IActionResult> Absent()
+        public async Task<IActionResult> Absent(AttendanceFilter filterModel)
         {
-            var today = DateTime.Today.ToString("yyyy/MM/dd");
+            var viewModel = new AttendanceViewModel();
 
-            //var attendances = await _attendanceService.GetAbsentAsync(today);
+            if (string.IsNullOrEmpty(filterModel.AttendanceDate))
+            {
+                filterModel.AttendanceDate = DateTime.Today.ToString("yyyy/MM/dd");
+            }
 
-            //var viewModel = new AttendanceViewModel
-            //{
-            //    Attendances = attendances
-            //};
-
-            var viewModel = await _attendanceViewModelService.GetAbsent(today);
+            viewModel.Attendances = await _attendanceService.GetAbsentAsync(filterModel);
+            viewModel.Departments = await _employeeDetailService.GetDepartments();
+            viewModel.Shifts = await _employeeDetailService.GetShifts();
+            viewModel.Positions = await _employeeDetailService.GetPositions();
 
             return View(viewModel);
         }
@@ -96,6 +102,20 @@ namespace EMS.WebCore.Controllers
             }
 
             return View(viewModel);
+        }
+
+        public async Task<JsonResult> GetSectionByDepartmentId(int departmentId)
+        {
+            var items = await _employeeDetailService.GetSectionsByDepartmentId(departmentId);
+
+            return Json(new SelectList(items, "Value", "Text"));
+        }
+
+        public async Task<JsonResult> GetJobFunctionBySectionId(int sectionId)
+        {
+            var items = await _employeeDetailService.GetJobFunctionsBySectionId(sectionId);
+
+            return Json(new SelectList(items, "Value", "Text"));
         }
     }
 }

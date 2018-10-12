@@ -1,4 +1,5 @@
-﻿using EMS.ApplicationCore.Interfaces.Services;
+﻿using EMS.ApplicationCore.Helper;
+using EMS.ApplicationCore.Interfaces.Services;
 using EMS.WebCore.Interfaces;
 using EMS.WebCore.Models;
 using EMS.WebCore.ViewModels.Attendance;
@@ -11,18 +12,15 @@ namespace EMS.WebCore.Services
 {
     public class AttendanceViewModelService : IAttendanceViewModelService
     {
-        private readonly IEmployeeService _employeeService;
         private readonly IEmployeeImageService _employeeImageService;
         private readonly IAttendanceService _attendanceService;
         private readonly IEmployeeDetailService _employeeDetailService;
 
         public AttendanceViewModelService(
-            IEmployeeService employeeService,
             IEmployeeImageService employeeImageService,
             IAttendanceService attendanceService,
             IEmployeeDetailService employeeDetailService)
         {
-            _employeeService = employeeService;
             _employeeImageService = employeeImageService;
             _attendanceService = attendanceService;
             _employeeDetailService = employeeDetailService;
@@ -35,21 +33,26 @@ namespace EMS.WebCore.Services
             var attendances = await _attendanceService.GetActiveAsync(date);
 
             viewModel.Attendances = attendances;
-            viewModel.FilterModel = await GetAttendanceFilterAsync();
+            viewModel.Shifts = await _employeeDetailService.GetShifts();
+            viewModel.Positions = await _employeeDetailService.GetPositions();
+            viewModel.JobFunctions = await _employeeDetailService.GetJobFunctions();
+            viewModel.Departments = await _employeeDetailService.GetDepartments();
+            viewModel.Sections = await _employeeDetailService.GetSections();
 
             return viewModel;
         }
 
-        public async Task<AttendanceViewModel> GetActive(AttendanceFilterModel filter)
+        public async Task<AttendanceViewModel> GetActive(AttendanceFilter filter)
         {
-            var date = DateTime.Today.ToString("yyyy/MM/dd");
-
             var viewModel = new AttendanceViewModel();
 
-            var attendances = await _attendanceService.GetActiveAsync(date);
+            viewModel.Attendances = await _attendanceService.GetActiveAsync(filter);
 
-            viewModel.Attendances = attendances;
-            viewModel.FilterModel = await GetAttendanceFilterAsync();
+            viewModel.Shifts = await _employeeDetailService.GetShifts();
+            viewModel.Positions = await _employeeDetailService.GetPositions();
+            viewModel.JobFunctions = await _employeeDetailService.GetJobFunctions();
+            viewModel.Departments = await _employeeDetailService.GetDepartments();
+            viewModel.Sections = await _employeeDetailService.GetSections();
 
             return viewModel;
         }
@@ -61,29 +64,33 @@ namespace EMS.WebCore.Services
             var attendances = await _attendanceService.GetAbsentAsync(date);
 
             viewModel.Attendances = attendances;
-            viewModel.FilterModel = await GetAttendanceFilterAsync();
+            viewModel.Shifts = await _employeeDetailService.GetShifts();
+            viewModel.Positions = await _employeeDetailService.GetPositions();
+            viewModel.JobFunctions = await _employeeDetailService.GetJobFunctions();
+            viewModel.Departments = await _employeeDetailService.GetDepartments();
+            viewModel.Sections = await _employeeDetailService.GetSections();
 
             return viewModel;
         }
 
-        public async Task<AttendanceFilterModel> GetAttendanceFilterAsync()
-        {
-            var shifts = await _employeeDetailService.GetShifts();
-            var positions = await _employeeDetailService.GetPositions();
-            var jobFunctions = await _employeeDetailService.GetJobFunctions();
-            var departments = await _employeeDetailService.GetDepartments();
-            var sections = await _employeeDetailService.GetSections();
+        //public async Task<AttendanceFilterModel> GetAttendanceFilterAsync()
+        //{
+        //    var shifts = await _employeeDetailService.GetShifts();
+        //    var positions = await _employeeDetailService.GetPositions();
+        //    var jobFunctions = await _employeeDetailService.GetJobFunctions();
+        //    var departments = await _employeeDetailService.GetDepartments();
+        //    var sections = await _employeeDetailService.GetSections();
 
-            var filterModel = new AttendanceFilterModel
-            {
-                Shifts = shifts,
-                Positions = positions,
-                JobFunctions = jobFunctions,
-                Departments = departments,
-                Sections = sections
-            };
+        //    var filterModel = new AttendanceFilterModel
+        //    {
+        //        Shifts = shifts,
+        //        Positions = positions,
+        //        JobFunctions = jobFunctions,
+        //        Departments = departments,
+        //        Sections = sections
+        //    };
 
-            return filterModel;
-        }
+        //    return filterModel;
+        //}
     }
 }

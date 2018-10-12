@@ -1,4 +1,5 @@
-﻿using EMS.ApplicationCore.Interfaces.Repositories;
+﻿using EMS.ApplicationCore.Helper;
+using EMS.ApplicationCore.Interfaces.Repositories;
 using EMS.ApplicationCore.Interfaces.Services;
 using EMS.ApplicationCore.Models;
 using EMS.ApplicationCore.Specifications;
@@ -13,14 +14,10 @@ namespace EMS.ApplicationCore.Services
 {
     public class AttendanceService : IAttendanceService
     {
-        private readonly IAsyncRepository<Employee> _employeeRepository;
         private readonly IAttendanceRepository _attenRepository;
 
-        public AttendanceService(
-            IAsyncRepository<Employee> employeeRepository,
-            IAttendanceRepository attenRepository)
+        public AttendanceService(IAttendanceRepository attenRepository)
         {
-            _employeeRepository = employeeRepository;
             _attenRepository = attenRepository;
         }
 
@@ -39,9 +36,14 @@ namespace EMS.ApplicationCore.Services
             return await _attenRepository.GetHistoryAsync(employeeId, startDate, endDate);
         }
 
-        public async Task<int> CountTotalEmployeeAsync()
+        public async Task<List<AttendanceModel>> GetActiveAsync(AttendanceFilter filter)
         {
-            return await _employeeRepository.CountAsync(x => x.AvailableFlag == true);
+            return await _attenRepository.GetActiveAsync(filter);
+        }
+
+        public async Task<List<AttendanceModel>> GetAbsentAsync(AttendanceFilter filter)
+        {
+            return await _attenRepository.GetAbsentAsync(filter);
         }
     }
 }
