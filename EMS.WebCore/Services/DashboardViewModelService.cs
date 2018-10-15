@@ -14,22 +14,25 @@ namespace EMS.WebCore.Services
     public class DashboardViewModelService : IDashboardViewModelService
     {
         private readonly IAttendanceService _attendanceService;
+        private readonly IEmployeeService _employeeService;
         private readonly IEmployeeStateService _employeeStateService;
         private readonly IShiftService _shiftService;
 
         public DashboardViewModelService(
             IAttendanceService attendanceService,
+            IEmployeeService employeeService,
             IEmployeeStateService employeeStateService,
             IShiftService shiftService)
         {
             _attendanceService = attendanceService;
+            _employeeService = employeeService;
             _employeeStateService = employeeStateService;
             _shiftService = shiftService;
         }
 
         public async Task<DashboardViewModel> GetDashboardResult(string date)
         {
-            var totalEmployee = await _attendanceService.CountTotalEmployeeAsync();
+            var totalEmployee = await _employeeService.CountTotalEmployeeAsync();
 
             var employeeActive = await _attendanceService.GetActiveAsync(date);
             var employeeAbsent = await _attendanceService.GetAbsentAsync(date);

@@ -114,5 +114,10 @@ namespace EMS.ApplicationCore.Services
             var entity = await _employeeRepository.GetByIdAsync(id);
             await _employeeRepository.DeleteAsync(entity);
         }
+
+        public async Task<int> CountTotalEmployeeAsync()
+        {
+            return await _employeeRepository.CountAsync(x => x.AvailableFlag == true);
+        }
     }
 }
