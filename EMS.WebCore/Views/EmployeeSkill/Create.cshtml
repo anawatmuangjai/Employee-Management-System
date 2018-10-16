@@ -1,0 +1,72 @@
+﻿@model EmployeeSkillEditViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row mb-2 mt-3">
+    <div class="col">
+        <div class="card">
+            <h5 class="card-header bg-light text-dark">Add Employee Skill</h5>
+            <div class="card-body">
+                <form asp-action="Create" method="post" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label asp-for="EmployeeId">Employee ID</label>
+                        <input asp-for="EmployeeId" type="text" class="form-control" placeholder="Employee ID" required>
+                        <span asp-validation-for="EmployeeId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SkillGroupId">Skill Group</label>
+                        <select asp-for="SkillGroupId" asp-items="@Model.SkillGroups" id="skillGroupSelectList" class="form-control"></select>
+                        <span asp-validation-for="SkillGroupId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SkillTypeId">Skill Type</label>
+                        <select asp-for="SkillTypeId" asp-items="@Model.SkillTypes" id="skillTypeSelectList" class="form-control"></select>
+                        <span asp-validation-for="SkillTypeId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SkillId">Skill Name</label>
+                        <select asp-for="SkillId" asp-items="@(new SelectList(string.Empty, "Value","Text"))" id="skillSelectList" class="form-control"></select>
+                        <span asp-validation-for="SkillId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SkillLevel">Skill Level</label>
+                        <select asp-for="SkillLevel" class="custom-select d-block w-100" required>
+                            <option value="">Choose...</option>
+                            <option value="1">Poor</option>
+                            <option value="2">Basic</option>
+                            <option value="3">Good</option>
+                            <option value="4">Very Good</option>
+                            <option value="5">Excellent</option>
+                        </select>
+                        <span asp-validation-for="SkillLevel" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts {
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $('#skillTypeSelectList').change(function () {
+                    var url = '@Url.Content("~/")' + "EmployeeSkill/GetSkill";
+                    $.getJSON(url, { skillGroupId: $("#skillGroupSelectList").val(), skillTypeId: $("#skillTypeSelectList").val()  }, function (data) {
+                        var items = '';
+                        $("#skillSelectList").empty();
+                        $.each(data, function (i, section) {
+                            items += "<option value='" + section.value + "'>" + section.text + "</option>";
+                        });
+                        $('#skillSelectList').html(items);
+                    });
+                });
+            });
+    </script>
+}
