@@ -8,6 +8,7 @@ namespace EMS.ApplicationCore.Interfaces.Services
 {
     public interface IEmployeeStateService
     {
+        Task<List<EmployeeStateModel>> GetAllAsync();
         Task<EmployeeStateModel> GetByEmployeeId(string employeeId);
         Task<EmployeeStateModel> AddAsync(EmployeeStateModel model);
         Task<bool> ExistsAsync(string employeeId);

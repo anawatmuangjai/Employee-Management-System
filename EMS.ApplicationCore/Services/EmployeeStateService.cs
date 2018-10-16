@@ -2,6 +2,7 @@
 using EMS.ApplicationCore.Interfaces.Repositories;
 using EMS.ApplicationCore.Interfaces.Services;
 using EMS.ApplicationCore.Models;
+using EMS.ApplicationCore.Specifications;
 using EMS.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,13 @@ namespace EMS.ApplicationCore.Services
             var config = new MapperConfiguration(cfg => cfg.CreateMap<EmployeeState, EmployeeStateModel>());
 
             _mapper = config.CreateMapper();
+        }
+
+        public async Task<List<EmployeeStateModel>> GetAllAsync()
+        {
+            var spec = new EmployeeStateSpecification(x => x.Employee.AvailableFlag == true);
+            var entity = await _repository.GetAsync(spec);
+            return _mapper.Map<List<EmployeeState>, List<EmployeeStateModel>>(entity);
         }
 
         public async Task<EmployeeStateModel> GetByEmployeeId(string employeeId)
@@ -78,5 +86,7 @@ namespace EMS.ApplicationCore.Services
         {
             return await _repository.CountAsync(x => x.ShiftId == shiftId);
         }
+
+
     }
 }
