@@ -18,19 +18,22 @@ namespace EMS.WebCore.Services
         private readonly IEmployeeService _employeeService;
         private readonly IEmployeeAddressService _employeeAddressService;
         private readonly IEmployeeImageService _employeeImageService;
+        private readonly IEmployeeSkillService _employeeSkillService;
 
         public ProfileViewModelService(
             IEmployeeDetailService employeeDetailService,
             IEmployeeStateService employeeStateService,
             IEmployeeService employeeService,
             IEmployeeAddressService employeeAddressService,
-            IEmployeeImageService employeeImageService)
+            IEmployeeImageService employeeImageService,
+            IEmployeeSkillService employeeSkillService)
         {
             _employeeDetailService = employeeDetailService;
             _employeeStateService = employeeStateService;
             _employeeService = employeeService;
             _employeeAddressService = employeeAddressService;
             _employeeImageService = employeeImageService;
+            _employeeSkillService = employeeSkillService;
         }
 
         public async Task<ProfileViewModel> GetProfile(string employeeId)
@@ -92,6 +95,13 @@ namespace EMS.WebCore.Services
             {
                 var imageBase64Data = Convert.ToBase64String(image.Images);
                 viewModel.ProfileImage = string.Format("data:image/png;base64,{0}", imageBase64Data);
+            }
+
+            var employeeSkills = await _employeeSkillService.GetByEmployeeId(employeeId);
+
+            if (employeeSkills != null)
+            {
+                viewModel.EmployeeSkills = employeeSkills;
             }
 
             return viewModel;

@@ -280,147 +280,42 @@
             </div>
             <!-- skill -->
             <div class="tab-pane" id="skill" aria-expanded="false">
-                <div class="row mb-5">
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Parts Shopping</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Material Operations</h6>
-                                <p class="card-text">Some quick example text to build</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Parts Receiving</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Material Operations</h6>
-                                <p class="card-text">Some quick example text to build</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Kitting</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Material Operations</h6>
-                                <p class="card-text">Some quick example text to build</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="row">
-                    <div class="col-md-12">
-                        <h5>Operation Skill</h5>
-                        <table class="table table-striped table-hover">
-                            <thead class="bg-success text-white">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Operation</th>
-                                    <th>Skill</th>
-                                    <th>Level</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Materials</td>
-                                    <td>Parts Shopping</td>
-                                    <td>Experts</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Materials</td>
-                                    <td>Parts Receiving</td>
-                                    <td>Experts</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Materials</td>
-                                    <td>Parts Kitting</td>
-                                    <td>Experts</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <h5>Common Skill</h5>
-                        <table class="table table-striped table-hover">
-                            <thead class="bg-warning">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Operation</th>
-                                    <th>Skill</th>
-                                    <th>Level</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Materials</td>
-                                    <td>Parts Shopping</td>
-                                    <td>Experts</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Materials</td>
-                                    <td>Parts Receiving</td>
-                                    <td>Experts</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Materials</td>
-                                    <td>Parts Kitting</td>
-                                    <td>Experts</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <h5>Basic Skill</h5>
-                        <table class="table table-striped table-hover">
-                            <thead class="bg-info text-white">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Operation</th>
-                                    <th>Skill</th>
-                                    <th>Level</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Materials</td>
-                                    <td>Parts Shopping</td>
-                                    <td>Experts</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Materials</td>
-                                    <td>Parts Receiving</td>
-                                    <td>Experts</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Materials</td>
-                                    <td>Parts Kitting</td>
-                                    <td>Experts</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="col">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered w-100 mb-0">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Skill Group</th>
+                                        <th>Skill Type</th>
+                                        <th>Skill Name</th>
+                                        <th>Skill Level</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.EmployeeSkills != null)
+                                    {
+                                        @foreach (var e in Model.EmployeeSkills)
+                                        {
+                                            <tr>
+                                                <td>@e.Skill.SkillGroup.SkillGroupName</td>
+                                                <td>@e.Skill.SkillType.SkillTypeName</td>
+                                                <td>@e.Skill.SkillName</td>
+                                                <td>@e.SkillLevel</td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <a asp-controller="EmployeeSkill" asp-action="Create" class="btn btn-sm btn-outline-secondary my-3" >Add Skill</a>
                     </div>
                 </div>
-
             </div>
             <!-- tranining -->
             <div class="tab-pane" id="training" aria-expanded="false">
 
                 <div class="row">
-                    <div class="col-md-4">
-
-                    </div>
-                    <div class="col-md-4">
-
-                    </div>
                     <div class="col-md-4">
 
                     </div>

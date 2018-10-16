@@ -55,7 +55,7 @@ namespace EMS.WebCore.Controllers
                 return View(viewModel);
 
             await _profileViewModelService.UpdateProfile(viewModel);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index),new { employeeId = viewModel.EmployeeId });
         }
 
         public async Task<JsonResult> GetSectionByDepartmentId(int departmentId)
