@@ -1,0 +1,48 @@
+﻿@model ShiftCalendarEditViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container-fluid">
+    <div class="row my-5">
+        <div class="col">
+            <div class="card">
+                <h5 class="card-header bg-light text-dark">Create Work Shift</h5>
+                <div class="card-body">
+                    <form asp-action="Create" method="post" class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label asp-for="WorkDate">Work Date</label>
+                            <input asp-for="WorkDate" type="text" id="datepicker" autocomplete="off" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="WorkType">Work Type</label>
+                            <input asp-for="WorkType" type="text" class="form-control">
+                            <span asp-validation-for="WorkType" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ShiftId">Shift</label>
+                            <select asp-for="ShiftId" asp-items="@Model.Shifts" class="form-control"></select>
+                            <span asp-validation-for="ShiftId" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts {
+
+    <script>
+        $('#datepicker').datepicker({
+            format: 'yyyy/mm/dd',
+            autoclose: true,
+        });
+    </script>
+}
+

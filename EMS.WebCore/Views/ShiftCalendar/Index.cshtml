@@ -1,0 +1,53 @@
+﻿@model ShiftCalendarViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h1 class="h2">Shift Calendar Configuration</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+                <a class="btn btn-sm btn-outline-secondary" asp-action="Create">Create</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            @if (Model.ShiftCalendars.Any())
+            {
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Work Date</th>
+                            <th>Work Type</th>
+                            <th>Shift Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ShiftCalendars)
+                        {
+
+                            <tr>
+                                <td>@item.WorkDate</td>
+                                <td>@item.WorkType</td>
+                                <td>@item.ShiftId</td>
+                                <td>
+                                    <a asp-controller="Shift" asp-action="Edit" asp-route-date="@item.WorkDate" class="btn btn-info btn-sm">Edit</a>
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</div>
+
+
+
