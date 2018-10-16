@@ -20,12 +20,13 @@
         <div class="col">
             @if (Model.ShiftCalendars.Any())
             {
-                <table class="table table-striped table-bordered table-hover">
+                <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>Work Date</th>
                             <th>Work Type</th>
                             <th>Shift Name</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,11 +34,11 @@
                         {
 
                             <tr>
-                                <td>@item.WorkDate</td>
+                                <td>@item.WorkDate.ToString("yyyy-MM-dd")</td>
                                 <td>@item.WorkType</td>
                                 <td>@item.ShiftId</td>
                                 <td>
-                                    <a asp-controller="Shift" asp-action="Edit" asp-route-date="@item.WorkDate" class="btn btn-info btn-sm">Edit</a>
+                                    <a asp-controller="ShiftCalendar" asp-action="Edit" asp-route-date="@item.WorkDate.ToString("yyyy-MM-dd")" class="btn btn-info btn-sm">Edit</a>
                                 </td>
                             </tr>
 

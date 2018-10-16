@@ -12,11 +12,7 @@
                 <form asp-action="Create" method="post" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label asp-for="DepartmentId">Department</label>
-                        <select asp-for="DepartmentId"
-                                asp-items="@Model.Departments"
-                                class="form-control">
-                            <option>Please select</option>
-                        </select>
+                        <select asp-for="DepartmentId" asp-items="@Model.Departments" class="form-control"></select>
                         <span asp-validation-for="DepartmentId" class="text-danger"></span>
                     </div>
                     <div class="form-group">
@@ -44,12 +40,6 @@
 </div>
 
 @section scripts {
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var items = "<option value='0'>-- Select --</option>";
-            $('#SectionId').html(items);
-        });
-    </script>
 
     <script type="text/javascript">
             $(document).ready(function () {

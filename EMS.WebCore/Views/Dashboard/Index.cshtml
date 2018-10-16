@@ -4,123 +4,186 @@
     ViewData["Title"] = "Index";
 }
 
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2 text-header">Dashboard</h1>
-    <div class="btn-toolbar mb-2 mb-md-0">
-        <div class="btn-group mr-2">
-            <button class="btn btn-sm btn-outline-secondary">Share</button>
-            <button class="btn btn-sm btn-outline-secondary">Export</button>
+<!-- header -->
+<section>
+    <div class="container-fluid">
+        <div class="row my-4">
+            <div class="col-md-8">
+                <h1>Dashboard</h1>
+            </div>
+            <div class="col-md-4">
+                <form>
+                    <div class="form-row">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="First name">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Last name">
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar"></span>
-            Shift A
-        </button>
     </div>
-</div>
+</section>
 
 <!-- card -->
-<div class="row pt-md-3 mt-3 mb-3">
-    <div class="col-xl-3 col-sm-6 p-2">
-        <div class="card card-common">
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <i class="fa fa-user-circle fa-3x text-header"></i>
-                    <div class="text-right text-header">
-                        <h5>Total Employee</h5>
-                        <h3>@Model.CountTotalEmployee</h3>
+<section>
+    <div class="container-fluid">
+        <div class="row pt-md-3 my-4">
+            <div class="col-xl-3 col-sm-6">
+                <div class="card card-common">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <i class="fa fa-user-circle fa-3x text-header"></i>
+                            <div class="text-right text-header">
+                                <h1>@Model.CountTotalEmployee</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-white bg-nav">
+                        <i class="fa fa-refresh fa-spin mr-3"></i>
+                        <span>Total Employee All department</span>
                     </div>
                 </div>
             </div>
-            <div class="card-footer text-white bg-primary">
-                <i class="fa fa-refresh fa-spin mr-3"></i>
-                <span>All department</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-sm-6 p-2">
-        <div class="card card-common">
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <i class="fa fa-user fa-3x text-header"></i>
-                    <div class="text-right text-header">
-                        <h5>Active Work</h5>
-                        <h3>@Model.CountActiveWork</h3>
+            <div class="col-xl-3 col-sm-6">
+                <div class="card card-common">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <i class="fa fa-user fa-3x text-success"></i>
+                            <div class="text-right text-header">
+                                <h1>@Model.CountActiveWork</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-white bg-nav">
+                        <i class="fa fa-refresh fa-spin mr-3"></i>
+                        <span>Employee Active Work</span>
                     </div>
                 </div>
             </div>
-            <div class="card-footer text-white bg-primary">
-                <i class="fa fa-refresh fa-spin mr-3"></i>
-                <span>Current shift </span>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-sm-6 p-2">
-        <div class="card card-common">
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <i class="fa fa-user-times fa-3x text-danger"></i>
-                    <div class="text-right text-header">
-                        <h5>Absent</h5>
-                        <h3>@Model.CountAbsent</h3>
+            <div class="col-xl-3 col-sm-6">
+                <div class="card card-common">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <i class="fa fa-user-times fa-3x text-danger"></i>
+                            <div class="text-right text-header">
+                                <h1>@Model.CountAbsent</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-white bg-nav">
+                        <i class="fa fa-refresh fa-spin mr-3"></i>
+                        <span>Employee Absent</span>
                     </div>
                 </div>
             </div>
-            <div class="card-footer text-white bg-danger">
-                <i class="fa fa-refresh fa-spin mr-3"></i>
-                <span>Update Now</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-sm-6 p-2">
-        <div class="card card-common">
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <i class="fa fa-percent fa-3x text-warning"></i>
-                    <div class="text-right text-header">
-                        <h5>Absent Percent</h5>
-                        <h3>@Model.PercentAbsent</h3>
+            <div class="col-xl-3 col-sm-6">
+                <div class="card card-common">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <i class="fa fa-calendar fa-3x text-header"></i>
+                            <div class="text-right text-header">
+                                <h1>Shift A</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-white bg-nav">
+                        <i class="fa fa-refresh fa-spin mr-3"></i>
+                        <span>Current Shift</span>
                     </div>
                 </div>
             </div>
-            <div class="card-footer text-white bg-warning">
-                <i class="fa fa-refresh fa-spin mr-3"></i>
-                <span>Update Now</span>
+        </div>
+    </div>
+</section>
+
+<!-- attendance status-->
+<section>
+    <div class="container-fluid">
+        <div class="row my-4">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header bg-white text-header">
+                        <h5 class="my-0">Attendance Status</h5>
+                        <p class="my-0">Summary attendance result all department and section</p>
+                    </div>
+                    <div class="card-body scroll-box-dashboard p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered w-100 mb-0">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Department</th>
+                                        <th>Section</th>
+                                        <th>Shift</th>
+                                        <th>Total</th>
+                                        <th>Active</th>
+                                        <th>Absent</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.Attendances.Any())
+                                    {
+                                        @foreach (var e in Model.Attendances)
+                                        {
+                                            <tr>
+                                                <td>@e.ShiftName</td>
+                                                <td>@e.DepartmentCode</td>
+                                                <td>@e.SectionName</td>
+                                                <td>@e.JobTitle</td>
+                                                <td>@e.FunctionName</td>
+                                                <td>@e.RouteName</td>
+                                                <td>@e.BusStationName</td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
 <!-- chart bar adn pie-->
-<div class="row">
-    <div class="col-md-8">
-        <div class="card mb-4">
-            <div class="card-header bg-white text-header">
-                <h5 class="my-0">Attendance By Level</h5>
-                <p class="my-0">Summary attendance active by level</p>
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-header bg-white text-header">
+                        <h5 class="my-0">Attendance By Level</h5>
+                        <p class="my-0">Summary attendance active by level</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="attendanceLevelChart" style="width:100%; height:250px"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                <div class="chart-container">
-                    <canvas id="attendanceLevelChart" style="width:100%; height:250px"></canvas>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-header bg-white text-header">
+                        <h5 class="my-0">Average Percent</h5>
+                        <p class="my-0">Average attendance active and absent</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="attendancePercentChart" style="width:100%; height:250px"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card mb-4">
-            <div class="card-header bg-white text-header">
-                <h5 class="my-0">Average Percent</h5>
-                <p class="my-0">Average attendance active and absent</p>
-            </div>
-            <div class="card-body">
-                <div class="chart-container">
-                    <canvas id="attendancePercentChart" style="width:100%; height:250px"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+</section>
 
 <!-- chart pie -->
+
 <div class="row">
     <div class="col-md-4">
         <div class="card mb-3">
@@ -254,32 +317,6 @@
         <p class="mb-0">Total Absent : @Model.Attendances.Count() Person.</p>
     </div>
 </div>
-
-<!-- chart -->
-@*<div class="row mb-5">
-        <div class="col-xl-6 col-12 mb-4 mb-xl-0">
-            <div class="card card-common">
-                <div class="card-header">
-                    <h3 class="card-title">Attendance Tendencies</h3>
-                </div>
-                <div class="card-body">
-                    <div id="chart_div"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-6 col-12">
-            <div class="card card-common">
-                <div class="card-header">
-                    <h3 class="card-title">Employee Status</h3>
-                </div>
-                <div class="card-body">
-                    <div id="Anthony_chart_div"></div>
-                </div>
-            </div>
-        </div>
-    </div>*@
-
-
 
 
 @section scripts {

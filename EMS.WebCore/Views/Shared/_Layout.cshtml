@@ -7,9 +7,9 @@
     <title>@ViewData["Title"] - EMS.WebCore</title>
 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-datepicker/css/bootstrap-datepicker.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" />
-
     @*<environment include="Development">
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
             <link rel="stylesheet" href="~/css/site.css" />
@@ -67,49 +67,6 @@
                                 <li><a asp-area="" asp-controller="Attendance" asp-action="Absent">Absent List</a></li>
                             </ul>
                         </li>
-                        <!-- monitoring -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="#collapse-mapview" data-toggle="collapse" aria-controls="collapse-mapview">
-                                <span><i class="fa fa-tv text-white fa-lg mr-3"></i></span>
-                                Map Viewer
-                            </a>
-                            <ul class="collapse collapseable" id="collapse-mapview">
-                                <li><a asp-area="" asp-controller="MapViewer" asp-action="Line">By Line</a></li>
-                                <li><a asp-area="" asp-controller="MapViewer" asp-action="Zone">By Zone</a></li>
-                                <li><a asp-area="" asp-controller="MapViewer" asp-action="Area">By Area</a></li>
-                            </ul>
-                        </li>
-                        <!-- allocation -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="#collapse-allocation" data-toggle="collapse" aria-controls="collapse-allocation">
-                                <span><i class="fa fa-map text-white fa-lg mr-3"></i></span>
-                                Allocation
-                            </a>
-                            <ul class="collapse collapseable" id="collapse-allocation">
-                                <li><a asp-area="" asp-controller="Department" asp-action="Index">Allocate</a></li>
-                                <li><a asp-area="" asp-controller="Section" asp-action="Index">Skill Mapping</a></li>
-                            </ul>
-                        </li>
-                        <!-- training record-->
-                        <li class="nav-item">
-                            <a class="nav-link" href="#collapse-training" data-toggle="collapse" aria-controls="collapse-training">
-                                <span><i class="fa fa-list-alt text-white fa-lg mr-3"></i></span>
-                                Training Records
-                            </a>
-                            <ul class="collapse collapseable" id="collapse-training">
-                                <li><a asp-area="" asp-controller="Department" asp-action="Index">Training Course</a></li>
-                                <li><a asp-area="" asp-controller="Section" asp-action="Index">Training History</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-
-                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-white">
-                        <span>Configuration</span>
-                        <a class="d-flex align-items-center text-white" href="#">
-                            <span data-feather="plus-circle"></span>
-                        </a>
-                    </h6>
-                    <ul class="nav flex-column mb-2">
                         <!-- employee -->
                         <li class="nav-item">
                             <a class="nav-link" href="#collapse-employee" data-toggle="collapse" aria-controls="collapse-employee">
@@ -121,6 +78,39 @@
                                 <li><a asp-area="" asp-controller="Employee" asp-action="EmployeeList">Employee List</a></li>
                             </ul>
                         </li>
+                        <!-- training record-->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#collapse-training" data-toggle="collapse" aria-controls="collapse-training">
+                                <span><i class="fa fa-list-alt text-white fa-lg mr-3"></i></span>
+                                Training
+                            </a>
+                            <ul class="collapse collapseable" id="collapse-training">
+                                <li><a asp-area="" asp-controller="Department" asp-action="Index">Training Course</a></li>
+                                <li><a asp-area="" asp-controller="Section" asp-action="Index">Training History</a></li>
+                            </ul>
+                        </li>
+                        <!-- Employee Skill -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#collapse-allocation" data-toggle="collapse" aria-controls="collapse-allocation">
+                                <span><i class="fa fa-map text-white fa-lg mr-3"></i></span>
+                                Skills
+                            </a>
+                            <ul class="collapse collapseable" id="collapse-allocation">
+                                <li><a asp-area="" asp-controller="Department" asp-action="Index">Manage Skill</a></li>
+                                <li><a asp-area="" asp-controller="Section" asp-action="Index">Skill Mapping</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-white">
+                        <span>Configuration</span>
+                        <a class="d-flex align-items-center text-white" href="#">
+                            <span data-feather="plus-circle"></span>
+                        </a>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+
                         <!-- organization -->
                         <li class="nav-item">
                             <a class="nav-link" href="#collapse-organize" data-toggle="collapse" aria-controls="collapse-organize">
@@ -131,6 +121,7 @@
                                 <li><a asp-area="" asp-controller="Department" asp-action="Index">Department</a></li>
                                 <li><a asp-area="" asp-controller="Section" asp-action="Index">Section</a></li>
                                 <li><a asp-area="" asp-controller="Shift" asp-action="Index">Work Shift</a></li>
+                                <li><a asp-area="" asp-controller="ShiftCalendar" asp-action="Index">Work Calendar</a></li>
                                 <li><a asp-area="" asp-controller="JobPosition" asp-action="Index">Job Position</a></li>
                                 <li><a asp-area="" asp-controller="JobFunction" asp-action="Index">Job Function</a></li>
                                 <li><a asp-area="" asp-controller="Level" asp-action="Index">Level</a></li>
@@ -203,11 +194,10 @@
                 </div>
             </div>
         </div>*@
-    <script src="~/lib/chartjs/dist/Chart.js"></script>
-    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>*@
-
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/chartjs/dist/Chart.js"></script>
+    <script src="~/lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @*<environment include="Development">

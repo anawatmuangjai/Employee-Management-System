@@ -4,50 +4,53 @@
     ViewData["Title"] = "Index";
 }
 
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-    <h1 class="h2">Shift Configuration</h1>
-    <div class="btn-toolbar mb-2 mb-md-0">
-        <div class="btn-group mr-2">
-            <a class="btn btn-sm btn-outline-secondary" asp-action="Create">Create</a>
-            <button class="btn btn-sm btn-outline-secondary">Share</button>
-            <button class="btn btn-sm btn-outline-secondary">Export</button>
+<div class="container-fluid">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h1 class="h2">Shift Configuration</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+                <a class="btn btn-sm btn-outline-secondary" asp-action="Create">Create</a>
+            </div>
         </div>
-        <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar"></span>
-            This week
-        </button>
     </div>
 </div>
 
-@if (Model.Shifts.Any())
-{
-    <table class="table table-striped table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Shift Name</th>
-                <th>Start Time</th>
-                <th>End Time</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Shifts)
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            @if (Model.Shifts.Any())
             {
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Shift Name</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Shifts)
+                        {
 
-                <tr>
-                    <td>@item.ShiftId</td>
-                    <td>@item.ShiftName</td>
-                    <td>@item.StartTime</td>
-                    <td>@item.EndTime</td>
-                    <td>
-                        <a asp-controller="Shift" asp-action="Edit" asp-route-id="@item.ShiftId" class="btn btn-info btn-sm">Edit</a>
-                        <a asp-controller="Shift" asp-action="Delete" asp-route-id="@item.ShiftId" class="btn btn-danger btn-sm">Delete</a>
-                    </td>
-                </tr>
+                            <tr>
+                                <td>@item.ShiftId</td>
+                                <td>@item.ShiftName</td>
+                                <td>@item.StartTime</td>
+                                <td>@item.EndTime</td>
+                                <td>
+                                    <a asp-controller="Shift" asp-action="Edit" asp-route-id="@item.ShiftId" class="btn btn-info btn-sm">Edit</a>
+                                    <a asp-controller="Shift" asp-action="Delete" asp-route-id="@item.ShiftId" class="btn btn-danger btn-sm">Delete</a>
+                                </td>
+                            </tr>
 
+                        }
+                    </tbody>
+                </table>
             }
-        </tbody>
-    </table>
-}
+        </div>
+    </div>
+</div>
+
 
