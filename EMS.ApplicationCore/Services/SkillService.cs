@@ -30,6 +30,12 @@ namespace EMS.ApplicationCore.Services
             return _mapper.Map<MasterSkill, SkillModel>(skill);
         }
 
+        public async Task<List<SkillModel>> GetAsync(int skillGroupId, int skillTypeId)
+        {
+            var skills = await _repository.GetAsync(x => x.SkillGroupId == skillGroupId && x.SkillTypeId == skillTypeId);
+            return _mapper.Map<List<MasterSkill>, List<SkillModel>>(skills);
+        }
+
         public async Task<List<SkillModel>> GetAllAsync()
         {
             var skills = await _repository.GetAllAsync();
@@ -66,5 +72,7 @@ namespace EMS.ApplicationCore.Services
             var route = await _repository.GetByIdAsync(id);
             await _repository.DeleteAsync(route);
         }
+
+
     }
 }

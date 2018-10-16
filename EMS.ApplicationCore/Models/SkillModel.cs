@@ -13,5 +13,6 @@ namespace EMS.ApplicationCore.Models
         public string SkillDescription { get; set; }
 
         public SkillGroupModel SkillGroup { get; set; }
+        public SkillTypeModel SkillType { get; set; }
     }
 }

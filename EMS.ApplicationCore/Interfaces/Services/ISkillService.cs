@@ -9,6 +9,7 @@ namespace EMS.ApplicationCore.Interfaces.Services
     public interface ISkillService
     {
         Task<SkillModel> GetByIdAsync(int id);
+        Task<List<SkillModel>> GetAsync(int skillGroupId,int skillTypeId);
         Task<List<SkillModel>> GetAllAsync();
         Task AddAsync(SkillModel model);
         Task UpdateAsync(SkillModel model);
