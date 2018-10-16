@@ -70,14 +70,20 @@ namespace EMS.WebCore.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var skillGroup = await _skillService.GetByIdAsync(id);
+            var skill = await _skillService.GetByIdAsync(id);
 
-            if (skillGroup == null)
+            if (skill == null)
                 return NotFound();
 
             var editModel = new SkillEditViewModel
             {
-
+                SkillId = skill.SkillId,
+                SkillGroupId = skill.SkillGroupId,
+                SkillTypeId = skill.SkillTypeId,
+                SkillName = skill.SkillName,
+                SkillDescription = skill.SkillDescription,
+                SkillGroups = await _employeeDetailService.GetSkillGroups(),
+                SkillTypes = await _employeeDetailService.GetSkillTypes()
             };
 
             return View(editModel);
@@ -92,7 +98,11 @@ namespace EMS.WebCore.Controllers
 
             var editModel = new SkillModel
             {
-
+                SkillId = model.SkillId,
+                SkillGroupId = model.SkillGroupId,
+                SkillTypeId = model.SkillTypeId,
+                SkillName = model.SkillName,
+                SkillDescription = model.SkillDescription
             };
 
             await _skillService.UpdateAsync(editModel);

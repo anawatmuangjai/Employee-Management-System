@@ -21,6 +21,7 @@ namespace EMS.WebCore.Services
         private readonly IBusStationService _busStationService;
         private readonly ISkillGroupService _skillGroupService;
         private readonly ISkillTypeService _skillTypeService;
+        private readonly ISkillService _skillService;
 
         public EmployeeDetailService(
             IDepartmentService departmentService,
@@ -32,7 +33,8 @@ namespace EMS.WebCore.Services
             IRouteService routeService,
             IBusStationService busStationService,
             ISkillGroupService skillGroupService,
-            ISkillTypeService skillTypeService)
+            ISkillTypeService skillTypeService,
+            ISkillService skillService)
         {
             _departmentService = departmentService;
             _sectionService = sectionService;
@@ -44,6 +46,7 @@ namespace EMS.WebCore.Services
             _busStationService = busStationService;
             _skillGroupService = skillGroupService;
             _skillTypeService = skillTypeService;
+            _skillService = skillService;
         }
 
         public async Task<IEnumerable<SelectListItem>> GetDepartments()
@@ -312,6 +315,27 @@ namespace EMS.WebCore.Services
                 {
                     Value = skillType.SkillTypeId.ToString(),
                     Text = skillType.SkillTypeName
+                });
+            }
+
+            return item;
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetSkills(int skillGropId, int skillTypeId)
+        {
+            var skills = await _skillService.GetAsync(skillGropId, skillTypeId);
+
+            var item = new List<SelectListItem>
+            {
+                new SelectListItem() { Value = null, Text ="",Selected = true }
+            };
+
+            foreach (var skill in skills)
+            {
+                item.Add(new SelectListItem()
+                {
+                    Value = skill.SkillId.ToString(),
+                    Text = skill.SkillName
                 });
             }
 

@@ -1,0 +1,252 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col my-5">
+            <h1>Skill Mapping</h1>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <img src="~/images/female.png" class="img-thumbnail mx-auto my-auto d-block" />
+                        </div>
+                        <div class="col-8">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <img src="~/images/female.png" class="img-thumbnail mx-auto my-auto d-block" />
+                        </div>
+                        <div class="col-8">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <form asp-controller="EmployeeSkill" asp-action="Index" method="post">
+        <div class="form-row">
+            <div class="col-md-6 mb-4">
+                <div class="input-group">
+                    <div class="input-group-prepend w-25">
+                        <label class="input-group-text">Employee ID</label>
+                    </div>
+                    <input type="text" name="employeeId" class="form-control" placeholder="Please enter employee ID">
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="input-group">
+                    <div class="input-group-prepend w-25">
+                        <label class="input-group-text">Employee ID</label>
+                    </div>
+                    <input type="text" name="employeeId" class="form-control" placeholder="Please enter employee ID">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <button class="btn btn-outline-secondary btn-lg btn-block mb-4" type="submit">Check</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title my-0">
+                        <h5>Matching Skill</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered w-100 mb-0">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Skill Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Skill 1</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <div class="card-title my-0">
+                        <h5>Matching Skill</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered w-100 mb-0">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Skill Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Skill 1</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title my-0">
+                        <h5>Not Matching Skill</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered w-100 mb-0">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Skill Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Skill 2</td>
+                                </tr>
+                                <tr>
+                                    <td>Skill 2</td>
+                                </tr>
+                                <tr>
+                                    <td>Skill 2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-danger text-white">
+                    <div class="card-title my-0">
+                        <h5>Not Matching Skill</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered w-100 mb-0">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Skill Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Skill 1</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title my-0">
+                        <h5>Employee Skill</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered w-100 mb-0">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Skill Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Skill 2</td>
+                                </tr>
+                                <tr>
+                                    <td>Skill 2</td>
+                                </tr>
+                                <tr>
+                                    <td>Skill 2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title my-0">
+                        <h5>Employee Skill</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered w-100 mb-0">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Skill Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Skill 1</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
