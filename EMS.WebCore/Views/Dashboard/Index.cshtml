@@ -8,17 +8,31 @@
 <section>
     <div class="container-fluid">
         <div class="row my-4">
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <h1>Dashboard</h1>
             </div>
-            <div class="col-md-4">
-                <form>
+            <div class="col-md-6">
+                <form asp-action="Index" method="post">
                     <div class="form-row">
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="First name">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Date</span>
+                                </div>
+                                <input asp-for="SelectedDate" type="text" id="datepicker" autocomplete="off" class="form-control">
+                            </div>
+                            
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Last name">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Shift</span>
+                                </div>
+                                <select asp-for="ShiftId" asp-items="@Model.Shifts" class="form-control"></select>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="submit">View</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -85,7 +99,7 @@
                         <div class="d-flex justify-content-between">
                             <i class="fa fa-calendar fa-3x text-header"></i>
                             <div class="text-right text-header">
-                                <h1>Shift A</h1>
+                                <h1>@Model.CurrentShift</h1>
                             </div>
                         </div>
                     </div>
@@ -123,18 +137,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (Model.Attendances.Any())
+                                    @if (Model.AttendanceStatus.Any())
                                     {
-                                        @foreach (var e in Model.Attendances)
+                                        @foreach (var e in Model.AttendanceStatus)
                                         {
                                             <tr>
+                                                <td>@e.Department</td>
+                                                <td>@e.Section</td>
                                                 <td>@e.ShiftName</td>
-                                                <td>@e.DepartmentCode</td>
-                                                <td>@e.SectionName</td>
-                                                <td>@e.JobTitle</td>
-                                                <td>@e.FunctionName</td>
-                                                <td>@e.RouteName</td>
-                                                <td>@e.BusStationName</td>
+                                                <td>@e.TotalPerson</td>
+                                                <td>@e.ActivePerson</td>
+                                                <td>@e.AbsentPerson</td>
                                             </tr>
                                         }
                                     }
@@ -475,6 +488,13 @@
                     text: 'Attendance by section'
                 }
             }
+        });
+    </script>
+
+    <script>
+        $('#datepicker').datepicker({
+            format: 'yyyy/mm/dd',
+            autoclose: true,
         });
     </script>
 

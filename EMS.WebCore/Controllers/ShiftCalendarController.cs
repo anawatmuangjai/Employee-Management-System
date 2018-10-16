@@ -69,9 +69,11 @@ namespace EMS.WebCore.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Edit(DateTime date)
+        public async Task<IActionResult> Edit(string date)
         {
-            var shiftCalendar = await _shiftCalendarService.GetByDateAsync(date);
+            var selectedDate = Convert.ToDateTime(date);
+
+            var shiftCalendar = await _shiftCalendarService.GetByDateAsync(selectedDate);
 
             if (shiftCalendar == null)
                 return NotFound();
@@ -81,6 +83,7 @@ namespace EMS.WebCore.Controllers
                 WorkDate = shiftCalendar.WorkDate,
                 WorkType = shiftCalendar.WorkType,
                 ShiftId = shiftCalendar.ShiftId,
+                Shifts = await _employeeDetailService.GetShifts()
             };
 
             return View(editModel);

@@ -8,6 +8,6 @@ namespace EMS.WebCore.Interfaces
 {
     public interface IDashboardViewModelService
     {
-        Task<DashboardViewModel> GetDashboardResult(string date);
+        Task<DashboardViewModel> GetDashboardResult(string date,int? shiftId);
     }
 }

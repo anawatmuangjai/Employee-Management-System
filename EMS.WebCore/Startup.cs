@@ -58,12 +58,14 @@ namespace EMS.WebCore
             services.AddScoped<IJobPositionService, JobPositiobService>();
             services.AddScoped<IJobFunctionService, JobFunctionService>();
             services.AddScoped<IShiftService, ShiftService>();
+            services.AddScoped<IShiftCalendarService, ShiftCalendarService>();
             services.AddScoped<IEmployeeLevelService, EmployeeLevelService>();
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IEmployeeListService, EmployeeListService>();
             services.AddScoped<IEmployeeStateService, EmployeeStateService>();
             services.AddScoped<IEmployeeAddressService, EmployeeAddressService>();
             services.AddScoped<IEmployeeImageService, EmployeeImageService>();
+            services.AddScoped<IEmployeeSkillService, EmployeeSkillService>();
             services.AddScoped<IRouteService, RouteService>();
             services.AddScoped<IBusStationService, BusStationService>();
             services.AddScoped<IAttendanceService, AttendanceService>();

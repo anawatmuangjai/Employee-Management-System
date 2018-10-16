@@ -1,4 +1,5 @@
-﻿using EMS.ApplicationCore.Interfaces.Services;
+﻿using EMS.ApplicationCore.Helper;
+using EMS.ApplicationCore.Interfaces.Services;
 using EMS.WebCore.Interfaces;
 using EMS.WebCore.Models.Dashboard;
 using EMS.WebCore.ViewModels.Dashboard;
@@ -16,31 +17,51 @@ namespace EMS.WebCore.Services
         private readonly IAttendanceService _attendanceService;
         private readonly IEmployeeService _employeeService;
         private readonly IEmployeeStateService _employeeStateService;
+        private readonly IEmployeeDetailService _employeeDetailService;
         private readonly IShiftService _shiftService;
+        private readonly IShiftCalendarService _shiftCalendarService;
 
         public DashboardViewModelService(
             IAttendanceService attendanceService,
             IEmployeeService employeeService,
             IEmployeeStateService employeeStateService,
-            IShiftService shiftService)
+            IEmployeeDetailService employeeDetailService,
+            IShiftService shiftService,
+            IShiftCalendarService shiftCalendarService)
         {
             _attendanceService = attendanceService;
             _employeeService = employeeService;
             _employeeStateService = employeeStateService;
+            _employeeDetailService = employeeDetailService;
             _shiftService = shiftService;
+            _shiftCalendarService = shiftCalendarService;
         }
 
-        public async Task<DashboardViewModel> GetDashboardResult(string date)
+        public async Task<DashboardViewModel> GetDashboardResult(string date,int? shiftId)
         {
+            var viewModel = new DashboardViewModel();
+            var filter = new AttendanceFilter();
+
+            var currentShuftId = 1;
+
+            // get current shift
+            var shiftCalendar = await _shiftCalendarService.GetByDateAsync(DateTime.Today);
+
+            if (shiftCalendar != null)
+            {
+                currentShuftId = shiftCalendar.ShiftId;
+            }
+
+            filter.AttendanceDate = date;
+            filter.ShiftId = shiftId ?? currentShuftId;
+
             var totalEmployee = await _employeeService.CountTotalEmployeeAsync();
+            var employeeActive = await _attendanceService.GetActiveAsync(filter);
+            var employeeAbsent = await _attendanceService.GetAbsentAsync(filter);
 
-            var employeeActive = await _attendanceService.GetActiveAsync(date);
-            var employeeAbsent = await _attendanceService.GetAbsentAsync(date);
-
-            // todo get current shift by time start and time end
-            //var currentTime = DateTime.Now.TimeOfDay;
-            //var shifts = await _shiftService.GetByTimeAsync(currentTime);
             var shifts = await _shiftService.GetAllAsync();
+
+            viewModel.CurrentShift = shifts.FirstOrDefault(x => x.ShiftId == currentShuftId).ShiftName;
 
             var attendanceShifts = new List<AttendanceShift>();
 
@@ -58,6 +79,8 @@ namespace EMS.WebCore.Services
 
                 attendanceShifts.Add(attendanceShift);
             }
+
+            viewModel.AttendanceStatus = await GetAttendanceStatusAsync();
 
             // Summary attendance by percent
             var percentAbsent = Math.Round(((double)employeeAbsent.Count / (double)totalEmployee) * 100, 2);
@@ -115,26 +138,61 @@ namespace EMS.WebCore.Services
             var transportChartLabel = JsonConvert.SerializeObject(transportRoutes.Select(x => x.RouteName).ToList(), Formatting.None);
             var transportChartValue = JsonConvert.SerializeObject(transportRoutes.Select(x => x.Quantity).ToList(), Formatting.None);
 
-            var viewModel = new DashboardViewModel
-            {
-                CountTotalEmployee = totalEmployee,
-                CountActiveWork = employeeActive.Count,
-                CountAbsent = employeeAbsent.Count,
-                PercentAbsent = $"{percentAbsent}%",
-                Attendances = employeeAbsent,
-                AttendanceByShift = attendanceShifts,
-                DepartmentChartLabel = new HtmlString(departmentChartLabel),
-                DepartmentChartValue = new HtmlString(departmentChartValue),
-                SectiobChartLabel = new HtmlString(sectionChartLabel),
-                SectiobChartValue = new HtmlString(sectionChartValue),
-                AttendancePercentValue = new HtmlString(percentAttendanceValue),
-                AttendanceLevelLabel = new HtmlString(attendanceLevelLabel),
-                AttendanceLevelValue = new HtmlString(attendanceLevelValue),
-                TransportChartLabel = new HtmlString(transportChartLabel),
-                TransportChartValue = new HtmlString(transportChartValue),
-            };
+            viewModel.CountTotalEmployee = totalEmployee;
+            viewModel.CountActiveWork = employeeActive.Count;
+            viewModel.CountAbsent = employeeAbsent.Count;
+            viewModel.PercentAbsent = $"{percentAbsent}%";
+            viewModel.Attendances = employeeAbsent;
+            viewModel.AttendanceByShift = attendanceShifts;
+            viewModel.DepartmentChartLabel = new HtmlString(departmentChartLabel);
+            viewModel.DepartmentChartValue = new HtmlString(departmentChartValue);
+            viewModel.SectiobChartLabel = new HtmlString(sectionChartLabel);
+            viewModel.SectiobChartValue = new HtmlString(sectionChartValue);
+            viewModel.AttendancePercentValue = new HtmlString(percentAttendanceValue);
+            viewModel.AttendanceLevelLabel = new HtmlString(attendanceLevelLabel);
+            viewModel.AttendanceLevelValue = new HtmlString(attendanceLevelValue);
+            viewModel.TransportChartLabel = new HtmlString(transportChartLabel);
+            viewModel.TransportChartValue = new HtmlString(transportChartValue);
+            viewModel.Shifts = await _employeeDetailService.GetShifts();
 
             return viewModel;
+        }
+
+        public async Task<List<AttendanceStatus>> GetAttendanceStatusAsync()
+        {
+            var attendancStatuses = new List<AttendanceStatus>();
+
+            var employees = await _employeeStateService.GetAllAsync();
+
+            var resutls = employees
+                .GroupBy(g => new { g.JobFunction.Section.Department.DepartmentName, g.JobFunction.Section.SectionName,g.Shift.ShiftName })
+                .Select(x => new
+                {
+                    Department = x.Key.DepartmentName,
+                    Section = x.Key.SectionName,
+                    Shift = x.Key.ShiftName,
+                    TotalPerson = x.Select(e => e.EmployeeId).Count()
+                }).ToList();
+
+            foreach (var item in resutls)
+            {
+                //var employee active per department section shift
+
+                var attendancStatus = new AttendanceStatus
+                {
+                    Department = item.Department,
+                    Section = item.Section,
+                    ShiftName = item.Shift,
+                    TotalPerson = item.TotalPerson,
+                    ActivePerson = 99,
+                    AbsentPerson = 99,
+                };
+
+                attendancStatuses.Add(attendancStatus);
+            }
+
+
+            return attendancStatuses;
         }
     }
 }

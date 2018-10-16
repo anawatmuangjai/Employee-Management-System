@@ -15,10 +15,15 @@ namespace EMS.WebCore.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        [HttpPost]
+        public async Task<IActionResult> Index(string selectedDate,int? shiftId)
         {
-            var today = DateTime.Today.ToString("yyyy/MM/dd");
-            var viewModel = await _dashboardViewModelService.GetDashboardResult(today);
+            if (string.IsNullOrEmpty(selectedDate))
+            {
+                selectedDate = DateTime.Today.ToString("yyyy/MM/dd");
+            }
+
+            var viewModel = await _dashboardViewModelService.GetDashboardResult(selectedDate, shiftId);
             return View(viewModel);
         }
     }
