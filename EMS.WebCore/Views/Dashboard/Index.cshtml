@@ -14,19 +14,19 @@
             <div class="col-md-6">
                 <form asp-action="Index" method="post">
                     <div class="form-row">
-                        <div class="col">
+                        <div class="col-md-6">
                             <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">Date</span>
+                                <div class="input-group-prepend w-25">
+                                    <span class="input-group-text w-100">Date</span>
                                 </div>
                                 <input asp-for="SelectedDate" type="text" id="datepicker" autocomplete="off" class="form-control">
                             </div>
-                            
+
                         </div>
-                        <div class="col">
+                        <div class="col-md-6">
                             <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">Shift</span>
+                                <div class="input-group-prepend w-25">
+                                    <span class="input-group-text w-100">Shift</span>
                                 </div>
                                 <select asp-for="ShiftId" asp-items="@Model.Shifts" class="form-control"></select>
                                 <div class="input-group-append">
@@ -44,8 +44,8 @@
 <!-- card -->
 <section>
     <div class="container-fluid">
-        <div class="row pt-md-3 my-4">
-            <div class="col-xl-3 col-sm-6">
+        <div class="row pt-md-3">
+            <div class="col-xl-3 col-sm-6 mb-4">
                 <div class="card card-common">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
@@ -57,11 +57,11 @@
                     </div>
                     <div class="card-footer text-white bg-nav">
                         <i class="fa fa-refresh fa-spin mr-3"></i>
-                        <span>Total Employee All department</span>
+                        <span>Total Employee</span>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-sm-6">
+            <div class="col-xl-3 col-sm-6 mb-4">
                 <div class="card card-common">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
@@ -77,7 +77,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-sm-6">
+            <div class="col-xl-3 col-sm-6 mb-4">
                 <div class="card card-common">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
@@ -93,7 +93,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-sm-6">
+            <div class="col-xl-3 col-sm-6 mb-4">
                 <div class="card card-common">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
@@ -113,19 +113,19 @@
     </div>
 </section>
 
-<!-- attendance status-->
+<!-- attendance status day shift-->
 <section>
     <div class="container-fluid">
         <div class="row my-4">
             <div class="col">
                 <div class="card">
                     <div class="card-header bg-white text-header">
-                        <h5 class="my-0">Attendance Status</h5>
+                        <h5 class="my-0">Attendance Status (Day Shift)</h5>
                         <p class="my-0">Summary attendance result all department and section</p>
                     </div>
                     <div class="card-body scroll-box-dashboard p-0">
                         <div class="table-responsive">
-                            <table class="table table-hover table-bordered w-100 mb-0">
+                            <table class="table table-hover table-bordered table-sm w-100 mb-0">
                                 <thead class="thead-light">
                                     <tr>
                                         <th>Department</th>
@@ -137,9 +137,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (Model.AttendanceStatus.Any())
+                                    @if (Model.AttendanceStatusDay.Any())
                                     {
-                                        @foreach (var e in Model.AttendanceStatus)
+                                        @foreach (var e in Model.AttendanceStatusDay)
                                         {
                                             <tr>
                                                 <td>@e.Department</td>
@@ -153,6 +153,75 @@
                                     }
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- attendance status current shift-->
+<section>
+    <div class="container-fluid">
+        <div class="row my-4">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header bg-white text-header">
+                        <h5 class="my-0">Attendance Status (Current Shift)</h5>
+                        <p class="my-0">Summary attendance result all department and section</p>
+                    </div>
+                    <div class="card-body scroll-box-dashboard p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered table-sm w-100 mb-0">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Department</th>
+                                        <th>Section</th>
+                                        <th>Shift</th>
+                                        <th>Total</th>
+                                        <th>Active</th>
+                                        <th>Absent</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.AttendanceStatusCurrent.Any())
+                                    {
+                                        @foreach (var e in Model.AttendanceStatusCurrent)
+                                        {
+                                            <tr>
+                                                <td>@e.Department</td>
+                                                <td>@e.Section</td>
+                                                <td>@e.ShiftName</td>
+                                                <td>@e.TotalPerson</td>
+                                                <td>@e.ActivePerson</td>
+                                                <td>@e.AbsentPerson</td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- chart summary by job function -->
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    <div class="card-header bg-white text-header">
+                        <h5 class="my-0">Attendance By Job Function</h5>
+                        <p class="my-0">Summary attendance active by job function</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="attendanceByJobChart" style="width:100%; height:250px"></canvas>
                         </div>
                     </div>
                 </div>
@@ -196,7 +265,6 @@
 </section>
 
 <!-- chart pie -->
-
 <div class="row">
     <div class="col-md-4">
         <div class="card mb-3">
@@ -333,6 +401,59 @@
 
 
 @section scripts {
+
+    <script>
+        var ctx = document.getElementById("attendanceByJobChart");
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(Model.AttendanceByJobLabel),
+                datasets: [
+                    {
+                        label: 'Active',
+                        data: @Html.Raw(Model.AttendanceByJobActive),
+                        backgroundColor: "#234359",
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Absnet',
+                        data: @Html.Raw(Model.AttendanceByJobAbsent),
+                        backgroundColor: "#f44168",
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                layout: {
+                    padding: {
+                        left: 0,
+                        right: 0,
+                        top: 30,
+                        bottom: 0
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            fontSize: 8
+                        },
+                        stacked: true
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            autoSkip: false,
+                            fontSize: 8
+                        },
+                        stacked: true
+                    }]
+                }
+            }
+        });
+    </script>
 
     <script>
         var ctx = document.getElementById("attendanceLevelChart");

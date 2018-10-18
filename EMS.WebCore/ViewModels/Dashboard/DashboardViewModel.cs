@@ -20,10 +20,15 @@ namespace EMS.WebCore.ViewModels.Dashboard
         public string CurrentShift { get; set; }
         public IEnumerable<AttendanceModel> Attendances { get; set; }
         public IEnumerable<AttendanceShift> AttendanceByShift { get; set; }
-        public IEnumerable<AttendanceStatus> AttendanceStatus { get; set; }
+        public IEnumerable<AttendanceStatus> AttendanceStatusDay { get; set; }
+        public IEnumerable<AttendanceStatus> AttendanceStatusCurrent { get; set; }
         public IEnumerable<SelectListItem> Shifts { get; set; }
-       
+
         public HtmlString AttendancePercentValue { get; set; }
+
+        public HtmlString AttendanceByJobLabel { get; set; }
+        public HtmlString AttendanceByJobActive { get; set; }
+        public HtmlString AttendanceByJobAbsent { get; set; }
 
         public HtmlString AttendanceLevelLabel { get; set; }
         public HtmlString AttendanceLevelValue { get; set; }

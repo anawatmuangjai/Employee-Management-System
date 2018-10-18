@@ -1,5 +1,6 @@
 ﻿using EMS.ApplicationCore.Helper;
 using EMS.ApplicationCore.Interfaces.Services;
+using EMS.ApplicationCore.Models;
 using EMS.WebCore.Interfaces;
 using EMS.WebCore.Models.Dashboard;
 using EMS.WebCore.ViewModels.Dashboard;
@@ -37,7 +38,7 @@ namespace EMS.WebCore.Services
             _shiftCalendarService = shiftCalendarService;
         }
 
-        public async Task<DashboardViewModel> GetDashboardResult(string date,int? shiftId)
+        public async Task<DashboardViewModel> GetDashboardResult(string date, int? shiftId)
         {
             var viewModel = new DashboardViewModel();
             var filter = new AttendanceFilter();
@@ -53,41 +54,39 @@ namespace EMS.WebCore.Services
             }
 
             filter.AttendanceDate = date;
-            filter.ShiftId = shiftId ?? currentShuftId;
+            //filter.ShiftId = shiftId ?? currentShuftId;
 
             var totalEmployee = await _employeeService.CountTotalEmployeeAsync();
+
             var employeeActive = await _attendanceService.GetActiveAsync(filter);
             var employeeAbsent = await _attendanceService.GetAbsentAsync(filter);
+
+            var employeeState = await _employeeStateService.GetAllAsync();
+
+            var totalWork = employeeState.Where(x => x.ShiftId == 1 || x.ShiftId == currentShuftId);
+            var totalAbsent = employeeAbsent.Where(x => x.ShiftId == 1 || x.ShiftId == currentShuftId);
+
+            viewModel.AttendanceStatusDay = GetAttendanceStatusAsync(employeeState, employeeActive, 1);
+            viewModel.AttendanceStatusCurrent = GetAttendanceStatusAsync(employeeState, employeeActive, currentShuftId);
 
             var shifts = await _shiftService.GetAllAsync();
 
             viewModel.CurrentShift = shifts.FirstOrDefault(x => x.ShiftId == currentShuftId).ShiftName;
 
-            var attendanceShifts = new List<AttendanceShift>();
-
-            foreach (var s in shifts)
-            {
-                var employeePerShift = await _employeeStateService.CountShiftAsync(s.ShiftId);
-                var employeeActivePerShift = employeeActive.Count(x => x.ShiftName == s.ShiftName);
-
-                var attendanceShift = new AttendanceShift
-                {
-                    ShiftName = s.ShiftName,
-                    TotalEmployee = employeePerShift,
-                    ActiveEmployee = employeeActivePerShift
-                };
-
-                attendanceShifts.Add(attendanceShift);
-            }
-
-            viewModel.AttendanceStatus = await GetAttendanceStatusAsync();
+            var attendanceShifts = await SumAttendanceByShift(employeeActive, shifts);
 
             // Summary attendance by percent
-            var percentAbsent = Math.Round(((double)employeeAbsent.Count / (double)totalEmployee) * 100, 2);
+            var percentAbsent = Math.Round(((double)totalAbsent.Count() / (double)totalWork.Count()) * 100, 2);
             var percentActive = 100 - percentAbsent;
 
             var percentAttendance = new string[] { $"{percentActive}", $"{percentAbsent}" };
             var percentAttendanceValue = JsonConvert.SerializeObject(percentAttendance, Formatting.None);
+
+            // Summary attendance by job function
+            var attendanceByJob = SummamryByJobFunction(employeeState, employeeActive, currentShuftId);
+            var attendanceByJobLabel = JsonConvert.SerializeObject(attendanceByJob.Select(x => x.FunctionName).ToList(), Formatting.None);
+            var attendanceByJobActive = JsonConvert.SerializeObject(attendanceByJob.Select(x => x.ActivePerson).ToList(), Formatting.None);
+            var attendanceByJobAbsent = JsonConvert.SerializeObject(attendanceByJob.Select(x => x.AbsentPerson).ToList(), Formatting.None);
 
             // Summary attendance by level
             var attendanceByLevel = employeeActive
@@ -138,17 +137,21 @@ namespace EMS.WebCore.Services
             var transportChartLabel = JsonConvert.SerializeObject(transportRoutes.Select(x => x.RouteName).ToList(), Formatting.None);
             var transportChartValue = JsonConvert.SerializeObject(transportRoutes.Select(x => x.Quantity).ToList(), Formatting.None);
 
+
             viewModel.CountTotalEmployee = totalEmployee;
             viewModel.CountActiveWork = employeeActive.Count;
-            viewModel.CountAbsent = employeeAbsent.Count;
+            viewModel.CountAbsent = totalAbsent.Count();
             viewModel.PercentAbsent = $"{percentAbsent}%";
-            viewModel.Attendances = employeeAbsent;
+            viewModel.Attendances = totalAbsent;
             viewModel.AttendanceByShift = attendanceShifts;
             viewModel.DepartmentChartLabel = new HtmlString(departmentChartLabel);
             viewModel.DepartmentChartValue = new HtmlString(departmentChartValue);
             viewModel.SectiobChartLabel = new HtmlString(sectionChartLabel);
             viewModel.SectiobChartValue = new HtmlString(sectionChartValue);
             viewModel.AttendancePercentValue = new HtmlString(percentAttendanceValue);
+            viewModel.AttendanceByJobLabel = new HtmlString(attendanceByJobLabel);
+            viewModel.AttendanceByJobActive = new HtmlString(attendanceByJobActive);
+            viewModel.AttendanceByJobAbsent = new HtmlString(attendanceByJobAbsent);
             viewModel.AttendanceLevelLabel = new HtmlString(attendanceLevelLabel);
             viewModel.AttendanceLevelValue = new HtmlString(attendanceLevelValue);
             viewModel.TransportChartLabel = new HtmlString(transportChartLabel);
@@ -158,14 +161,74 @@ namespace EMS.WebCore.Services
             return viewModel;
         }
 
-        public async Task<List<AttendanceStatus>> GetAttendanceStatusAsync()
+        private async Task<List<AttendanceShift>> SumAttendanceByShift(List<AttendanceModel> employeeActive, List<ShiftModel> shifts)
+        {
+            var attendanceShifts = new List<AttendanceShift>();
+
+            foreach (var s in shifts)
+            {
+                var employeePerShift = await _employeeStateService.CountShiftAsync(s.ShiftId);
+                var employeeActivePerShift = employeeActive.Count(x => x.ShiftName == s.ShiftName);
+
+                var attendanceShift = new AttendanceShift
+                {
+                    ShiftName = s.ShiftName,
+                    TotalEmployee = employeePerShift,
+                    ActiveEmployee = employeeActivePerShift
+                };
+
+                attendanceShifts.Add(attendanceShift);
+            }
+
+            return attendanceShifts;
+        }
+
+        private List<AttendanceJob> SummamryByJobFunction(
+            List<EmployeeStateModel> employeeStates,
+            List<AttendanceModel> employeeActives,
+            int shiftId)
+        {
+            var attendanceJobs = new List<AttendanceJob>();
+
+            var resutls = employeeStates
+                .Where(x => x.ShiftId == 1 || x.ShiftId == shiftId)
+                .GroupBy(g => new { g.JobFunction.FunctionName })
+                .Select(x => new
+                {
+                    FunctionName = x.Key.FunctionName,
+                    TotalPerson = x.Select(e => e.EmployeeId).Count()
+                }).ToList();
+
+
+            foreach (var item in resutls)
+            {
+                var activePerson = employeeActives.Count(x => x.FunctionName == item.FunctionName);
+                var absentPrtson = item.TotalPerson - activePerson;
+
+                var attendanceJob = new AttendanceJob
+                {
+                    FunctionName = item.FunctionName,
+                    TotalPerson = item.TotalPerson,
+                    ActivePerson = activePerson,
+                    AbsentPerson = absentPrtson
+                };
+
+                attendanceJobs.Add(attendanceJob);
+            }
+
+            return attendanceJobs;
+        }
+
+        public List<AttendanceStatus> GetAttendanceStatusAsync(
+            List<EmployeeStateModel> employeeStates,
+            List<AttendanceModel> employeeActives,
+            int shiftId)
         {
             var attendancStatuses = new List<AttendanceStatus>();
 
-            var employees = await _employeeStateService.GetAllAsync();
-
-            var resutls = employees
-                .GroupBy(g => new { g.JobFunction.Section.Department.DepartmentName, g.JobFunction.Section.SectionName,g.Shift.ShiftName })
+            var resutls = employeeStates
+                .Where(x => x.ShiftId == shiftId)
+                .GroupBy(g => new { g.JobFunction.Section.Department.DepartmentName, g.JobFunction.Section.SectionName, g.Shift.ShiftName })
                 .Select(x => new
                 {
                     Department = x.Key.DepartmentName,
@@ -176,7 +239,8 @@ namespace EMS.WebCore.Services
 
             foreach (var item in resutls)
             {
-                //var employee active per department section shift
+                var activePerson = employeeActives.Count(x => x.DepartmentName == item.Department && x.SectionName == item.Section && x.ShiftName == item.Shift);
+                var absentPrtson = item.TotalPerson - activePerson;
 
                 var attendancStatus = new AttendanceStatus
                 {
@@ -184,15 +248,16 @@ namespace EMS.WebCore.Services
                     Section = item.Section,
                     ShiftName = item.Shift,
                     TotalPerson = item.TotalPerson,
-                    ActivePerson = 99,
-                    AbsentPerson = 99,
+                    ActivePerson = activePerson,
+                    AbsentPerson = absentPrtson,
                 };
 
                 attendancStatuses.Add(attendancStatus);
             }
 
+            var results = attendancStatuses.OrderBy(x => x.Department).ThenBy(x => x.ShiftName).ToList();
 
-            return attendancStatuses;
+            return results;
         }
     }
 }
