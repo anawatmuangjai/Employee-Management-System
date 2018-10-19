@@ -65,6 +65,7 @@
                             <ul class="collapse collapseable" id="collapse-attendance">
                                 <li><a asp-area="" asp-controller="Attendance" asp-action="ActiveWork">Active Work</a></li>
                                 <li><a asp-area="" asp-controller="Attendance" asp-action="Absent">Absent List</a></li>
+                                <li><a asp-area="" asp-controller="Attendance" asp-action="ActiveWork">Analysis</a></li>
                             </ul>
                         </li>
                         <!-- employee -->
@@ -74,8 +75,9 @@
                                 <span>Employee</span>
                             </a>
                             <ul class="collapse collapseable" id="collapse-employee">
-                                <li><a asp-area="" asp-controller="Employee" asp-action="Register">Register</a></li>
                                 <li><a asp-area="" asp-controller="Employee" asp-action="EmployeeList">Employee List</a></li>
+                                <li><a asp-area="" asp-controller="Employee" asp-action="Register">Register</a></li>
+                                <li><a asp-area="" asp-controller="Employee" asp-action="Register">Import Data</a></li>
                             </ul>
                         </li>
                         <!-- training record-->
@@ -98,6 +100,17 @@
                             <ul class="collapse collapseable" id="collapse-allocation">
                                 <li><a asp-area="" asp-controller="EmployeeSkill" asp-action="Index">Manage Skill</a></li>
                                 <li><a asp-area="" asp-controller="SkillMapping" asp-action="Index">Skill Mapping</a></li>
+                            </ul>
+                        </li>
+                        <!-- Request -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#collapse-request" data-toggle="collapse" aria-controls="collapse-request">
+                                <span><i class="fa fa-map text-white fa-lg mr-3"></i></span>
+                                Request
+                            </a>
+                            <ul class="collapse collapseable" id="collapse-request">
+                                <li><a asp-area="" asp-controller="EmployeeSkill" asp-action="Index">Request OT</a></li>
+                                <li><a asp-area="" asp-controller="SkillMapping" asp-action="Index">Change Transport</a></li>
                             </ul>
                         </li>
 
