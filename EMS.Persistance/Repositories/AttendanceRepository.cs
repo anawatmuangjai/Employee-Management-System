@@ -37,7 +37,7 @@ namespace EMS.Persistance.Repositories
                          join department in _context.MasterDepartment on section.DepartmentId equals department.DepartmentId
                          join attendance in _context.AttendanceC on employee.EmployeeId equals attendance.EmployeeId into aa
                          from attendance in aa.DefaultIfEmpty()
-                         where attendance.WorkDate == filter.AttendanceDate && attendance.PassCode == "I"
+                         where attendance.WorkDate == filter.AttendanceDate && employee.AvailableFlag == true
                          select new { employee, employeeState, level, shift, bus, route, position, job, section, department, attendance })
                          .AsQueryable();
 
@@ -100,7 +100,7 @@ namespace EMS.Persistance.Repositories
             var employeeActivQuery = (from employee in _context.Employee
                                       join attendance in _context.AttendanceC
                                       on employee.EmployeeId equals attendance.EmployeeId
-                                      where attendance.WorkDate == filter.AttendanceDate && attendance.PassCode == "I"
+                                      where attendance.WorkDate == filter.AttendanceDate && employee.AvailableFlag == true
                                       select employee.EmployeeId);
 
             var employeeListQuery = (from employee in _context.Employee
