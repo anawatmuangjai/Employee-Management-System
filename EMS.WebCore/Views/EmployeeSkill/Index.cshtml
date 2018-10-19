@@ -30,68 +30,67 @@
     </div>
 </div>
 
-<div class="container-fluid">
-    <div class="row my-3">
-        <div class="col">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-2 ">
-                            <div class="profileImage mx-auto my-auto">
-                                <img src="~/images/female.png" class="img-thumbnail d-block" />
+@if (Model.Employee != null)
+{
+    <div class="container-fluid">
+        <div class="row my-3">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3 ">
+                                <div class="profileImage mx-auto my-auto">
+                                    <img src="~/images/female.png" class="img-thumbnail d-block" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-5">
-                            <h6 class="card-title">Mr. Firstname Lastname</h6>
-                            <h6 class="card-title">Mr. Firstname Lastname</h6>
-                            <h6 class="card-title">Mr. Firstname Lastname</h6>
-                            <h6 class="card-title">Mr. Firstname Lastname</h6>
-                        </div>
-                        <div class="col-5">
-                            <h6 class="card-title">Mr. Firstname Lastname</h6>
-                            <h6 class="card-title">Mr. Firstname Lastname</h6>
-                            <h6 class="card-title">Mr. Firstname Lastname</h6>
-                            <h6 class="card-title">Mr. Firstname Lastname</h6>
+                            <div class="col-md-9">
+                                <p>Name: @Model.Employee.FirstName @Model.Employee.LastName</p>
+                                <p>Department: @Model.Employee.EmployeeState.JobFunction.Section.Department.DepartmentName</p>
+                                <p>Section: @Model.Employee.EmployeeState.JobFunction.Section.SectionName</p>
+                                <p>Job Function: @Model.Employee.EmployeeState.JobFunction.FunctionName</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="container-fluid">
-    <div class="row my-3">
-        <div class="col">
-            <div class="table-responsive">
-                <table class="table table-hover table-bordered w-100 mb-0">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Employee ID</th>
-                            <th>Skill Group</th>
-                            <th>Skill Type</th>
-                            <th>Skill Name</th>
-                            <th>Skill Level</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Model.EmployeeSkills != null)
-                        {
-                            @foreach (var e in Model.EmployeeSkills)
+    <div class="container-fluid">
+        <div class="row my-3">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered w-100 mb-0">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Employee ID</th>
+                                <th>Skill Group</th>
+                                <th>Skill Type</th>
+                                <th>Skill Name</th>
+                                <th>Skill Level</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.EmployeeSkills != null)
                             {
-                                <tr>
-                                    <td>@e.EmployeeId</td>
-                                    <td>@e.Skill.SkillGroup.SkillGroupName</td>
-                                    <td>@e.Skill.SkillType.SkillTypeName</td>
-                                    <td>@e.Skill.SkillName</td>
-                                    <td>@e.SkillLevel</td>
-                                </tr>
+                                @foreach (var e in Model.EmployeeSkills)
+                                {
+                                    <tr>
+                                        <td>@e.EmployeeId</td>
+                                        <td>@e.Skill.SkillGroup.SkillGroupName</td>
+                                        <td>@e.Skill.SkillType.SkillTypeName</td>
+                                        <td>@e.Skill.SkillName</td>
+                                        <td>@e.SkillLevel</td>
+                                    </tr>
+                                }
                             }
-                        }
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
+                <a asp-controller="EmployeeSkill" asp-action="Create" class="btn btn-sm btn-outline-secondary my-3">Add Skill</a>
             </div>
-            <a asp-controller="EmployeeSkill" asp-action="Create" class="btn btn-sm btn-outline-secondary my-3" >Add Skill</a>
         </div>
     </div>
-</div>
+
+}
+

@@ -1,4 +1,5 @@
-﻿
+﻿@model SkillMappingViewModel
+
 @{
     ViewData["Title"] = "Index";
 }
@@ -11,8 +12,6 @@
     </div>
 </div>
 
-
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6">
@@ -20,12 +19,31 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-4">
-                            <img src="~/images/female.png" class="img-thumbnail mx-auto my-auto d-block" />
+                            @if (String.IsNullOrEmpty(Model.FirstProfileImage))
+                            {
+                                <div class="profileImage mx-auto my-auto">
+                                    <img src="~/images/female.png" class="img-thumbnail d-block" />
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="profileImage mx-auto my-auto">
+                                    <img src="@Model.FirstProfileImage" class="img-thumbnail d-block" />
+                                </div>
+                            }
                         </div>
-                        <div class="col-8">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <div class="col-4">
+                            <p>Employee Name:</p>
+                            <p>EMployee ID:</p>
+                            <p>Job Function</p>
+                        </div>
+                        <div class="col-4">
+                            @if (Model.FirstEmployee != null)
+                            {
+                                <p>@Model.FirstEmployee.FirstName</p>
+                                <p>@Model.FirstEmployee.EmployeeId</p>
+                                <p>@Model.FirstEmployee.EmployeeState.JobFunction.FunctionName</p>
+                            }
                         </div>
                     </div>
                 </div>
@@ -36,12 +54,31 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-4">
-                            <img src="~/images/female.png" class="img-thumbnail mx-auto my-auto d-block" />
+                            @if (String.IsNullOrEmpty(Model.SecondProfileImage))
+                            {
+                                <div class="profileImage mx-auto my-auto">
+                                    <img src="~/images/female.png" class="img-thumbnail d-block" />
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="profileImage mx-auto my-auto">
+                                    <img src="@Model.SecondProfileImage" class="img-thumbnail d-block" />
+                                </div>
+                            }
                         </div>
-                        <div class="col-8">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <div class="col-4">
+                            <p>Employee Name:</p>
+                            <p>EMployee ID:</p>
+                            <p>Job Function</p>
+                        </div>
+                        <div class="col-4">
+                            @if (Model.SecondEmployee != null)
+                            {
+                                <p>@Model.SecondEmployee.FirstName</p>
+                                <p>@Model.SecondEmployee.EmployeeId</p>
+                                <p>@Model.SecondEmployee.EmployeeState.JobFunction.FunctionName</p>
+                            }
                         </div>
                     </div>
                 </div>
@@ -51,14 +88,14 @@
 </div>
 
 <div class="container-fluid">
-    <form asp-controller="EmployeeSkill" asp-action="Index" method="post">
+    <form asp-controller="SkillMapping" asp-action="Index" method="post">
         <div class="form-row">
             <div class="col-md-6 mb-4">
                 <div class="input-group">
                     <div class="input-group-prepend w-25">
                         <label class="input-group-text">Employee ID</label>
                     </div>
-                    <input type="text" name="employeeId" class="form-control" placeholder="Please enter employee ID">
+                    <input type="text" name="firstEmployeeId" class="form-control" placeholder="Please enter employee ID">
                 </div>
             </div>
             <div class="col-md-6 mb-4">
@@ -66,7 +103,7 @@
                     <div class="input-group-prepend w-25">
                         <label class="input-group-text">Employee ID</label>
                     </div>
-                    <input type="text" name="employeeId" class="form-control" placeholder="Please enter employee ID">
+                    <input type="text" name="secondEmployeeId" class="form-control" placeholder="Please enter employee ID">
                 </div>
             </div>
             <div class="col-md-12">
