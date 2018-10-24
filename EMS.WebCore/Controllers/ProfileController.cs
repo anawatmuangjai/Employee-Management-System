@@ -51,12 +51,20 @@ namespace EMS.WebCore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ProfileEditViewModel viewModel)
         {
-            if (!ModelState.IsValid)
-                return View(viewModel);
+            if (ModelState.IsValid)
+            {
+                await _profileViewModelService.UpdateProfile(viewModel);
+                return RedirectToAction(nameof(Index), new { employeeId = viewModel.EmployeeId });
+            }
 
-            await _profileViewModelService.UpdateProfile(viewModel);
-            return RedirectToAction(nameof(Index),new { employeeId = viewModel.EmployeeId });
+            return View(viewModel);
         }
+
+        //[HttpGet]
+        //public async Task<IActionResult> EditProfile(string employeeId)
+        //{
+        //    return View();
+        //}
 
         public async Task<JsonResult> GetSectionByDepartmentId(int departmentId)
         {

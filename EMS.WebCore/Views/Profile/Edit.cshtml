@@ -44,7 +44,13 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="EmployeeType">Employee Type</label>
-                        <input asp-for="EmployeeType" type="text" class="form-control">
+                        <select asp-for="EmployeeType" class="custom-select d-block w-100" required>
+                            <option value="">Choose...</option>
+                            <option value="EM">Employee</option>
+                            <option value="SC">Sub Contract</option>
+                            <option value="SD">Student Internship</option>
+                            <option value="SP">Special Person</option>
+                        </select>
                         <span asp-validation-for="EmployeeType" class="text-danger"></span>
                     </div>
                     <div class="form-group">

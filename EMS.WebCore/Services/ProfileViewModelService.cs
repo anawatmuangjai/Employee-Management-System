@@ -253,23 +253,34 @@ namespace EMS.WebCore.Services
                 await _employeeStateService.AddAsync(employeeState);
 
             // add or update address
-            var address = new EmployeeAddressModel
+            if (!string.IsNullOrEmpty(model.HomeAddress)
+                && !string.IsNullOrEmpty(model.HomeAddress)
+                && !string.IsNullOrEmpty(model.City)
+                && !string.IsNullOrEmpty(model.Country)
+                && !string.IsNullOrEmpty(model.PostalCode)
+                && !string.IsNullOrEmpty(model.PhoneNumber)
+                && !string.IsNullOrEmpty(model.EmailAddress))
             {
-                EmployeeAddressId = model.EmployeeAddressId,
-                EmployeeId = model.EmployeeId,
-                HomeAddress = model.HomeAddress,
-                City = model.City,
-                Country = model.Country,
-                PostalCode = model.PostalCode,
-                PhoneNumber = model.PhoneNumber,
-                EmailAddress = model.EmailAddress,
-                ChangedDate = DateTime.Now
-            };
 
-            if (address.EmployeeAddressId > 0)
-                await _employeeAddressService.UpdateAsync(address);
-            else
-                await _employeeAddressService.AddAsync(address);
+                var address = new EmployeeAddressModel
+                {
+                    EmployeeAddressId = model.EmployeeAddressId,
+                    EmployeeId = model.EmployeeId,
+                    HomeAddress = model.HomeAddress,
+                    City = model.City,
+                    Country = model.Country,
+                    PostalCode = model.PostalCode,
+                    PhoneNumber = model.PhoneNumber,
+                    EmailAddress = model.EmailAddress,
+                    ChangedDate = DateTime.Now
+                };
+
+                if (address.EmployeeAddressId > 0)
+                    await _employeeAddressService.UpdateAsync(address);
+                else
+                    await _employeeAddressService.AddAsync(address);
+            }
+
 
         }
 

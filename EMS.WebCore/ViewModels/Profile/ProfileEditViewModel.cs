@@ -58,20 +58,28 @@ namespace EMS.WebCore.ViewModels.Profile
         [DataType(DataType.Date)]
         public DateTime HireDate { get; set; }
 
+        [Required]
         public int DepartmentId { get; set; }
 
+        [Required]
         public int SectionId { get; set; }
 
+        [Required]
         public int JobFunctionId { get; set; }
 
+        [Required]
         public int JobPositionId { get; set; }
 
+        [Required]
         public int ShiftId { get; set; }
 
+        [Required]
         public int LevelId { get; set; }
 
+        [Required]
         public int RouteId { get; set; }
 
+        [Required]
         public int BusStationId { get; set; }
 
         [DataType(DataType.Date)]
