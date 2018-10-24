@@ -1,0 +1,106 @@
+﻿@model EmployeeInfoViewModel
+
+@{
+    ViewData["Title"] = "EditEmployeeInfo";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 mt-5">
+            <div class="jumbotron">
+                <h1 class="display-4">Edit Organize & Job Information</h1>
+                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                <hr class="my-4">
+                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <form asp-action="EditEmployeeInfo" enctype="multipart/form-data" method="post" class="form-horizontal" role="form">
+                <input asp-for="EmployeeId" type="hidden" />
+                <input asp-for="BusStationId" type="hidden" />
+                <div class="form-group">
+                    <label asp-for="DepartmentId">Department</label>
+                    <select asp-for="DepartmentId" asp-items="@Model.Departments" class="form-control"></select>
+                    <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Section</label>
+                    <select class="form-control" id="SectionId" name="SectionId" asp-for="SectionId"
+                            asp-items="@(new SelectList(string.Empty, "Value","Text"))"></select>
+                    <span asp-validation-for="SectionId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Job Function</label>
+                    <select class="form-control" id="JobFunctionId" name="JobFunctionId" asp-for="JobFunctionId"
+                            asp-items="@(new SelectList(string.Empty, "Value","Text"))"></select>
+                    <span asp-validation-for="SectionId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="JobPositionId">Job Position</label>
+                    <select asp-for="JobPositionId" asp-items="@Model.JobPosition" class="form-control"></select>
+                    <span asp-validation-for="JobPositionId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="LevelId">Level</label>
+                    <select asp-for="LevelId" asp-items="@Model.JobLevels" class="form-control"></select>
+                    <span asp-validation-for="LevelId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ShiftId">Work Shift</label>
+                    <select asp-for="ShiftId" asp-items="@Model.Shifts" class="form-control"></select>
+                    <span asp-validation-for="ShiftId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="JoinDate">Join Date</label>
+                    <input asp-for="JoinDate" type="date" class="form-control">
+                    <span asp-validation-for="JoinDate" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <a asp-controller="Profile" asp-action="Index" asp-route-employeeId="@Model.EmployeeId" class="btn btn-secondary">Cancel</a>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $('#DepartmentId').change(function () {
+                    var url = '@Url.Content("~/")' + "Profile/GetSectionByDepartmentId";
+                    $.getJSON(url, { departmentId: $("#DepartmentId").val() }, function (data) {
+                        var items = '';
+                        $("#SectionId").empty();
+                        $.each(data, function (i, section) {
+                            items += "<option value='" + section.value + "'>" + section.text + "</option>";
+                        });
+                        $('#SectionId').html(items);
+                    });
+                });
+
+                $('#SectionId').change(function () {
+                    var url = '@Url.Content("~/")' + "Profile/GetJobFunctionBySectionId";
+                    $.getJSON(url, { sectionId: $("#SectionId").val() }, function (data) {
+                        var items = '';
+                        $("#JobFunctionId").empty();
+                        $.each(data, function (i, jobFunction) {
+                            items += "<option value='" + jobFunction.value + "'>" + jobFunction.text + "</option>";
+                        });
+                        $('#JobFunctionId').html(items);
+                    });
+                });
+            });
+    </script>
+}

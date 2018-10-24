@@ -24,7 +24,8 @@
             <div class="card-body text-center">
                 <h5 class="card-title">@Model.Title. @Model.FirstName @Model.LastName</h5>
                 <h6 class="card-text">@Model.TitleThai @Model.FirstNameThai @Model.LastNameThai</h6>
-                <a class="btn btn-primary my-2" asp-controller="Profile" asp-action="Edit" asp-route-employeeId="@Model.EmployeeId">Edit Profile</a>
+                <a class="btn btn-primary my-2" asp-controller="Profile" asp-action="EditProfile" asp-route-employeeId="@Model.EmployeeId">Edit Profile</a>
+                @*<a class="btn btn-primary my-2" asp-controller="Profile" asp-action="Edit" asp-route-employeeId="@Model.EmployeeId">Edit Profile</a>*@
             </div>
         </div>
         <!-- contact -->
@@ -35,6 +36,16 @@
                 <p class="card-text">@Model.PhoneNumber</p>
                 <h5 class="card-title">Email</h5>
                 <p class="card-text">@Model.EmailAddress</p>
+            </div>
+        </div>
+        <!-- Transport -->
+        <div class="card mb-4">
+            <h5 class="card-header"><i class="fa fa-bus text-primary mr-3"></i>Transportation</h5>
+            <div class="card-body">
+                <h5 class="card-title">Route</h5>
+                <p class="card-text">@Model.RouteName</p>
+                <h5 class="card-title">Bus Station</h5>
+                <p class="card-text">@Model.BusStationName</p>
             </div>
         </div>
         <!-- skill -->
@@ -64,43 +75,56 @@
             <!-- profile -->
             <div class="tab-pane active" id="profile" aria-expanded="true">
                 <div class="row">
+                    <!-- job information -->
+                    <div class="col-md-12 mb-4">
+                        <div class="card">
+                            <h5 class="card-header"><i class="fa fa-user text-primary mr-3"></i>Organize & Job Information</h5>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h6 class="card-title">Department</h6>
+                                        <p class="card-text">@Model.DepartmentName</p>
+                                        <h6 class="card-title">Job Position</h6>
+                                        <p class="card-text">@Model.PositionName</p>
+                                        <h6 class="card-title">Level</h6>
+                                        <p class="card-text">@Model.LevelCode</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6 class="card-title">Section</h6>
+                                        <p class="card-text">@Model.SectionName</p>
+                                        <h6 class="card-title">Job Function</h6>
+                                        <p class="card-text">@Model.FunctionName</p>
+                                        <h6 class="card-title">Work Shift</h6>
+                                        <p class="card-text">@Model.ShiftName</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- employee information -->
                     <div class="col-md-12 mb-4">
                         <div class="card">
-                            <h5 class="card-header">Employee Information</h5>
+                            <h5 class="card-header"><i class="fa fa-user text-primary mr-3"></i>Employee Information</h5>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <h6 class="card-title">Employee ID</h6>
                                         <p class="card-text">@Model.EmployeeId</p>
-                                        <h6 class="card-title">Global ID</h6>
-                                        <p class="card-text">@Model.GlobalId</p>
                                         <h6 class="card-title">Card ID</h6>
                                         <p class="card-text">@Model.CardId</p>
+                                        <h6 class="card-title">Hire Type</h6>
+                                        <h6 class="card-title">Duration of Employment</h6>
+                                        <p class="card-text">@Model.EmploymentDuration Year</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6 class="card-title">Global ID</h6>
+                                        <p class="card-text">@Model.GlobalId</p>
+                                        <p class="card-text">@Model.HireType</p>
                                         <h6 class="card-title">Employye Type</h6>
                                         <p class="card-text">@Model.EmployeeType</p>
                                         <h6 class="card-title">Hire Date</h6>
                                         <p class="card-text">@Model.HireDate.ToString("yyyy-MM-dd")</p>
-                                        <h6 class="card-title">Hire Type</h6>
-                                        <p class="card-text">@Model.HireType</p>
-                                        <h6 class="card-title">Transport Route</h6>
-                                        <p class="card-text">@Model.RouteName</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Department</h6>
-                                        <p class="card-text">@Model.DepartmentName</p>
-                                        <h6 class="card-title">Section</h6>
-                                        <p class="card-text">@Model.SectionName</p>
-                                        <h6 class="card-title">Position</h6>
-                                        <p class="card-text">@Model.PositionName</p>
-                                        <h6 class="card-title">Level</h6>
-                                        <p class="card-text">@Model.LevelCode</p>
-                                        <h6 class="card-title">Work Shift</h6>
-                                        <p class="card-text">@Model.ShiftName</p>
-                                        <h6 class="card-title">Duration of Employment</h6>
-                                        <p class="card-text">@Model.EmploymentDuration Year</p>
-                                        <h6 class="card-title">Bus Station (Point)</h6>
-                                        <p class="card-text">@Model.BusStationName</p>
+
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +133,7 @@
                     <!-- personal information -->
                     <div class="col-md-12 mb-4">
                         <div class="card">
-                            <h5 class="card-header">Personal Information</h5>
+                            <h5 class="card-header"><i class="fa fa-user-circle text-primary mr-3"></i>Personal Information</h5>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -144,7 +168,7 @@
                     <!-- address information -->
                     <div class="col-md-12 mb-3">
                         <div class="card">
-                            <h5 class="card-header">Address Information</h5>
+                            <h5 class="card-header"><i class="fa fa-address-card text-primary mr-3"></i>Address Information</h5>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">

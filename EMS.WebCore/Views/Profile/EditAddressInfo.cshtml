@@ -1,0 +1,59 @@
+﻿@model AddressInfoViewModel
+
+@{
+    ViewData["Title"] = "EditAddressInfo";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 mt-5">
+            <div class="jumbotron">
+                <h1 class="display-4">Edit Employee Address</h1>
+                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                <hr class="my-4">
+                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <form asp-action="EditAddressInfo" enctype="multipart/form-data" method="post" class="form-horizontal" role="form">
+                <input asp-for="EmployeeId" type="hidden" />
+                <input asp-for="EmployeeAddressId" type="hidden" />
+                <div class="form-group">
+                    <label asp-for="HomeAddress">Home Address</label>
+                    <input asp-for="HomeAddress" type="text" class="form-control">
+                    <span asp-validation-for="HomeAddress" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="City">City</label>
+                    <input asp-for="City" type="text" class="form-control">
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Country">Country</label>
+                    <input asp-for="Country" type="text" class="form-control">
+                    <span asp-validation-for="Country" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PostalCode">Postal Code</label>
+                    <input asp-for="PostalCode" type="text" class="form-control">
+                    <span asp-validation-for="PostalCode" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PhoneNumber">Phone Number</label>
+                    <input asp-for="PhoneNumber" type="text" class="form-control">
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmailAddress">Email Address</label>
+                    <input asp-for="EmailAddress" type="text" class="form-control">
+                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <a asp-controller="Profile" asp-action="Index" asp-route-employeeId="@Model.EmployeeId" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>

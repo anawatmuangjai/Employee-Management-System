@@ -1,27 +1,111 @@
-﻿
+﻿@model ProfileEditViewModel
+
 @{
     ViewData["Title"] = "EditProfile";
 }
 
-<h2>EditProfile</h2>
-
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-6">
-            <div class="card text-white bg-dark mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Personal Information</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card text-white bg-dark mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Employee Information</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
+        <div class="col-md-12 mt-5">
+            <div class="jumbotron">
+                <h1 class="display-4">Edit Employee Profile</h1>
+                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                <hr class="my-4">
+                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
             </div>
         </div>
     </div>
+
+    <div class="card-deck mb-4">
+        <div class="card">
+            <img class="card-img-top" src="~/images/bg1.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Personal Information</h5>
+                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <a class="btn btn-primary my-2" asp-controller="Profile" asp-action="EditPersonalInfo" asp-route-employeeId="@Model.EmployeeId">Edit</a>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img-top" src="~/images/bg1.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Organize & Job Information</h5>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <a class="btn btn-primary my-2" asp-controller="Profile" asp-action="EditEmployeeInfo" asp-route-employeeId="@Model.EmployeeId">Edit</a>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img-top" src="~/images/bg1.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Address Information</h5>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <a class="btn btn-primary my-2" asp-controller="Profile" asp-action="EditAddressInfo" asp-route-employeeId="@Model.EmployeeId">Edit</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-deck mb-4">
+        <div class="card">
+            <img class="card-img-top" src="~/images/bg3.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Transport Information</h5>
+                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <a class="btn btn-primary my-2" asp-controller="Profile" asp-action="EditPersonalInfo" asp-route-employeeId="@Model.EmployeeId">Edit</a>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img-top" src="~/images/bg3.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Education Information</h5>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <a class="btn btn-primary my-2" asp-controller="Profile" asp-action="EditPersonalInfo" asp-route-employeeId="@Model.EmployeeId">Edit</a>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img-top" src="~/images/bg3.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Experience Information</h5>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <a class="btn btn-primary my-2" asp-controller="Profile" asp-action="EditPersonalInfo" asp-route-employeeId="@Model.EmployeeId">Edit</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-deck mb-4">
+        <div class="card">
+            <img class="card-img-top" src="~/images/bg3.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Employee Image</h5>
+                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <a class="btn btn-primary my-2" asp-controller="Profile" asp-action="EditPersonalInfo" asp-route-employeeId="@Model.EmployeeId">Edit</a>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img-top" src="~/images/bg3.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Employee Skill</h5>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <a class="btn btn-primary my-2" asp-controller="Profile" asp-action="EditPersonalInfo" asp-route-employeeId="@Model.EmployeeId">Edit</a>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img-top" src="~/images/bg3.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Abnormal Information</h5>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <a class="btn btn-primary my-2" asp-controller="Profile" asp-action="EditPersonalInfo" asp-route-employeeId="@Model.EmployeeId">Edit</a>
+            </div>
+        </div>
+    </div>
+
+
+
 </div>
