@@ -1,4 +1,5 @@
-﻿using EMS.ApplicationCore.Models;
+﻿using EMS.ApplicationCore.Helper;
+using EMS.ApplicationCore.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,6 +11,7 @@ namespace EMS.ApplicationCore.Interfaces.Services
     {
         Task<List<EmployeeModel>> GetAllAsync();
         Task<List<EmployeeModel>> GetByNameAsync(string name);
+        Task<List<EmployeeModel>> GetAsync(EmployeeFilter filter);
         Task<EmployeeModel> GetByEmployeeIdAsync(string employeeId);
         Task<EmployeeModel> GetByEmployeeIdWithDetailAsync(string employeeId);
         Task<int> CountTotalEmployeeAsync();
