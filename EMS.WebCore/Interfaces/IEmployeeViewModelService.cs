@@ -1,4 +1,5 @@
-﻿using EMS.WebCore.ViewModels.Employee;
+﻿using EMS.ApplicationCore.Helper;
+using EMS.WebCore.ViewModels.Employee;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace EMS.WebCore.Interfaces
     {
         Task<EmployeeViewModel> GetEmployeeList();
         Task<EmployeeViewModel> GetEmployeeList(string employeeId);
+        Task<EmployeeViewModel> GetEmployeeList(EmployeeFilter filter);
         Task CreateAsync(RegisterEmployeeViewModel viewModel);
     }
 }

@@ -19,16 +19,68 @@
     </div>
 </div>
 
-<form asp-controller="Employee" asp-action="EmployeeList" method="get">
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <label class="input-group-text">Employee ID</label>
+<form asp-controller="Employee" asp-action="EmployeeList" method="post">
+    <div class="form-row">
+        <div class="col-md-6 mb-2">
+            <div class="input-group">
+                <div class="input-group-prepend w-25">
+                    <label asp-for="FilterModel.DepartmentId" class="input-group-text w-100">Department</label>
+                </div>
+                <select asp-for="FilterModel.DepartmentId" asp-items="@Model.Departments" id="departmentSelectList" class="form-control"></select>
+            </div>
         </div>
-        <input type="text" name="employeeId" class="form-control" placeholder="Please enter employee ID">
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search mr-2"></i>Search</button>
+        <div class="col-md-6 mb-2">
+            <div class="input-group">
+                <div class="input-group-prepend w-25">
+                    <label asp-for="FilterModel.SectionId" class="input-group-text w-100">Section</label>
+                </div>
+                <select class="form-control" id="sectionSelectList" asp-for="FilterModel.SectionId"
+                        asp-items="@(new SelectList(string.Empty, " Value","Text"))"></select>
+            </div>
+        </div>
+        <div class="col-md-6 mb-2">
+            <div class="input-group">
+                <div class="input-group-prepend w-25">
+                    <label asp-for="FilterModel.PositionId" class="input-group-text w-100">Position</label>
+                </div>
+                <select asp-for="FilterModel.PositionId" asp-items="@Model.Positions" class="form-control"></select>
+            </div>
+        </div>
+        <div class="col-md-6 mb-2">
+            <div class="input-group">
+                <div class="input-group-prepend w-25">
+                    <label asp-for="FilterModel.FunctionId" class="input-group-text w-100">Job Function</label>
+                </div>
+                <select class="form-control" id="jobFunctionSelectList" asp-for="FilterModel.FunctionId"
+                        asp-items="@(new SelectList(string.Empty, " Value","Text"))"></select>
+            </div>
+        </div>
+        <div class="col-md-6 mb-2">
+            <div class="input-group">
+                <div class="input-group-prepend w-25">
+                    <label asp-for="FilterModel.ShiftId" class="input-group-text w-100">Shift</label>
+                </div>
+                <select asp-for="FilterModel.ShiftId" asp-items="@Model.Shifts" class="form-control"></select>
+            </div>
+        </div>
+        <div class="col-md-6 mb-2">
+            <div class="input-group">
+                <div class="input-group-prepend w-25">
+                    <label asp-for="FilterModel.LevelId" class="input-group-text w-100">Level</label>
+                </div>
+                <select asp-for="FilterModel.LevelId" asp-items="@Model.JobLevels" class="form-control"></select>
+            </div>
+        </div>
+        <div class="col-md-12 mb-3">
+            <div class="input-group">
+                <input asp-for="FilterModel.EmployeeId" type="text" class="form-control" placeholder="Employee ID">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="submit"><i class="fa fa-search mr-2"></i>Search</button>
+                </div>
+            </div>
         </div>
     </div>
+
 </form>
 
 @if (Model.Employees.Any())
@@ -36,7 +88,7 @@
     <div class="row">
         <div class="col">
             <table class="table table-striped table-bordered table-hover table-sm">
-                <thead class="bg-dark text-white">
+                <thead>
                     <tr>
                         <th>Type</th>
                         <th>Employee ID</th>
@@ -60,7 +112,7 @@
                             <td>@e.HireDate.Date.ToString("yyyy-MM-dd")</td>
                             <td class="text-center">
                                 <a asp-controller="Profile" asp-action="Index" asp-route-employeeId="@e.EmployeeId" class="btn btn-success btn-sm">View</a>
-                                <a asp-controller="Profile" asp-action="Edit" asp-route-employeeId="@e.EmployeeId" class="btn btn-success btn-sm">Edit</a>
+                                <a asp-controller="Profile" asp-action="EditProfile" asp-route-employeeId="@e.EmployeeId" class="btn btn-success btn-sm">Edit</a>
                             </td>
                         </tr>
 
@@ -71,3 +123,33 @@
     </div>
 }
 
+@section scripts {
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $('#departmentSelectList').change(function () {
+                    var url = '@Url.Content("~/")' + "Attendance/GetSectionByDepartmentId";
+                    $.getJSON(url, { departmentId: $("#departmentSelectList").val() }, function (data) {
+                        var items = '';
+                        $("#sectionSelectList").empty();
+                        $.each(data, function (i, section) {
+                            items += "<option value='" + section.value + "'>" + section.text + "</option>";
+                        });
+                        $('#sectionSelectList').html(items);
+                    });
+                });
+
+                $('#sectionSelectList').change(function () {
+                    var url = '@Url.Content("~/")' + "Attendance/GetJobFunctionBySectionId";
+                    $.getJSON(url, { sectionId: $("#sectionSelectList").val() }, function (data) {
+                        var items = '';
+                        $("#jobFunctionSelectList").empty();
+                        $.each(data, function (i, jobFunction) {
+                            items += "<option value='" + jobFunction.value + "'>" + jobFunction.text + "</option>";
+                        });
+                        $('#jobFunctionSelectList').html(items);
+                    });
+                });
+            });
+    </script>
+}

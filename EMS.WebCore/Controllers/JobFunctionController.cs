@@ -111,7 +111,7 @@ namespace EMS.WebCore.Controllers
                 JobFunctionId = model.JobFunctionId,
                 SectionId = model.SectionId,
                 FunctionName = model.FunctionName,
-                FunctionCode = model.FunctionName
+                FunctionCode = model.FunctionCode
             };
 
             await _jobFunctionService.UpdateAsync(jobFunction);

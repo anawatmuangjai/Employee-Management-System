@@ -61,6 +61,7 @@ namespace EMS.WebCore.Services
                 viewModel.BirthDate = employee.BirthDate;
                 viewModel.HireDate = employee.HireDate;
                 viewModel.HireType = employee.HireType;
+                viewModel.Status = (bool)employee.AvailableFlag;
                 viewModel.EmploymentDuration = CalculateDurationOfEmployment(employee.HireDate);
 
                 if (employee.EmployeeState != null)
@@ -71,6 +72,7 @@ namespace EMS.WebCore.Services
                     viewModel.LevelCode = employee.EmployeeState.Level.LevelName;
                     viewModel.PositionName = employee.EmployeeState.Position.PositionName;
                     viewModel.FunctionName = employee.EmployeeState.JobFunction.FunctionName;
+                    viewModel.FunctionCode = employee.EmployeeState.JobFunction.FunctionCode;
                     viewModel.RouteName = employee.EmployeeState.BusStation.Route.RouteName;
                     viewModel.BusStationName = employee.EmployeeState.BusStation.BusStationName;
                     viewModel.JoinDate = employee.EmployeeState.JoinDate;

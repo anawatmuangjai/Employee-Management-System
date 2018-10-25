@@ -86,16 +86,18 @@
                                         <p class="card-text">@Model.DepartmentName</p>
                                         <h6 class="card-title">Job Position</h6>
                                         <p class="card-text">@Model.PositionName</p>
-                                        <h6 class="card-title">Level</h6>
-                                        <p class="card-text">@Model.LevelCode</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Section</h6>
-                                        <p class="card-text">@Model.SectionName</p>
                                         <h6 class="card-title">Job Function</h6>
                                         <p class="card-text">@Model.FunctionName</p>
                                         <h6 class="card-title">Work Shift</h6>
                                         <p class="card-text">@Model.ShiftName</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6 class="card-title">Section</h6>
+                                        <p class="card-text">@Model.SectionName</p>
+                                        <h6 class="card-title">Level</h6>
+                                        <p class="card-text">@Model.LevelCode</p>
+                                        <h6 class="card-title">Job Function Code</h6>
+                                        <p class="card-text">@Model.FunctionCode</p>
                                     </div>
                                 </div>
                             </div>
@@ -113,17 +115,28 @@
                                         <h6 class="card-title">Card ID</h6>
                                         <p class="card-text">@Model.CardId</p>
                                         <h6 class="card-title">Hire Type</h6>
-                                        <h6 class="card-title">Duration of Employment</h6>
-                                        <p class="card-text">@Model.EmploymentDuration Year</p>
+                                        <p class="card-text">@Model.HireType</p>
+                                        <h6 class="card-title">Employye Type</h6>
+                                        <p class="card-text">@Model.EmployeeType</p>
+
+
                                     </div>
                                     <div class="col-md-6">
                                         <h6 class="card-title">Global ID</h6>
                                         <p class="card-text">@Model.GlobalId</p>
-                                        <p class="card-text">@Model.HireType</p>
-                                        <h6 class="card-title">Employye Type</h6>
-                                        <p class="card-text">@Model.EmployeeType</p>
+                                        <h6 class="card-title">Status</h6>
+                                        @if (@Model.Status)
+                                        {
+                                            <p class="card-text">Available</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="card-text">Resign</p>
+                                        }
                                         <h6 class="card-title">Hire Date</h6>
                                         <p class="card-text">@Model.HireDate.ToString("yyyy-MM-dd")</p>
+                                        <h6 class="card-title">Duration of Employment</h6>
+                                        <p class="card-text">@Model.EmploymentDuration Year</p>
 
                                     </div>
                                 </div>

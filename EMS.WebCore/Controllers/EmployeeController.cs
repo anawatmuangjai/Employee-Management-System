@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EMS.ApplicationCore.Helper;
 using EMS.ApplicationCore.Interfaces.Repositories;
 using EMS.ApplicationCore.Interfaces.Services;
 using EMS.ApplicationCore.Models;
@@ -18,11 +19,15 @@ namespace EMS.WebCore.Controllers
     [Authorize(Roles = "Administrator")]
     public class EmployeeController : Controller
     {
-        private readonly IEmployeeViewModelService _employeeViewModelService;
+        private readonly IEmployeeService _employeeService;
+        private readonly IEmployeeDetailService _employeeDetailService;
 
-        public EmployeeController(IEmployeeViewModelService employeeViewModelService)
+        public EmployeeController(
+            IEmployeeService employeeService,
+            IEmployeeDetailService employeeDetailService)
         {
-            _employeeViewModelService = employeeViewModelService;
+            _employeeService = employeeService;
+            _employeeDetailService = employeeDetailService;
         }
 
         public IActionResult Index()
@@ -38,11 +43,33 @@ namespace EMS.WebCore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterEmployeeViewModel model)
+        public async Task<IActionResult> Register(RegisterEmployeeViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                await _employeeViewModelService.CreateAsync(model);
+                var employee = new EmployeeModel
+                {
+                    EmployeeId = viewModel.EmployeeId,
+                    GlobalId = viewModel.GlobalId,
+                    CardId = viewModel.CardId,
+                    EmployeeType = viewModel.EmployeeType,
+                    Title = viewModel.Title,
+                    TitleThai = viewModel.TitleThai,
+                    FirstName = viewModel.FirstName,
+                    LastName = viewModel.LastName,
+                    FirstNameThai = viewModel.FirstNameThai,
+                    LastNameThai = viewModel.LastNameThai,
+                    Gender = viewModel.Gender,
+                    Height = viewModel.Height,
+                    Hand = viewModel.Hand,
+                    BirthDate = viewModel.BirthDate,
+                    HireType = viewModel.HireType,
+                    HireDate = viewModel.HireDate,
+                    AvailableFlag = true,
+                    ChangedDate = DateTime.Now,
+                };
+
+                await _employeeService.AddAsync(employee);
 
                 return RedirectToAction(nameof(EmployeeList));
             }
@@ -51,20 +78,55 @@ namespace EMS.WebCore.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> EmployeeList(string employeeId)
+        [HttpPost]
+        public async Task<IActionResult> EmployeeList(EmployeeFilter filterModel)
         {
             var viewModel = new EmployeeViewModel();
 
-            if (!String.IsNullOrEmpty(employeeId))
+            viewModel.Departments = await _employeeDetailService.GetDepartments();
+            viewModel.Shifts = await _employeeDetailService.GetShifts();
+            viewModel.Positions = await _employeeDetailService.GetPositions();
+            viewModel.JobLevels = await _employeeDetailService.GetLevels();
+
+            var employees = await _employeeService.GetAsync(filterModel);
+
+            if (employees != null)
             {
-                viewModel = await _employeeViewModelService.GetEmployeeList(employeeId);
-            }
-            else
-            {
-                viewModel = await _employeeViewModelService.GetEmployeeList();
+                viewModel.Employees = employees;
             }
 
             return View(viewModel);
+        }
+
+        //[HttpGet]
+        //public async Task<IActionResult> EmployeeList(string employeeId)
+        //{
+        //    var viewModel = new EmployeeViewModel();
+        //
+        //    if (!String.IsNullOrEmpty(employeeId))
+        //    {
+        //        viewModel = await _employeeViewModelService.GetEmployeeList(employeeId);
+        //    }
+        //    else
+        //    {
+        //        viewModel = await _employeeViewModelService.GetEmployeeList();
+        //    }
+        //
+        //    return View(viewModel);
+        //}
+
+        public async Task<JsonResult> GetSectionByDepartmentId(int departmentId)
+        {
+            var items = await _employeeDetailService.GetSectionsByDepartmentId(departmentId);
+
+            return Json(new SelectList(items, "Value", "Text"));
+        }
+
+        public async Task<JsonResult> GetJobFunctionBySectionId(int sectionId)
+        {
+            var items = await _employeeDetailService.GetJobFunctionsBySectionId(sectionId);
+
+            return Json(new SelectList(items, "Value", "Text"));
         }
     }
 }

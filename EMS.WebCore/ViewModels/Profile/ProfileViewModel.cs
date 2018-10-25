@@ -56,9 +56,13 @@ namespace EMS.WebCore.ViewModels.Profile
 
         public string FunctionName { get; set; }
 
+        public string FunctionCode { get; set; }
+
         public string RouteName { get; set; }
 
         public string BusStationName { get; set; }
+
+        public bool Status { get; set; }
 
         public DateTime JoinDate { get; set; }
 

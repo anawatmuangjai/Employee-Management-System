@@ -7,7 +7,7 @@
 <div class="row mb-2 mt-3">
     <div class="col">
         <div class="card">
-            <h5 class="card-header bg-light text-dark">Create Job Function</h5>
+            <h5 class="card-header bg-light text-dark">Edit Job Function</h5>
             <div class="card-body">
                 <form asp-action="Edit" method="post" class="form-horizontal" role="form">
                     <input asp-for="JobFunctionId" type="hidden" />
@@ -23,12 +23,12 @@
                         <span asp-validation-for="SectionId" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="FunctionName">Job Title</label>
+                        <label asp-for="FunctionName">Job Function Name</label>
                         <input asp-for="FunctionName" type="text" class="form-control">
                         <span asp-validation-for="FunctionName" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="FunctionCode">Job Description</label>
+                        <label asp-for="FunctionCode">Job Function Code</label>
                         <input asp-for="FunctionCode" type="text" class="form-control">
                         <span asp-validation-for="FunctionCode" class="text-danger"></span>
                     </div>
@@ -42,12 +42,6 @@
 
 
 @section scripts {
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var items = "<option value='0'>-- Select --</option>";
-            $('#SectionId').html(items);
-        });
-    </script>
 
     <script type="text/javascript">
             $(document).ready(function () {

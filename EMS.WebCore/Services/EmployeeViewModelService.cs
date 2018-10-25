@@ -1,4 +1,5 @@
-﻿using EMS.ApplicationCore.Interfaces.Services;
+﻿using EMS.ApplicationCore.Helper;
+using EMS.ApplicationCore.Interfaces.Services;
 using EMS.ApplicationCore.Models;
 using EMS.WebCore.Interfaces;
 using EMS.WebCore.ViewModels.Employee;
@@ -12,10 +13,14 @@ namespace EMS.WebCore.Services
     public class EmployeeViewModelService : IEmployeeViewModelService
     {
         private readonly IEmployeeService _employeeService;
+        private readonly IEmployeeDetailService _employeeDetailService;
 
-        public EmployeeViewModelService(IEmployeeService employeeService)
+        public EmployeeViewModelService(
+            IEmployeeService employeeService,
+            IEmployeeDetailService employeeDetailService)
         {
             _employeeService = employeeService;
+            _employeeDetailService = employeeDetailService;
         }
 
         public async Task CreateAsync(RegisterEmployeeViewModel viewModel)
@@ -69,6 +74,21 @@ namespace EMS.WebCore.Services
             return viewModel;
         }
 
+        public async Task<EmployeeViewModel> GetEmployeeList(EmployeeFilter filter)
+        {
+            var viewModel = new EmployeeViewModel();
 
+            var employees = await _employeeService.GetAsync(filter);
+
+            if (employees != null)
+            {
+                viewModel.Employees = employees;
+                viewModel.Departments = await _employeeDetailService.GetDepartments();
+                viewModel.Shifts = await _employeeDetailService.GetShifts();
+                viewModel.Positions = await _employeeDetailService.GetPositions();
+            }
+
+            return viewModel;
+        }
     }
 }
