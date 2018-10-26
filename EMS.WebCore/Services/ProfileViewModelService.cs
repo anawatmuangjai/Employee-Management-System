@@ -217,16 +217,19 @@ namespace EMS.WebCore.Services
                 viewModel.Routes = await _employeeDetailService.GetRoutes();
                 viewModel.BusStations = await _employeeDetailService.GetBusStations();
 
-                viewModel.EmployeeId = employee.EmployeeState.EmployeeId;
-                viewModel.DepartmentId = employee.EmployeeState.JobFunction.Section.Department.DepartmentId;
-                viewModel.SectionId = employee.EmployeeState.JobFunction.Section.SectionId;
-                viewModel.ShiftId = employee.EmployeeState.ShiftId;
-                viewModel.JobPositionId = employee.EmployeeState.PositionId;
-                viewModel.JobFunctionId = employee.EmployeeState.JobFunctionId;
-                viewModel.LevelId = employee.EmployeeState.LevelId;
-                viewModel.RouteId = employee.EmployeeState.BusStation.Route.RouteId;
-                viewModel.BusStationId = employee.EmployeeState.BusStationId;
-                viewModel.JoinDate = employee.EmployeeState.JoinDate;
+                if (employee.EmployeeState != null)
+                {
+                    viewModel.EmployeeId = employee.EmployeeState.EmployeeId;
+                    viewModel.DepartmentId = employee.EmployeeState.JobFunction.Section.Department.DepartmentId;
+                    viewModel.SectionId = employee.EmployeeState.JobFunction.Section.SectionId;
+                    viewModel.ShiftId = employee.EmployeeState.ShiftId;
+                    viewModel.JobPositionId = employee.EmployeeState.PositionId;
+                    viewModel.JobFunctionId = employee.EmployeeState.JobFunctionId;
+                    viewModel.LevelId = employee.EmployeeState.LevelId;
+                    viewModel.RouteId = employee.EmployeeState.BusStation.Route.RouteId;
+                    viewModel.BusStationId = employee.EmployeeState.BusStationId;
+                    viewModel.JoinDate = employee.EmployeeState.JoinDate;
+                }
             }
 
             return viewModel;
@@ -385,6 +388,11 @@ namespace EMS.WebCore.Services
 
         public async Task UpdateEmployeeInfo(EmployeeInfoViewModel model)
         {
+            if (model.BusStationId == 0)
+            {
+                model.BusStationId = 1;
+            }
+
             var employeeState = new EmployeeStateModel
             {
                 EmployeeId = model.EmployeeId,

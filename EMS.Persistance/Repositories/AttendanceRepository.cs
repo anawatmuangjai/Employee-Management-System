@@ -113,6 +113,7 @@ namespace EMS.Persistance.Repositories
                                      join job in _context.MasterJobFunction on employeeState.JobFunctionId equals job.JobFunctionId
                                      join section in _context.MasterSection on job.SectionId equals section.SectionId
                                      join department in _context.MasterDepartment on section.DepartmentId equals department.DepartmentId
+                                     where employee.AvailableFlag == true
                                      select new { employee, employeeState, level, shift, bus, route, position, job, section, department });
 
             if (filter != null)

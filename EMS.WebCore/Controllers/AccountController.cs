@@ -75,7 +75,7 @@ namespace EMS.WebCore.Controllers
                 new ClaimsPrincipal(claimsIdentity),
                 new AuthenticationProperties
                 {
-                    ExpiresUtc = DateTime.UtcNow.AddMinutes(20),
+                    ExpiresUtc = DateTime.UtcNow.AddMinutes(60),
                     IsPersistent = false,
                     AllowRefresh = false
                 });
