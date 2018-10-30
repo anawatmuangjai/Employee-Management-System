@@ -42,6 +42,12 @@ namespace EMS.ApplicationCore.Services
             return _mapper.Map<List<MasterBusStation>, List<BusStationModel>>(busStation);
         }
 
+        public async Task<List<BusStationModel>> GetByRouteIdAsync(int routeId)
+        {
+            var busStations = await _repository.GetAsync(x => x.RouteId == routeId);
+            return _mapper.Map<List<MasterBusStation>, List<BusStationModel>>(busStations);
+        }
+
         public async Task AddAsync(BusStationModel model)
         {
             var busStation = new MasterBusStation

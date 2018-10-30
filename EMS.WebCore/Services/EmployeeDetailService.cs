@@ -341,5 +341,26 @@ namespace EMS.WebCore.Services
 
             return item;
         }
+
+        public async Task<IEnumerable<SelectListItem>> GetGetBusStationsByRouteId(int routeId)
+        {
+            var busStations = await _busStationService.GetByRouteIdAsync(routeId);
+
+            var item = new List<SelectListItem>
+            {
+                new SelectListItem() { Value = null, Text ="",Selected = true }
+            };
+
+            foreach (var bus in busStations)
+            {
+                item.Add(new SelectListItem()
+                {
+                    Value = bus.BusStationId.ToString(),
+                    Text = $"{bus.BusStationCode}.{bus.BusStationName}"
+                });
+            }
+
+            return item;
+        }
     }
 }
