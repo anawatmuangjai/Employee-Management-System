@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using EMS.ApplicationCore.Helper;
 using EMS.ApplicationCore.Interfaces.Repositories;
@@ -97,23 +98,6 @@ namespace EMS.WebCore.Controllers
 
             return View(viewModel);
         }
-
-        //[HttpGet]
-        //public async Task<IActionResult> EmployeeList(string employeeId)
-        //{
-        //    var viewModel = new EmployeeViewModel();
-        //
-        //    if (!String.IsNullOrEmpty(employeeId))
-        //    {
-        //        viewModel = await _employeeViewModelService.GetEmployeeList(employeeId);
-        //    }
-        //    else
-        //    {
-        //        viewModel = await _employeeViewModelService.GetEmployeeList();
-        //    }
-        //
-        //    return View(viewModel);
-        //}
 
         public async Task<JsonResult> GetSectionByDepartmentId(int departmentId)
         {

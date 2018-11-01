@@ -131,6 +131,7 @@
                                         <th>Department</th>
                                         <th>Section</th>
                                         <th>Shift</th>
+                                        <th class="w-25">Active %</th>
                                         <th>Total</th>
                                         <th>Active</th>
                                         <th>Absent</th>
@@ -145,9 +146,22 @@
                                                 <td>@e.Department</td>
                                                 <td>@e.Section</td>
                                                 <td>@e.ShiftName</td>
+                                                <td>
+                                                    <div class="progress">
+                                                        @if (e.ActivePercent < 100)
+                                                        {
+                                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width:@(e.ActivePercent + "%");" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100">@e.ActivePercent%</div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width:@(e.ActivePercent+"%");" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100">@e.ActivePercent%</div>
+                                                        }
+                                                    </div>
+                                                </td>
                                                 <td>@e.TotalPerson</td>
                                                 <td>@e.ActivePerson</td>
                                                 <td>@e.AbsentPerson</td>
+
                                             </tr>
                                         }
                                     }
@@ -179,6 +193,7 @@
                                         <th>Department</th>
                                         <th>Section</th>
                                         <th>Shift</th>
+                                        <th class="w-25">Active %</th>
                                         <th>Total</th>
                                         <th>Active</th>
                                         <th>Absent</th>
@@ -193,6 +208,18 @@
                                                 <td>@e.Department</td>
                                                 <td>@e.Section</td>
                                                 <td>@e.ShiftName</td>
+                                                <td>
+                                                    <div class="progress">
+                                                        @if (e.ActivePercent < 100)
+                                                        {
+                                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width:@(e.ActivePercent + "%");" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100">@e.ActivePercent%</div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width:@(e.ActivePercent+"%");" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100">@e.ActivePercent%</div>
+                                                        }
+                                                    </div>
+                                                </td>
                                                 <td>@e.TotalPerson</td>
                                                 <td>@e.ActivePerson</td>
                                                 <td>@e.AbsentPerson</td>
@@ -332,8 +359,15 @@
     <div class="col-md-12">
         <div class="card mb-4">
             <div class="card-header bg-white text-header">
-                <h5 class="my-0">Transportation</h5>
-                <p class="my-0">Summary transportation by routes</p>
+                <div class="row">
+                    <div class="col-md-8">
+                        <h5 class="my-0">Transportation</h5>
+                        <p class="my-0">Summary transportation by routes</p>
+                    </div>
+                    <div class="col-md-4">
+                        <a asp-controller="Dashboard" asp-action="DownloadTransport" class="btn btn-sm btn-secondary float-right">Download</a>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <div class="chart-container">
@@ -347,8 +381,15 @@
 <!-- employee absent -->
 <div class="card mb-4">
     <div class="card-header bg-white text-header">
-        <h5 class="my-0">Employee Leave</h5>
-        <p class="my-0">Summary employee active work</p>
+        <div class="row">
+            <div class="col-md-8">
+                <h5 class="my-0">Employee Leave</h5>
+                <p class="my-0">Summary employee active work</p>
+            </div>
+            <div class="col-md-4">
+                <a asp-controller="Dashboard" asp-action="Download" class="btn btn-sm btn-secondary float-right">Download</a>
+            </div>
+        </div>
     </div>
     <div class="card-body scroll-box-dashboard p-0">
         <div class="table-responsive">

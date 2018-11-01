@@ -19,6 +19,7 @@ namespace EMS.WebCore.Services
         private readonly IEmployeeService _employeeService;
         private readonly IEmployeeStateService _employeeStateService;
         private readonly IEmployeeDetailService _employeeDetailService;
+        private readonly IEmployeeImageService _employeeImageService;
         private readonly IShiftService _shiftService;
         private readonly IShiftCalendarService _shiftCalendarService;
 
@@ -27,6 +28,7 @@ namespace EMS.WebCore.Services
             IEmployeeService employeeService,
             IEmployeeStateService employeeStateService,
             IEmployeeDetailService employeeDetailService,
+            IEmployeeImageService employeeImageService,
             IShiftService shiftService,
             IShiftCalendarService shiftCalendarService)
         {
@@ -34,6 +36,7 @@ namespace EMS.WebCore.Services
             _employeeService = employeeService;
             _employeeStateService = employeeStateService;
             _employeeDetailService = employeeDetailService;
+            _employeeImageService = employeeImageService;
             _shiftService = shiftService;
             _shiftCalendarService = shiftCalendarService;
         }
@@ -161,6 +164,26 @@ namespace EMS.WebCore.Services
             return viewModel;
         }
 
+        public async Task<List<AttendanceModel>> GetEmployeeLeave(string date)
+        {
+            var filter = new AttendanceFilter();
+            filter.AttendanceDate = date;
+
+            var currentShuftId = 1;
+
+            // get current shift
+            var shiftCalendar = await _shiftCalendarService.GetByDateAsync(DateTime.Today);
+
+            if (shiftCalendar != null)
+            {
+                currentShuftId = shiftCalendar.ShiftId;
+            }
+
+            var employeeAbsent = await _attendanceService.GetAbsentAsync(filter);
+            var totalAbsent = employeeAbsent.Where(x => x.ShiftId == 1 || x.ShiftId == currentShuftId);
+            return totalAbsent.ToList();
+        }
+
         private async Task<List<AttendanceShift>> SumAttendanceByShift(List<AttendanceModel> employeeActive, List<ShiftModel> shifts)
         {
             var attendanceShifts = new List<AttendanceShift>();
@@ -241,6 +264,7 @@ namespace EMS.WebCore.Services
             {
                 var activePerson = employeeActives.Count(x => x.DepartmentName == item.Department && x.SectionName == item.Section && x.ShiftName == item.Shift);
                 var absentPrtson = item.TotalPerson - activePerson;
+                var activePercent = Math.Round((activePerson / (decimal)item.TotalPerson) * 100, 0);
 
                 var attendancStatus = new AttendanceStatus
                 {
@@ -250,6 +274,7 @@ namespace EMS.WebCore.Services
                     TotalPerson = item.TotalPerson,
                     ActivePerson = activePerson,
                     AbsentPerson = absentPrtson,
+                    ActivePercent = activePercent
                 };
 
                 attendancStatuses.Add(attendancStatus);
@@ -259,5 +284,6 @@ namespace EMS.WebCore.Services
 
             return results;
         }
+
     }
 }
