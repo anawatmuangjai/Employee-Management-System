@@ -1,0 +1,33 @@
+﻿@model EmployeeImageViewModel
+
+@{
+    ViewData["Title"] = "EditEmployeeImage";
+}
+
+@Html.Partial("_ProfileHeader", Model.ProfileHeader)
+
+<div class="sub-header">
+    <div class="row">
+        <div class="col-md-12 text-center my-4">
+            <h4>Update Profile Image</h4>
+            <h6>Change employee profile image</h6>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <form asp-action="EditEmployeeImage" enctype="multipart/form-data" method="post" class="form-horizontal" role="form">
+                <input asp-for="ImageId" type="hidden" />
+                <input asp-for="EmployeeId" type="hidden" />
+                <div class="form-group">
+                    <label asp-for="EmployeeImage">Profile Image</label>
+                    <input type="file" name="EmployeeImage" multiple id="fileUpload" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <a asp-controller="Profile" asp-action="Index" asp-route-employeeId="@Model.EmployeeId" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>

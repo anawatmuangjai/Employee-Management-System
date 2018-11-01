@@ -237,6 +237,26 @@ th, td {
     max-height: 100%;
 }
 
+.profile-header {
+    height: 300px;
+    margin-left: -30px;
+    margin-right: -30px;
+    background-color: #0163a5;
+}
+
+.profile-header img {
+    width: auto;
+    height: 120px;
+    max-width: none;
+}
+
+.sub-header {
+    margin-left: -30px;
+    margin-right: -30px;
+    margin-bottom: 30px;
+    background-color: #ededed;
+}
+
 /*.chart-container {
     position: relative;
     margin: auto;

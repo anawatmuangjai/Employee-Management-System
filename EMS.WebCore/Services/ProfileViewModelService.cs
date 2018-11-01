@@ -168,6 +168,14 @@ namespace EMS.WebCore.Services
                 viewModel.EmailAddress = address.EmailAddress;
             }
 
+            var image = await _employeeImageService.GetByEmployeeId(employeeId);
+
+            if (image != null)
+            {
+                var imageBase64Data = Convert.ToBase64String(image.Images);
+                viewModel.ProfileImage = string.Format("data:image/png;base64,{0}", imageBase64Data);
+            }
+
             return viewModel;
         }
 
@@ -197,6 +205,15 @@ namespace EMS.WebCore.Services
                 viewModel.HireDate = employee.HireDate;
                 viewModel.HireType = employee.HireType;
                 viewModel.AvailableFlag = (bool)employee.AvailableFlag;
+
+                var profileHeader = new ProfileHeaderViewModel()
+                {
+                    FullName = $"{employee.Title}.{employee.FirstName} {employee.LastName}",
+                    FullNameThai = $"{employee.TitleThai}.{employee.FirstNameThai} {employee.LastNameThai}",
+                    ProfileImage = await GetProfileImage(employeeId)
+                };
+
+                viewModel.ProfileHeader = profileHeader;
             }
 
             return viewModel;
@@ -230,6 +247,15 @@ namespace EMS.WebCore.Services
                     viewModel.BusStationId = employee.EmployeeState.BusStationId;
                     viewModel.JoinDate = employee.EmployeeState.JoinDate;
                 }
+
+                var profileHeader = new ProfileHeaderViewModel()
+                {
+                    FullName = $"{employee.Title}.{employee.FirstName} {employee.LastName}",
+                    FullNameThai = $"{employee.TitleThai}.{employee.FirstNameThai} {employee.LastNameThai}",
+                    ProfileImage = await GetProfileImage(employeeId)
+                };
+
+                viewModel.ProfileHeader = profileHeader;
             }
 
             return viewModel;
@@ -243,7 +269,6 @@ namespace EMS.WebCore.Services
 
             if (address != null)
             {
-                viewModel.EmployeeId = employeeId;
                 viewModel.EmployeeAddressId = address.EmployeeAddressId;
                 viewModel.HomeAddress = address.HomeAddress;
                 viewModel.City = address.City;
@@ -252,6 +277,26 @@ namespace EMS.WebCore.Services
                 viewModel.PhoneNumber = address.PhoneNumber;
                 viewModel.EmailAddress = address.EmailAddress;
             }
+
+            viewModel.EmployeeId = employeeId;
+            viewModel.ProfileHeader = await GetProfileHeader(employeeId);
+
+            return viewModel;
+        }
+
+        public async Task<EmployeeImageViewModel> GetEmployeeImage(string employeeId)
+        {
+            var viewModel = new EmployeeImageViewModel();
+
+            var image = await _employeeImageService.GetByEmployeeId(employeeId);
+
+            if (image != null)
+            {
+                viewModel.ImageId = image.ImageId;
+            }
+
+            viewModel.EmployeeId = employeeId;
+            viewModel.ProfileHeader = await GetProfileHeader(employeeId);
 
             return viewModel;
         }
@@ -360,7 +405,6 @@ namespace EMS.WebCore.Services
 
         public async Task UpdatePersonalInfo(PersonalInfoViewModel model)
         {
-            // update employee
             var employee = new EmployeeModel
             {
                 EmployeeId = model.EmployeeId,
@@ -388,11 +432,6 @@ namespace EMS.WebCore.Services
 
         public async Task UpdateEmployeeInfo(EmployeeInfoViewModel model)
         {
-            if (model.BusStationId == 0)
-            {
-                model.BusStationId = 1;
-            }
-
             var employeeState = new EmployeeStateModel
             {
                 EmployeeId = model.EmployeeId,
@@ -444,6 +483,31 @@ namespace EMS.WebCore.Services
             }
         }
 
+        public async Task UpdateEmployeeImage(EmployeeImageViewModel model)
+        {
+            if (model.EmployeeImage != null)
+            {
+                var employeeImage = new EmployeeImageModel
+                {
+                    ImageId = model.ImageId,
+                    EmployeeId = model.EmployeeId,
+                };
+
+                using (var memoryStream = new MemoryStream())
+                {
+                    await model.EmployeeImage.CopyToAsync(memoryStream);
+                    employeeImage.Images = memoryStream.ToArray();
+                }
+
+                var existingImage = await _employeeImageService.ExistsAsync(model.EmployeeId);
+
+                if (existingImage)
+                    await _employeeImageService.UpdateAsync(employeeImage);
+                else
+                    await _employeeImageService.AddAsync(employeeImage);
+            }
+        }
+
         public async Task<IEnumerable<SelectListItem>> GetSectionsByDepartmentId(int departmentId)
         {
             return await _employeeDetailService.GetSectionsByDepartmentId(departmentId);
@@ -452,6 +516,42 @@ namespace EMS.WebCore.Services
         public async Task<IEnumerable<SelectListItem>> GetJobFunctionBySectionId(int sectionId)
         {
             return await _employeeDetailService.GetJobFunctionsBySectionId(sectionId);
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetBusStationByRouteId(int routeId)
+        {
+            return await _employeeDetailService.GetGetBusStationsByRouteId(routeId);
+        }
+
+        public async Task<ProfileHeaderViewModel> GetProfileHeader(string employeeId)
+        {
+            var viewModel = new ProfileHeaderViewModel();
+
+            var employee = await _employeeService.GetByEmployeeIdAsync(employeeId);
+
+            if (employee != null)
+            {
+                viewModel.FullName = $"{employee.Title}.{employee.FirstName} {employee.LastName}";
+                viewModel.FullNameThai = $"{employee.TitleThai}.{employee.FirstNameThai} {employee.LastNameThai}";
+                viewModel.ProfileImage = await GetProfileImage(employeeId);
+            }
+
+            return viewModel;
+        }
+
+        public async Task<string> GetProfileImage(string employeeId)
+        {
+            var profileImage = string.Empty;
+
+            var image = await _employeeImageService.GetByEmployeeId(employeeId);
+
+            if (image != null)
+            {
+                var imageBase64Data = Convert.ToBase64String(image.Images);
+                profileImage = string.Format("data:image/png;base64,{0}", imageBase64Data);
+            }
+
+            return profileImage;
         }
 
         public int CalculateAge(DateTime birthDate)
@@ -469,5 +569,7 @@ namespace EMS.WebCore.Services
             if (hierDate > today.AddYears(-duration)) duration--;
             return duration;
         }
+
+
     }
 }

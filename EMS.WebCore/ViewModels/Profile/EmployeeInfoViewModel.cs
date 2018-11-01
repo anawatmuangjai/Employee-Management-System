@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using EMS.ApplicationCore.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -38,6 +39,8 @@ namespace EMS.WebCore.ViewModels.Profile
 
         [DataType(DataType.Date)]
         public DateTime JoinDate { get; set; }
+
+        public ProfileHeaderViewModel ProfileHeader { get; set; }
 
         public IEnumerable<SelectListItem> Departments { get; set; }
 

@@ -47,6 +47,9 @@ namespace EMS.Persistance.Context
 
             modelBuilder.Entity<AttendanceC>(entity =>
             {
+                entity.HasIndex(e => new { e.EmployeeId, e.WorkDate })
+                    .HasName("idx1_AttendanceC");
+
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.EmployeeId)
@@ -54,6 +57,10 @@ namespace EMS.Persistance.Context
                     .HasColumnName("EmployeeID")
                     .HasMaxLength(30)
                     .IsUnicode(false);
+
+                entity.Property(e => e.LateMin)
+                    .HasColumnName("Late_Min")
+                    .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.Ot15)
                     .HasColumnName("OT_15")
@@ -100,7 +107,7 @@ namespace EMS.Persistance.Context
             modelBuilder.Entity<Employee>(entity =>
             {
                 entity.HasIndex(e => e.GlobalId)
-                    .HasName("UQ__Employee__A50E899371C7C670")
+                    .HasName("UQ__Employee__A50E8993D0F46EBD")
                     .IsUnique();
 
                 entity.Property(e => e.EmployeeId)
@@ -389,7 +396,7 @@ namespace EMS.Persistance.Context
                 entity.HasKey(e => e.AccountId);
 
                 entity.HasIndex(e => e.UserName)
-                    .HasName("UQ__MasterAc__C9F28456104C4D90")
+                    .HasName("UQ__MasterAc__C9F28456EC943ACC")
                     .IsUnique();
 
                 entity.Property(e => e.AccountId).HasColumnName("AccountID");

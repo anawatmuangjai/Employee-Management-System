@@ -61,5 +61,7 @@ namespace EMS.WebCore.ViewModels.Profile
 
         [Required]
         public bool AvailableFlag { get; set; }
+
+        public ProfileHeaderViewModel ProfileHeader { get; set; }
     }
 }

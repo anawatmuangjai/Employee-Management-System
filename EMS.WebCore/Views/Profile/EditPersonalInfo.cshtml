@@ -4,22 +4,24 @@
     ViewData["Title"] = "EditPersonalInfo";
 }
 
-<div class="container-fluid">
+@Html.Partial("_ProfileHeader", Model.ProfileHeader)
+
+<div class="sub-header">
     <div class="row">
-        <div class="col-md-12 mt-5">
-            <div class="jumbotron">
-                <h1 class="display-4">Edit Personal Information</h1>
-                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-                <hr class="my-4">
-                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-            </div>
+        <div class="col-md-12 text-center my-4">
+            <h4>Update Personal Information</h4>
+            <h6>Employee personal data and hire information</h6>
         </div>
     </div>
+</div>
 
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-12 mb-4">
             <form asp-action="EditPersonalInfo" enctype="multipart/form-data" method="post" class="form-horizontal" role="form">
                 <input asp-for="EmployeeId" type="hidden" />
+                <h4>Personal Information</h4>
+                <hr />
                 <div class="form-group">
                     <label asp-for="Title">Title</label>
                     <select asp-for="Title" class="custom-select d-block w-100" required>
@@ -107,6 +109,8 @@
                     <span asp-validation-for="BirthDate" class="text-danger"></span>
                 </div>
 
+                <h4>Hire Information</h4>
+                <hr />
                 <div class="form-group">
                     <label asp-for="GlobalId">Global ID</label>
                     <input asp-for="GlobalId" type="text" class="form-control">

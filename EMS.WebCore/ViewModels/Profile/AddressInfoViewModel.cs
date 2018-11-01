@@ -30,5 +30,7 @@ namespace EMS.WebCore.ViewModels.Profile
 
         [Required]
         public string EmailAddress { get; set; }
+
+        public ProfileHeaderViewModel ProfileHeader { get; set; }
     }
 }

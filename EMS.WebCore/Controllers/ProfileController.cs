@@ -93,6 +93,7 @@ namespace EMS.WebCore.Controllers
             var viewModel = await _profileViewModelService.GetEmployeeInfo(employeeId);
             return View(viewModel);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditEmployeeInfo(EmployeeInfoViewModel viewModel)
@@ -126,11 +127,45 @@ namespace EMS.WebCore.Controllers
             return View(viewModel);
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> EditTransportInfo(string employeeId)
-        //{
-        //    return View();
-        //}
+        [HttpGet]
+        public async Task<IActionResult> EditEmployeeImage(string employeeId)
+        {
+            var viewModel = await _profileViewModelService.GetEmployeeImage(employeeId);
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditEmployeeImage(EmployeeImageViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                await _profileViewModelService.UpdateEmployeeImage(viewModel);
+                return RedirectToAction(nameof(Index), new { employeeId = viewModel.EmployeeId });
+            }
+
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditTransportInfo(string employeeId)
+        {
+            var viewModel = await _profileViewModelService.GetEmployeeInfo(employeeId);
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditTransportInfo(EmployeeInfoViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                await _profileViewModelService.UpdateEmployeeInfo(viewModel);
+                return RedirectToAction(nameof(Index), new { employeeId = viewModel.EmployeeId });
+            }
+
+            return View(viewModel);
+        }
 
         //[HttpGet]
         //public async Task<IActionResult> EditEducationInfo(string employeeId)
@@ -148,6 +183,13 @@ namespace EMS.WebCore.Controllers
         public async Task<JsonResult> GetJobFunctionBySectionId(int sectionId)
         {
             var items = await _profileViewModelService.GetJobFunctionBySectionId(sectionId);
+
+            return Json(new SelectList(items, "Value", "Text"));
+        }
+
+        public async Task<JsonResult> GetBusStationByRouteId(int routeId)
+        {
+            var items = await _profileViewModelService.GetBusStationByRouteId(routeId);
 
             return Json(new SelectList(items, "Value", "Text"));
         }

@@ -1,0 +1,23 @@
+﻿@model ProfileHeaderViewModel
+
+<div class="profile-header">
+
+    <div class="row">
+
+        <div class="col-md-12 mx-auto text-center">
+
+            @if (String.IsNullOrEmpty(Model.ProfileImage))
+            {
+                <img class="rounded-circle mt-5 mb-3" src="~/images/female.png" />
+            }
+            else
+            {
+                <img class="rounded-circle mt-5 mb-3" src="@Model.ProfileImage" />
+            }
+
+            <h6 class="text-white text-uppercase">@Model.FullName</h6>
+            <h6 class="text-white">@Model.FullNameThai</h6>
+        </div>
+    </div>
+
+</div>
