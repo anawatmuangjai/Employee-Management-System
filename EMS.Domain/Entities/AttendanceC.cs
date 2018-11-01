@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace EMS.Domain.Entities
 {
-    public partial class AttendanceC
+    public partial class AttendanceC : BaseEntity
     {
         public long Id { get; set; }
         public string EmployeeId { get; set; }
@@ -15,5 +15,6 @@ namespace EMS.Domain.Entities
         public decimal WorkDay { get; set; }
         public byte Ot15 { get; set; }
         public byte Ot3 { get; set; }
+        public short LateMin { get; set; }
     }
 }

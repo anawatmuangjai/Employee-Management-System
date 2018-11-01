@@ -74,6 +74,25 @@ namespace EMS.WebCore.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> Late(AttendanceFilter filterModel)
+        {
+            var viewModel = new AttendanceViewModel();
+
+            if (string.IsNullOrEmpty(filterModel.AttendanceDate))
+            {
+                filterModel.AttendanceDate = DateTime.Today.ToString("yyyy/MM/dd");
+                filterModel.IsLate = true;
+            }
+
+            viewModel.Attendances = await _attendanceService.GetActiveAsync(filterModel);
+            viewModel.Departments = await _employeeDetailService.GetDepartments();
+            viewModel.Shifts = await _employeeDetailService.GetShifts();
+            viewModel.Positions = await _employeeDetailService.GetPositions();
+
+            return View(viewModel);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> History(string employeeId, string startDate, string endDate)
         {
             var viewModel = new AttendanceViewModel();

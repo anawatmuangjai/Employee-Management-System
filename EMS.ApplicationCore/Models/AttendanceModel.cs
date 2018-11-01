@@ -26,10 +26,12 @@ namespace EMS.ApplicationCore.Models
         public string ScanInTime { get; set; }
         public string ScanOutTime { get; set; }
         public string AttendanceDate { get; set; }
+        public string EmployeeImage { get; set; }
         public int ShiftId { get; set; }
         public int PositionId { get; set; }
         public int JobFunctionId { get; set; }
         public int SectionId { get; set; }
         public int DepartmentId { get; set; }
+        public int LateMinute { get; set; }
     }
 }

@@ -21,16 +21,6 @@ namespace EMS.ApplicationCore.Services
             _attenRepository = attenRepository;
         }
 
-        public async Task<List<AttendanceModel>> GetActiveAsync(string date)
-        {
-            return await _attenRepository.GetActiveAsync(date);
-        }
-
-        public async Task<List<AttendanceModel>> GetAbsentAsync(string date)
-        {
-            return await _attenRepository.GetAbsentAsync(date);
-        }
-
         public async Task<List<AttendanceModel>> GetHistoryAsync(string employeeId, string startDate, string endDate)
         {
             return await _attenRepository.GetHistoryAsync(employeeId, startDate, endDate);

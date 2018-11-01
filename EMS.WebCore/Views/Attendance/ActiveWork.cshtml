@@ -7,16 +7,6 @@
 <!-- content -->
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2">
     <h2>Attendance <span class="badge badge-success">Active Work</span></h2>
-    <div class="btn-toolbar mb-2 mb-md-0">
-        <div class="btn-group mr-2">
-            <button class="btn btn-sm btn-outline-secondary">Share</button>
-            <button class="btn btn-sm btn-outline-secondary">Export</button>
-        </div>
-        <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar"></span>
-            This week
-        </button>
-    </div>
 </div>
 
 <form asp-controller="Attendance" asp-action="ActiveWork" method="get">
@@ -100,12 +90,13 @@
                             <th>Shift</th>
                             <th>Department</th>
                             <th>Section</th>
-                            <th>Job Title</th>
+                            <th>Job Position</th>
                             <th>Job Function</th>
                             <th>Route Name</th>
                             <th>Bus Station</th>
                             <th>Scan In Time</th>
                             <th>Scan Out Time</th>
+                            <th>Late (Minute)</th>
                             <th>History</th>
                         </tr>
                     </thead>
@@ -122,11 +113,12 @@
                                 <td>@e.DepartmentCode</td>
                                 <td>@e.SectionName</td>
                                 <td>@e.JobTitle</td>
-                                <th>@e.RouteName</th>
                                 <td>@e.FunctionName</td>
+                                <td>@e.RouteName</td>
                                 <td>@e.BusStationName</td>
                                 <td>@e.ScanInTime</td>
                                 <td>@e.ScanOutTime</td>
+                                <td>@e.LateMinute</td>
                                 <td>
                                     <a class="badge badge-success" asp-action="History" asp-route-employeeId="@e.EmployeeId">View</a>
                                 </td>

@@ -1,0 +1,135 @@
+﻿@model AttendanceViewModel
+
+@{
+    ViewData["Title"] = "Late";
+}
+
+<div class="container-fluid">
+
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2">
+        <h2>Attendance <span class="badge badge-warning">Late Time</span></h2>
+    </div>
+
+    <form asp-controller="Attendance" asp-action="Late" method="get">
+        <div class="form-row">
+            <div class="col-md-6 mb-2">
+                <div class="input-group">
+                    <div class="input-group-prepend w-25">
+                        <label asp-for="FilterModel.AttendanceDate" class="input-group-text w-100">Date</label>
+                    </div>
+                    <input asp-for="FilterModel.AttendanceDate" type="text" id="datepicker" autocomplete="off" class="form-control">
+                </div>
+            </div>
+            <div class="col-md-6 mb-2">
+                <div class="input-group">
+                    <div class="input-group-prepend w-25">
+                        <label asp-for="FilterModel.ShiftId" class="input-group-text w-100">Shift</label>
+                    </div>
+                    <select asp-for="FilterModel.ShiftId" asp-items="@Model.Shifts" class="form-control"></select>
+                </div>
+            </div>
+            <div class="col-md-6 mb-2">
+                <div class="input-group">
+                    <div class="input-group-prepend w-25">
+                        <label asp-for="FilterModel.DepartmentId" class="input-group-text w-100">Department</label>
+                    </div>
+                    <select asp-for="FilterModel.DepartmentId" asp-items="@Model.Departments" id="departmentSelectList" class="form-control"></select>
+                </div>
+            </div>
+            <div class="col-md-6 mb-2">
+                <div class="input-group">
+                    <div class="input-group-prepend w-25">
+                        <label asp-for="FilterModel.SectionId" class="input-group-text w-100">Section</label>
+                    </div>
+                    <select class="form-control" id="sectionSelectList" asp-for="FilterModel.SectionId"
+                            asp-items="@(new SelectList(string.Empty, " Value","Text"))"></select>
+                </div>
+            </div>
+            <div class="col-md-6 mb-2">
+                <div class="input-group">
+                    <div class="input-group-prepend w-25">
+                        <label asp-for="FilterModel.PositionId" class="input-group-text w-100">Position</label>
+                    </div>
+                    <select asp-for="FilterModel.PositionId" asp-items="@Model.Positions" class="form-control"></select>
+                </div>
+            </div>
+            <div class="col-md-6 mb-2">
+                <div class="input-group">
+                    <div class="input-group-prepend w-25">
+                        <label asp-for="FilterModel.FunctionId" class="input-group-text w-100">Job Function</label>
+                    </div>
+                    <select class="form-control" id="jobFunctionSelectList" asp-for="FilterModel.FunctionId"
+                            asp-items="@(new SelectList(string.Empty, " Value","Text"))"></select>
+                </div>
+            </div>
+            <div class="col-md-12 mb-3">
+                <div class="input-group">
+                    <input asp-for="FilterModel.EmployeeId" type="text" class="form-control" placeholder="Employee ID">
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary" type="submit"><i class="fa fa-search mr-2"></i>Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="row">
+        <div class="col-md-12">
+            @if (Model.Attendances.Any())
+            {
+                <div class="card mb-4">
+
+                    <div class="card-body scroll-box p-0">
+
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered table-sm w-100 mb-0">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Employee ID</th>
+                                        <th>Name (English)</th>
+                                        <th>Name (Thai)</th>
+                                        <th>Scan In Time</th>
+                                        <th>Late Time</th>
+                                        <th>Department</th>
+                                        <th>Section</th>
+                                        <th>Job Function</th>
+                                        <th>Level</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var e in Model.Attendances)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <img src="@e.EmployeeImage" />
+                                            </td>
+                                            <td>@e.EmployeeId</td>
+                                            <td>@e.Title. @e.FirstName @e.LastName</td>
+                                            <td>@e.FirstNameThai @e.LastNameThai</td>
+                                            <td>@e.ScanInTime</td>
+                                            <td>@e.LateMinute Minute</td>
+                                            <td>@e.DepartmentCode</td>
+                                            <td>@e.SectionName</td>
+                                            <td>@e.FunctionName</td>
+                                            <td>@e.LevelCode</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                    <div class="card-footer bg-white text-dark">
+                        <p class="mb-0">Total Active Work : @Model.Attendances.Count() Person.</p>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+

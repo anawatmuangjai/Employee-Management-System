@@ -35,10 +35,12 @@ namespace EMS.Persistance.Repositories
                          join job in _context.MasterJobFunction on employeeState.JobFunctionId equals job.JobFunctionId
                          join section in _context.MasterSection on job.SectionId equals section.SectionId
                          join department in _context.MasterDepartment on section.DepartmentId equals department.DepartmentId
+                         join image in _context.EmployeeImage on employee.EmployeeId equals image.EmployeeId into img
+                         from image in img.DefaultIfEmpty()
                          join attendance in _context.AttendanceC on employee.EmployeeId equals attendance.EmployeeId into aa
                          from attendance in aa.DefaultIfEmpty()
                          where attendance.WorkDate == filter.AttendanceDate && employee.AvailableFlag == true
-                         select new { employee, employeeState, level, shift, bus, route, position, job, section, department, attendance })
+                         select new { employee, employeeState, level, shift, bus, route, position, job, section, department, image, attendance })
                          .AsQueryable();
 
             if (filter != null)
@@ -60,6 +62,9 @@ namespace EMS.Persistance.Repositories
 
                 if (!string.IsNullOrEmpty(filter.EmployeeId))
                     query = query.Where(x => x.employee.EmployeeId == filter.EmployeeId);
+
+                if (filter.IsLate)
+                    query = query.Where(x => x.attendance.LateMin > 0);
             }
 
             var attendacnces = await query
@@ -80,7 +85,7 @@ namespace EMS.Persistance.Repositories
                     JobTitle = x.position.PositionName,
                     FunctionName = x.job.FunctionName,
                     RouteName = x.route.RouteName,
-                    BusStationName = x.bus.BusStationName,
+                    BusStationName = $"{x.bus.BusStationCode}.{x.bus.BusStationName}",
                     PassCode = x.attendance.PassCode,
                     ScanInTime = x.attendance.TimeIn,
                     ScanOutTime = x.attendance.TimeOut,
@@ -89,7 +94,9 @@ namespace EMS.Persistance.Repositories
                     PositionId = x.position.PositionId,
                     JobFunctionId = x.job.JobFunctionId,
                     SectionId = x.section.SectionId,
-                    DepartmentId = x.department.DepartmentId
+                    DepartmentId = x.department.DepartmentId,
+                    LateMinute = x.attendance.LateMin,
+                    EmployeeImage = ConvertImageString(x.image.Images)
                 }).ToListAsync();
 
             return attendacnces;
@@ -174,108 +181,6 @@ namespace EMS.Persistance.Repositories
             return employeeAbsent;
         }
 
-        public async Task<List<AttendanceModel>> GetActiveAsync(string date)
-        {
-            var query = (from employee in _context.Employee
-                         join employeeState in _context.EmployeeState on employee.EmployeeId equals employeeState.EmployeeId
-                         join attendance in _context.AttendanceC on employee.EmployeeId equals attendance.EmployeeId
-                         join level in _context.MasterLevel on employeeState.LevelId equals level.LevelId
-                         join shift in _context.MasterShift on employeeState.ShiftId equals shift.ShiftId
-                         join bus in _context.MasterBusStation on employeeState.BusStationId equals bus.BusStationId
-                         join route in _context.MasterRoute on bus.RouteId equals route.RouteId
-                         join position in _context.MasterJobPosition on employeeState.PositionId equals position.PositionId
-                         join job in _context.MasterJobFunction on employeeState.JobFunctionId equals job.JobFunctionId
-                         join section in _context.MasterSection on job.SectionId equals section.SectionId
-                         join department in _context.MasterDepartment on section.DepartmentId equals department.DepartmentId
-                         where attendance.WorkDate == date && attendance.PassCode == "I"
-                         select new AttendanceModel
-                         {
-                             EmployeeId = employee.EmployeeId,
-                             Title = employee.Title,
-                             EmployeeType = employee.EmployeeType,
-                             FirstName = employee.FirstName,
-                             LastName = employee.LastName,
-                             FirstNameThai = employee.FirstNameThai,
-                             LastNameThai = employee.LastNameThai,
-                             LevelCode = level.LevelCode,
-                             ShiftName = shift.ShiftName,
-                             DepartmentCode = department.DepartmentCode,
-                             SectionName = section.SectionName,
-                             JobTitle = position.PositionName,
-                             FunctionName = job.FunctionName,
-                             RouteName = route.RouteName,
-                             BusStationName = bus.BusStationName,
-                             PassCode = attendance.PassCode,
-                             ScanInTime = attendance.TimeIn,
-                             ScanOutTime = attendance.TimeOut,
-                             AttendanceDate = attendance.WorkDate,
-                             ShiftId = shift.ShiftId,
-                             PositionId = position.PositionId,
-                             JobFunctionId = job.JobFunctionId,
-                             SectionId = section.SectionId,
-                             DepartmentId = department.DepartmentId
-                         });
-
-            var attendacnces = await query.ToListAsync();
-
-            return attendacnces;
-        }
-
-        public async Task<List<AttendanceModel>> GetAbsentAsync(string date)
-        {
-            var employeeActivQuery = (from employee in _context.Employee
-                                      join attendance in _context.AttendanceC
-                                      on employee.EmployeeId equals attendance.EmployeeId
-                                      where attendance.WorkDate == date && attendance.PassCode == "I"
-                                      select employee.EmployeeId);
-
-            var employeeListQuery = (from employee in _context.Employee
-                                     join employeeState in _context.EmployeeState on employee.EmployeeId equals employeeState.EmployeeId
-                                     join level in _context.MasterLevel on employeeState.LevelId equals level.LevelId
-                                     join shift in _context.MasterShift on employeeState.ShiftId equals shift.ShiftId
-                                     join bus in _context.MasterBusStation on employeeState.BusStationId equals bus.BusStationId
-                                     join route in _context.MasterRoute on bus.RouteId equals route.RouteId
-                                     join position in _context.MasterJobPosition on employeeState.PositionId equals position.PositionId
-                                     join job in _context.MasterJobFunction on employeeState.JobFunctionId equals job.JobFunctionId
-                                     join section in _context.MasterSection on job.SectionId equals section.SectionId
-                                     join department in _context.MasterDepartment on section.DepartmentId equals department.DepartmentId
-                                     where employee.AvailableFlag == true
-                                     select new AttendanceModel
-                                     {
-                                         EmployeeId = employee.EmployeeId,
-                                         Title = employee.Title,
-                                         EmployeeType = employee.EmployeeType,
-                                         FirstName = employee.FirstName,
-                                         LastName = employee.LastName,
-                                         FirstNameThai = employee.FirstNameThai,
-                                         LastNameThai = employee.LastNameThai,
-                                         LevelCode = level.LevelCode,
-                                         ShiftName = shift.ShiftName,
-                                         DepartmentCode = department.DepartmentCode,
-                                         SectionName = section.SectionName,
-                                         JobTitle = position.PositionName,
-                                         FunctionName = job.FunctionName,
-                                         RouteName = route.RouteName,
-                                         BusStationName = bus.BusStationName,
-                                         PassCode = "-",
-                                         ScanInTime = "-",
-                                         ScanOutTime = "-",
-                                         AttendanceDate = "-",
-                                         ShiftId = shift.ShiftId,
-                                         PositionId = position.PositionId,
-                                         JobFunctionId = job.JobFunctionId,
-                                         SectionId = section.SectionId,
-                                         DepartmentId = department.DepartmentId
-                                     });
-
-            var employeeActive = await employeeActivQuery.ToListAsync();
-            var employeeList = await employeeListQuery.ToListAsync();
-            var employeeAbsent = employeeList.Where(x => !employeeActive.Contains(x.EmployeeId)).ToList();
-
-            return employeeAbsent;
-
-        }
-
         public async Task<List<AttendanceModel>> GetHistoryAsync(string employeeId, string startDate, string endDate)
         {
             var query = (from employee in _context.Employee
@@ -314,6 +219,19 @@ namespace EMS.Persistance.Repositories
             var attendacnces = await query.ToListAsync();
 
             return attendacnces;
+        }
+
+        private string ConvertImageString(byte[] imageByte)
+        {
+            var imageString = string.Empty;
+
+            if (imageByte != null)
+            {
+                var imageBase64Data = Convert.ToBase64String(imageByte);
+                imageString = string.Format("data:image/png;base64,{0}", imageBase64Data);
+            }
+
+            return imageString;
         }
     }
 }
