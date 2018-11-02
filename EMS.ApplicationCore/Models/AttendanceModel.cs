@@ -32,6 +32,8 @@ namespace EMS.ApplicationCore.Models
         public int JobFunctionId { get; set; }
         public int SectionId { get; set; }
         public int DepartmentId { get; set; }
+        public int OvertimeNormal { get; set; }
+        public int OvertimeSpecial { get; set; }
         public int LateMinute { get; set; }
     }
 }

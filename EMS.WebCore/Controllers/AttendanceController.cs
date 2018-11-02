@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using EMS.ApplicationCore.Helper;
 using EMS.ApplicationCore.Interfaces.Services;
 using EMS.WebCore.Interfaces;
-using EMS.WebCore.Models;
 using EMS.WebCore.ViewModels.Attendance;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -93,17 +93,17 @@ namespace EMS.WebCore.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> History(string employeeId, string startDate, string endDate)
+        public async Task<IActionResult> History(AttendanceFilter filterModel)
         {
             var viewModel = new AttendanceViewModel();
 
-            if (String.IsNullOrEmpty(startDate))
-                startDate = DateTime.Today.AddDays(-10).ToString("yyyy/MM/dd");
+            if (string.IsNullOrEmpty(filterModel.StartDate))
+                filterModel.StartDate = DateTime.Today.AddDays(-10).ToString("yyyy/MM/dd");
 
-            if (String.IsNullOrEmpty(endDate))
-                endDate = DateTime.Today.ToString("yyyy/MM/dd");
+            if (string.IsNullOrEmpty(filterModel.EndDate))
+                filterModel.EndDate = DateTime.Today.ToString("yyyy/MM/dd");
 
-            var image = await _employeeImageService.GetByEmployeeId(employeeId);
+            var image = await _employeeImageService.GetByEmployeeId(filterModel.EmployeeId);
 
             if (image != null)
             {
@@ -111,16 +111,52 @@ namespace EMS.WebCore.Controllers
                 viewModel.ProfileImage = string.Format("data:image/png;base64,{0}", imageBase64Data);
             }
 
-            if (!String.IsNullOrEmpty(employeeId))
+            if (string.IsNullOrEmpty(filterModel.AttendanceDate))
             {
-                var employee = await _employeeService.GetByEmployeeIdWithDetailAsync(employeeId);
-                var attendances = await _attendanceService.GetHistoryAsync(employeeId, startDate, endDate);
+                filterModel.AttendanceDate = DateTime.Today.ToString("yyyy/MM/dd");
+            }
+
+            if (!String.IsNullOrEmpty(filterModel.EmployeeId))
+            {
+                var employee = await _employeeService.GetByEmployeeIdWithDetailAsync(filterModel.EmployeeId);
+                var attendances = await _attendanceService.GetHistoryAsync(filterModel);
 
                 viewModel.Employee = employee;
                 viewModel.Attendances = attendances;
             }
 
             return View(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Export()
+        {
+            var filterModel = new AttendanceFilter();
+
+            if (string.IsNullOrEmpty(filterModel.AttendanceDate))
+            {
+                filterModel.AttendanceDate = DateTime.Today.ToString("yyyy/MM/dd");
+            }
+
+            var attendances = await _attendanceService.GetActiveAsync(filterModel);
+
+            var exportData = attendances;
+
+            // Build the file content
+            var csv = new StringBuilder();
+            var header = "EmployeeID,Name,Department,Section,Function,Level";
+            csv.AppendLine(header);
+
+            foreach (var e in exportData)
+            {
+                var newLine = $"{e.EmployeeId},{e.Title}.{e.FirstName} {e.LastName},{e.DepartmentName},{e.SectionName},{e.FunctionName},{e.LevelCode}";
+
+                csv.AppendLine(newLine);
+            }
+
+            var data = Encoding.UTF8.GetBytes(csv.ToString());
+            var result = Encoding.UTF8.GetPreamble().Concat(data).ToArray();
+            return File(result, "application/csv", "EmployeeActiveWork.csv");
         }
 
         public async Task<JsonResult> GetSectionByDepartmentId(int departmentId)

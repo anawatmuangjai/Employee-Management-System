@@ -11,6 +11,6 @@ namespace EMS.ApplicationCore.Interfaces.Repositories
     {
         Task<List<AttendanceModel>> GetActiveAsync(AttendanceFilter filter);
         Task<List<AttendanceModel>> GetAbsentAsync(AttendanceFilter filter);
-        Task<List<AttendanceModel>> GetHistoryAsync(string employeeId, string startDate, string endDate);
+        Task<List<AttendanceModel>> GetHistoryAsync(AttendanceFilter filter);
     }
 }

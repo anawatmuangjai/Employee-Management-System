@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap-datepicker/css/bootstrap-datepicker.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" />
+
     @*<environment include="Development">
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
             <link rel="stylesheet" href="~/css/site.css" />
@@ -108,8 +109,8 @@
                                 Request
                             </a>
                             <ul class="collapse collapseable" id="collapse-request">
-                                <li><a asp-area="" asp-controller="EmployeeSkill" asp-action="Index">Request OT</a></li>
-                                <li><a asp-area="" asp-controller="SkillMapping" asp-action="Index">Change Transport</a></li>
+                                <li><a asp-area="" asp-controller="Request" asp-action="OverTimeReport">OT Report</a></li>
+                                <li><a asp-area="" asp-controller="Request" asp-action="OverTimeRequest">OT Request</a></li>
                             </ul>
                         </li>
 
@@ -208,8 +209,8 @@
         </div>*@
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="~/lib/chartjs/dist/Chart.js"></script>
     <script src="~/lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="~/lib/chartjs/dist/Chart.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @*<environment include="Development">

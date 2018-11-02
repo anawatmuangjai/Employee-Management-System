@@ -95,6 +95,8 @@ namespace EMS.Persistance.Repositories
                     JobFunctionId = x.job.JobFunctionId,
                     SectionId = x.section.SectionId,
                     DepartmentId = x.department.DepartmentId,
+                    OvertimeNormal = x.attendance.Ot15,
+                    OvertimeSpecial = x.attendance.Ot3,
                     LateMinute = x.attendance.LateMin,
                     EmployeeImage = ConvertImageString(x.image.Images)
                 }).ToListAsync();
@@ -181,42 +183,93 @@ namespace EMS.Persistance.Repositories
             return employeeAbsent;
         }
 
-        public async Task<List<AttendanceModel>> GetHistoryAsync(string employeeId, string startDate, string endDate)
+        public async Task<List<AttendanceModel>> GetHistoryAsync(AttendanceFilter filter)
         {
             var query = (from employee in _context.Employee
                          join employeeState in _context.EmployeeState on employee.EmployeeId equals employeeState.EmployeeId
-                         join attendance in _context.AttendanceC on employee.EmployeeId equals attendance.EmployeeId
                          join level in _context.MasterLevel on employeeState.LevelId equals level.LevelId
                          join shift in _context.MasterShift on employeeState.ShiftId equals shift.ShiftId
                          join bus in _context.MasterBusStation on employeeState.BusStationId equals bus.BusStationId
+                         join route in _context.MasterRoute on bus.RouteId equals route.RouteId
                          join position in _context.MasterJobPosition on employeeState.PositionId equals position.PositionId
                          join job in _context.MasterJobFunction on employeeState.JobFunctionId equals job.JobFunctionId
                          join section in _context.MasterSection on job.SectionId equals section.SectionId
                          join department in _context.MasterDepartment on section.DepartmentId equals department.DepartmentId
-                         where employee.EmployeeId == employeeId && attendance.WorkDate == startDate
-                         select new AttendanceModel
-                         {
-                             EmployeeId = employee.EmployeeId,
-                             Title = employee.Title,
-                             EmployeeType = employee.EmployeeType,
-                             FirstName = employee.FirstName,
-                             LastName = employee.LastName,
-                             FirstNameThai = employee.FirstNameThai,
-                             LastNameThai = employee.LastNameThai,
-                             LevelCode = level.LevelCode,
-                             ShiftName = shift.ShiftName,
-                             DepartmentCode = department.DepartmentCode,
-                             SectionName = section.SectionName,
-                             JobTitle = position.PositionName,
-                             FunctionName = job.FunctionName,
-                             BusStationName = bus.BusStationName,
-                             PassCode = attendance.PassCode,
-                             ScanInTime = attendance.TimeIn,
-                             ScanOutTime = attendance.TimeOut,
-                             AttendanceDate = attendance.WorkDate
-                         });
+                         join image in _context.EmployeeImage on employee.EmployeeId equals image.EmployeeId into img
+                         from image in img.DefaultIfEmpty()
+                         join attendance in _context.AttendanceC on employee.EmployeeId equals attendance.EmployeeId into aa
+                         from attendance in aa.DefaultIfEmpty()
+                         where attendance.WorkDate == filter.AttendanceDate && employee.AvailableFlag == true
+                         select new { employee, employeeState, level, shift, bus, route, position, job, section, department, image, attendance })
+                         .AsQueryable();
 
-            var attendacnces = await query.ToListAsync();
+            if (filter != null)
+            {
+                if (!string.IsNullOrEmpty(filter.StartDate))
+                {
+                    query = query.Where(x => string.Compare(x.attendance.WorkDate, filter.StartDate, StringComparison.CurrentCulture) > 0);
+                }
+
+                if (!string.IsNullOrEmpty(filter.StartDate))
+                {
+                    query = query.Where(x => string.Compare(x.attendance.WorkDate, filter.EndDate, StringComparison.CurrentCulture) > 0);
+                }
+
+                if (filter.DepartmentId.HasValue)
+                    query = query.Where(x => x.department.DepartmentId == filter.DepartmentId);
+
+                if (filter.SectionId.HasValue)
+                    query = query.Where(x => x.section.SectionId == filter.SectionId);
+
+                if (filter.FunctionId.HasValue)
+                    query = query.Where(x => x.job.JobFunctionId == filter.FunctionId);
+
+                if (filter.ShiftId.HasValue)
+                    query = query.Where(x => x.shift.ShiftId == filter.ShiftId);
+
+                if (filter.PositionId.HasValue)
+                    query = query.Where(x => x.position.PositionId == filter.PositionId);
+
+                if (!string.IsNullOrEmpty(filter.EmployeeId))
+                    query = query.Where(x => x.employee.EmployeeId == filter.EmployeeId);
+
+                if (filter.IsLate)
+                    query = query.Where(x => x.attendance.LateMin > 0);
+            }
+
+            var attendacnces = await query
+                .Select(x => new AttendanceModel
+                {
+                    EmployeeId = x.employee.EmployeeId,
+                    Title = x.employee.Title,
+                    EmployeeType = x.employee.EmployeeType,
+                    FirstName = x.employee.FirstName,
+                    LastName = x.employee.LastName,
+                    FirstNameThai = x.employee.FirstNameThai,
+                    LastNameThai = x.employee.LastNameThai,
+                    LevelCode = x.level.LevelCode,
+                    ShiftName = x.shift.ShiftName,
+                    DepartmentName = x.department.DepartmentName,
+                    DepartmentCode = x.department.DepartmentCode,
+                    SectionName = x.section.SectionName,
+                    JobTitle = x.position.PositionName,
+                    FunctionName = x.job.FunctionName,
+                    RouteName = x.route.RouteName,
+                    BusStationName = $"{x.bus.BusStationCode}.{x.bus.BusStationName}",
+                    PassCode = x.attendance.PassCode,
+                    ScanInTime = x.attendance.TimeIn,
+                    ScanOutTime = x.attendance.TimeOut,
+                    AttendanceDate = x.attendance.WorkDate,
+                    ShiftId = x.shift.ShiftId,
+                    PositionId = x.position.PositionId,
+                    JobFunctionId = x.job.JobFunctionId,
+                    SectionId = x.section.SectionId,
+                    DepartmentId = x.department.DepartmentId,
+                    OvertimeNormal = x.attendance.Ot15,
+                    OvertimeSpecial = x.attendance.Ot3,
+                    LateMinute = x.attendance.LateMin,
+                    EmployeeImage = ConvertImageString(x.image.Images)
+                }).ToListAsync();
 
             return attendacnces;
         }

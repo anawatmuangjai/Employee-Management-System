@@ -75,11 +75,17 @@
 @if (Model.Attendances.Any())
 {
     <div class="card mb-3">
-        <h5 class="card-header bg-white text-success">Active List</h5>
+        <div class="card-header bg-white text-header">
+            <div class="row">
+                <div class="col-md-12">
+                    <h5 class="my-0">Employee Active List</h5>
+                    <p class="mb-0">Total Active Work : @Model.Attendances.Count() Person.</p>
+                </div>
+            </div>
+        </div>
         <div class="card-body scroll-box p-0">
-
             <div class="table-responsive">
-                <table class="table table-hover table-bordered table-sm w-100 mb-0">
+                <table class="table table-hover table-bordered table-sm w-100 mb-0" id="activeWorkTable">
                     <thead class="thead-light">
                         <tr>
                             <th>Type</th>
@@ -96,6 +102,8 @@
                             <th>Bus Station</th>
                             <th>Scan In Time</th>
                             <th>Scan Out Time</th>
+                            <th>OT (1.5)</th>
+                            <th>OT (3)</th>
                             <th>Late (Minute)</th>
                             <th>History</th>
                         </tr>
@@ -118,6 +126,8 @@
                                 <td>@e.BusStationName</td>
                                 <td>@e.ScanInTime</td>
                                 <td>@e.ScanOutTime</td>
+                                <td>@e.OvertimeNormal</td>
+                                <td>@e.OvertimeSpecial</td>
                                 <td>@e.LateMinute</td>
                                 <td>
                                     <a class="badge badge-success" asp-action="History" asp-route-employeeId="@e.EmployeeId">View</a>
@@ -127,11 +137,17 @@
                     </tbody>
                 </table>
             </div>
-
-
         </div>
         <div class="card-footer bg-white text-dark">
-            <p class="mb-0">Total Active Work : @Model.Attendances.Count() Person.</p>
+            <div class="row">
+                <div class="col-md-12">
+
+                    @*<a class="btn btn-danger" asp-controller="Attendance" asp-action="Export"></a>*@
+
+                    <button type="button" class="btn btn-primary" onclick="fnExcelReport();"><i class="fa fa-file-excel-o mr-2"></i>Export</button>
+                    <iframe id="txtArea1" style="display:none"></iframe>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -173,4 +189,38 @@
             autoclose: true,
         });
     </script>
+
+    <script>
+        function fnExcelReport() {
+            var tab_text = "<table border='2px'><tr bgcolor='#87AFC6'>";
+            var textRange; var j = 0;
+            tab = document.getElementById('activeWorkTable'); // id of table
+
+            for (j = 0; j < tab.rows.length; j++) {
+                tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
+            }
+
+            tab_text = tab_text + "</table>";
+            tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+            tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
+            tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+
+            var ua = window.navigator.userAgent;
+            var msie = ua.indexOf("MSIE ");
+
+            if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) // If Internet Explorer
+            {
+                txtArea1.document.open("txt/html", "replace");
+                txtArea1.document.write(tab_text);
+                txtArea1.document.close();
+                txtArea1.focus();
+                sa = txtArea1.document.execCommand("SaveAs", true, "Attendace.xls");
+            }
+            else //other browser not tested on IE 11
+                sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+
+            return (sa);
+        }
+    </script>
+
 }

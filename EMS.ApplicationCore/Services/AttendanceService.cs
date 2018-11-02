@@ -21,9 +21,9 @@ namespace EMS.ApplicationCore.Services
             _attenRepository = attenRepository;
         }
 
-        public async Task<List<AttendanceModel>> GetHistoryAsync(string employeeId, string startDate, string endDate)
+        public async Task<List<AttendanceModel>> GetHistoryAsync(AttendanceFilter filter)
         {
-            return await _attenRepository.GetHistoryAsync(employeeId, startDate, endDate);
+            return await _attenRepository.GetHistoryAsync(filter);
         }
 
         public async Task<List<AttendanceModel>> GetActiveAsync(AttendanceFilter filter)
