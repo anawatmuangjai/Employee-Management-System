@@ -88,7 +88,7 @@
                 <table class="table table-hover table-bordered table-sm w-100 mb-0" id="activeWorkTable">
                     <thead class="thead-light">
                         <tr>
-                            <th>Type</th>
+                            <th class="text-center">History</th>
                             <th>Employee ID</th>
                             <th>Name (English)</th>
                             <th>Name (Thai)</th>
@@ -105,14 +105,15 @@
                             <th>OT (1.5)</th>
                             <th>OT (3)</th>
                             <th>Late (Minute)</th>
-                            <th>History</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var e in Model.Attendances)
                         {
                             <tr>
-                                <td>@e.EmployeeType</td>
+                                <td class="text-center">
+                                    <a class="badge badge-success" asp-action="History" asp-route-employeeId="@e.EmployeeId">View</a>
+                                </td>
                                 <td>@e.EmployeeId</td>
                                 <td>@e.Title. @e.FirstName @e.LastName</td>
                                 <td>@e.TitleThai @e.FirstNameThai @e.LastNameThai</td>
@@ -129,9 +130,6 @@
                                 <td>@e.OvertimeNormal</td>
                                 <td>@e.OvertimeSpecial</td>
                                 <td>@e.LateMinute</td>
-                                <td>
-                                    <a class="badge badge-success" asp-action="History" asp-route-employeeId="@e.EmployeeId">View</a>
-                                </td>
                             </tr>
                         }
                     </tbody>

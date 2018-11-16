@@ -75,13 +75,13 @@
 @if (Model.Attendances.Any())
 {
     <div class="card mb-3">
-        <h5 class="card-header bg-dark text-danger">Absent List</h5>
+        <h5 class="card-header">Absent List</h5>
         <div class="card-body scroll-box p-0">
             <div class="table-responsive">
                 <table class="table table-hover table-bordered table-sm w-100 mb-0">
                     <thead class="thead-light">
                         <tr>
-                            <th>Type</th>
+                            <th class="text-center">History</th>
                             <th>Employee ID</th>
                             <th>Name (English)</th>
                             <th>Name (Thai)</th>
@@ -89,20 +89,19 @@
                             <th>Shift</th>
                             <th>Department</th>
                             <th>Section</th>
-                            <th>Job Title</th>
+                            <th>Job Position</th>
                             <th>Job Function</th>
                             <th>Route</th>
                             <th>Bus Station</th>
-                            <th>Scan In Time</th>
-                            <th>Scan Out Time</th>
-                            <th>History</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var e in Model.Attendances)
                         {
                             <tr>
-                                <td>@e.EmployeeType</td>
+                                <td class="text-center">
+                                    <a asp-action="History" asp-route-employeeId="@e.EmployeeId" class="badge badge-danger">View</a>
+                                </td>
                                 <td>@e.EmployeeId</td>
                                 <td>@e.Title. @e.FirstName @e.LastName</td>
                                 <td>@e.TitleThai @e.FirstNameThai @e.LastNameThai</td>
@@ -114,11 +113,6 @@
                                 <td>@e.FunctionName</td>
                                 <td>@e.RouteName</td>
                                 <td>@e.BusStationName</td>
-                                <td>@e.ScanInTime</td>
-                                <td>@e.ScanOutTime</td>
-                                <td>
-                                    <a asp-action="History" asp-route-employeeId="@e.EmployeeId" class="badge badge-danger">View</a>
-                                </td>
                             </tr>
 
                         }

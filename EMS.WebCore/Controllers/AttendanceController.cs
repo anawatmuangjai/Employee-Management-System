@@ -63,6 +63,7 @@ namespace EMS.WebCore.Controllers
             if (string.IsNullOrEmpty(filterModel.AttendanceDate))
             {
                 filterModel.AttendanceDate = DateTime.Today.ToString("yyyy/MM/dd");
+                filterModel.Shifts = new List<int> { 1, 2 };
             }
 
             viewModel.Attendances = await _attendanceService.GetAbsentAsync(filterModel);
@@ -93,6 +94,40 @@ namespace EMS.WebCore.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> History(string employeeId)
+        {
+            var viewModel = new AttendanceViewModel();
+
+            if (!string.IsNullOrEmpty(employeeId))
+            {
+                var employee = await _employeeService.GetByEmployeeIdWithDetailAsync(employeeId);
+
+                var image = await _employeeImageService.GetByEmployeeId(employeeId);
+
+                if (image != null)
+                {
+                    var imageBase64Data = Convert.ToBase64String(image.Images);
+                    viewModel.ProfileImage = string.Format("data:image/png;base64,{0}", imageBase64Data);
+                }
+
+                var filter = new AttendanceFilter
+                {
+                    EmployeeId = employeeId,
+                    StartDate = DateTime.Today.AddDays(-10).ToString("yyyy/MM/dd"),
+                    EndDate = DateTime.Today.ToString("yyyy/MM/dd")
+                };
+
+                var attendances = await _attendanceService.GetHistoryAsync(filter);
+
+                viewModel.FilterModel = filter;
+                viewModel.Employee = employee;
+                viewModel.Attendances = attendances;
+            }
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
         public async Task<IActionResult> History(AttendanceFilter filterModel)
         {
             var viewModel = new AttendanceViewModel();
@@ -111,12 +146,7 @@ namespace EMS.WebCore.Controllers
                 viewModel.ProfileImage = string.Format("data:image/png;base64,{0}", imageBase64Data);
             }
 
-            if (string.IsNullOrEmpty(filterModel.AttendanceDate))
-            {
-                filterModel.AttendanceDate = DateTime.Today.ToString("yyyy/MM/dd");
-            }
-
-            if (!String.IsNullOrEmpty(filterModel.EmployeeId))
+            if (!string.IsNullOrEmpty(filterModel.EmployeeId))
             {
                 var employee = await _employeeService.GetByEmployeeIdWithDetailAsync(filterModel.EmployeeId);
                 var attendances = await _attendanceService.GetHistoryAsync(filterModel);
@@ -144,7 +174,7 @@ namespace EMS.WebCore.Controllers
 
             // Build the file content
             var csv = new StringBuilder();
-            var header = "EmployeeID,Name,Department,Section,Function,Level";
+            var header = "EmployeeID,Employee,Name,Department,Section,Function,Level";
             csv.AppendLine(header);
 
             foreach (var e in exportData)
@@ -157,6 +187,36 @@ namespace EMS.WebCore.Controllers
             var data = Encoding.UTF8.GetBytes(csv.ToString());
             var result = Encoding.UTF8.GetPreamble().Concat(data).ToArray();
             return File(result, "application/csv", "EmployeeActiveWork.csv");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DailyActive()
+        {
+            var filterModel = new AttendanceFilter
+            {
+                AttendanceDate = DateTime.Today.ToString("yyyy/MM/dd")
+            };
+
+            var attendances = await _attendanceService.GetActiveAsync(filterModel);
+
+            var csv = new StringBuilder();
+            var header = "Type,EmployeeID,Name (English),Name (Thai),Level,Shift,Department,Section,Function,Route,Bus,Scan In,Scan Out,OT 1.5,OT 3,Late (Minute)";
+            csv.AppendLine(header);
+
+            foreach (var e in attendances)
+            {
+                var newLine = $"{e.EmployeeType},{e.EmployeeId},{e.Title}.{e.FirstName} {e.LastName}," +
+                    $"{e.TitleThai} {e.FirstNameThai} {e.LastNameThai},{e.LevelCode},{e.ShiftName}," +
+                    $"{e.DepartmentName},{e.SectionName},{e.FunctionName},{e.RouteName}," +
+                    $"{e.BusStationName},{e.ScanInTime},{e.ScanOutTime},{e.OvertimeNormal}," +
+                    $"{e.OvertimeSpecial},{e.LateMinute}";
+
+                csv.AppendLine(newLine);
+            }
+
+            var data = Encoding.UTF8.GetBytes(csv.ToString());
+            var result = Encoding.UTF8.GetPreamble().Concat(data).ToArray();
+            return File(result, "application/csv", "DailyActiveWork.csv");
         }
 
         public async Task<JsonResult> GetSectionByDepartmentId(int departmentId)

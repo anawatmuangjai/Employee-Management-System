@@ -145,6 +145,11 @@ namespace EMS.Persistance.Repositories
 
                 if (!string.IsNullOrEmpty(filter.EmployeeId))
                     employeeListQuery = employeeListQuery.Where(x => x.employee.EmployeeId == filter.EmployeeId);
+
+                if (filter.Shifts != null)
+                {
+                    employeeListQuery = employeeListQuery.Where(x => filter.Shifts.Contains(x.shift.ShiftId));
+                }
             }
 
             var attendacnces = await employeeListQuery
@@ -201,7 +206,7 @@ namespace EMS.Persistance.Repositories
                          from image in img.DefaultIfEmpty()
                          join attendance in _context.AttendanceC on employee.EmployeeId equals attendance.EmployeeId into aa
                          from attendance in aa.DefaultIfEmpty()
-                         where attendance.WorkDate == filter.AttendanceDate && employee.AvailableFlag == true
+                         where employee.AvailableFlag == true
                          select new { employee, employeeState, level, shift, bus, route, position, job, section, department, image, attendance })
                          .AsQueryable();
 
@@ -209,12 +214,12 @@ namespace EMS.Persistance.Repositories
             {
                 if (!string.IsNullOrEmpty(filter.StartDate))
                 {
-                    query = query.Where(x => string.Compare(x.attendance.WorkDate, filter.StartDate, StringComparison.CurrentCulture) > 0);
+                    query = query.Where(x => Convert.ToDateTime(x.attendance.WorkDate) >= Convert.ToDateTime(filter.StartDate));
                 }
 
                 if (!string.IsNullOrEmpty(filter.StartDate))
                 {
-                    query = query.Where(x => string.Compare(x.attendance.WorkDate, filter.EndDate, StringComparison.CurrentCulture) > 0);
+                    query = query.Where(x => Convert.ToDateTime(x.attendance.WorkDate) <= Convert.ToDateTime(filter.EndDate));
                 }
 
                 if (filter.DepartmentId.HasValue)

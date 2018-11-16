@@ -7,19 +7,9 @@
 <!-- content -->
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2">
     <h2>Attendance History</h2>
-    <div class="btn-toolbar mb-2 mb-md-0">
-        <div class="btn-group mr-2">
-            <button class="btn btn-sm btn-outline-secondary">Share</button>
-            <button class="btn btn-sm btn-outline-secondary">Export</button>
-        </div>
-        <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar"></span>
-            This week
-        </button>
-    </div>
 </div>
 
-<div class="row mb-0">
+<div class="row">
     <div class="col">
         <div class="card flex-md-row mb-4 shadow-sm h-md-250">
             <div class="card-body d-flex flex-column align-items-start">
@@ -52,30 +42,33 @@
     </div>
 </div>
 
-<div class="row mb-3">
-    <div class="col">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <label class="input-group-text">Start Date</label>
-            </div>
-            <input type="date" class="form-control" value="2018-01-01" required>
-            <div class="input-group-prepend">
-                <label class="input-group-text">End Date</label>
-            </div>
-            <input type="date" class="form-control" value="2018-01-01" required>
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search mr-2"></i>Search</button>
+<form asp-controller="Attendance" asp-action="History" method="post">
+    <div class="form-row mb-4">
+        <div class="col-md-12">
+            <input asp-for="FilterModel.EmployeeId" type="hidden" />
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <label asp-for="FilterModel.StartDate" class="input-group-text">Start Date</label>
+                </div>
+                <input asp-for="FilterModel.StartDate" type="text" id="start-datepicker" class="form-control">
+                <div class="input-group-prepend">
+                    <label class="input-group-text">End Date</label>
+                </div>
+                <input asp-for="FilterModel.EndDate" type="text" id="end-datepicker" class="form-control">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search mr-2"></i>Search</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>
 
 <div class="row mb-2">
     <div class="col">
         @if (Model.Attendances.Any())
         {
             <div class="card">
-                <h5 class="card-header bg-secondary text-white">Attendance Record Time</h5>
+                <h5 class="card-header">Attendance Record Time</h5>
                 <div class="card-body p-0">
                     <div class="table-responsive">
                         <table class="table table-hover table-sm w-100">
@@ -107,4 +100,20 @@
         }
     </div>
 </div>
+
+@section scripts {
+
+    <script>
+        $('#start-datepicker').datepicker({
+            format: 'yyyy/mm/dd',
+            autoclose: true,
+        });
+
+        $('#end-datepicker').datepicker({
+            format: 'yyyy/mm/dd',
+            autoclose: true,
+        });
+    </script>
+
+}
 

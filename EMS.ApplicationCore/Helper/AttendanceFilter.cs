@@ -11,5 +11,6 @@ namespace EMS.ApplicationCore.Helper
         public string StartDate { get; set; }
         public string EndDate { get; set; }
         public bool IsLate { get; set; }
+        public List<int> Shifts { get; set; }
     }
 }
