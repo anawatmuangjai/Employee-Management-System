@@ -38,13 +38,14 @@ namespace EMS.WebCore.Controllers
 
             // Build the file content
             var csv = new StringBuilder();
-            var header = "Type,Employee ID,Level,Shift,Department,Section,Position,Job Function,Route,Bus Station";
+            var header = "Type,EmployeeID,Name (English),Name (Thai),Level,Shift,Department,Section,Job Function,Route,Bus Station";
             csv.AppendLine(header);
 
             foreach (var e in employeeRecords)
             {
-                var newLine = $"{e.EmployeeType},{e.EmployeeId},{e.LevelCode},{e.ShiftName}," +
-                    $"{e.DepartmentCode},{e.SectionName},{e.JobTitle},{e.FunctionName},{e.RouteName},{e.BusStationName}";
+                var newLine = $"{e.EmployeeType},{e.EmployeeId},{e.Title}. {e.FirstName} {e.LastName}," +
+                    $"{e.TitleThai} {e.FirstNameThai} {e.LastNameThai},{e.LevelCode},{e.ShiftName}," +
+                    $"{e.DepartmentName},{e.SectionName},{e.FunctionName},{e.RouteName},{e.BusStationName}";
 
                 csv.AppendLine(newLine);
             }
