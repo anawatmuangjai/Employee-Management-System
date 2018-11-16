@@ -72,6 +72,7 @@ namespace EMS.Persistance.Repositories
                 {
                     EmployeeId = x.employee.EmployeeId,
                     Title = x.employee.Title,
+                    TitleThai = x.employee.TitleThai,
                     EmployeeType = x.employee.EmployeeType,
                     FirstName = x.employee.FirstName,
                     LastName = x.employee.LastName,
@@ -151,6 +152,7 @@ namespace EMS.Persistance.Repositories
                 {
                     EmployeeId = x.employee.EmployeeId,
                     Title = x.employee.Title,
+                    TitleThai = x.employee.TitleThai,
                     EmployeeType = x.employee.EmployeeType,
                     FirstName = x.employee.FirstName,
                     LastName = x.employee.LastName,
