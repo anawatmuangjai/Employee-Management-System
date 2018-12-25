@@ -132,7 +132,6 @@ var Util = function ($$$1) {
    * --------------------------------------------------------------------------
    */
 
-
   var Util = {
     TRANSITION_END: 'bsTransitionEnd',
     getUID: function getUID(prefix) {
@@ -149,7 +148,6 @@ var Util = function ($$$1) {
       if (!selector || selector === '#') {
         selector = element.getAttribute('href') || '';
       } // If it's an ID
-
 
       if (selector.charAt(0) === '#') {
         selector = escapeId(selector);
@@ -229,7 +227,6 @@ var Alert = function ($$$1) {
      * Class Definition
      * ------------------------------------------------------------------------
      */
-
   };
 
   var Alert =
@@ -238,7 +235,6 @@ var Alert = function ($$$1) {
     function Alert(element) {
       this._element = element;
     } // Getters
-
 
     var _proto = Alert.prototype;
 
@@ -261,7 +257,6 @@ var Alert = function ($$$1) {
       $$$1.removeData(this._element, DATA_KEY);
       this._element = null;
     }; // Private
-
 
     _proto._getRootElement = function _getRootElement(element) {
       var selector = Util.getSelectorFromElement(element);
@@ -304,7 +299,6 @@ var Alert = function ($$$1) {
       $$$1(element).detach().trigger(Event.CLOSED).remove();
     }; // Static
 
-
     Alert._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
         var $element = $$$1(this);
@@ -344,7 +338,6 @@ var Alert = function ($$$1) {
    * Data Api implementation
    * ------------------------------------------------------------------------
    */
-
 
   $$$1(document).on(Event.CLICK_DATA_API, Selector.DISMISS, Alert._handleDismiss(new Alert()));
   /**
@@ -403,7 +396,6 @@ var Button = function ($$$1) {
      * Class Definition
      * ------------------------------------------------------------------------
      */
-
   };
 
   var Button =
@@ -412,7 +404,6 @@ var Button = function ($$$1) {
     function Button(element) {
       this._element = element;
     } // Getters
-
 
     var _proto = Button.prototype;
 
@@ -466,7 +457,6 @@ var Button = function ($$$1) {
       this._element = null;
     }; // Static
 
-
     Button._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
         var data = $$$1(this).data(DATA_KEY);
@@ -495,7 +485,6 @@ var Button = function ($$$1) {
    * Data Api implementation
    * ------------------------------------------------------------------------
    */
-
 
   $$$1(document).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE_CARROT, function (event) {
     event.preventDefault();
@@ -606,7 +595,6 @@ var Carousel = function ($$$1) {
      * Class Definition
      * ------------------------------------------------------------------------
      */
-
   };
 
   var Carousel =
@@ -625,7 +613,6 @@ var Carousel = function ($$$1) {
 
       this._addEventListeners();
     } // Getters
-
 
     var _proto = Carousel.prototype;
 
@@ -720,7 +707,6 @@ var Carousel = function ($$$1) {
       this._activeElement = null;
       this._indicatorsElement = null;
     }; // Private
-
 
     _proto._getConfig = function _getConfig(config) {
       config = _extends({}, Default, config);
@@ -919,7 +905,6 @@ var Carousel = function ($$$1) {
       }
     }; // Static
 
-
     Carousel._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
         var data = $$$1(this).data(DATA_KEY);
@@ -1000,7 +985,6 @@ var Carousel = function ($$$1) {
    * ------------------------------------------------------------------------
    */
 
-
   $$$1(document).on(Event.CLICK_DATA_API, Selector.DATA_SLIDE, Carousel._dataApiClickHandler);
   $$$1(window).on(Event.LOAD_DATA_API, function () {
     $$$1(Selector.DATA_RIDE).each(function () {
@@ -1079,7 +1063,6 @@ var Collapse = function ($$$1) {
      * Class Definition
      * ------------------------------------------------------------------------
      */
-
   };
 
   var Collapse =
@@ -1113,7 +1096,6 @@ var Collapse = function ($$$1) {
         this.toggle();
       }
     } // Getters
-
 
     var _proto = Collapse.prototype;
 
@@ -1264,7 +1246,6 @@ var Collapse = function ($$$1) {
       this._isTransitioning = null;
     }; // Private
 
-
     _proto._getConfig = function _getConfig(config) {
       config = _extends({}, Default, config);
       config.toggle = Boolean(config.toggle); // Coerce string values
@@ -1309,7 +1290,6 @@ var Collapse = function ($$$1) {
         }
       }
     }; // Static
-
 
     Collapse._getTargetFromElement = function _getTargetFromElement(element) {
       var selector = Util.getSelectorFromElement(element);
@@ -1360,7 +1340,6 @@ var Collapse = function ($$$1) {
    * Data Api implementation
    * ------------------------------------------------------------------------
    */
-
 
   $$$1(document).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (event) {
     // preventDefault only for <a> elements (which change the URL) not inside the collapsible element
@@ -1478,7 +1457,6 @@ var Dropdown = function ($$$1) {
      * Class Definition
      * ------------------------------------------------------------------------
      */
-
   };
 
   var Dropdown =
@@ -1493,7 +1471,6 @@ var Dropdown = function ($$$1) {
 
       this._addEventListeners();
     } // Getters
-
 
     var _proto = Dropdown.prototype;
 
@@ -1523,7 +1500,6 @@ var Dropdown = function ($$$1) {
         return;
       } // Disable totally Popper.js for Dropdown in Navbar
 
-
       if (!this._inNavbar) {
         /**
          * Check for Popper dependency
@@ -1543,7 +1519,6 @@ var Dropdown = function ($$$1) {
         // to allow the menu to "escape" the scroll parent's boundaries
         // https://github.com/twbs/bootstrap/issues/24251
 
-
         if (this._config.boundary !== 'scrollParent') {
           $$$1(parent).addClass(ClassName.POSITION_STATIC);
         }
@@ -1553,7 +1528,6 @@ var Dropdown = function ($$$1) {
       // empty mouseover listeners to the body's immediate children;
       // only needed because of broken event delegation on iOS
       // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
-
 
       if ('ontouchstart' in document.documentElement && $$$1(parent).closest(Selector.NAVBAR_NAV).length === 0) {
         $$$1('body').children().on('mouseover', null, $$$1.noop);
@@ -1587,7 +1561,6 @@ var Dropdown = function ($$$1) {
         this._popper.scheduleUpdate();
       }
     }; // Private
-
 
     _proto._addEventListeners = function _addEventListeners() {
       var _this = this;
@@ -1670,7 +1643,6 @@ var Dropdown = function ($$$1) {
       return popperConfig;
     }; // Static
 
-
     Dropdown._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
         var data = $$$1(this).data(DATA_KEY);
@@ -1729,7 +1701,6 @@ var Dropdown = function ($$$1) {
         } // If this is a touch-enabled device we remove the extra
         // empty mouseover listeners we added for iOS support
 
-
         if ('ontouchstart' in document.documentElement) {
           $$$1('body').children().off('mouseover', null, $$$1.noop);
         }
@@ -1750,7 +1721,6 @@ var Dropdown = function ($$$1) {
 
       return parent || element.parentNode;
     }; // eslint-disable-next-line complexity
-
 
     Dropdown._dataApiKeydownHandler = function _dataApiKeydownHandler(event) {
       // If not input/textarea:
@@ -1833,7 +1803,6 @@ var Dropdown = function ($$$1) {
    * Data Api implementation
    * ------------------------------------------------------------------------
    */
-
 
   $$$1(document).on(Event.KEYDOWN_DATA_API, Selector.DATA_TOGGLE, Dropdown._dataApiKeydownHandler).on(Event.KEYDOWN_DATA_API, Selector.MENU, Dropdown._dataApiKeydownHandler).on(Event.CLICK_DATA_API + " " + Event.KEYUP_DATA_API, Dropdown._clearMenus).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (event) {
     event.preventDefault();
@@ -1927,7 +1896,6 @@ var Modal = function ($$$1) {
      * Class Definition
      * ------------------------------------------------------------------------
      */
-
   };
 
   var Modal =
@@ -1944,7 +1912,6 @@ var Modal = function ($$$1) {
       this._originalBodyPadding = 0;
       this._scrollbarWidth = 0;
     } // Getters
-
 
     var _proto = Modal.prototype;
 
@@ -2062,7 +2029,6 @@ var Modal = function ($$$1) {
     _proto.handleUpdate = function handleUpdate() {
       this._adjustDialog();
     }; // Private
-
 
     _proto._getConfig = function _getConfig(config) {
       config = _extends({}, Default, config);
@@ -2254,7 +2220,6 @@ var Modal = function ($$$1) {
     // todo (fat): these should probably be refactored out of modal.js
     // ----------------------------------------------------------------------
 
-
     _proto._adjustDialog = function _adjustDialog() {
       var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
 
@@ -2344,7 +2309,6 @@ var Modal = function ($$$1) {
       return scrollbarWidth;
     }; // Static
 
-
     Modal._jQueryInterface = function _jQueryInterface(config, relatedTarget) {
       return this.each(function () {
         var data = $$$1(this).data(DATA_KEY);
@@ -2386,7 +2350,6 @@ var Modal = function ($$$1) {
    * Data Api implementation
    * ------------------------------------------------------------------------
    */
-
 
   $$$1(document).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (event) {
     var _this10 = this;
@@ -2527,7 +2490,6 @@ var Tooltip = function ($$$1) {
      * Class Definition
      * ------------------------------------------------------------------------
      */
-
   };
 
   var Tooltip =
@@ -2542,7 +2504,6 @@ var Tooltip = function ($$$1) {
         throw new TypeError('Bootstrap tooltips require Popper.js (https://popper.js.org)');
       } // private
 
-
       this._isEnabled = true;
       this._timeout = 0;
       this._hoverState = '';
@@ -2555,7 +2516,6 @@ var Tooltip = function ($$$1) {
 
       this._setListeners();
     } // Getters
-
 
     var _proto = Tooltip.prototype;
 
@@ -2783,7 +2743,6 @@ var Tooltip = function ($$$1) {
       }
     }; // Protected
 
-
     _proto.isWithContent = function isWithContent() {
       return Boolean(this.getTitle());
     };
@@ -2829,7 +2788,6 @@ var Tooltip = function ($$$1) {
 
       return title;
     }; // Private
-
 
     _proto._getAttachment = function _getAttachment(placement) {
       return AttachmentMap[placement.toUpperCase()];
@@ -3019,7 +2977,6 @@ var Tooltip = function ($$$1) {
       this.config.animation = initConfigAnimation;
     }; // Static
 
-
     Tooltip._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
         var data = $$$1(this).data(DATA_KEY);
@@ -3089,7 +3046,6 @@ var Tooltip = function ($$$1) {
    * ------------------------------------------------------------------------
    */
 
-
   $$$1.fn[NAME] = Tooltip._jQueryInterface;
   $$$1.fn[NAME].Constructor = Tooltip;
 
@@ -3154,7 +3110,6 @@ var Popover = function ($$$1) {
      * Class Definition
      * ------------------------------------------------------------------------
      */
-
   };
 
   var Popover =
@@ -3197,7 +3152,6 @@ var Popover = function ($$$1) {
       $tip.removeClass(ClassName.FADE + " " + ClassName.SHOW);
     }; // Private
 
-
     _proto._getContent = function _getContent() {
       return this.element.getAttribute('data-content') || this.config.content;
     };
@@ -3210,7 +3164,6 @@ var Popover = function ($$$1) {
         $tip.removeClass(tabClass.join(''));
       }
     }; // Static
-
 
     Popover._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
@@ -3282,7 +3235,6 @@ var Popover = function ($$$1) {
    * ------------------------------------------------------------------------
    */
 
-
   $$$1.fn[NAME] = Popover._jQueryInterface;
   $$$1.fn[NAME].Constructor = Popover;
 
@@ -3352,7 +3304,6 @@ var ScrollSpy = function ($$$1) {
      * Class Definition
      * ------------------------------------------------------------------------
      */
-
   };
 
   var ScrollSpy =
@@ -3376,7 +3327,6 @@ var ScrollSpy = function ($$$1) {
 
       this._process();
     } // Getters
-
 
     var _proto = ScrollSpy.prototype;
 
@@ -3432,7 +3382,6 @@ var ScrollSpy = function ($$$1) {
       this._activeTarget = null;
       this._scrollHeight = null;
     }; // Private
-
 
     _proto._getConfig = function _getConfig(config) {
       config = _extends({}, Default, config);
@@ -3509,7 +3458,6 @@ var ScrollSpy = function ($$$1) {
 
       var queries = this._selector.split(','); // eslint-disable-next-line arrow-body-style
 
-
       queries = queries.map(function (selector) {
         return selector + "[data-target=\"" + target + "\"]," + (selector + "[href=\"" + target + "\"]");
       });
@@ -3536,7 +3484,6 @@ var ScrollSpy = function ($$$1) {
     _proto._clear = function _clear() {
       $$$1(this._selector).filter(Selector.ACTIVE).removeClass(ClassName.ACTIVE);
     }; // Static
-
 
     ScrollSpy._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
@@ -3577,7 +3524,6 @@ var ScrollSpy = function ($$$1) {
    * Data Api implementation
    * ------------------------------------------------------------------------
    */
-
 
   $$$1(window).on(Event.LOAD_DATA_API, function () {
     var scrollSpys = $$$1.makeArray($$$1(Selector.DATA_SPY));
@@ -3652,7 +3598,6 @@ var Tab = function ($$$1) {
      * Class Definition
      * ------------------------------------------------------------------------
      */
-
   };
 
   var Tab =
@@ -3661,7 +3606,6 @@ var Tab = function ($$$1) {
     function Tab(element) {
       this._element = element;
     } // Getters
-
 
     var _proto = Tab.prototype;
 
@@ -3730,7 +3674,6 @@ var Tab = function ($$$1) {
       this._element = null;
     }; // Private
 
-
     _proto._activate = function _activate(element, container, callback) {
       var _this2 = this;
 
@@ -3794,7 +3737,6 @@ var Tab = function ($$$1) {
       }
     }; // Static
 
-
     Tab._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
         var $this = $$$1(this);
@@ -3828,7 +3770,6 @@ var Tab = function ($$$1) {
    * Data Api implementation
    * ------------------------------------------------------------------------
    */
-
 
   $$$1(document).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (event) {
     event.preventDefault();
@@ -3889,6 +3830,5 @@ exports.Tab = Tab;
 exports.Tooltip = Tooltip;
 
 Object.defineProperty(exports, '__esModule', { value: true });
-
 })));
 //# sourceMappingURL=bootstrap.js.map

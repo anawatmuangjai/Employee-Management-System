@@ -2,10 +2,7 @@
 using EMS.WebCore.Models.Dashboard;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EMS.WebCore.ViewModels.Dashboard
 {
@@ -44,6 +41,5 @@ namespace EMS.WebCore.ViewModels.Dashboard
 
         public HtmlString TransportChartLabel { get; set; }
         public HtmlString TransportChartValue { get; set; }
-
     }
 }

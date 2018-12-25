@@ -1,9 +1,9 @@
-﻿using System;
+﻿using EMS.WebCore.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EMS.WebCore.Interfaces;
-using Microsoft.AspNetCore.Mvc;
 
 namespace EMS.WebCore.Controllers
 {

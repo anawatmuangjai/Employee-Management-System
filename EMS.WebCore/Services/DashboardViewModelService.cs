@@ -140,7 +140,6 @@ namespace EMS.WebCore.Services
             var transportChartLabel = JsonConvert.SerializeObject(transportRoutes.Select(x => x.RouteName).ToList(), Formatting.None);
             var transportChartValue = JsonConvert.SerializeObject(transportRoutes.Select(x => x.Quantity).ToList(), Formatting.None);
 
-
             viewModel.CountTotalEmployee = totalEmployee;
             viewModel.CountActiveWork = employeeActive.Count;
             viewModel.CountAbsent = totalAbsent.Count();
@@ -222,7 +221,6 @@ namespace EMS.WebCore.Services
                     TotalPerson = x.Select(e => e.EmployeeId).Count()
                 }).ToList();
 
-
             foreach (var item in resutls)
             {
                 var activePerson = employeeActives.Count(x => x.FunctionName == item.FunctionName);
@@ -284,6 +282,5 @@ namespace EMS.WebCore.Services
 
             return results;
         }
-
     }
 }

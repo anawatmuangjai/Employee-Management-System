@@ -1,13 +1,10 @@
-﻿using EMS.ApplicationCore.Interfaces.Services;
-using EMS.ApplicationCore.Models;
-using EMS.WebCore.Interfaces;
+﻿using EMS.WebCore.Interfaces;
 using EMS.WebCore.ViewModels.Account;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 

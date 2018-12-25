@@ -1,5 +1,3 @@
-using System;
-
 namespace EMS.WebCore.Models
 {
     public class ErrorViewModel

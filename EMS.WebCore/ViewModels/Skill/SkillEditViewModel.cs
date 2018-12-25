@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EMS.WebCore.ViewModels.Skill
 {
@@ -16,6 +13,5 @@ namespace EMS.WebCore.ViewModels.Skill
 
         public IEnumerable<SelectListItem> SkillGroups { get; set; }
         public IEnumerable<SelectListItem> SkillTypes { get; set; }
-
     }
 }

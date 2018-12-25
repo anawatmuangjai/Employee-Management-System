@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using EMS.ApplicationCore.Interfaces.Services;
+﻿using EMS.ApplicationCore.Interfaces.Services;
 using EMS.ApplicationCore.Models;
 using EMS.WebCore.ViewModels.Major;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace EMS.WebCore.Controllers
 {

@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace EMS.WebCore.Services
@@ -379,7 +378,6 @@ namespace EMS.WebCore.Services
                 && !string.IsNullOrEmpty(model.PhoneNumber)
                 && !string.IsNullOrEmpty(model.EmailAddress))
             {
-
                 var address = new EmployeeAddressModel
                 {
                     EmployeeAddressId = model.EmployeeAddressId,
@@ -398,10 +396,7 @@ namespace EMS.WebCore.Services
                 else
                     await _employeeAddressService.AddAsync(address);
             }
-
-
         }
-
 
         public async Task UpdatePersonalInfo(PersonalInfoViewModel model)
         {
@@ -462,7 +457,6 @@ namespace EMS.WebCore.Services
                 && !string.IsNullOrEmpty(model.PhoneNumber)
                 && !string.IsNullOrEmpty(model.EmailAddress))
             {
-
                 var address = new EmployeeAddressModel
                 {
                     EmployeeAddressId = model.EmployeeAddressId,
@@ -569,7 +563,5 @@ namespace EMS.WebCore.Services
             if (hierDate > today.AddYears(-duration)) duration--;
             return duration;
         }
-
-
     }
 }

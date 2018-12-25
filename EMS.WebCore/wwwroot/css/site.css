@@ -131,7 +131,6 @@
     background-color: #d8d8d8;
 }
 
-
 /*
  * Content
  */
@@ -229,7 +228,6 @@ th, td {
     height: 100px;
     width:auto; /*maintain aspect ratio*/
     max-width: 100px;
-  
 }
 
 .profileImage .img {
