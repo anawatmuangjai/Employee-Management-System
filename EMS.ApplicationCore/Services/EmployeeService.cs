@@ -42,13 +42,15 @@ namespace EMS.ApplicationCore.Services
         public async Task<List<EmployeeModel>> GetAsync(EmployeeFilter filter)
         {
             var spec = new EmployeeSpecification(x => (!filter.DepartmentId.HasValue || x.EmployeeState.JobFunction.Section.DepartmentId == filter.DepartmentId)
+             && (string.IsNullOrEmpty(filter.EmployeeName) || (x.FirstName.Contains(filter.EmployeeName) || x.FirstNameThai.Contains(filter.EmployeeName)))
+             && (string.IsNullOrEmpty(filter.EmployeeId) || x.EmployeeId == filter.EmployeeId)
+             && (string.IsNullOrEmpty(filter.EmployeeGroup) || x.EmployeeType == filter.EmployeeGroup)
              && (!filter.SectionId.HasValue || x.EmployeeState.JobFunction.SectionId == filter.SectionId)
              && (!filter.FunctionId.HasValue || x.EmployeeState.JobFunctionId == filter.FunctionId)
              && (!filter.ShiftId.HasValue || x.EmployeeState.ShiftId == filter.ShiftId)
              && (!filter.LevelId.HasValue || x.EmployeeState.LevelId == filter.LevelId)
              && (!filter.PositionId.HasValue || x.EmployeeState.PositionId == filter.PositionId)
-             && (string.IsNullOrEmpty(filter.EmployeeId) || x.EmployeeId == filter.EmployeeId)
-             && x.AvailableFlag == true);
+             && (!filter.AvailableFlag.HasValue || x.AvailableFlag == filter.AvailableFlag));
 
             var employees = await _employeeRepository.GetAsync(spec);
             return _mapper.Map<List<Employee>, List<EmployeeModel>>(employees);

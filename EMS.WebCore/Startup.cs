@@ -41,6 +41,13 @@ namespace EMS.WebCore
                     option.AccessDeniedPath = new PathString("/Account/AccessDenied");
                 });
 
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(10);
+            });
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
@@ -101,6 +108,8 @@ namespace EMS.WebCore
             app.UseAuthentication();
 
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseMvc(routes =>
             {

@@ -61,6 +61,37 @@
                 <select asp-for="FilterModel.LevelId" asp-items="@Model.JobLevels" class="form-control"></select>
             </div>
         </div>
+        <div class="col-md-6 mb-2">
+            <div class="input-group">
+                <div class="input-group-prepend w-25">
+                    <label asp-for="FilterModel.AvailableFlag" class="input-group-text w-100">Status</label>
+                </div>
+                <select asp-for="FilterModel.AvailableFlag" class="form-control">
+                    <option value=""></option>
+                    <option value="True">Available</option>
+                    <option value="False">Resign</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6 mb-2">
+            <div class="input-group">
+                <div class="input-group-prepend w-25">
+                    <label asp-for="FilterModel.EmployeeGroup" class="input-group-text w-100">Group</label>
+                </div>
+                <select asp-for="FilterModel.EmployeeGroup" class="form-control">
+                    <option value=""></option>
+                    <option value="EM">Employee</option>
+                    <option value="SC">Sub Contract</option>
+                    <option value="SD">Student Internship</option>
+                    <option value="SP">Special Person</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-12 mb-2">
+            <div class="input-group">
+                <input asp-for="FilterModel.EmployeeName" type="text" class="form-control" placeholder="First Name (English)">
+            </div>
+        </div>
         <div class="col-md-12 mb-3">
             <div class="input-group">
                 <input asp-for="FilterModel.EmployeeId" type="text" class="form-control" placeholder="Employee ID">
@@ -80,7 +111,7 @@
             <table class="table table-striped table-bordered table-hover table-sm">
                 <thead>
                     <tr>
-                        <th>Type</th>
+                        <th>Group</th>
                         <th>Employee ID</th>
                         <th>Global ID</th>
                         <th>Name (English)</th>
@@ -103,6 +134,7 @@
                             <td class="text-center">
                                 <a asp-controller="Profile" asp-action="Index" asp-route-employeeId="@e.EmployeeId" class="btn btn-success btn-sm">View</a>
                                 <a asp-controller="Profile" asp-action="EditProfile" asp-route-employeeId="@e.EmployeeId" class="btn btn-success btn-sm">Edit</a>
+                                <a asp-controller="Attendance" asp-action="History" asp-route-employeeId="@e.EmployeeId" class="btn btn-success btn-sm">History</a>
                             </td>
                         </tr>
 

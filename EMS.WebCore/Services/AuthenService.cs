@@ -12,18 +12,15 @@ namespace EMS.WebCore.Services
 {
     public class AuthenService : IAuthenService
     {
-        private readonly IEmployeeService _employeeService;
         private readonly IAccountService _accountService;
         private readonly IAuthorityService _authorityService;
         private readonly IAccountAuthorityService _accountAuthorityService;
 
         public AuthenService(
-            IEmployeeService employeeService,
             IAccountService accountService,
             IAuthorityService authorityService,
             IAccountAuthorityService accountAuthorityService)
         {
-            _employeeService = employeeService;
             _accountService = accountService;
             _authorityService = authorityService;
             _accountAuthorityService = accountAuthorityService;

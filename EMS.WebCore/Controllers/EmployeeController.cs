@@ -46,36 +46,42 @@ namespace EMS.WebCore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterEmployeeViewModel viewModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+                return View(viewModel);
+
+            var employeeExist = await _employeeService.ExistsAsync(viewModel.EmployeeId);
+
+            if (employeeExist)
             {
-                var employee = new EmployeeModel
-                {
-                    EmployeeId = viewModel.EmployeeId,
-                    GlobalId = viewModel.GlobalId,
-                    CardId = viewModel.CardId,
-                    EmployeeType = viewModel.EmployeeType,
-                    Title = viewModel.Title,
-                    TitleThai = viewModel.TitleThai,
-                    FirstName = viewModel.FirstName,
-                    LastName = viewModel.LastName,
-                    FirstNameThai = viewModel.FirstNameThai,
-                    LastNameThai = viewModel.LastNameThai,
-                    Gender = viewModel.Gender,
-                    Height = viewModel.Height,
-                    Hand = viewModel.Hand,
-                    BirthDate = viewModel.BirthDate,
-                    HireType = viewModel.HireType,
-                    HireDate = viewModel.HireDate,
-                    AvailableFlag = true,
-                    ChangedDate = DateTime.Now,
-                };
-
-                await _employeeService.AddAsync(employee);
-
-                return RedirectToAction(nameof(EmployeeList));
+                ModelState.AddModelError("Error", "Employee ID already exists.");
+                return View(viewModel);
             }
 
-            return View();
+            var employee = new EmployeeModel
+            {
+                EmployeeId = viewModel.EmployeeId,
+                GlobalId = viewModel.GlobalId,
+                CardId = viewModel.CardId,
+                EmployeeType = viewModel.EmployeeType,
+                Title = viewModel.Title,
+                TitleThai = viewModel.TitleThai,
+                FirstName = viewModel.FirstName,
+                LastName = viewModel.LastName,
+                FirstNameThai = viewModel.FirstNameThai,
+                LastNameThai = viewModel.LastNameThai,
+                Gender = viewModel.Gender,
+                Height = viewModel.Height,
+                Hand = viewModel.Hand,
+                BirthDate = viewModel.BirthDate,
+                HireType = viewModel.HireType,
+                HireDate = viewModel.HireDate,
+                AvailableFlag = true,
+                ChangedDate = DateTime.Now,
+            };
+
+            await _employeeService.AddAsync(employee);
+
+            return RedirectToAction(nameof(EmployeeList));
         }
 
         [HttpGet]

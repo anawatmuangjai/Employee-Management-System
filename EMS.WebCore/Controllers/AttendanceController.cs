@@ -5,8 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using EMS.ApplicationCore.Helper;
 using EMS.ApplicationCore.Interfaces.Services;
+using EMS.ApplicationCore.Models;
 using EMS.WebCore.Interfaces;
+using EMS.WebCore.Utility;
 using EMS.WebCore.ViewModels.Attendance;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -14,17 +17,20 @@ namespace EMS.WebCore.Controllers
 {
     public class AttendanceController : Controller
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IEmployeeService _employeeService;
         private readonly IEmployeeImageService _employeeImageService;
         private readonly IEmployeeDetailService _employeeDetailService;
         private readonly IAttendanceService _attendanceService;
 
         public AttendanceController(
+            IHttpContextAccessor httpContextAccessor,
             IEmployeeService employeeService,
             IEmployeeImageService employeeImageService,
             IEmployeeDetailService employeeDetailService,
             IAttendanceService attendanceService)
         {
+            _httpContextAccessor = httpContextAccessor;
             _employeeService = employeeService;
             _employeeImageService = employeeImageService;
             _employeeDetailService = employeeDetailService;
@@ -89,6 +95,36 @@ namespace EMS.WebCore.Controllers
             viewModel.Departments = await _employeeDetailService.GetDepartments();
             viewModel.Shifts = await _employeeDetailService.GetShifts();
             viewModel.Positions = await _employeeDetailService.GetPositions();
+
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Search()
+        {
+            var viewModel = new AttendanceViewModel();
+
+            viewModel.Departments = await _employeeDetailService.GetDepartments();
+            viewModel.Shifts = await _employeeDetailService.GetShifts();
+            viewModel.Positions = await _employeeDetailService.GetPositions();
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Search(AttendanceFilter filterModel)
+        {
+            var viewModel = new AttendanceViewModel();
+
+            if (string.IsNullOrEmpty(filterModel.AttendanceDate))
+                filterModel.AttendanceDate = DateTime.Today.ToString("yyyy/MM/dd");
+
+            viewModel.Departments = await _employeeDetailService.GetDepartments();
+            viewModel.Shifts = await _employeeDetailService.GetShifts();
+            viewModel.Positions = await _employeeDetailService.GetPositions();
+            viewModel.Attendances = await _attendanceService.GetHistoryAsync(filterModel);
+
+            _httpContextAccessor.HttpContext.Session.SetObjectAsJson("attendances", viewModel.Attendances);
 
             return View(viewModel);
         }
@@ -217,6 +253,31 @@ namespace EMS.WebCore.Controllers
             var data = Encoding.UTF8.GetBytes(csv.ToString());
             var result = Encoding.UTF8.GetPreamble().Concat(data).ToArray();
             return File(result, "application/csv", "DailyActiveWork.csv");
+        }
+
+        [HttpGet]
+        public IActionResult Download()
+        {
+            var attendances = _httpContextAccessor.HttpContext.Session.GetObjectFromJson<IEnumerable<AttendanceModel>>("attendances");
+
+            var csv = new StringBuilder();
+            var header = "Type,EmployeeID,Name (English),Name (Thai),Level,Shift,Department,Section,Function,Route,Bus,Scan In,Scan Out,OT 1.5,OT 3,Late (Minute)";
+            csv.AppendLine(header);
+
+            foreach (var e in attendances)
+            {
+                var newLine = $"{e.EmployeeType},{e.EmployeeId},{e.Title}.{e.FirstName} {e.LastName}," +
+                    $"{e.TitleThai} {e.FirstNameThai} {e.LastNameThai},{e.LevelCode},{e.ShiftName}," +
+                    $"{e.DepartmentName},{e.SectionName},{e.FunctionName},{e.RouteName}," +
+                    $"{e.BusStationName},{e.ScanInTime},{e.ScanOutTime},{e.OvertimeNormal}," +
+                    $"{e.OvertimeSpecial},{e.LateMinute}";
+
+                csv.AppendLine(newLine);
+            }
+
+            var data = Encoding.UTF8.GetBytes(csv.ToString());
+            var result = Encoding.UTF8.GetPreamble().Concat(data).ToArray();
+            return File(result, "application/csv", "attendance.csv");
         }
 
         public async Task<JsonResult> GetSectionByDepartmentId(int departmentId)

@@ -57,9 +57,16 @@
                     <span asp-validation-for="HireType" class="text-danger"></span>
                 </div>
                 <!-- hire date -->
+                @*<div class="form-group mb-3">
+                        <label asp-for="HireDate">Hire Date</label>
+                        <input asp-for="HireDate" type="date" class="form-control" value="2018-01-01" required>
+                        <span asp-validation-for="HireDate" class="text-danger"></span>
+                    </div>*@
+
+                <!-- hire date -->
                 <div class="form-group mb-3">
                     <label asp-for="HireDate">Hire Date</label>
-                    <input asp-for="HireDate" type="date" class="form-control" value="2018-01-01" required>
+                    <input asp-for="HireDate" type="text" id="datepicker-hiredate" autocomplete="off" class="form-control" required>
                     <span asp-validation-for="HireDate" class="text-danger"></span>
                 </div>
 
@@ -133,9 +140,14 @@
                 </div>
                 <!-- birth date -->
                 <div class="row">
+                    @*<div class="col-md-6 mb-3">
+                            <label asp-for="BirthDate">Birth Date</label>
+                            <input asp-for="BirthDate" type="date" class="form-control" value="2018-01-01" required>
+                            <span asp-validation-for="BirthDate" class="text-danger"></span>
+                        </div>*@
                     <div class="col-md-6 mb-3">
                         <label asp-for="BirthDate">Birth Date</label>
-                        <input asp-for="BirthDate" type="date" class="form-control" value="2018-01-01" required>
+                        <input asp-for="BirthDate" type="text" id="datepicker-birthdate" autocomplete="off" class="form-control" required>
                         <span asp-validation-for="BirthDate" class="text-danger"></span>
                     </div>
                     <div class="col-md-6 mb-3">
@@ -149,6 +161,11 @@
                     </div>
                 </div>
 
+                @if (!ViewData.ModelState.IsValid && ViewData.ModelState["Error"].Errors.Count > 0)
+                {
+                    <p class="text-danger"><b>@ViewData.ModelState["Error"].Errors.First().ErrorMessage</b></p>
+                }
+
                 <button class="btn btn-primary btn-lg btn-block mb-4" type="submit">Submit</button>
 
             </form>
@@ -156,3 +173,22 @@
         </div>
     </div>
 </div>
+
+
+@section scripts {
+
+    <script>
+        $('#datepicker-hiredate').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+        });
+    </script>
+
+    <script>
+        $('#datepicker-birthdate').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+        });
+    </script>
+
+}

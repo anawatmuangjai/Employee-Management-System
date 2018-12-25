@@ -27,8 +27,9 @@ namespace EMS.UnitTests.Services
             _busStation = new MasterBusStation
             {
                 BusStationId = 1,
+                RouteId = 1,
                 BusStationName = "A",
-                BusStationRoute = "B"
+                BusStationCode = "B"
             };
 
             _busStations = new List<MasterBusStation>

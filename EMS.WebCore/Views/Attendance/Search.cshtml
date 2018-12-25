@@ -1,22 +1,22 @@
 ﻿@model AttendanceViewModel
 
 @{
-    ViewData["Title"] = "Active Work";
+    ViewData["Title"] = "Search";
 }
 
 <!-- content -->
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2">
-    <h2>Attendance <span class="badge badge-success">Active Work</span></h2>
+    <h2>Search <span class="badge badge-success">Attendance History</span></h2>
 </div>
 
-<form asp-controller="Attendance" asp-action="ActiveWork" method="get">
+<form asp-controller="Attendance" asp-action="Search" method="post">
     <div class="form-row">
         <div class="col-md-6 mb-2">
             <div class="input-group">
                 <div class="input-group-prepend w-25">
-                    <label asp-for="FilterModel.AttendanceDate" class="input-group-text w-100">Date</label>
+                    <label asp-for="FilterModel.AttendanceDate" class="input-group-text w-100">Work Date</label>
                 </div>
-                <input asp-for="FilterModel.AttendanceDate" type="text" id="datepicker" autocomplete="off" class="form-control">
+                <input asp-for="FilterModel.AttendanceDate" type="text" id="datepicker-workdate" autocomplete="off" class="form-control">
             </div>
         </div>
         <div class="col-md-6 mb-2">
@@ -47,14 +47,6 @@
         <div class="col-md-6 mb-2">
             <div class="input-group">
                 <div class="input-group-prepend w-25">
-                    <label asp-for="FilterModel.PositionId" class="input-group-text w-100">Position</label>
-                </div>
-                <select asp-for="FilterModel.PositionId" asp-items="@Model.Positions" class="form-control"></select>
-            </div>
-        </div>
-        <div class="col-md-6 mb-2">
-            <div class="input-group">
-                <div class="input-group-prepend w-25">
                     <label asp-for="FilterModel.FunctionId" class="input-group-text w-100">Job Function</label>
                 </div>
                 <select class="form-control" id="jobFunctionSelectList" asp-for="FilterModel.FunctionId"
@@ -72,7 +64,7 @@
     </div>
 </form>
 
-@if (Model.Attendances.Any())
+@if (Model.Attendances != null)
 {
     <div class="card mb-3">
         <div class="card-header bg-white text-header">
@@ -140,18 +132,15 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    @*<a class="btn btn-success" asp-controller="Attendance" asp-action="DailyActive">Dowload Daily Active</a>*@
-
                     <a class="btn btn-success" asp-controller="Attendance" asp-action="Download">Dowload</a>
 
-                    @*<button type="button" class="btn btn-primary" onclick="fnExcelReport();"><i class="fa fa-file-excel-o mr-2"></i>Export</button>
-                        <iframe id="txtArea1" style="display:none"></iframe>*@
                 </div>
             </div>
         </div>
 
     </div>
 }
+
 
 @section scripts {
 
@@ -184,43 +173,10 @@
     </script>
 
     <script>
-        $('#datepicker').datepicker({
+        $('#datepicker-workdate').datepicker({
             format: 'yyyy/mm/dd',
             autoclose: true,
         });
-    </script>
-
-    <script>
-        function fnExcelReport() {
-            var tab_text = "<table border='2px'><tr bgcolor='#87AFC6'>";
-            var textRange; var j = 0;
-            tab = document.getElementById('activeWorkTable'); // id of table
-
-            for (j = 0; j < tab.rows.length; j++) {
-                tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
-            }
-
-            tab_text = tab_text + "</table>";
-            tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
-            tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
-            tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
-
-            var ua = window.navigator.userAgent;
-            var msie = ua.indexOf("MSIE ");
-
-            if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) // If Internet Explorer
-            {
-                txtArea1.document.open("txt/html", "replace");
-                txtArea1.document.write(tab_text);
-                txtArea1.document.close();
-                txtArea1.focus();
-                sa = txtArea1.document.execCommand("SaveAs", true, "Attendace.xls");
-            }
-            else //other browser not tested on IE 11
-                sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
-
-            return (sa);
-        }
     </script>
 
 }
