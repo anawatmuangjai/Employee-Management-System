@@ -247,7 +247,7 @@ namespace EMS.WebCore.Services
         {
             var attendancStatuses = new List<AttendanceStatus>();
 
-            var resutls = employeeStates
+            var results = employeeStates
                 .Where(x => x.ShiftId == shiftId)
                 .GroupBy(g => new { g.JobFunction.Section.Department.DepartmentName, g.JobFunction.Section.SectionName, g.Shift.ShiftName })
                 .Select(x => new
@@ -258,7 +258,7 @@ namespace EMS.WebCore.Services
                     TotalPerson = x.Select(e => e.EmployeeId).Count()
                 }).ToList();
 
-            foreach (var item in resutls)
+            foreach (var item in results)
             {
                 var activePerson = employeeActives.Count(x => x.DepartmentName == item.Department && x.SectionName == item.Section && x.ShiftName == item.Shift);
                 var absentPrtson = item.TotalPerson - activePerson;
@@ -278,9 +278,9 @@ namespace EMS.WebCore.Services
                 attendancStatuses.Add(attendancStatus);
             }
 
-            var results = attendancStatuses.OrderBy(x => x.Department).ThenBy(x => x.ShiftName).ToList();
+            var statusResult = attendancStatuses.OrderBy(x => x.Department).ThenBy(x => x.ShiftName).ToList();
 
-            return results;
+            return statusResult;
         }
     }
 }

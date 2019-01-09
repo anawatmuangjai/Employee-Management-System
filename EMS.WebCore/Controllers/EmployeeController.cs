@@ -89,6 +89,11 @@ namespace EMS.WebCore.Controllers
             viewModel.Positions = await _employeeDetailService.GetPositions();
             viewModel.JobLevels = await _employeeDetailService.GetLevels();
 
+            if (filterModel.AvailableFlag == null)
+            {
+                filterModel.AvailableFlag = true;
+            }
+
             var employees = await _employeeService.GetAsync(filterModel);
 
             if (employees != null)
