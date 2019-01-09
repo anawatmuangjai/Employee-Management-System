@@ -73,8 +73,7 @@ namespace EMS.Persistance.Repositories
                              attendance.Ot15,
                              attendance.Ot3,
                              attendance.LateMin
-                         })
-                         .AsQueryable();
+                         });
 
             if (filter != null)
             {

@@ -58,6 +58,8 @@ namespace EMS.WebCore.Controllers
             viewModel.Shifts = await _employeeDetailService.GetShifts();
             viewModel.Positions = await _employeeDetailService.GetPositions();
 
+            _httpContextAccessor.HttpContext.Session.SetObjectAsJson("attendances", viewModel.Attendances);
+
             return View(viewModel);
         }
 
@@ -264,15 +266,18 @@ namespace EMS.WebCore.Controllers
             var header = "Type,EmployeeID,Name (English),Name (Thai),Level,Shift,Department,Section,Function,Route,Bus,Scan In,Scan Out,OT 1.5,OT 3,Late (Minute)";
             csv.AppendLine(header);
 
-            foreach (var e in attendances)
+            if (attendances != null)
             {
-                var newLine = $"{e.EmployeeType},{e.EmployeeId},{e.Title}.{e.FirstName} {e.LastName}," +
-                    $"{e.TitleThai} {e.FirstNameThai} {e.LastNameThai},{e.LevelCode},{e.ShiftName}," +
-                    $"{e.DepartmentName},{e.SectionName},{e.FunctionName},{e.RouteName}," +
-                    $"{e.BusStationName},{e.ScanInTime},{e.ScanOutTime},{e.OvertimeNormal}," +
-                    $"{e.OvertimeSpecial},{e.LateMinute}";
+                foreach (var e in attendances)
+                {
+                    var newLine = $"{e.EmployeeType},{e.EmployeeId},{e.Title}.{e.FirstName} {e.LastName}," +
+                        $"{e.TitleThai} {e.FirstNameThai} {e.LastNameThai},{e.LevelCode},{e.ShiftName}," +
+                        $"{e.DepartmentName},{e.SectionName},{e.FunctionName},{e.RouteName}," +
+                        $"{e.BusStationName},{e.ScanInTime},{e.ScanOutTime},{e.OvertimeNormal}," +
+                        $"{e.OvertimeSpecial},{e.LateMinute}";
 
-                csv.AppendLine(newLine);
+                    csv.AppendLine(newLine);
+                }
             }
 
             var data = Encoding.UTF8.GetBytes(csv.ToString());
