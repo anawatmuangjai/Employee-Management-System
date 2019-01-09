@@ -10,6 +10,8 @@ namespace EMS.ApplicationCore.Interfaces.Services
     {
         Task<ShiftCalendarModel> GetByDateAsync(DateTime date);
         Task<List<ShiftCalendarModel>> GetAllAsync();
+        Task<List<ShiftCalendarModel>> GetCurrentYearAsync();
+        Task<bool> ExistsAsync(DateTime date);
         Task AddAsync(ShiftCalendarModel model);
         Task UpdateAsync(ShiftCalendarModel model);
     }

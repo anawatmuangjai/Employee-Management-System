@@ -2,10 +2,12 @@
 using EMS.ApplicationCore.Interfaces.Repositories;
 using EMS.ApplicationCore.Interfaces.Services;
 using EMS.ApplicationCore.Models;
+using EMS.ApplicationCore.Specifications;
 using EMS.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace EMS.ApplicationCore.Services
@@ -30,12 +32,23 @@ namespace EMS.ApplicationCore.Services
             return _mapper.Map<List<MasterShiftCalendar>, List<ShiftCalendarModel>>(shiftCalendars);
         }
 
+        public async Task<List<ShiftCalendarModel>> GetCurrentYearAsync()
+        {
+            var spec = new CalendarSpecification(x => x.WorkDate.Year == DateTime.Today.Year);
+            var shiftCalendars = await _repository.GetAsync(spec);
+            return _mapper.Map<List<MasterShiftCalendar>, List<ShiftCalendarModel>>(shiftCalendars);
+        }
+
         public async Task<ShiftCalendarModel> GetByDateAsync(DateTime date)
         {
             var shiftCalendar = await _repository.GetSingleAsync(x => x.WorkDate == date);
             return _mapper.Map<MasterShiftCalendar, ShiftCalendarModel>(shiftCalendar);
         }
 
+        public async Task<bool> ExistsAsync(DateTime date)
+        {
+            return await _repository.ExistsAsync(x => x.WorkDate == date);
+        }
 
         public async Task AddAsync(ShiftCalendarModel model)
         {
@@ -49,7 +62,6 @@ namespace EMS.ApplicationCore.Services
             await _repository.AddAsync(shiftCalendar);
         }
 
-
         public async Task UpdateAsync(ShiftCalendarModel model)
         {
             var calendar = await _repository.GetSingleAsync(x => x.WorkDate == model.WorkDate);
@@ -59,5 +71,7 @@ namespace EMS.ApplicationCore.Services
 
             await _repository.UpdateAsync(calendar);
         }
+
+
     }
 }

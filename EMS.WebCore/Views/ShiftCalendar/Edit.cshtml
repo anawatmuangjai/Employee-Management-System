@@ -14,7 +14,11 @@
                         <input asp-for="WorkDate" type="hidden" />
                         <div class="form-group">
                             <label asp-for="WorkType">Work Type</label>
-                            <input asp-for="WorkType" type="text" class="form-control">
+                            <select asp-for="WorkType" class="custom-select d-block w-100" required>
+                                <option value="">Choose...</option>
+                                <option value="N">Normal</option>
+                                <option value="O">Overtime</option>
+                            </select>
                             <span asp-validation-for="WorkType" class="text-danger"></span>
                         </div>
                         <div class="form-group">

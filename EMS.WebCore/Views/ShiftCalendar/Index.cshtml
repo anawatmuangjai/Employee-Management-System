@@ -35,8 +35,15 @@
 
                             <tr>
                                 <td>@item.WorkDate.ToString("yyyy-MM-dd")</td>
-                                <td>@item.WorkType</td>
-                                <td>@item.ShiftId</td>
+                                @if (item.WorkType == "N")
+                                {
+                                    <td>Normal</td>
+                                }
+                                else
+                                {
+                                    <td>Overtime</td>
+                                }
+                                <td>@item.Shift.ShiftName</td>
                                 <td>
                                     <a asp-controller="ShiftCalendar" asp-action="Edit" asp-route-date="@item.WorkDate.ToString("yyyy-MM-dd")" class="btn btn-info btn-sm">Edit</a>
                                 </td>

@@ -24,7 +24,7 @@ namespace EMS.WebCore.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var shiftCalendars = await _shiftCalendarService.GetAllAsync();
+            var shiftCalendars = await _shiftCalendarService.GetCurrentYearAsync();
 
             if (shiftCalendars == null)
                 return View();
@@ -50,16 +50,24 @@ namespace EMS.WebCore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ShiftCalendarEditViewModel model)
+        public async Task<IActionResult> Create(ShiftCalendarEditViewModel viewModel)
         {
             if (!ModelState.IsValid)
                 return View();
 
+            var dateExists = await _shiftCalendarService.ExistsAsync(viewModel.WorkDate);
+
+            if (dateExists)
+            {
+                ModelState.AddModelError("Error", "Work date already exists.");
+                return View(viewModel);
+            }
+
             var shift = new ShiftCalendarModel
             {
-                WorkDate = model.WorkDate,
-                WorkType = model.WorkType,
-                ShiftId = model.ShiftId
+                WorkDate = viewModel.WorkDate,
+                WorkType = viewModel.WorkType,
+                ShiftId = viewModel.ShiftId
             };
 
             await _shiftCalendarService.AddAsync(shift);
