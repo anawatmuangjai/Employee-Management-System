@@ -231,7 +231,7 @@ namespace EMS.WebCore.Services
                 viewModel.JobPosition = await _employeeDetailService.GetPositions();
                 viewModel.JobLevels = await _employeeDetailService.GetLevels();
                 viewModel.Routes = await _employeeDetailService.GetRoutes();
-                viewModel.BusStations = await _employeeDetailService.GetBusStations();
+                //viewModel.BusStations = await _employeeDetailService.GetBusStations();
 
                 if (employee.EmployeeState != null)
                 {
@@ -245,6 +245,10 @@ namespace EMS.WebCore.Services
                     viewModel.RouteId = employee.EmployeeState.BusStation.Route.RouteId;
                     viewModel.BusStationId = employee.EmployeeState.BusStationId;
                     viewModel.JoinDate = employee.EmployeeState.JoinDate;
+
+                    viewModel.Sections = await _employeeDetailService.GetSectionsByDepartmentId(viewModel.DepartmentId);
+                    viewModel.JobFunctions = await _employeeDetailService.GetJobFunctionsBySectionId(viewModel.SectionId);
+                    viewModel.BusStations = await _employeeDetailService.GetGetBusStationsByRouteId(viewModel.RouteId);
                 }
 
                 var profileHeader = new ProfileHeaderViewModel()

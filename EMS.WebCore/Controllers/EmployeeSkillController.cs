@@ -2,12 +2,14 @@
 using EMS.ApplicationCore.Models;
 using EMS.WebCore.Interfaces;
 using EMS.WebCore.ViewModels.EmployeeSkill;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Threading.Tasks;
 
 namespace EMS.WebCore.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class EmployeeSkillController : Controller
     {
         private readonly IEmployeeService _employeeService;

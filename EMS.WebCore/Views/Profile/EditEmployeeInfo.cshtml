@@ -28,16 +28,14 @@
 
                 <div class="form-group">
                     <label>Section</label>
-                    <select class="form-control" id="SectionId" name="SectionId" asp-for="SectionId"
-                            asp-items="@(new SelectList(string.Empty, "Value","Text"))"></select>
+                    <select class="form-control" id="SectionId" name="SectionId" asp-for="SectionId" asp-items="@Model.Sections"></select>
                     <span asp-validation-for="SectionId" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
                     <label>Job Function</label>
-                    <select class="form-control" id="JobFunctionId" name="JobFunctionId" asp-for="JobFunctionId"
-                            asp-items="@(new SelectList(string.Empty, "Value","Text"))"></select>
-                    <span asp-validation-for="SectionId" class="text-danger"></span>
+                    <select class="form-control" id="JobFunctionId" name="JobFunctionId" asp-for="JobFunctionId" asp-items="@Model.JobFunctions"></select>
+                    <span asp-validation-for="JobFunctionId" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
@@ -60,7 +58,7 @@
 
                 <div class="form-group">
                     <label asp-for="JoinDate">Join Date</label>
-                    <input asp-for="JoinDate" type="date" class="form-control">
+                    <input asp-for="JoinDate" type="text" id="datepicker-joindate" autocomplete="off" class="form-control" required>
                     <span asp-validation-for="JoinDate" class="text-danger"></span>
                 </div>
 
@@ -72,8 +70,11 @@
 
                 <div class="form-group">
                     <label>Bus Station</label>
+                    @*<select class="form-control" id="BusStationId" name="BusStationId" asp-for="BusStationId"
+                                asp-items="@(new SelectList(string.Empty, " Value","Text"))"></select>
+                        <span asp-validation-for="BusStationId" class="text-danger"></span>*@
                     <select class="form-control" id="BusStationId" name="BusStationId" asp-for="BusStationId"
-                            asp-items="@(new SelectList(string.Empty, "Value","Text"))"></select>
+                            asp-items="@Model.BusStations"></select>
                     <span asp-validation-for="BusStationId" class="text-danger"></span>
                 </div>
 
@@ -124,5 +125,12 @@
                     });
                 });
             });
+    </script>
+
+    <script>
+        $('#datepicker-joindate').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+        });
     </script>
 }

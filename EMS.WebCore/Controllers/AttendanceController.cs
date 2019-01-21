@@ -4,6 +4,7 @@ using EMS.ApplicationCore.Models;
 using EMS.WebCore.Interfaces;
 using EMS.WebCore.Utility;
 using EMS.WebCore.ViewModels.Attendance;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -15,6 +16,7 @@ using System.Threading.Tasks;
 
 namespace EMS.WebCore.Controllers
 {
+    [Authorize(Roles = "Administrator,Member")]
     public class AttendanceController : Controller
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -58,6 +60,16 @@ namespace EMS.WebCore.Controllers
             viewModel.Shifts = await _employeeDetailService.GetShifts();
             viewModel.Positions = await _employeeDetailService.GetPositions();
 
+            if (filterModel.DepartmentId.HasValue)
+            {
+                viewModel.Sections = await _employeeDetailService.GetSectionsByDepartmentId(filterModel.DepartmentId.Value);
+            }
+
+            if (filterModel.SectionId.HasValue)
+            {
+                viewModel.JobFunctions = await _employeeDetailService.GetJobFunctionsBySectionId(filterModel.SectionId.Value);
+            }
+
             _httpContextAccessor.HttpContext.Session.SetObjectAsJson("attendances", viewModel.Attendances);
 
             return View(viewModel);
@@ -78,6 +90,16 @@ namespace EMS.WebCore.Controllers
             viewModel.Departments = await _employeeDetailService.GetDepartments();
             viewModel.Shifts = await _employeeDetailService.GetShifts();
             viewModel.Positions = await _employeeDetailService.GetPositions();
+
+            if (filterModel.DepartmentId.HasValue)
+            {
+                viewModel.Sections = await _employeeDetailService.GetSectionsByDepartmentId(filterModel.DepartmentId.Value);
+            }
+
+            if (filterModel.SectionId.HasValue)
+            {
+                viewModel.JobFunctions = await _employeeDetailService.GetJobFunctionsBySectionId(filterModel.SectionId.Value);
+            }
 
             return View(viewModel);
         }
@@ -132,6 +154,7 @@ namespace EMS.WebCore.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> History(string employeeId)
         {
             var viewModel = new AttendanceViewModel();
@@ -166,6 +189,7 @@ namespace EMS.WebCore.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> History(AttendanceFilter filterModel)
         {
             var viewModel = new AttendanceViewModel();

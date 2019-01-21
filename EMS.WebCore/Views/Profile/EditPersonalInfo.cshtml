@@ -105,7 +105,7 @@
 
                 <div class="form-group">
                     <label asp-for="BirthDate">Birth Date</label>
-                    <input asp-for="BirthDate" type="date" class="form-control">
+                    <input asp-for="BirthDate" type="text" id="datepicker-birthdate" autocomplete="off" class="form-control" required>
                     <span asp-validation-for="BirthDate" class="text-danger"></span>
                 </div>
 
@@ -135,9 +135,10 @@
 
                 <div class="form-group">
                     <label asp-for="HireDate">Hire Date</label>
-                    <input asp-for="HireDate" type="date" class="form-control">
+                    <input asp-for="HireDate" type="text" id="datepicker-hiredate" autocomplete="off" class="form-control" required>
                     <span asp-validation-for="HireDate" class="text-danger"></span>
                 </div>
+
 
                 <div class="form-group">
                     <label asp-for="AvailableFlag">Status</label>
@@ -155,3 +156,21 @@
         </div>
     </div>
 </div>
+
+@section scripts {
+
+    <script>
+        $('#datepicker-hiredate').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+        });
+    </script>
+
+    <script>
+        $('#datepicker-birthdate').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+        });
+    </script>
+
+}

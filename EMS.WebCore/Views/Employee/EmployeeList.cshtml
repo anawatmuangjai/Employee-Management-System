@@ -24,8 +24,7 @@
                 <div class="input-group-prepend w-25">
                     <label asp-for="FilterModel.SectionId" class="input-group-text w-100">Section</label>
                 </div>
-                <select class="form-control" id="sectionSelectList" asp-for="FilterModel.SectionId"
-                        asp-items="@(new SelectList(string.Empty, " Value","Text"))"></select>
+                <select class="form-control" id="sectionSelectList" asp-for="FilterModel.SectionId" asp-items="@Model.Sections"></select>
             </div>
         </div>
         <div class="col-md-6 mb-2">
@@ -41,8 +40,7 @@
                 <div class="input-group-prepend w-25">
                     <label asp-for="FilterModel.FunctionId" class="input-group-text w-100">Job Function</label>
                 </div>
-                <select class="form-control" id="jobFunctionSelectList" asp-for="FilterModel.FunctionId"
-                        asp-items="@(new SelectList(string.Empty, " Value","Text"))"></select>
+                <select class="form-control" id="jobFunctionSelectList" asp-for="FilterModel.FunctionId" asp-items="@Model.JobFunctions"></select>
             </div>
         </div>
         <div class="col-md-6 mb-2">
@@ -67,7 +65,7 @@
                     <label asp-for="FilterModel.AvailableFlag" class="input-group-text w-100">Status</label>
                 </div>
                 <select asp-for="FilterModel.AvailableFlag" class="form-control">
-                    <option value=""></option>
+                    <option value="True"></option>
                     <option value="True">Available</option>
                     <option value="False">Resign</option>
                 </select>

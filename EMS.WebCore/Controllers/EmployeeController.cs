@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace EMS.WebCore.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    [Authorize]
     public class EmployeeController : Controller
     {
         private readonly IEmployeeService _employeeService;
@@ -31,6 +31,7 @@ namespace EMS.WebCore.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Register()
         {
             return View();
@@ -38,6 +39,7 @@ namespace EMS.WebCore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Register(RegisterEmployeeViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -80,6 +82,7 @@ namespace EMS.WebCore.Controllers
 
         [HttpGet]
         [HttpPost]
+        [Authorize(Roles = "Administrator,Member")]
         public async Task<IActionResult> EmployeeList(EmployeeFilter filterModel)
         {
             var viewModel = new EmployeeViewModel();
@@ -92,6 +95,16 @@ namespace EMS.WebCore.Controllers
             if (filterModel.AvailableFlag == null)
             {
                 filterModel.AvailableFlag = true;
+            }
+
+            if (filterModel.DepartmentId.HasValue)
+            {
+                viewModel.Sections = await _employeeDetailService.GetSectionsByDepartmentId(filterModel.DepartmentId.Value);
+            }
+
+            if (filterModel.SectionId.HasValue)
+            {
+                viewModel.JobFunctions = await _employeeDetailService.GetJobFunctionsBySectionId(filterModel.SectionId.Value);
             }
 
             var employees = await _employeeService.GetAsync(filterModel);

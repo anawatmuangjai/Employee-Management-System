@@ -1,5 +1,6 @@
 ﻿using EMS.WebCore.Interfaces;
 using EMS.WebCore.ViewModels.Profile;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace EMS.WebCore.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class ProfileController : Controller
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -84,6 +86,10 @@ namespace EMS.WebCore.Controllers
         public async Task<IActionResult> EditEmployeeInfo(string employeeId)
         {
             var viewModel = await _profileViewModelService.GetEmployeeInfo(employeeId);
+
+            //viewModel.Sections = await _profileViewModelService.GetSectionsByDepartmentId(viewModel.DepartmentId);
+
+
             return View(viewModel);
         }
 

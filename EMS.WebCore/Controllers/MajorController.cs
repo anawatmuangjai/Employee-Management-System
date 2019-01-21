@@ -1,11 +1,13 @@
 ﻿using EMS.ApplicationCore.Interfaces.Services;
 using EMS.ApplicationCore.Models;
 using EMS.WebCore.ViewModels.Major;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace EMS.WebCore.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class MajorController : Controller
     {
         private readonly IEducationMajorService _majorService;

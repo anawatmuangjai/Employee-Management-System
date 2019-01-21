@@ -1,11 +1,13 @@
 ﻿using EMS.ApplicationCore.Interfaces.Services;
 using EMS.WebCore.ViewModels.SkillMapping;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 
 namespace EMS.WebCore.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class SkillMappingController : Controller
     {
         private readonly IEmployeeService _employeeService;

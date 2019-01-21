@@ -2,12 +2,14 @@
 using EMS.ApplicationCore.Models;
 using EMS.WebCore.Interfaces;
 using EMS.WebCore.ViewModels.ShiftCalendar;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 
 namespace EMS.WebCore.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class ShiftCalendarController : Controller
     {
         private readonly IShiftCalendarService _shiftCalendarService;

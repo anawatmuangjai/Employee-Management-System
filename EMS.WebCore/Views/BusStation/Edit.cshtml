@@ -12,7 +12,7 @@
                 <form asp-action="Edit" method="post" class="form-horizontal" role="form">
                     <input asp-for="BusStationId" type="hidden" />
                     <div class="form-group">
-                        <label asp-for="RouteId">Department</label>
+                        <label asp-for="RouteId">Route</label>
                         <select asp-for="RouteId" asp-items="@Model.Routes" class="form-control"></select>
                         <span asp-validation-for="RouteId" class="text-danger"></span>
                     </div>

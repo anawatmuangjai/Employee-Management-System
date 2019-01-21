@@ -41,9 +41,13 @@ namespace EMS.WebCore.ViewModels.Profile
 
         public IEnumerable<SelectListItem> Departments { get; set; }
 
+        public IEnumerable<SelectListItem> Sections { get; set; }
+
         public IEnumerable<SelectListItem> Shifts { get; set; }
 
         public IEnumerable<SelectListItem> JobPosition { get; set; }
+
+        public IEnumerable<SelectListItem> JobFunctions { get; set; }
 
         public IEnumerable<SelectListItem> JobLevels { get; set; }
 

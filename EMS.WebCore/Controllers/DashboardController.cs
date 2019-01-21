@@ -1,4 +1,5 @@
 ﻿using EMS.WebCore.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace EMS.WebCore.Controllers
 {
+    [Authorize]
     public class DashboardController : Controller
     {
         private readonly IDashboardViewModelService _dashboardViewModelService;
@@ -18,6 +20,7 @@ namespace EMS.WebCore.Controllers
 
         [HttpGet]
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Index(string selectedDate, int? shiftId)
         {
             if (string.IsNullOrEmpty(selectedDate))
@@ -30,6 +33,7 @@ namespace EMS.WebCore.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator,Member")]
         public async Task<IActionResult> Download()
         {
             var date = DateTime.Today.ToString("yyyy/MM/dd");
@@ -56,6 +60,7 @@ namespace EMS.WebCore.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator,Member")]
         public async Task<IActionResult> DownloadTransport()
         {
             var date = DateTime.Today.ToString("yyyy/MM/dd");

@@ -24,10 +24,13 @@
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
 
-            @if (!ViewData.ModelState.IsValid && ViewData.ModelState["Error"].Errors.Count > 0)
+            @*@if (!ViewData.ModelState.IsValid)
             {
-                <p class="text-danger"><b>@ViewData.ModelState["Error"].Errors.First().ErrorMessage</b></p>
-            }
+                @if (ViewData.ModelState["Error"].Errors != null)
+                {
+                    <p class="text-danger"><b>@ViewData.ModelState["Error"].Errors.First().ErrorMessage</b></p>
+                }
+            }*@
 
             <button type="submit" class="btn btn-lg btn-primary btn-block mb-4">Register</button>
             <a class="mt-5 mb-3" asp-controller="Account" asp-action="Login">Aleardy have an account? <b>Sign In</b></a>

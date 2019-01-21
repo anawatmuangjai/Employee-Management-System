@@ -99,7 +99,7 @@ namespace EMS.WebCore.Controllers
 
             if (await _authenService.AccountExistsAsync(viewModel.UserName))
             {
-                ModelState.AddModelError("Error", "Username already exists");
+                ModelState.AddModelError(string.Empty, "Username already exists");
                 return View(viewModel);
             }
 
